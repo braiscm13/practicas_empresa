@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformeusovehsintarjeta" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+			<Column title="" margin="0;5;5;5" valign="center">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+			</Column>
+			<Column>
+				<Table entity="EInformeUsoVehiculoSinTarjeta" key="CG_CONTRATO" keys="MATRICULA" parentkeys="CG_CONTRATO;CIF" 
+					cols="CG_CONTRATO;CIF;NOMB;MATRICULA;DSCR;FECINI;FECFIN;MINUTOS;DSCRPAIS" 
+					visiblecols="MATRICULA;DSCR;FECINI;FECFIN;MINUTOS;DSCRPAIS">
+				</Table>
+			</Column>
+		</Column>
+	</Row>
+</Form>

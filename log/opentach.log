@@ -1,0 +1,342 @@
+[INFO ] 30/07/2020 13:46:35.254 [main] c.o.s.u.s.OpentachLocatorReferencer: TimeZone:     CEST
+[INFO ] 30/07/2020 13:46:35.255 [main] c.o.s.u.s.OpentachLocatorReferencer: Version JAVA: 25.252-b09
+[INFO ] 30/07/2020 13:46:35.255 [main] c.o.s.u.s.OpentachLocatorReferencer: Version SO:   unknown
+[INFO ] 30/07/2020 13:46:35.255 [main] c.o.s.u.s.OpentachLocatorReferencer: Changing TimeZone to GMT
+[WARN ] 30/07/2020 13:46:35.767 [main] c.o.g.ExtendedServerMonitor: DMS hasn't been detected
+[WARN ] 30/07/2020 13:46:36.205 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in core-module module
+[WARN ] 30/07/2020 13:46:36.220 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-tasks module
+[WARN ] 30/07/2020 13:46:36.222 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-checktrucker module
+[WARN ] 30/07/2020 13:46:36.224 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-dms module
+[WARN ] 30/07/2020 13:46:36.226 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-tachofiletransfer module
+[WARN ] 30/07/2020 13:46:36.228 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-labor module
+[WARN ] 30/07/2020 13:46:36.232 [main] c.o.m.ModuleManager: EntityClass parameter has been setted in opentach-company module
+[WARN ] 30/07/2020 13:46:36.236 [main] c.o.l.SecureReferenceLocator: 'AdminUser' parameter must have at least 8 characters
+[WARN ] 30/07/2020 13:46:36.244 [main] c.o.l.SecureReferenceLocator: 'AdminPassword' parameter must have at least 8 characters
+[INFO ] 30/07/2020 13:46:36.307 [main] c.o.m.i.MessageQueueManagerService: Listener 'SmartphoneLocationService[UnicastServerRef [liveRef: [endpoint:[localhost:34007](local),objID:[25ca2ab6:1739f8ba55f:-7ffc, -1864332454837648691]]]]' registered to listen to queue 'location.changesmartphonelocation'
+[INFO ] 30/07/2020 13:46:36.308 [main] c.o.m.i.MessageQueueManagerService: Listener 'SmartphoneLocationService[UnicastServerRef [liveRef: [endpoint:[localhost:34007](local),objID:[25ca2ab6:1739f8ba55f:-7ffc, -1864332454837648691]]]]' registered to listen to queue 'location.identifysmartphone'
+[INFO ] 30/07/2020 13:46:36.313 [main] c.o.m.i.MessageQueueManagerService: Listener 'CloudFilesService[UnicastServerRef [liveRef: [endpoint:[localhost:34007](local),objID:[25ca2ab6:1739f8ba55f:-7ffb, 2577989200966815976]]]]' registered to listen to queue 'cloudfile.filereceived'
+[INFO ] 30/07/2020 13:46:38.317 [pseudorandom-identifier-generator-thread] c.o.s.AbstractOpentachServerLocator: reStarting pseudorandom identifier generator for 100000...
+[INFO ] 30/07/2020 13:46:38.333 [main] c.o.s.AbstractOpentachServerLocator: Clearing old sessions ...
+[INFO ] 30/07/2020 13:46:39.275 [main] c.o.m.i.MessageQueueManagerService: Listener 'com.opentach.server.fileuploadnotification.TGDFileReceptionPostFinishReceivingDelegate@176555c' registered to listen to queue 'filereception.postfinishreceiving'
+[INFO ] 30/07/2020 13:46:44.671 [main] c.o.s.r.s.RemoteVehicleServiceImpl: Loaded provider 21/VOLVO impl: com.opentach.server.remotevehicle.provider.volvo.VolvoRemoteDownloadProvider
+[INFO ] 30/07/2020 13:46:44.683 [main] c.o.s.r.s.RemoteVehicleServiceImpl: Loaded provider 1/JALTEST impl: com.opentach.server.remotevehicle.provider.jaltest.JaltestRemoteDownloadProvider
+[INFO ] 30/07/2020 13:46:44.689 [main] c.o.s.r.s.RemoteVehicleServiceImpl: Loaded provider 41/FTP impl: com.opentach.server.remotevehicle.provider.ftp.FtpRemoteDownloadProvider
+[INFO ] 30/07/2020 13:46:46.159 [main] o.a.c.w.s.f.ReflectionServiceFactoryBean: Creating Service {http://driverAnalysis.webservice.server.opentach.com/}IDriverAnalisysServiceService from class com.opentach.server.webservice.driverAnalysis.IDriverAnalisysService
+[INFO ] 30/07/2020 13:46:46.636 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /driverAnalysis
+[INFO ] 30/07/2020 13:46:46.657 [main] o.a.c.w.s.f.ReflectionServiceFactoryBean: Creating Service {http://webservice.jaltest.provider.remotevehicle.server.opentach.com/}IJaltestNotificationWebserviceService from class com.opentach.server.remotevehicle.provider.jaltest.webservice.IJaltestNotificationWebservice
+[INFO ] 30/07/2020 13:46:46.721 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /jaltestWebservice
+[INFO ] 30/07/2020 13:46:46.726 [main] o.a.c.w.s.f.ReflectionServiceFactoryBean: Creating Service {http://company.webservice.server.opentach.com/}ICompanyServiceService from class com.opentach.server.webservice.company.ICompanyService
+[INFO ] 30/07/2020 13:46:46.840 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be company
+[INFO ] 30/07/2020 13:46:46.842 [FTP download Synch] c.o.s.r.p.f.FtpRemoteDownloadWorker: Retrieved 1 companies to Ftp sync
+[INFO ] 30/07/2020 13:46:46.870 [FTP_SYNC-0] c.o.s.r.p.f.FtpRemoteDownloadWorker: Updating company 66666666 
+[ERROR] 30/07/2020 13:46:46.925 [FTP_SYNC-0] c.o.s.r.p.f.FtpRemoteDownloadWorker: Error synching company 66666666
+com.opentach.client.util.directorywatcher.DirectoryWatcherException: Error retrieving file list from ftp of company 66666666
+	at com.opentach.client.util.directorywatcher.ftp.FtpEngine.checkFtp(FtpEngine.java:66)
+	at com.opentach.server.remotevehicle.provider.ftp.FtpRemoteDownloadWorker.processCompany(FtpRemoteDownloadWorker.java:115)
+	at com.opentach.server.remotevehicle.provider.ftp.FtpRemoteDownloadWorker.lambda$0(FtpRemoteDownloadWorker.java:100)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.opentach.client.util.directorywatcher.DirectoryWatcherException: Conexión rehusada (Connection refused)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.connect(FtpConnectionTemplate.java:36)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.execute(FtpConnectionTemplate.java:20)
+	at com.opentach.client.util.directorywatcher.ftp.FtpEngine.checkFtp(FtpEngine.java:59)
+	... 7 common frames omitted
+Caused by: java.net.ConnectException: Conexión rehusada (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.commons.net.SocketClient._connect(SocketClient.java:243)
+	at org.apache.commons.net.SocketClient.connect(SocketClient.java:181)
+	at com.opentach.client.util.directorywatcher.ftp.ftp.FTPFtpEngineStrategy.connect(FTPFtpEngineStrategy.java:138)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.getStrategy(FtpConnectionTemplate.java:59)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.connect(FtpConnectionTemplate.java:30)
+	... 9 common frames omitted
+[INFO ] 30/07/2020 13:46:46.933 [Volvo download Synch] c.o.s.r.p.v.VolvoRemoteDownloadWorker: Retrieved 0 companies to Volvo sync
+[INFO ] 30/07/2020 13:46:47.053 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restStationsService
+[INFO ] 30/07/2020 13:46:47.144 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restLoginService
+[INFO ] 30/07/2020 13:46:47.164 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restCompanyService
+[INFO ] 30/07/2020 13:46:47.183 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restDriverService
+[INFO ] 30/07/2020 13:46:47.198 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restVehicleService
+[INFO ] 30/07/2020 13:46:47.209 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restInfractionService
+[INFO ] 30/07/2020 13:46:47.219 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restExpressReportService
+[INFO ] 30/07/2020 13:46:47.230 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restFilesService
+[INFO ] 30/07/2020 13:46:47.251 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restSurveyService
+[INFO ] 30/07/2020 13:46:47.259 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restActivityChartService
+[INFO ] 30/07/2020 13:46:47.269 [main] o.a.c.e.ServerImpl: Setting the server's publish address to be /restGraphicsSurveyService
+[INFO ] 30/07/2020 13:47:00.000 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: checkTasks
+[INFO ] 30/07/2020 13:47:00.008 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: 	There are 2 tasks defined.
+[INFO ] 30/07/2020 13:48:00.001 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: checkTasks
+[INFO ] 30/07/2020 13:48:00.002 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: 	There are 2 tasks defined.
+[INFO ] 30/07/2020 13:49:00.001 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: checkTasks
+[INFO ] 30/07/2020 13:49:00.008 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: 	There are 2 tasks defined.
+[INFO ] 30/07/2020 13:49:44.671 [Volvo download Synch] c.o.s.r.p.v.VolvoRemoteDownloadWorker: no need to wait
+[INFO ] 30/07/2020 13:49:44.684 [Jaltest location Synch] c.o.s.r.p.j.JaltestRemoteLocationWorker: no need to wait
+[INFO ] 30/07/2020 13:49:44.689 [FTP download Synch] c.o.s.r.p.f.FtpRemoteDownloadWorker: no need to wait
+[INFO ] 30/07/2020 13:49:44.932 [FTP download Synch] c.o.s.r.p.f.FtpRemoteDownloadWorker: Retrieved 1 companies to Ftp sync
+[INFO ] 30/07/2020 13:49:44.933 [FTP_SYNC-0] c.o.s.r.p.f.FtpRemoteDownloadWorker: Updating company 66666666 
+[ERROR] 30/07/2020 13:49:44.934 [FTP_SYNC-0] c.o.s.r.p.f.FtpRemoteDownloadWorker: Error synching company 66666666
+com.opentach.client.util.directorywatcher.DirectoryWatcherException: Error retrieving file list from ftp of company 66666666
+	at com.opentach.client.util.directorywatcher.ftp.FtpEngine.checkFtp(FtpEngine.java:66)
+	at com.opentach.server.remotevehicle.provider.ftp.FtpRemoteDownloadWorker.processCompany(FtpRemoteDownloadWorker.java:115)
+	at com.opentach.server.remotevehicle.provider.ftp.FtpRemoteDownloadWorker.lambda$0(FtpRemoteDownloadWorker.java:100)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.opentach.client.util.directorywatcher.DirectoryWatcherException: Conexión rehusada (Connection refused)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.connect(FtpConnectionTemplate.java:36)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.execute(FtpConnectionTemplate.java:20)
+	at com.opentach.client.util.directorywatcher.ftp.FtpEngine.checkFtp(FtpEngine.java:59)
+	... 7 common frames omitted
+Caused by: java.net.ConnectException: Conexión rehusada (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.commons.net.SocketClient._connect(SocketClient.java:243)
+	at org.apache.commons.net.SocketClient.connect(SocketClient.java:181)
+	at com.opentach.client.util.directorywatcher.ftp.ftp.FTPFtpEngineStrategy.connect(FTPFtpEngineStrategy.java:138)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.getStrategy(FtpConnectionTemplate.java:59)
+	at com.opentach.client.util.directorywatcher.ftp.FtpConnectionTemplate.connect(FtpConnectionTemplate.java:30)
+	... 9 common frames omitted
+[INFO ] 30/07/2020 13:49:45.029 [Volvo download Synch] c.o.s.r.p.v.VolvoRemoteDownloadWorker: Retrieved 0 companies to Volvo sync
+[INFO ] 30/07/2020 13:50:00.000 [pool-1-thread-1] c.o.s.a.s.AlertScheduler: checkAlerts...
+[ERROR] 30/07/2020 13:50:02.368 [pool-1-thread-1] c.o.s.a.s.AlertScheduler: checkAlerts...ERROR
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [
+					
+						SELECT
+							ALR_ID
+						FROM
+							ALR_ALERTS alr
+						WHERE
+							ALR_PROPERTIES not like '%CRON=NO%'
+							
+						ORDER BY ALR_CODE
+					
+			]; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: la tabla o vista no existe
+
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:234)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1444)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:632)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:669)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:700)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:712)
+	at com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport.query(OntimizeJdbcDaoSupport.java:203)
+	at com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper.query(DefaultOntimizeDaoHelper.java:170)
+	at com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper.query(DefaultOntimizeDaoHelper.java:147)
+	at com.opentach.server.alert.service.AlertServiceImpl.alertSchedulerQuery(AlertServiceImpl.java:101)
+	at com.opentach.server.alert.scheduler.AlertScheduler.checkTasks(AlertScheduler.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:93)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLSyntaxErrorException: ORA-00942: la tabla o vista no existe
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:837)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:459)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:193)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:531)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:225)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:1087)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1348)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1539)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3929)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3999)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:4515)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:678)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:617)
+	... 22 common frames omitted
+[INFO ] 30/07/2020 13:50:02.373 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: checkTasks
+[INFO ] 30/07/2020 13:50:02.374 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: 	There are 2 tasks defined.
+[INFO ] 30/07/2020 13:51:00.001 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: checkTasks
+[INFO ] 30/07/2020 13:51:00.001 [pool-1-thread-1] c.o.s.t.s.TaskScheduler: 	There are 2 tasks defined.
+[WARN ] 30/07/2020 13:51:01.944 [Thread-1] c.o.s.u.s.OpentachLocatorReferencer: class com.opentach.server.util.spring.OpentachLocatorReferencer -> destroy
+[INFO ] 30/07/2020 13:51:01.964 [Thread-1] c.o.s.AbstractOpentachServerLocator: Stopping file processing
+[WARN ] 30/07/2020 13:51:01.970 [Thread-1] c.o.s.u.s.OpentachLocatorReferencer: destroyed
+[ERROR] 31/07/2020 11:50:36.147 [main] c.z.h.p.HikariPool: springHikariCP - Exception during pool initialization.
+java.sql.SQLException: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:451)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:535)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:218)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:29)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:528)
+	at oracle.jdbc.pool.OracleDataSource.getPhysicalConnection(OracleDataSource.java:401)
+	at oracle.jdbc.pool.OracleDataSource.getConnection(OracleDataSource.java:288)
+	at oracle.jdbc.pool.OracleDataSource.getConnection(OracleDataSource.java:205)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:353)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:562)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:81)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:300)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:285)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1308)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1154)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:400)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:291)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:843)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:533)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:816)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:345)
+	at org.eclipse.jetty.webapp.WebAppContext.startWebapp(WebAppContext.java:1406)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1368)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:778)
+	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:262)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:522)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:131)
+	at org.eclipse.jetty.server.Server.start(Server.java:427)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:105)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:394)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at net.sourceforge.eclipsejetty.starter.jetty9.Jetty9Adapter.start(Jetty9Adapter.java:68)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.jetty9.Jetty9LauncherMain.main(Jetty9LauncherMain.java:42)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:356)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:419)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:811)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:249)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1407)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:328)
+	... 54 common frames omitted
+Caused by: java.net.SocketException: La red es inaccesible (connect failed)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:138)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:120)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:334)
+	... 59 common frames omitted
+[WARN ] 31/07/2020 11:50:36.154 [main] o.s.w.c.s.XmlWebApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainDataSource' defined in class path resource [spring-config-ontimize.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Constructor threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: The Network Adapter could not establish the connection
+[ERROR] 31/07/2020 11:50:36.163 [main] o.s.w.c.ContextLoader: Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainDataSource' defined in class path resource [spring-config-ontimize.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Constructor threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: The Network Adapter could not establish the connection
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:304)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:285)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1308)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1154)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:400)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:291)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:843)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:533)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:816)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:345)
+	at org.eclipse.jetty.webapp.WebAppContext.startWebapp(WebAppContext.java:1406)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1368)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:778)
+	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:262)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:522)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:131)
+	at org.eclipse.jetty.server.Server.start(Server.java:427)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:105)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:394)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at net.sourceforge.eclipsejetty.starter.jetty9.Jetty9Adapter.start(Jetty9Adapter.java:68)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.jetty9.Jetty9LauncherMain.main(Jetty9LauncherMain.java:42)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Constructor threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: The Network Adapter could not establish the connection
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:184)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:300)
+	... 34 common frames omitted
+Caused by: com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: The Network Adapter could not establish the connection
+	at com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:597)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:81)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172)
+	... 36 common frames omitted
+Caused by: java.sql.SQLException: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:451)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:535)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:218)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:29)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:528)
+	at oracle.jdbc.pool.OracleDataSource.getPhysicalConnection(OracleDataSource.java:401)
+	at oracle.jdbc.pool.OracleDataSource.getConnection(OracleDataSource.java:288)
+	at oracle.jdbc.pool.OracleDataSource.getConnection(OracleDataSource.java:205)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:353)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:562)
+	... 43 common frames omitted
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:356)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:419)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:811)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:249)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1407)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:328)
+	... 54 common frames omitted
+Caused by: java.net.SocketException: La red es inaccesible (connect failed)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:138)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:120)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:334)
+	... 59 common frames omitted

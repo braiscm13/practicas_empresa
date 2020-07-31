@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_PENDIENTES_DESCARGA" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<!-- <Columna expandlast="yes" expand="yes"> -->
+	<Row  margin="10;10;10;10">
+		<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+			<Column title="" margin="0;5;5;5" valign="center">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="16" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="no" csize="10" />
+				<Row>
+					<ReferenceComboDataField align="left" attr="CG_PROV" labelsize="16" cod="CG_PROV" cols="NOMB" dim="no" size="30" entity="EProvincias" />
+				</Row>
+			</Column>
+		</Column>
+		<Column width="10"/>
+		<BasicDataComponentGroup attr="FILTER.2" group="COLUMN.2=FECINI;FILTERFECINI;FILTERFECINI" />
+		<TextDataField attr="COLUMN.2" align="left" visible="no" />
+		<Column title="Filtro_Fecha_Comienzo" expand="no" align="left" margin="5;5;5;5">
+			<Row>
+				<Column layout="border" expand="no" align="center">
+					<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+						<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+						<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+						<Column expand="no">
+							<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left"
+								required="yes" datevisible="no" dim="no" labelsize="10" />
+							<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left"
+								required="yes" datevisible="no" dim="no" labelsize="10" />
+						</Column>
+					</ColumnRadioButtonGroup>
+				</Column>
+			</Row>
+		</Column>
+		<Column width="10"/>
+	</Row>
+	<Column>
+		<BasicDataComponentGroup attr="FILTER.1" group="COLUMN.1=TIPO;VAL.1a;VAL.1b;VAL.1c;VAL.1d;VAL.1e" />
+		<TextDataField attr="COLUMN.1" align="left" labelsize="14" size="18" visible="no" />
+	</Column>
+	<Row expand="yes">
+		<Table entity="EInformePendDescarga"  key="CG_CONTRATO" keys="IDORIGEN" 
+					parentkeys="CG_CONTRATO;CG_PROV"
+					cols="CG_CONTRATO;CIF;EMP;IDORIGEN;DSCR;TIPO;F_DESCARGA_DATOS;DIAS;IDDELEGACION;TELF;FAX;EMAIL;MOVIL;CG_PROV;PROVINCIA" 
+					visiblecols="CIF;EMP;IDORIGEN;DSCR;TIPO;F_DESCARGA_DATOS;DIAS;PROVINCIA" />
+	</Row>
+</Form>

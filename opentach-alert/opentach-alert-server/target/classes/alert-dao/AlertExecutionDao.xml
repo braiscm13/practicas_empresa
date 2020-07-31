@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc https://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="ALR_EXECUTIONS">
+	<DeleteKeys>
+		<Column>ALE_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>ALE_ID</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="query">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="ALR_ID" prefix="ale"/>
+				<AmbiguousColumn name="CIF" prefix="ale" databaseName="COM_ID"/>
+				<AmbiguousColumn name="IDCONDUCTOR" prefix="ale" databaseName="DRV_ID"/>
+			</AmbiguousColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT
+						#COLUMNS#
+					FROM
+						ALR_EXECUTIONS ale,
+						ALR_ALERTS alr,
+						DFEMP com,
+						CDCONDUCTORES_EMP drv
+					WHERE
+						ale.ALR_ID = alr.ALR_ID(+) 
+						AND ale.COM_ID = com.CIF(+)
+						AND (ale.COM_ID = drv.CIF(+) and ale.DRV_ID = drv.IDCONDUCTOR(+))
+						#WHERE_CONCAT#
+					ORDER BY ALE_EXEDATE desc, ALE_NUMBER desc
+				]]>
+			</Sentence>
+		</Query>
+		<Query id="nextExecutionNumber">
+			<Sentence>
+				<![CDATA[
+					SELECT SEQ_ALE_EXECUTIONS_NUMBER.nextval as ALE_NUMBER FROM dual
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

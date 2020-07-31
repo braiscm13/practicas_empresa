@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="DRIVER_STATUS_TIME"
+	buttons="no">
+	<FormHeader>
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField
+		attr="CG_CONTRATO"
+		required="yes"
+		visible="no" />
+	<Column margin="5;5;5;5">
+		<Row>
+			<Column
+				title=""
+				valign="top">
+				<ReferenceExtDataField
+					entity="EDfEmp"
+					text="EMPRESA"
+					labelsize="14"
+					attr="CIF"
+					dim="text"
+					cod="CIF"
+					cols="CIF;NOMB"
+					visiblecols="CIF;NOMB"
+					descriptioncols="NOMB"
+					required="yes"
+					csize="10" />
+				<com.opentach.client.comp.field.CampoComboReferenciaDespl
+					attr="IDCONDUCTOR"
+					cod="IDCONDUCTOR"
+					parentkeys="CG_CONTRATO;CIF"
+					csize="10"
+					entity="EConductorContFicticio"
+					cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+					visiblecols="DNI;APELLIDOS;NOMBRE"
+					descriptioncols="DNI;APELLIDOS;NOMBRE"
+					codsearch="DNI"
+					codvisible="no"
+					align="left"
+					labelsize="14"
+					dim="text"
+					required="yes" />
+				<TextComboDataField
+					attr="REPORT_TYPE"
+					values="WEEKLY;MONTHLY;ANNUAL"
+					labelsize="14"
+					dim="text"
+					translate="yes"
+					size="14"
+					required="yes" />
+			</Column>
+			<Column
+				title=""
+				valign="top">
+				<CampoFechaNoEditable
+					attr="FILTERFECINI"
+					text="DESDE"
+					align="left"
+					required="yes"
+					datevisible="no"
+					dim="no"
+					labelsize="9" />
+				<CampoFechaNoEditable
+					attr="FILTERFECFIN"
+					text="HASTA"
+					align="left"
+					required="yes"
+					datevisible="no"
+					dim="no"
+					labelsize="9" />
+					<Column/>
+			</Column>
+		</Row>
+		<Row title="TIPOACTIVIDAD">
+			<Column expand="no">
+				<CheckDataField
+					attr="DRIVING"
+					align="left"
+					labelsize="18"
+					labelposition="right" />
+				<CheckDataField
+					attr="REST"
+					align="left"
+					labelsize="18"
+					labelposition="right" />
+				<CheckDataField
+					attr="WORK"
+					align="left"
+					labelsize="18"
+					labelposition="right" />
+			</Column>
+			<Column expand="no">					
+				<CheckDataField
+					attr="AVAILABLE"
+					align="left"
+					labelsize="18"
+					labelposition="right" />
+				<CheckDataField
+					attr="INDETERMINATE"
+					align="left"
+					labelsize="18"
+					labelposition="right" />
+			</Column>
+			<Column expand="yes"/>
+		</Row>
+		<Row margin="2;0;0;0">
+			<Column expand="yes" />
+			<Button
+				key="btpStatusTimeReport"
+				text="btpStatusTimeReport"
+				tip="TIP_STATUS_TIME_REPORT"
+				icon="images-labor/printer16.png"
+				listener="com.opentach.client.labor.modules.report.IMInformeDriverStatusTimeReportActionListener" />
+		</Row>
+	</Column>
+</FormExt>

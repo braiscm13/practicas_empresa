@@ -1,0 +1,355 @@
+@import url('blue/style.css');
+Constants {
+	bordertitlecolor:#65fe00;
+	bordertitlefont:Verdana-BOLD-14;
+	titlebordercontentmargins:5 5 5 5;
+	datafieldradius:8;
+	oddrowbg:#5e9fc2;
+	evenrowbg:#5e9fc2;
+
+	tableenabletextforeground:#ffffff;
+}
+
+RoundLabel {
+	externalColor: #ffffff2c;
+	mediumColor: #eeeeee66;
+	internalColor: #ffffff8f;
+	enteredExternalColor: #094e9599;
+	enteredMediumColor: #1996d799;
+	enteredInternalColor: #45c9fe;
+}
+
+"CenterColumn" {
+	/*background:containergroupbackground;*/
+	bgpaint:linear-gradient(to right,#071956 0%,#00568f 40%,#0098cb 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+"BackgroundColumn" {
+	background:#000033;
+	/*bgpaint:linear-gradient(to right,#071956 0%,#00568f 50%,#2a97c9 100%);*/
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+"NewsColumn" {
+	/*background:containergroupbackground;*/
+	bgpaint:linear-gradient(to right,#001756 0%,#002a67 50%,#003e79 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+
+"OPEN" {
+	font: Verdana-BOLD-30;
+	contentMargins:0 0 0 0;
+
+	foreground:#4daad0;
+	[Enabled].textForeground:#4daad0;
+	[Disabled].textForeground:#4daad0;
+	disabledText:#4daad0;
+}
+
+
+"TACH" {
+	font: Verdana-BOLD-30;
+	contentMargins:0 0 0 0;
+
+	foreground:#2993c6;
+	[Enabled].textForeground:#2993c6;
+	[Disabled].textForeground:#2993c6;
+	disabledText:#2993c6;
+}
+"Subopentach" {
+	font: Verdana-PLAIN-14;
+	contentMargins:0 0 0 0;
+
+	foreground:#061a57;
+	[Enabled].textForeground:#061a57;
+	[Disabled].textForeground:#061a57;
+	disabledText:#061a57;
+}
+
+"MainRound" {
+	font: Verdana-BOLD-23;
+	contentMargins:0 0 0 0;
+
+	foreground:#013467;
+	[Enabled].textForeground:#013467;
+	[Disabled].textForeground:#013467;
+	disabledText:#013467;
+}
+"MainRoundSmall" {
+	font: Verdana-BOLD-23;
+	contentMargins:0 0 0 0;
+
+	foreground:#013467;
+	[Enabled].textForeground:#013467;
+	[Disabled].textForeground:#013467;
+	disabledText:#013467;
+}
+
+
+"SubMainRound" {
+	font: Verdana-PLAIN-16;
+	contentMargins:0 0 0 0;
+
+	foreground:#0f5e94;
+	[Enabled].textForeground:#0f5e94;
+	[Disabled].textForeground:#0f5e94;
+	disabledText:#0f5e94;
+}
+
+"StandardRound" {
+	font: Verdana-PLAIN-13;
+	contentMargins:0 0 0 0;
+
+	foreground:#0f5e94;
+	[Enabled].textForeground:#0f5e94;
+	[Disabled].textForeground:#0f5e94;
+	disabledText:#0f5e94;
+}
+"StandardBoldRound" {
+	font: Verdana-BOLD-13;
+	contentMargins:0 0 0 0;
+
+	foreground:#01558f;
+	[Enabled].textForeground:#01558f;
+	[Disabled].textForeground:#01558f;
+	disabledText:#01558f;
+}
+
+"NewsTitle" {
+	font: Verdana-BOLD-13;
+	contentMargins:0 0 0 0;
+
+	foreground:#53b4da;
+	[Enabled].textForeground:#53b4da;
+	[Disabled].textForeground:#53b4da;
+	disabledText:#53b4da;
+}
+
+"TechnicalLabel" {
+	font: Verdana-PLAIN-16;
+	contentMargins:0 0 0 0;
+
+	foreground:#ffffff;
+	[Enabled].textForeground:#ffffff;
+	[Disabled].textForeground:#ffffff;
+	disabledText:#ffffff;
+}
+
+"TechnicalLabelSmall" {
+	font: Verdana-PLAIN-14;
+	contentMargins:0 0 0 0;
+
+	foreground:#ffffff;
+	[Enabled].textForeground:#ffffff;
+	[Disabled].textForeground:#ffffff;
+	disabledText:#ffffff;
+}
+
+"TechnicalNumberLabel" {
+	font: Verdana-BOLD-20;
+	contentMargins:0 0 0 0;
+
+	foreground:#ffffff;
+	[Enabled].textForeground:#ffffff;
+	[Disabled].textForeground:#ffffff;
+	disabledText:#ffffff;
+}
+
+
+"TechnicalRow" {
+	/*background:#3f6492;*/
+	bgpaint:linear-gradient(to right,#3f6492 0%,#3f6492 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+"TechnicalRowBright" {
+	/*background:#3f6492;*/
+	bgpaint:linear-gradient(to right,#3f73a0 0%,#3f87b1 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+"TechnicalIcon" {
+	bgpaint:linear-gradient(to right,#3f6492 0%,#3f6492 49%,#ffffff00 50%, #ffffff00 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+}
+
+"WhiteStandar" {
+	font: Arial-BOLD-16;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"WhiteStandarNumber" {
+	font: Arial-BOLD-19;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"WhiteStandarBold" {
+	font: Arial-BOLD-13;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"WhiteSmallBold" {
+	font: Arial-BOLD-12;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"RedStandar" {
+	font: Arial-BOLD-16;
+	contentMargins:0 0 0 0;
+	
+	foreground:#d00000;
+	[Enabled].textForeground:#d00000;
+	[Disabled].textForeground:#d00000;
+	disabledText:#d00000;
+}
+
+"WhiteTitle" {
+	font: Verdana-BOLD-23;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"WhiteTitleBig" {
+	font: Verdana-BOLD-35;
+	contentMargins:0 0 0 0;
+	
+	foreground:#FFFFFF;
+	[Enabled].textForeground:#FFFFFF;
+	[Disabled].textForeground:#FFFFFF;
+	disabledText:#FFFFFF;
+}
+
+"OutBorderColumn" {
+	bgpaint:linear-gradient(to right,#ffffff0c 0%, #ffffff0c 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+	
+}
+"MiddleBorderColumn" {
+	bgpaint:linear-gradient(to right,#ffffff0c 0%, #ffffff0c 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;
+	
+}
+"InnerBorderColumn" {
+	bgpaint:linear-gradient(to right,#ffffff1c 0%, #ffffff1c 100%);
+	opaque:true;
+	contentMargins:0 0 0 0;	
+}
+
+
+"LightBlueHeaderColumn"{
+	background:#668db1;
+	opaque:true;
+	contentMargins:0 0 0 0;	
+	
+}
+"BlueHeaderColumn"{
+	background:#013470ff;
+	opaque:true;
+	contentMargins:0 0 0 0;	
+}
+
+VehicleListCellRenderer {
+	font: Verdana-BOLD-16;
+	foreground: #ffffff;
+}
+
+Table {
+	font:datafont;
+	contentMargins:tablelcontentmargins;
+	rowHeight:tablerowheight;
+	opaque:true;
+	showGrid:no;
+	gridColor:#337ba9;
+	intercellSpacing: 1 1;
+		
+	foreground:#ffffff;
+	textForeground:#ffffff;
+	TextBackground:#ffffff00;
+	/*background:#ffffff00;*/
+	background:#1f78a9;
+		
+	[Selected].border:#ffffff00;
+	[Enabled+Selected].textForeground:#ffffff;	/*Color used for default TableCellRenderes of swing*/
+	[Enabled+Selected].textBackground:#ffffff;	/*Color used for default TableCellRenderes of swing*/
+	[Disabled+Selected].textBackground:#ffffff;
+
+	border:#ffffff00;
+}
+
+
+TableHeader {
+	opaque:true;
+	rightAlignSortArrow:false;
+	font: Arial-BOLD-13;
+	
+	foreground:#ffffff;
+	background:#013470;
+
+	foregroundFilter:#ffffff;
+	
+	ascendingSortIconBackground:selectedbackground;
+	descendingSortIconBackground:selectedbackground;
+}
+
+TableHeader:"TableHeader.renderer" {
+	contentMargins:2 2 2 2;
+	opaque:true;
+	
+	backgroundDegraded:#013470 #013470;
+	textForeground:#ffffff;
+	outsideRightBorder:#337ba9;
+	insideRightBorder:#337ba9;
+	bottomBorder:#3378a6;
+}
+
+Table:"Table.cellRenderer" {
+	font:Arial-BOLD-14;
+	foreground:tableenabletextforeground;
+	evenRowBackground:evenrowbg;
+	oddRowBackground:oddrowbg;
+	[Editable].foreground:enabletextforeground;
+	[Editable].evenEditableBackground:evenroweditablebg;
+	[Editable].oddEditableBackground:oddroweditablebg;
+		
+	[Insertable].requiredBackground:requiredinsertablerowbg;
+	[Insertable].norequiredBackground:norequiredinsertablerowbg;
+
+	[Selected].foreground:tableselectedtextforeground;
+	[Selected+Editable].background:tableselectedrowbackground;
+	[Selected].background:tableselectedrowbackground;
+	[Selected].border:tableselectedborder;
+}		

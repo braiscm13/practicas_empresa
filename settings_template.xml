@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<settings   
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"   
+	xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">   
+	<localRepository>#PATH#</localRepository>   
+	<profiles>   
+		<profile>   
+			<id>artifactory-imatia</id>   
+			<repositories>   
+				<repository>   
+					<snapshots>   
+						<enabled>true</enabled>   
+						<updatePolicy>always</updatePolicy>   
+					</snapshots>   
+					<id>imatia</id>   
+					<name>libs-release</name>   
+					<url>#PATH#</url>   
+				</repository>				   
+			</repositories>   
+			<pluginRepositories>   
+				<pluginRepository>   
+					<snapshots>   
+						<enabled>true</enabled>   
+						<updatePolicy>always</updatePolicy>   
+					</snapshots>   
+					<id>imatia</id>   
+					<name>plugins-release</name>   
+					<url>#PATH#</url>   
+				</pluginRepository>   
+			</pluginRepositories>   
+		</profile>   
+	</profiles>   
+	<activeProfiles>   
+		<activeProfile>artifactory-imatia</activeProfile>   
+	</activeProfiles>   
+</settings>   

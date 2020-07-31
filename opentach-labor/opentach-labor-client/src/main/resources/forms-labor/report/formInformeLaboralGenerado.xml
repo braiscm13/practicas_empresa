@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="LABOR_REPORT"
+	buttons="no">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="images-labor/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField
+		attr="CG_CONTRATO"
+		required="yes"
+		visible="no" />
+	<Row expand="yes" margin="5;5;5;5">
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Row
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="CG_CONTRATO;CIF"
+						csize="10"
+						entity="EConductorContFicticio"
+						cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+						visiblecols="DNI;APELLIDOS;NOMBRE"
+						descriptioncols="DNI;APELLIDOS;NOMBRE"
+						codsearch="DNI"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="yes" />
+				</Column>
+				<Column
+					title="Filtro_Fecha_Creacion"
+					expand="no">
+					<CampoFechaNoEditable
+						attr="FILTERFECINI"
+						text="DESDE"
+						align="left"
+						required="yes"
+						datevisible="no"
+						dim="no"
+						labelsize="10" />
+					<CampoFechaNoEditable
+						attr="FILTERFECFIN"
+						text="HASTA"
+						align="left"
+						required="yes"
+						datevisible="no"
+						dim="no"
+						labelsize="10" />
+				</Column>
+			</Row>
+			<Row expand="yes">
+				<Table
+					entity="ELaborReportWarehouse"
+					keys="REP_ID"
+					parentkeys="CIF;IDCONDUCTOR;NUMREQ;FILTERFECINI;FILTERFECFIN"
+					rendertime="FECINI;FECFIN"
+					detailformopener="com.opentach.client.labor.modules.report.IMInformeLaboralGeneradoDetailFormOpener"
+					form="dummy"
+					cols="REP_ID;IDCONDUCTOR;NOMBRE;APELLIDOS;CIF;REP_BEGINDATE;REP_ENDDATE;REP_USUARIO_ALTA;REP_F_ALTA"
+					visiblecols="NOMBRE;APELLIDOS;REP_BEGINDATE;REP_ENDDATE;REP_USUARIO_ALTA;REP_F_ALTA">
+				</Table>
+			</Row>
+		</Column>
+
+	</Row>
+</FormExt>

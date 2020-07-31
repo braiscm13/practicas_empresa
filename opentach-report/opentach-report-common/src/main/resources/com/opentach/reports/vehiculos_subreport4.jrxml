@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="624d1440-ee8c-40b7-8727-81b79d4730fc">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.9487171000000045"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["0597FWV"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*30))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+CDVCALIBRADO.DSCR,
+CDVCALIBRADO.NUM_TRJ_TALLER,
+CDVCALIBRADO.FEC_PROXIMO
+FROM CDVCALIBRADO
+WHERE $P{matricula} = CDVCALIBRADO.MATRICULA
+AND $P{cgcontrato} = CDVCALIBRADO.CG_CONTRATO
+AND CDVCALIBRADO.FEC_PROXIMO >= SYSDATE]]>
+	</queryString>
+	<field name="DSCR" class="java.lang.String"/>
+	<field name="NUM_TRJ_TALLER" class="java.lang.String"/>
+	<field name="FEC_PROXIMO" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="9" y="25" width="479" height="23" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e7b05516-fa97-430d-877d-67275f4e2dbf"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="10" y="5" width="250" height="25" forecolor="#000000" uuid="f2c581d3-a4b0-4da9-b5c9-34feb9e103e9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CALIBRADOS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="13" y="27" width="126" height="20" forecolor="#000000" uuid="66887174-fa6f-446a-8aa0-4a8c1c28efd9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{DSCR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="175" y="29" width="145" height="19" forecolor="#000000" uuid="6107fcf6-e002-4efa-abad-c90fa82ebd83"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NUM_TRJ_TALLER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="340" y="28" width="139" height="18" forecolor="#000000" uuid="9d8070b2-86a2-40d7-9c9c-3c65737e5d4a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FEC_PROXIMO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="-1" width="479" height="18" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="6020159e-de6a-4dd3-af83-e2d057600ca5">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="13" y="0" width="149" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="701d3c50-9e59-49cd-b107-85ac2b71c9aa"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str($F{DSCR})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="175" y="-1" width="145" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="c1563cd6-0655-434d-a39b-032af9b6487a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUM_TRJ_TALLER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField" x="340" y="1" width="146" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8feae57d-5353-4a19-8c08-2c8c06004ca7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FEC_PROXIMO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,3 @@
+name=Opentach
+url=${ows.onlp_uri}
+splash=${ows.onlp_splash_uri}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="" title="FICHEROS_ALMACEN_LOCAL" buttons="no" keys="DNI" columns="DNI;APELLIDOS;NOMBRE">
+	<FormHeader>		
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnUpload" tip="ENVIAR_FICHEROS" icon="com/opentach/client/rsc/server_from_client16.png" />
+		<Button key="btnDelete" tip="BORRAR_FICHEROS_SELECCIONADOS" icon="com/opentach/client/rsc/formheader/delete_document.png" />		
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO"  required="yes" visible="no"/>
+	<Column margin="5;5;5;5">
+		<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+	</Column >
+	<Column marging="5;5;5;5">
+		
+		<Row title="" expand="yes">
+			<Table entity="EAlmacenLocal" title="FICHEROS" key="FICHERO" rendertime="F_FILE_UPLOAD;F_FILE_DOWNLOAD;F_DATA_DOWNLOAD" otherkeys="CG_CONTRATO" cols="FICHERO;IDORIGEN;TIPO;F_DATA_DOWNLOAD;F_FILE_UPLOAD;F_FILE_DOWNLOAD;OBSR" />
+		</Row >
+		
+	</Column >
+</FormExt>

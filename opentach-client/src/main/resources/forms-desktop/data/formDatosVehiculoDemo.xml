@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EVehiculosEmpDemo" title="DATOS_VEHICULO" keys="MATRICULA;CIF" parentkey="CIF" columns="MATRICULA;DSCR">
+	<FormHeader standardbuttons="yes">
+		<Column width="10" expand="no" />		
+		<Button key="bdownload" visible="no" />		
+	</FormHeader>
+	<Include file="forms-desktop/data/formDatosVehiculoIncludeMain.xml" />
+</FormExt>

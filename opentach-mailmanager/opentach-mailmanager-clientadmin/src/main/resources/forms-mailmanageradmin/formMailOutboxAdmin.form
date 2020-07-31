@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="" keys="DUMMY" title="mmng.formMailsTitle" 
+	buttons="no" status="no"
+	preferredsizetodialog="1100;850"
+	focusorder=""
+	autocompletefocuslist="yes"
+	>
+
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Row margin="5;5;5;5" expand="yes">	
+		<Column expand="yes" expandlast="no">
+			<!-- FILTERS -->
+			<!-- FILTERS -->
+			<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+				<Row margin="5;5;5;5">
+					<Column title=""  expand="0.7">
+						<Column valign="top">
+							<ReferenceExtDataField 
+								attr="USUARIO" cod="USUARIO" 
+								text="mmng.AGENT" 
+								entity="ojee.MailManagerService.agent" 
+								cols="USUARIO"
+								descriptioncols="USUARIO" 
+								size="50"
+								align="left"
+								labelsize="13" dim="no" codvisible="no"/>
+							<TextDataField 
+								attr="MAI_SUBJECT" text="mmng.MAI_SUBJECT"
+								align="left" labelsize="13" dim="no" size="10"
+								/>
+							<ReferenceExtDataField 
+								attr="CIF" cod="CIF" 
+								text="EMPRESA" 
+								entity="EDfEmp" 
+								cols="CIF;NOMB"
+								descriptioncols="CIF;NOMB" 
+								size="50"
+								align="left"
+								labelsize="13" dim="no" codvisible="no"/>
+							<Column height="1"/>
+							<Row>
+								<DateDataField attr="MAI_SENT_DATE_FROM"  text="mmng.MAI_SENT_DATE" align="left" labelsize="13" dim="no" size="7"/>
+								<DateDataField attr="MAI_SENT_DATE_TO" text="mmng.UNTIL" align="left" dim="no" size="7"/>
+								<Row/>
+							</Row>
+						</Column>
+					</Column>
+					<Column expand="no" expandlast="no">
+						<Column/>
+						<SearchPanel 
+							table="ojee.MailManagerService.mailAdmin"
+							search.filterfields="CIF;USUARIO" 
+							search.containsfilterfields="MAI_SUBJECT"
+							search.daterangefilterfields="MAI_SENT_DATE_FROM:MAI_SENT_DATE_TO:MAI_CREATION_DATE"
+						/>
+						<Column/>
+					</Column>
+				</Row>
+			</CollapsiblePanel>
+			<SplitPane>
+				<Row expand="yes" valign="center">
+					<Column expand="yes" margin="5;5;5;5">	
+						<Table
+							entity="ojee.MailManagerService.mailAdmin" 
+							key="MAI_ID" 
+							parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+							cols="USUARIO;COM_NAME;MAI_ID;MAI_SUBJECT;MAI_CREATION_DATE;MAI_DATE;MAI_TO;MAI_CC;MAI_SENT"
+							visiblecols="USUARIO;COM_NAME;MAI_SUBJECT;MAI_CREATION_DATE;MAI_DATE;MAI_TO;MAI_CC;MAI_SENT"
+							defaultvisiblecols="USUARIO;COM_NAME;MAI_SUBJECT;MAI_CREATION_DATE;MAI_DATE;MAI_TO;MAI_CC;MAI_SENT"
+							deletebutton="no" disableinsert="yes" insertcontrol="no"
+							detailformat="{0};MAI_SUBJECT"
+							listener="com.opentach.client.mailmanager.im.IMMailOutboxTableSelectionListener"
+							form="formMailSentAdmin.form"
+							title="mmng.Outbox"
+							scrollh="no"
+							columntext=""
+							minrowheight="22"
+							>
+							<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;chartbutton;defaultchartbutton;insertbutton;printingbutton;deletebutton;pivottablebutton" onlyhide="true" />
+							
+							<TableColumnProperties attr="USUARIO" text="mmng.AGENT"  defaultwidth="50" preferredwidth="50"/>
+							<TableColumnProperties attr="COM_NAME" text="mmng.COM_NAME"  defaultwidth="100" preferredwidth="100"/>
+							<TableColumnProperties attr="MAI_SUBJECT" text="mmng.MAI_SUBJECT"  defaultwidth="225" preferredwidth="225"/>
+							<TableColumnProperties attr="MAI_CREATION_DATE" text="mmng.MAI_CREATION_DATE"  defaultwidth="165" preferredwidth="165"/>
+							<TableColumnProperties attr="MAI_DATE" text="mmng.MAI_DATE"  defaultwidth="165" preferredwidth="165"/>
+							<TableColumnProperties attr="MAI_TO" text="mmng.MAI_TO"  defaultwidth="125" preferredwidth="125" minwidth="125"/>
+							<TableColumnProperties attr="MAI_CC" text="mmng.MAI_CC"  defaultwidth="125" preferredwidth="125"/>
+							<TableColumnProperties attr="MAI_SENT" text="mmng.MAI_SENT"  defaultwidth="30" preferredwidth="30"/>
+							<TimezoneDateCellRenderer column="MAI_DATE" globalid="MAI_DATE" format="dd/MM/yyyy HH:mm:ss"/>
+							<TimezoneDateCellRenderer column="MAI_CREATION_DATE" globalid="MAI_CREATION_DATE" format="dd/MM/yyyy HH:mm:ss"/>
+							<RenderBoolean column="MAI_SENT"/>
+						</Table>
+					</Column>
+				</Row>
+				<MemoDataField attr="MAI_BODY" dim="text" expand="yes" labelvisible="no"/>
+			</SplitPane>
+		</Column>			
+	</Row>
+</FormExt>

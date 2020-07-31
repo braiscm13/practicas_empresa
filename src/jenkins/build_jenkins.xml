@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<project default="release" basedir=".">
+
+	<property file="build_jenkins.properties" />
+
+
+	<target name="setVersion">
+
+		<exec dir="${deployment.basepath}" executable="${cli_executable}"
+			failonerror="true">
+			<arg value="${cli_parameter}" />
+			<arg
+				value="${maven}
+				versions:set
+				versions:commit
+				-DnewVersion=${VERSION}
+				-Dmaven.test.skip=true
+				-DskipTests=true" />
+		</exec>
+	</target>
+
+	<target name="release">
+		<antcall target="setVersion" inheritall="true">
+		</antcall>
+
+		<exec dir="${deployment.basepath}" executable="${cli_executable}"
+			failonerror="true">
+			<arg value="${cli_parameter}" />
+			<arg
+				value="${maven}
+				install
+				-P${release.environment}
+				-Dmaven.test.skip=true
+				-DskipTests=true
+				-Dmaven.repo.local=./repository" />
+		</exec>
+
+		<exec dir="${deployment.basepath}" executable="${cli_executable}"
+			failonerror="true">
+			<arg value="${cli_parameter}" />
+			<arg
+				value="${maven}
+				validate
+				dependency:go-offline
+				-P${release.environment},generate-jnlp
+				-DoverWriteSnapshots=true
+				-DexcludeReactor=true
+				-DexcludeGroupIds=com.imatia.opentach
+				-Dmaven.repo.local=./repository" />
+		</exec>
+	</target>
+	
+	<target name="make_release_zip">
+		<exec dir="${deployment.basepath}" executable="${cli_executable}"  failonerror="true">
+			<arg value="${cli_parameter}" />
+			<arg value="${maven}
+				clean
+				-Dmaven.repo.local=./repository" />
+		</exec>
+
+		<get src="https://svn.imatia.com/labs/deploy_resources/jdk_x64_1.8.0_92.zip" dest="${deployment.basepath}" username="${domain.user}" password="${domain.pass}"/>
+		<unzip src="${deployment.basepath}/jdk_x64_1.8.0_92.zip" dest="${deployment.basepath}"/>
+		<move file="${deployment.basepath}/jdk_x64_1.8.0_92" tofile="${deployment.basepath}/java"/>
+		
+		<get src="https://svn.imatia.com/labs/deploy_resources/apache-maven_3.2.2.zip" dest="${deployment.basepath}" username="${domain.user}" password="${domain.pass}"/>
+		<unzip src="${deployment.basepath}/apache-maven_3.2.2.zip" dest="${deployment.basepath}"/>
+		<move file="${deployment.basepath}/apache-maven_3.2.2" tofile="${deployment.basepath}/maven"/>
+
+		<delete failonerror="yes" dir="${deployment.basepath}/jenkins" />
+		<delete failonerror="yes">		
+			<fileset dir="${deployment.basepath}/repository" includes="**/_remote.repositories" />
+			<fileset dir="${deployment.basepath}/repository" includes="**/maven-metadata-amtega-dt" />
+			<fileset dir="${deployment.basepath}/repository" includes="**/*.xml" />
+			<fileset dir="${deployment.basepath}/repository" includes="**/*.sha1" />
+			<fileset dir="${deployment.basepath}/repository/com/imatia/opentach" includes="**/*" />
+			
+			<fileset dir="${deployment.basepath}" includes="pom_dev.properties" />
+			<fileset dir="${deployment.basepath}" includes="pom_server-dev.properties" />
+			<fileset dir="${deployment.basepath}" includes="*.launch" />
+			<fileset dir="${deployment.basepath}" includes="build.properties" />
+			<fileset dir="${deployment.basepath}" includes="build.xml" />
+			
+			<fileset dir="${deployment.basepath}" includes="jdk_x64_1.8.0_92.zip" />
+			<fileset dir="${deployment.basepath}" includes="apache-maven_3.2.2.zip" />
+		</delete>
+
+		<!--Generate zip file -->
+		<zip destfile="${deployment.basepath}/OPENTACH_${VERSION}.zip">
+			<zipfileset dir="${deployment.basepath}" />
+		</zip>
+	</target>
+
+	<target name="make_war">
+		<antcall target="setVersion" inheritall="true">
+		</antcall>
+
+		<exec dir="${deployment.basepath}" executable="${cli_executable}"
+			failonerror="true">
+			<!--<env key="MAVEN_OPTS" value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/> -->
+			<arg value="${cli_parameter}" />
+			<arg
+				value="${maven}
+			install
+			-e
+			-U
+			-P${deploy.environment},generate-jnlp
+			-Dmaven.test.skip=true
+			-DskipTests=true
+			-Dmaven.repo.local=./repository" />
+		</exec>
+	</target>
+</project>

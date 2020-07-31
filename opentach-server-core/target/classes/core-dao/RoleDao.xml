@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog=""
+	schema="${mainschema}"
+	table="CDNIVELES"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>NIVEL_CD</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>NIVEL_CD</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<FunctionColumns>
+				<FunctionColumn name="NIVEL_NUM" value="TO_NUMBER(NIVEL_CD)" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM 
+						CDNIVELES 
+					#WHERE#
+					ORDER BY 
+						TO_NUMBER(NIVEL_CD)
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+	
+</JdbcEntitySetup>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: brais
+Build-Jdk: 11.0.8
+Implementation-Title: opentach-client-downcenter
+Implementation-Version: dev
+Implementation-Vendor-Id: com.imatia.opentach
+Implementation-Vendor: OPENSERVICES
+Created-By: Maven Integration for Eclipse
+Utilmize-App-Version: dev
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EVehiculosEmp" title="VEHICULO_EMP" keys="MATRICULA;CIF" buttons="no" columns="MATRICULA;DSCR;F_ALTA">
+<FormHeader standardbuttons="yes"/>
+	<Column margin="5;5;5;5" expandlast="no">
+		<Include file="forms-desktop/data/formDatosVehiculoIncludeVehicleData.xml" />
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+		</Row>
+	</Column>
+</FormExt>

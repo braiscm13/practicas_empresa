@@ -1,0 +1,29 @@
+<Row attr="StepQuestionPrint" expand="yes">
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row height="30" expand="no" />
+		<Label text="QuestionPrint" uiname="WhiteTitle" align="center" />
+		<Row height="10" expand="no" />
+		<Row expand="yes" >
+			<Column expand="yes" />
+			<RoundPanel attr="NoPrint" expand="yes" listener="com.opentach.downclient.IMMainWizardPrintActionListener" copies="0">
+				<Row expand="yes" width="220" />
+				<Label text="TitleNo" uiname="MainRound" />
+				<Row expand="yes" />
+			</RoundPanel>
+			<Column expand="yes" />
+			<RoundPanel attr="OnePrint" expand="yes" listener="com.opentach.downclient.IMMainWizardPrintActionListener" copies="1">
+				<Row expand="yes" width="220" />
+				<Label text="TitleOne" uiname="MainRound" />
+				<Row expand="yes" />
+			</RoundPanel>
+			<Column expand="yes" />
+			<RoundPanel attr="TwoPrint" expand="yes" listener="com.opentach.downclient.IMMainWizardPrintActionListener" copies="2">
+				<Row expand="yes" width="220" />
+				<Label text="TitleTwo" uiname="MainRound" />
+				<Row expand="yes" />
+			</RoundPanel>
+			<Column expand="yes" />
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+</Row>

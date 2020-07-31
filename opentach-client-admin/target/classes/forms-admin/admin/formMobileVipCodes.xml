@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" title="CONSULTA_VIP_CODE_MOBILE" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+	</FormHeader>
+	<ObjectDataField attr="DOWNLOADTIME" visible="no" />
+	<Row title="" valign="top">
+		<Column expandlast="no" margin="0;0;0;10">
+			<TextDataField attr="CODE" visible="yes" align="left" size="20" />
+			<Row expand="yes"/>
+			<Row expand="no">
+				<Column expand="yes" />
+				<Button key="generatevipcodes" text="generatevipcodes"
+					listener="com.opentach.adminclient.modules.admin.IMMobileVipCodes$ListenerGenerateVipCodes" />
+			</Row>
+		</Column>
+
+		<Column layout="border" expand="no" align="center" title="F_ADQUISITION">
+			<ColumnRadioButtonGroup selected="ULTIMOS_DIAS"
+				attr="datos">
+				<RadioButtonDataField attr="ULTIMOS_DIAS" text="Ultimos_15_dias"
+					labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+				<RadioButtonDataField attr="RANGO_FECHA"
+					labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+				<Column expand="no">
+					<CampoFechaNoEditable
+						attr="FILTERFECINI" text="DESDE" align="right" required="no"
+						datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable
+						attr="FILTERFECFIN" text="HASTA" align="right" required="no"
+						datevisible="no" dim="no" labelsize="10" />
+				</Column>
+			</ColumnRadioButtonGroup>
+		</Column>
+
+	</Row>
+	<Row title="ESmartphoneVipCodes" expand="yes">
+		<Table entity="ESmartphoneVipCodes" key="CODE" parentkeys="CODE;ACQUISITION_DATE"
+			cols="CODE;DEVICE_ID;CREATION_DATE;ACQUISITION_DATE" visiblecols="CODE;DEVICE_ID;CREATION_DATE;ACQUISITION_DATE"
+			rendertime="CREATION_DATE;ACQUISITION_DATE" />
+	</Row>
+</Form>

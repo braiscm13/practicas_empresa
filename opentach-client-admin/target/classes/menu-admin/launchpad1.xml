@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<SliderBar>
+	<SliderBarSection attr="ACCESS_CONTROL" icon="images-admin/face_scan32.png">
+<!-- 		<SliderBarItem attr="test" icon="com/opentach/client/rsc/selection_delete24.png" listener="com.opentach.adminclient.test.DowncenterReportMenuListener" fixedwidth="217"/> -->
+		<SliderBarItem attr="managerusuario" icon="com/opentach/client/rsc/usuario24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerperfil" icon="com/opentach/client/rsc/perfil24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerviewsolicitudes" text="managerviewsolicitudes.short" tip="managerviewsolicitudes" icon="com/opentach/client/rsc/book_blue_view24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managermonitorizacion" icon="com/opentach/client/rsc/console24.png" fixedwidth="210"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="FILE_MANAGEMENT" icon="images-admin/folder_document232.png" >
+		<SliderBarItem attr="managerlistadoficheros" icon="com/opentach/client/rsc/documents_gear24.png" fixedwidth="217"/>
+		<SliderBarItem attr="managerlistadoregistro" icon="com/opentach/client/rsc/register24.png" fixedwidth="217"/>
+		<SliderBarItem attr="managerconsultaficheros" icon="com/opentach/client/rsc/index_view24.png" fixedwidth="217"/>
+		<SliderBarItem attr="managerinformependdescargafull" text="managerinformependdescargafull.short" tip="managerinformependdescargafull" icon="com/opentach/client/rsc/warning24_files.png" fixedwidth="217"/>
+
+	 	<SliderBarItem attr="file_process" icon="com/opentach/client/rsc/gear_run24.png" fixedwidth="217" listener="com.opentach.adminclient.modules.admin.FileProcessListenerMenuItem" />
+		
+		<SliderBarItem attr="processFileStatus" icon="com/opentach/client/rsc/monitor_test_card24.png" listener="com.opentach.adminclient.modules.files.ProcessFileStatusMenuListener" fixedwidth="217"/>
+		<SliderBarItem attr="cleardb" icon="com/opentach/client/rsc/selection_delete24.png" listener="com.opentach.adminclient.modules.maintenance.MaintenanceDBMenuListener" fixedwidth="217"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="SMARTPHONES_MANAGEMENT" icon="images-admin/smartphone32.png" >
+		<SliderBarItem attr="manageradminmobilefileextraction" icon="com/opentach/client/rsc/documents_gear24.png" fixedwidth="210"/>
+		<SliderBarItem attr="manageradminmobilevipcodes" icon="com/opentach/client/rsc/documents_gear24.png" fixedwidth="210"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="News" icon="images-admin/newspaper32.png" >
+		<SliderBarItem attr="managernews" icon="com/opentach/client/rsc/newspaper24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managercreatenotice" icon="com/opentach/client/rsc/mail_new.png" fixedwidth="210"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="CDO" icon="images-admin/office_building232.png" >
+		<SliderBarItem attr="managerusuariocdo" text="managerusuariocdo.short" tip="managerusuariocdo" icon="com/opentach/client/rsc/managedownloadcenters.png" fixedwidth="210"/>
+		<SliderBarItem attr="managercdonews" icon="com/opentach/client/rsc/managenews24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managermonitorizacioncdo" text="managermonitorizacioncdo.short" tip="managermonitorizacioncdo" icon="com/opentach/client/rsc/console24.png" fixedwidth="210"/>
+	</SliderBarSection>
+		
+	<SliderBarSection attr="SETUP" icon="images-admin/window_gear32.png" >
+		<SliderBarItem attr="managertablasmaestras" icon="com/opentach/client/rsc/chart24.png" fixedwidth="210"/>
+		<SliderBarItem attr="setupVersionNews" text="setupVersionNews.short" tip="setupVersionNews" icon="com/opentach/client/rsc/chart24.png" listener="com.opentach.adminclient.modules.setup.IMVersionNewsEditorMenuListener" fixedwidth="210"/>
+		<SliderBarItem attr="managerextraresources" text="managerextraresources.short" tip="managerextraresources" icon="dms-images/document_attachment24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerrestricciones" icon="com/opentach/client/rsc/console24.png" fixedwidth="210"/>
+		<SliderBarItem attr="manageragreement" icon="com/opentach/client/rsc/console24.png" fixedwidth="210"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="SUPPORT" icon="images-admin/user_headset32.png" >
+		<SliderBarItem attr="managerTasks" icon="com/opentach/client/rsc/incidences24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerfilefixer" icon="com/opentach/client/rsc/gear_run24.png" fixedwidth="210" />
+		<SliderBarItem attr="managerMailOutboxAdmin" icon="images-mailmanager/mail_view.png" fixedwidth="210" />	
+	</SliderBarSection>
+</SliderBar>
+

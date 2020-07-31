@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" status="no" scroll="no">	
+   <Row expand="no">        
+      <Column width="700" height="350" expand="no">
+      	  <Row height="10"/>	
+         <Row  expand="no" align="center">
+            <HTMLHelpField  attr="ruta_info_about" bgcolor="00315a9c" hiperlinks="yes"/>
+         </Row>
+      </Column >                 
+   </Row>
+</Form>

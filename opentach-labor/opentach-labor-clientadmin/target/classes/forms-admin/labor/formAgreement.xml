@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ELaborAgreement"
+	keys="AGR_ID"
+	title="ELaborAgreement"
+	buttons="no"
+	columns="NAME">
+
+<!-- 	<FormHeader standardbuttons="yes" /> -->
+	<IntegerDataField
+		attr="AGR_ID"
+		visible="no" />
+	<Column margin="5;5;5;5" expadn="yes" expandlast="no">
+		<Row margin="5;5;5;5" expand="no">
+			<Column
+				title="AGREEMENT_DATA"
+				expand="yes">
+				<Column>
+					<TextDataField
+						attr="AGR_NAME"
+						labelsize="20"
+						dim="text"
+						required="yes"
+						align="left" />
+					<TextComboDataField
+						attr="AGR_MODALITY"
+						values="MERCANCIAS;MERCANCIASDISCRECIONAL;MERCANCIASREGULAR;MERCANCIAVIAJERO;VIAJEROS;URBANOSVIAJEROS;VIAJEROSREGDISC;AGENCIATRANS;DISCRTURISMO;AGENCIACARGASFRAC"
+						labelsize="20"
+						translate="yes"
+						align="left"
+						size="46" />
+					<ReferenceComboDataField
+						attr="AGR_ALGORITHM"
+						keys="NAME"
+						cod="NAME"
+						entity="ELaborAgreementAlgorithm"
+						cols="NAME"
+						required="yes"
+						dim="text" />
+
+					<ReferenceComboDataField
+						attr="AGR_LIMIT_ALGORITHM"
+						keys="NAME"
+						cod="NAME"
+						entity="ELaborAgreementLimitAlgorithm"
+						cols="NAME"
+						required="yes"
+						labelsize="20"
+						dim="text" />
+
+					<DateDataField
+						attr="AGR_F_BAJA"
+						labelsize="20"
+						dim="no"
+						size="16"
+						align="left" />
+				</Column>
+				<Row title="WorkingLimits">
+					<Column expand="no">
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_DAILY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_WEEKLY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_BIWEEKLY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_FOUR_WEEKLY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_MONTHLY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_FOUR_MONTHLY_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+						<com.opentach.client.labor.comp.HourMinuteDataField
+							attr="AGR_ANNUAL_MINUTES"
+							labelsize="20"
+							dim="no"
+							align="left"
+							size="8" />
+					</Column>
+					<Column />
+				</Row>
+			</Column>
+		</Row>
+		<Row expand="yes"/>
+		<Row expand="no">
+			<Column />
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CP GENERAL 1" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="455" leftMargin="70" rightMargin="70" topMargin="70" bottomMargin="70" uuid="f6e34541-6c72-4ba6-9288-e57a54f67dc3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="TableLabel" vTextAlign="Middle" fontName="SansSerif" fontSize="9" isBold="true">
+		<box topPadding="0" leftPadding="3" bottomPadding="0" rightPadding="0"/>
+	</style>
+	<style name="TableValue" vTextAlign="Middle" isBlankWhenNull="true" fontName="SansSerif" fontSize="9">
+		<box topPadding="0" leftPadding="3" bottomPadding="0" rightPadding="0"/>
+	</style>
+	<style name="CurrentDate" hTextAlign="Right" vTextAlign="Middle" fontSize="9"/>
+	<style name="LongText" hTextAlign="Justified" markup="styled" fontName="SansSerif" fontSize="9"/>
+	<style name="SectionTitle" hTextAlign="Left" vTextAlign="Middle" fontName="SansSerif" fontSize="10" isBold="true"/>
+	<style name="DateLabel" hTextAlign="Right" vTextAlign="Middle" fontName="SansSerif" fontSize="9"/>
+	<queryString>
+		<![CDATA[SELECT
+null as '1 Expedidor',
+null as '2 Cargador',
+null as '3 Destinatario',
+null as '4 Designación',
+null as '5 Etiquetas',
+null as '6 Grupo Embalaje',
+null as '7 Cantidad',
+null as '8 Fecha Exp',
+null as '9 Código Restricción Túneles',
+null as '10 Grado Máx Llenado',
+null as '11 N Identif Peligro',
+null as '12 UN',
+null as '13 Transportista Efectivo',
+null as '14 Matrícula tractora',
+null as '15 Matrícula remolque',
+null as '16 Nombre y apellidos',
+null as '17 DNI',
+null as '18 Dir Expedidor',
+null as '19 NIF Expedidor',
+null as '20 Prov Expedidor',
+null as '21 Dir Destinatario',
+null as '22 Prov Destinatario',
+null as '23 Tipo Bulto',
+null as '24 Num Bultos',
+null as '25 NIF Transportista',
+null as '26 Fecha Transporte',
+null as '27 Loc Expedidor',
+null as '28 Loc Destinatario',
+null as '29 NIF Destinatario',
+null as '30 N Materia',
+null as '31 Peso Bruto'
+FROM
+DUAL]]>
+	</queryString>
+	<field name="1 Expedidor" class="java.lang.String"/>
+	<field name="2 Cargador" class="java.lang.String"/>
+	<field name="3 Destinatario" class="java.lang.String"/>
+	<field name="4 Designación" class="java.lang.String"/>
+	<field name="5 Etiquetas" class="java.lang.String"/>
+	<field name="6 Grupo Embalaje" class="java.lang.String"/>
+	<field name="7 Cantidad" class="java.lang.String"/>
+	<field name="8 Fecha Exp" class="java.lang.String"/>
+	<field name="9 Código Restricción Túneles" class="java.lang.String"/>
+	<field name="10 Grado Máx Llenado" class="java.lang.String"/>
+	<field name="11 N Identif Peligro" class="java.lang.String"/>
+	<field name="12 UN" class="java.lang.String"/>
+	<field name="13 Transportista Efectivo" class="java.lang.String"/>
+	<field name="14 Matrícula tractora" class="java.lang.String"/>
+	<field name="15 Matrícula remolque" class="java.lang.String"/>
+	<field name="16 Nombre y apellidos" class="java.lang.String"/>
+	<field name="17 DNI" class="java.lang.String"/>
+	<field name="18 Dir Expedidor" class="java.lang.String"/>
+	<field name="19 NIF Expedidor" class="java.lang.String"/>
+	<field name="20 Prov Expedidor" class="java.lang.String"/>
+	<field name="21 Dir Destinatario" class="java.lang.String"/>
+	<field name="22 Prov Destinatario" class="java.lang.String"/>
+	<field name="23 Tipo Bulto" class="java.lang.String"/>
+	<field name="24 Num Bultos" class="java.lang.String"/>
+	<field name="25 NIF Transportista" class="java.lang.String"/>
+	<field name="26 Fecha Transporte" class="java.lang.String"/>
+	<field name="27 Loc Expedidor" class="java.lang.String"/>
+	<field name="28 Loc Destinatario" class="java.lang.String"/>
+	<field name="29 NIF Destinatario" class="java.lang.String"/>
+	<field name="30 N Materia" class="java.lang.String"/>
+	<field name="31 Peso Bruto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="702" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement key="" style="LongText" x="0" y="0" width="454" height="40" uuid="27e5dfec-4c1e-4d28-be48-0b843caee82d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARTA DE PORTE]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="2" y="120" width="453" height="458" uuid="c35ecc0f-0f63-4ff7-9c51-37828c666aaa">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="0" y="-70" width="124" height="18" backcolor="#E8E6E6" uuid="854f261f-d4fd-49bd-94b2-9ec3e6cbd6e5"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[EXPEDIDOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="124" y="-70" width="158" height="18" backcolor="#E8E6E6" uuid="4cb1515d-337f-4707-b5af-74703d469cc0"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[CARGADOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="283" y="-70" width="170" height="18" backcolor="#E8E6E6" uuid="d3acb8f1-ed8d-4eb5-874f-eee637379e4e"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[DESTINATARIO]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="-52" width="453" height="1" uuid="31a024fd-f6c8-4889-bfde-3c38e5c8d02e"/>
+				</line>
+				<textField>
+					<reportElement style="TableValue" x="0" y="-51" width="122" height="71" uuid="1b26db3c-b725-4735-8a37-9de3edc806c0">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textFieldExpression><![CDATA[$F{1 Expedidor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="283" y="-51" width="170" height="71" uuid="1d67bdd9-f11e-4310-888a-f102c5b722eb"/>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textFieldExpression><![CDATA[$F{3 Destinatario}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="125" y="-51" width="157" height="71" uuid="9f728c98-1484-401c-9fb3-96107532bf5b"/>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textFieldExpression><![CDATA[$F{2 Cargador}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="452" height="1" uuid="72d2ae14-496f-41f4-800b-8a4045f4d8cf"/>
+				</line>
+				<line>
+					<reportElement x="0" y="38" width="452" height="1" uuid="07a6243e-88f9-4702-b8c4-b82a0725b898"/>
+				</line>
+				<line>
+					<reportElement x="0" y="56" width="452" height="1" uuid="e87a38c4-3c06-4884-aea1-b13f2a462f66"/>
+				</line>
+				<line>
+					<reportElement x="0" y="74" width="452" height="1" uuid="6609ae99-e5e8-4102-a081-c84d6514182f"/>
+				</line>
+				<line>
+					<reportElement x="0" y="92" width="452" height="1" uuid="edab881f-712d-41d6-b71d-a533d603c15a"/>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="1" y="21" width="221" height="18" backcolor="#E8E6E6" uuid="10edc1f1-e3b6-4f57-8f1c-836ea9d598f3"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[DESIGNACIÓN MERCANCÍA SEGÚN ADR]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="223" y="39" width="76" height="18" uuid="f59d5c04-affd-4b8e-abe2-02ae31dedfa0"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{5 Etiquetas}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="375" y="21" width="77" height="18" backcolor="#E8E6E6" uuid="c8b224fe-7caa-4042-8e9a-48d48f3c369f"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="1" y="39" width="221" height="18" uuid="4125bccb-499b-4283-921a-d5b99b0a050c"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{4 Designación}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="299" y="21" width="76" height="18" backcolor="#E8E6E6" uuid="7dbd9614-fd8b-42ca-837f-dae59746ddaf"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Grupo Embalaje]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="376" y="39" width="76" height="18" uuid="999d5826-8a88-44ce-b006-273c631cafd3"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{7 Cantidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="300" y="39" width="75" height="18" uuid="c828494a-f230-43a1-a2f7-4ba79f1e7e2b"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{6 Grupo Embalaje}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="SectionTitle" x="0" y="93" width="453" height="127" uuid="3b4dbdc3-288c-4e0a-bba9-81c16a583fea">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font isBold="false"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[
+El expedidor (o por delegación de éste, el cargador) CERTIFICA:                                                                                                             
+Que esta materia se admite al transporte por carretera y que su estado, su acondicionamiento, envasado y etiquetado están conformes a las prescripciones del ADR vigente y del Real Decreto 97/2014, sobre transporte de mercancías peligrosas por carretera, y sus modificaciones posteriores.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ‏
+                                                                                                        Firma y sello                                                                                                                                                                                      ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="306" width="452" height="1" uuid="472f98cb-c3f1-4895-9c52-a80caa733754"/>
+				</line>
+				<line>
+					<reportElement x="1" y="326" width="452" height="1" uuid="cb4825b0-51f0-4361-8b35-fe8aee5cd13e"/>
+				</line>
+				<textField>
+					<reportElement style="TableValue" x="3" y="326" width="152" height="34" uuid="c8714f18-6978-4cb3-a126-861af238be24"/>
+					<textFieldExpression><![CDATA[$F{13 Transportista Efectivo}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="361" width="452" height="1" uuid="cd953703-433c-4b72-91da-599210678ab1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="381" width="452" height="1" uuid="2f572322-8415-4427-b40c-f63307e639f5"/>
+				</line>
+				<staticText>
+					<reportElement style="SectionTitle" mode="Opaque" x="1" y="308" width="156" height="18" backcolor="#E8E6E6" uuid="b3c398d7-c1ec-4025-92c1-951ef0be10dd"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Transportista Efectivo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SectionTitle" x="1" y="220" width="452" height="86" uuid="522aad94-aef0-489f-8dd8-6fadff870322">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Justified">
+						<font isBold="false"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[El abajo firmante, en representación de la Cía. De transportes declara:
+•Que el vehículo cargado cumple todas las condiciones estipuladas en el ADR vigente.
+•Que la carga de la mercancía se ha efectuado de acuerdo al ADR.
+•Que conoce las disposiciones generales y especiales sobre vehículos, carga, descarga y manipulaciónde la mercancía, circulación y otras que establece el ADR.]]></text>
+				</staticText>
+				<line>
+					<reportElement x="124" y="-70" width="1" height="71" uuid="a124d45d-d566-4de3-aa24-10ca8ab128b9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="282" y="-70" width="1" height="71" uuid="34e06ae8-b869-4bb5-92c7-92fabbb29e17">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="222" y="21" width="76" height="18" backcolor="#E8E6E6" uuid="49c290f9-c45f-4b80-bc10-8c32d0d36560"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Etiquetas]]></text>
+				</staticText>
+				<line>
+					<reportElement x="223" y="21" width="1" height="35" uuid="a05ed63c-c343-46a9-bc73-269ae70610bd">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="299" y="22" width="1" height="35" uuid="9f5f61d9-cbb4-4d14-8a6a-842c0520c5a7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="375" y="21" width="1" height="35" uuid="5c30d7d1-2a3a-4953-ba9d-0cdb81333ce8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="1" y="57" width="99" height="17" backcolor="#E8E6E6" uuid="4c68278f-cb37-4703-880a-747f80993506"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha expedición]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="224" y="56" width="84" height="18" backcolor="#E8E6E6" uuid="a74d8da9-21fb-4c97-97a3-36adcc696245"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Grado máx. llenado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="308" y="57" width="86" height="18" backcolor="#E8E6E6" uuid="e7079216-8ba7-4ccc-a167-9142a1c2d066"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nº Identif. Peligro]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="395" y="74" width="57" height="18" uuid="5e6fe7d9-fa8a-4956-b25a-1c9c580f31d0"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{12 UN}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="308" y="74" width="86" height="18" uuid="d8093f7e-9d56-4fb0-9427-bd3626e2b3d1"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{11 N Identif Peligro}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="223" y="74" width="84" height="18" uuid="1026201c-aeb5-4fa4-8345-d9345eb9cc60"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{10 Grado Máx Llenado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="3" y="75" width="96" height="18" uuid="17aca292-0246-4269-86c5-08b5951fce74"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{8 Fecha Exp}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="101" y="57" width="123" height="18" backcolor="#E8E6E6" uuid="49790cea-ca1e-4f4c-85e5-928c9b5c663e"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código Restricción túneles]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" mode="Opaque" x="394" y="57" width="58" height="18" backcolor="#E8E6E6" uuid="b01a9d04-e409-4a16-985a-fa4487f4b16a"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[UN]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="101" y="75" width="122" height="18" uuid="988c3ec3-30f8-4c1e-b698-a19fec27d970"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{9 Código Restricción Túneles}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="99" y="57" width="1" height="35" uuid="44d7fe77-f16f-4435-8143-5ae238f5fccb">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="223" y="57" width="1" height="35" uuid="97ae2487-9214-4292-a1dd-d76de22af7e5">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="307" y="57" width="1" height="35" uuid="9e34de31-a464-4e59-a257-cbe6bacbb0ce">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="394" y="57" width="1" height="35" uuid="845e671c-3b5c-4fde-80ee-c6836807cc58">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement style="SectionTitle" mode="Opaque" x="159" y="308" width="156" height="18" backcolor="#E8E6E6" uuid="d47e80b4-317e-4b95-9fb5-15acf8145e69"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Matrícula tractora]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SectionTitle" mode="Opaque" x="317" y="307" width="136" height="18" backcolor="#E8E6E6" uuid="93b647b1-0cb8-484e-a130-6dd344363171"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Matrícula remolque]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="160" y="327" width="152" height="34" uuid="51dc8677-3d60-4a6e-be30-687392f4ae60"/>
+					<textFieldExpression><![CDATA[$F{14 Matrícula tractora}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="319" y="327" width="132" height="34" uuid="4886b109-3093-402f-b225-decadd8d3ed2"/>
+					<textFieldExpression><![CDATA[$F{15 Matrícula remolque}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="157" y="307" width="1" height="53" uuid="58349478-7f94-4cbd-aeeb-a2f4efadced1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="316" y="308" width="1" height="53" uuid="ad1fda51-9477-433c-beda-8cedaadcd89a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="1" y="371" width="452" height="1" uuid="66b04e82-a8c9-4bdf-9225-a6fa360d87d1"/>
+				</line>
+				<staticText>
+					<reportElement style="SectionTitle" mode="Opaque" x="2" y="362" width="250" height="18" backcolor="#E8E6E6" uuid="bc95854f-4d22-4225-9328-b7210455d933"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Conductor]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="125" y="380" width="124" height="43" uuid="cb78ec45-993e-4646-a396-eb92e839ca7c"/>
+					<textFieldExpression><![CDATA[$F{16 Nombre y apellidos}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="SectionTitle" mode="Opaque" x="252" y="362" width="200" height="18" backcolor="#E8E6E6" uuid="b3b135f6-50a0-476e-a1da-a003fdd3c165"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Conforme]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="126" y="425" width="122" height="22" uuid="702c0a08-4bfa-4fad-aaa3-9bf518ae074c"/>
+					<textFieldExpression><![CDATA[$F{17 DNI}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="252" y="362" width="1" height="95" uuid="5a3134a9-9833-4232-85cb-6a0263950ea6">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement style="SectionTitle" x="2" y="383" width="122" height="40" uuid="230579f5-d879-4411-97ec-6e273d3b5cd8">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font isBold="false"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Nombre y apellidos:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SectionTitle" x="2" y="427" width="120" height="18" uuid="4fda8896-a66e-4fdf-960e-d8f0c9e80a0f">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font isBold="false"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[D.N.I. :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SectionTitle" x="394" y="427" width="58" height="20" uuid="a92230db-e9a3-47b8-b3b5-3dcaab2828c5"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Firma]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="40" width="453" height="1" uuid="13e41d84-a99c-45a4-98db-c06b0446131e"/>
+				</line>
+			</frame>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Immediate">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

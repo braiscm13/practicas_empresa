@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="managerIndicatorValues" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	 autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row >
+				<Column margin="0;0;0;10" expand="0.3">
+					<ReferenceExtDataField
+						attr="IND_ID" key="IND_ID" cod="IND_ID"
+						entity="ojee.IndicatorService.indicator"
+						cols="IND_ID;IND_CODE;IND_NAME;IND_ACTION;IND_DESC" 
+						visiblecols="IND_CODE;IND_NAME;IND_ACTION;IND_DESC" 
+						descriptioncols="IND_CODE;IND_NAME" format="({}){};IND_CODE;IND_NAME"
+						labelsize="9" codvisible="no"
+						translate="yes"
+						align="left"
+						size="46" />
+					<ReferenceExtDataField
+						attr="IND_ACTION" key="IND_ACTION" cod="IND_ACTION"
+						entity="ojee.IndicatorService.indicatorImplementation"
+						cols="IND_ACTION" visiblecols="IND_ACTION" descriptioncols="IND_ACTION"
+						labelsize="9" codvisible="no"
+						translate="yes"
+						align="left"
+						dim="text" />
+					<Row>
+						<DateDataField attr="EXE_DATE_FROM" text="EXE_DATE" align="left" labelsize="9" dim="no" size="7" />
+						<DateDataField attr="EXE_DATE_TO" text="UNTIL" align="left" dim="no" size="7" />
+						<Row />
+					</Row>
+				</Column>
+				<Column  expand="0.6">
+					<ReferenceExtDataField
+						attr="CIF"
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="no"
+						csize="10" />
+					<ReferenceExtDataField
+							attr="IDCONDUCTOR"
+							cod="IDCONDUCTOR"
+							parentkeys="CIF"
+							csize="10"
+							entity="EConductorContFicticio"
+							cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+							visiblecols="DNI;APELLIDOS;NOMBRE"
+							descriptioncols="DNI;NOMBRE;APELLIDOS"
+							format="{0} {1};NOMBRE;APELLIDOS"
+							codsearch="DNI"
+							align="left"
+							labelsize="12"
+							dim="text"
+							required="no" />
+				</Column>
+				<Column  expand="0.1"/>
+				<SearchPanel 
+					table="ojee.IndicatorService.indicatorExecution"
+					search.filterfields="IND_ID;IND_ACTION;CIF;IDCONDUCTOR"
+					search.daterangefilterfields="EXE_DATE_FROM:EXE_DATE_TO:EXE_DATE"
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" >
+			<Table
+				entity="ojee.IndicatorService.indicatorExecution"
+				key="EXE_ID"
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="EXE_ID;EXE_NUMBER;EXE_DATE;IND_ID;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE;EXE_ERROR"
+				visiblecols="EXE_NUMBER;EXE_DATE;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE;EXE_ERROR" 
+				defaultvisiblecols="EXE_NUMBER;EXE_DATE;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE" 
+				refreshbutton="no" deletebutton="no" insertbutton="no"  
+				headergroups="execution.basicData:EXE_NUMBER,EXE_DATE,IND_CODE,IND_NAME;execution.companyData:COM_ID,NOMB;execution.employeeData:EXTERNAL_EMPLOYEE_ID,DNI,IDCONDUCTOR,NOMBRE,APELLIDOS;execution.otherData:EXE_IDEXTRA;execution.valueData:EXE_VALUE,EXE_ERROR"
+				cellrenderercolormanager="com.utilmize.client.gui.field.table.DeprecatedCellRendererColorManager" deprecatedcolumn="EXE_ERROR"
+				>
+			
+				<TableColumnProperties attr="EXE_NUMBER" defaultwidth="100" preferredwidth="100" />
+				<TableColumnProperties attr="EXE_DATE" defaultwidth="100" preferredwidth="100" />
+				<TableColumnProperties attr="IND_CODE" defaultwidth="150" preferredwidth="150" />
+				<TableColumnProperties attr="IND_NAME" text="IND_ID" defaultwidth="150" preferredwidth="150" />
+
+				<TableColumnProperties attr="COM_ID" text="CIF" defaultwidth="100" preferredwidth="100" />
+				<TableColumnProperties attr="NOMB" text="EMPRESA" defaultwidth="250" preferredwidth="250" />
+					
+				<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+				<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+				<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="140" preferredwidth="140" />
+				<TableColumnProperties attr="NOMBRE" defaultwidth="150" preferredwidth="150" />
+				<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+		
+				<TableColumnProperties attr="EXE_VALUE" defaultwidth="100" preferredwidth="100" />
+				<TableColumnProperties attr="EXE_ERROR" defaultwidth="200" preferredwidth="200" />
+				
+				<HideTableButton attr="changeviewbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton" onlyhide="true" />
+			</Table>
+		</Row>
+	</Column>
+</FormExt>

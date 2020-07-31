@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Form buttons="no" customfocus="yes" status="no" margin="0;0;0;0" scroll="no">
+	<Column uiname="BackgroundColumn" expand="yes" expandlast="no" margin="5;5;5;5">
+		<Column uiname="CenterColumn" expand="yes" expandlast="no" title="">
+			<Row expand="no">
+				<Column margin="0;0;0;0">
+					<Row>
+						<Column expand="yes" />
+						<Label text="OPEN" uiname="OPEN" />
+						<Label text="TACH" uiname="TACH" />
+						<Column expand="yes" />
+					</Row>
+					<Row>
+						<Column expand="yes" />
+						<Label text="centro de descarga" uiname="Subopentach" />
+						<Column expand="yes" />
+					</Row>
+				</Column>
+			</Row>
+			<Row expand="yes">
+				<CardPanel attr="panel" opaque="no" expand="yes" >
+					<Include file="downcenter-forms/formMainWizardStep1InsertUsbOrCard.xml" />
+					<Include file="downcenter-forms/formMainWizardStep2Downloading.xml" />
+					<Include file="downcenter-forms/formMainWizardStepWarningNotFound.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageFinishedOk.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageReporting.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageErrorCard.xml" />
+					<Include file="downcenter-forms/formMainWizardStepQuestionPrint.xml" />
+					<Include file="downcenter-forms/formMainWizardStepThanks.xml" />
+					<Include file="downcenter-forms/formMainWizardStepTerminalOutOfService.xml" />
+					<Include file="downcenter-forms/formMainWizardStepSummaryTC.xml" />
+					<Include file="downcenter-forms/formMainWizardStepSummaryVU.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageErrorNoUsb.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageErrorUsbEmpty.xml" />
+					<Include file="downcenter-forms/formMainWizardStepMessageErrorUsbGeneral.xml" />
+				</CardPanel>
+			</Row>
+		</Column>
+		<Row height="5" expand="no" />
+		<Row expand="no" attr="NewsColumn" uiname="NewsColumn" margin="0;0;0;0" title="">
+			<Column height="108">
+				<Row margin="0;0;0;0" expand="yes">
+					<!-- <Label text="news" uiname="NewsTitle" /> -->
+					<Column expand="yes" attr="news" margin="0;0;0;0">
+						<com.utilmize.client.gui.field.UFxHtmlDataField attr="NewsView" labelvisible="no"/>
+					</Column>
+					<Column attr="AssistanceColumn" expand="no" margin="0;0;0;5">
+						<Row expand="yes" margin="0;5;0;5" uiname="TechnicalRow" title="">
+							<Column>
+								<Label text="TechnicalAssistance" uiname="TechnicalLabel" align="right" />
+								<Label text="TechnicalAssistanceNumber" uiname="TechnicalNumberLabel" align="right" />
+								<Label text="TechnicalDays" uiname="TechnicalLabelSmall" align="right" />
+								<Label text="TechnicalHours" uiname="TechnicalLabelSmall" align="right" />
+							</Column>
+							<Column bgimage="images/operator.png" width="97" margin="0;0;0;0" expand="no" />
+						</Row>
+					</Column>
+				</Row>
+			</Column>
+		</Row>
+	</Column>
+</Form>

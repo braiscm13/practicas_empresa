@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column>
+	<Row margin="5;5;5;5">
+		<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+		<Include file="forms-desktop/data/formDatosVehiculoIncludeVehicleData.xml" />
+		
+		<ColumnRadioButtonGroup expand="no" selected="RANGO_FECHA" attr="datos" title="Filtro_Fecha_Comienzo">
+			<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+			<RadioButtonDataField attr="RANGO_FECHA" labelsize="15" align="left" labelposition="right" returnboolean="yes" />
+			<Column expand="no">
+				<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right"
+					required="no" datevisible="no" dim="no" labelsize="10" />
+				<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right"
+					required="no" datevisible="no" dim="no" labelsize="10" />
+			</Column>
+		</ColumnRadioButtonGroup>
+	</Row>
+	<Row expand="yes">
+		<Column>
+			<Row expand="yes">
+				<TabPanel>
+					<Tab attr="GRAF_CONDUCTORES">
+						<com.opentach.client.comp.GraficaExt attr="GRAFICA" xaxis="NOMBRE_APEL" yaxis="HORAS" type="bar" width="250"
+							height="253" dim="no" showlegend="no" xlabel="Conductores" ylabel="Tiempo_de_insercion_de_la_tarjeta_(horas)" />
+					</Tab>
+					<Tab attr="ACTIVIDADES" title="ACTIVIDADES">
+						<Table entity="EInformeActivCondVehiculo" key="NUMREQ" keys="IDCONDUCTOR;TPACTIVIDAD;FECINI;FECFIN;RANURA" parentkey="CIF"
+							otherkeys="MATRICULA;FECINI;CG_CONTRATO" rendertime="FECINI;FECFIN"
+							cols="NUMREQ;TPACTIVIDAD;FECINI;FECFIN;IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;ESTADO_TRJ_RANURA;ESTADO_TRJ_RANURA_DSCR;ORIGEN_DSCR;ORIGEN;REGIMEN;REGIMEN_DSCR;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA;RANURA;DIA;RANURA_DSCR;DSCR_ACT;MINUTOS;CIF;NOMB;IDINSPECCION;INSP_FECINI;INSP_FECFIN;PROCEDENCIA;SEMANA;MES;DIA_SEM;HORA;HORAS_COND;FUERA_AMBITO;TRANS_TREN;DSCR_CONDUCTOR"
+							visiblecols="FECINI;FECFIN;DSCR_ACT;MINUTOS;DNI;APELLIDOS;NOMBRE;RANURA_DSCR;PROCEDENCIA;ORIGEN_DSCR;FUERA_AMBITO;TRANS_TREN">
+							<BooleanCellRenderer column="FUERA_AMBITO" />
+							<BooleanCellRenderer column="TRANS_TREN" />
+						</Table>
+					</Tab>
+					<Tab attr="USOS_VEHICULO">
+						<Row expand="yes">
+							<Table entity="EInformeUsoVehiculoVehiculo" key="IDCONDUCTOR" otherkeys="FECINI;CG_CONTRATO" parentkey="MATRICULA" rendertime="FECINI;FECFIN"
+								cols="HORAS;FECINI;FECFIN;KM_INI;KM_FIN;PROCEDENCIA;IDCONDUCTOR;ORIGEN;DESTINO;ORIGEN_DSCR;NOMBRE;APELLIDOS;DSCR_CONDUCTOR;NOMBRE_APEL"
+								visiblecols="FECINI;FECFIN;KM_INI;KM_FIN;IDCONDUCTOR;PROCEDENCIA;NOMBRE;APELLIDOS" refreshbutton="yes"/>
+						</Row>
+					</Tab>
+					<Tab attr="USOS_TARJETA">
+						<Table entity="EUsoTarjeta" key="NUMREQ" keys="IDCONDUCTOR;MATRICULA;FECINI" parentkey="NUMREQ" otherkeys="MATRICULA;FECINI;CG_CONTRATO"
+							rendertime="FECINI;FECFIN"
+							cols="NUMREQ;FECINI;FECFIN;MATRICULA;KM_INS;KM_EXT;NUM_TRJ_CONDU;RANURA;RANURA_DSCR;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA_PREV;IDCONDUCTOR;NOMBRE;APELLIDOS"
+							visiblecols="FECINI;FECFIN;KM_INS;KM_EXT;RANURA_DSCR;MATRICULA_PREV;IDCONDUCTOR;NOMBRE;APELLIDOS" />
+					</Tab>
+					<Tab attr="CALIBRADOS">
+						<Row expand="yes">
+							<Table entity="ECalibrado" key="NUMREQ" keys="MATRICULA;TPCALIBRADO;NUM_TRJ_TALLER" parentkey="MATRICULA" otherkeys="F_ALTA;CG_CONTRATO"
+								cols="DSCR;NUM_TRJ_TALLER;FEC_PROXIMO;F_ALTA" />
+						</Row>
+					</Tab>
+					<Tab attr="CONTROLES">
+						<Row expand="yes">
+							<Table entity="EControles" key="NUMREQ" keys="MATRICULA;TPCONTROL;FEC_HORA" parentkey="MATRICULA" otherkeys="FEC_HORA;CG_CONTRATO"
+								rendertime="FEC_HORA" cols="FEC_HORA;DSCR;NUM_TRJ_CONTROL" />
+						</Row>
+					</Tab>
+					<Tab attr="FALLOS">
+						<Row expand="yes">
+							<Table entity="EFallos" key="NUMREQ" keys="MATRICULA;TPFALLO;FECINI;FECFIN" parentkey="MATRICULA" otherkeys="FECINI;CG_CONTRATO"
+								rendertime="FECINI;FECFIN" cols="FECINI;FECFIN;DURACION_SEGUNDOS;DSCR;NUM_TRJ_CONDU_INI;NUM_TRJ_CONDU_FIN;NUM_TRJ_COPI_INI;NUM_TRJ_COPI_FIN" />
+						</Row>
+					</Tab>
+					<Tab attr="REGISTRO_KM_VEH">
+						<Table entity="EKmVehiculo" key="NUMREQ" keys="MATRICULA;FECHA" parentkey="NUMREQ" otherkeys="MATRICULA;CG_CONTRATO"
+							cols="NUMREQ;MATRICULA;FECHA;KM;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF" visiblecols="FECHA;KM" />
+					</Tab>
+					<Tab attr="NOTAS">
+						<Row title="" expand="yes">
+							<MemoDataField attr="OBSR" dim="text" expand="yes" labelvisible="no" labelsize="0" align="center"
+								labelposition="top" />
+						</Row>
+					</Tab>
+				</TabPanel>
+			</Row>
+		</Column>
+	</Row>
+</Column>

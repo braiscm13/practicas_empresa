@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4b81342f-c6e0-4a98-b6c4-8faa5db814c5">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.853116706110009"/>
+	<property name="ireport.x" value="568"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["0597FWV"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*30))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+CDVINFORM_USOVEHICULO.DNI,
+CDVINFORM_USOVEHICULO.NOMBRE,
+CDVINFORM_USOVEHICULO.APELLIDOS
+FROM CDVINFORM_USOVEHICULO
+WHERE $P{matricula} = CDVINFORM_USOVEHICULO.MATRICULA AND
+$P{cgcontrato} = CDVINFORM_USOVEHICULO.CG_CONTRATO AND
+$P{fdesde} <= CDVINFORM_USOVEHICULO.FECINI AND
+$P{fhasta} >= CDVINFORM_USOVEHICULO.FECINI]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="6" y="29" width="429" height="21" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="1caf3c30-1a92-4f9a-8fb3-4355ca59de7c"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="8" y="6" width="515" height="16" forecolor="#000000" uuid="72c68736-7165-49a5-97e6-9e28bcd78310"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{RCONDUSOVEH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="8" y="31" width="85" height="17" forecolor="#000000" uuid="00663da6-8204-4790-b6e5-e39e808f6300"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{DNI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="106" y="31" width="124" height="16" forecolor="#000000" uuid="43181e83-3776-45d0-9cd7-fb207fc3300b"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NOMBRE_C}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="247" y="32" width="146" height="16" forecolor="#000000" uuid="ce3bfce8-f79f-41e4-851d-74b7a3134049"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{APELLIDOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<rectangle>
+				<reportElement x="6" y="0" width="429" height="18" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="4749aad2-95c5-4b22-a408-080da82b6c96">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="8" y="1" width="85" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="8e610997-3f00-436f-b7da-0e2ccd151591"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="106" y="1" width="133" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="8fba0ab1-38e3-4f0f-8660-d9d83bcd012f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="247" y="1" width="189" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="af0cbb10-30b2-4918-ad2f-b937c2b88e75"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APELLIDOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

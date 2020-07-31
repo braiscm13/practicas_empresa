@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="INFORME_KM_REC" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<AssetSelectionDataField
+						assetType="DRIVER" 
+						align="left" 
+						labelsize="12" 
+						dim="text" 
+						required="yes" />					
+					</Column >
+			</Column >
+			<Column >
+				<!-- <Row opaque="false" margin="0;6;4;6" expand="yes">
+					<CollapsiblePanel expand="yes" attr="filaexc2" title="INFORMACION">
+						<HTMLHelpField attr="ruta_info_informe_uso_cond" />
+					</CollapsiblePanel >
+				</Row> -->
+				<Row expand="yes">
+					<Table entity="EInformeUsoTarjeta" key="IDCONDUCTOR" keys="MATRICULA;FECHA" 
+					parentkey="NUMREQ" otherkeys="IDCONDUCTOR;CG_CONTRATO;FECHA" 
+					cols="NUMREQ;MATRICULA;EXTERNAL_EMPLOYEE_ID;IDCONDUCTOR;NUM_TRJ_CONDU;NOMBRE;APELLIDOS;MINUTOS;CG_CONTRATO;KM_REC;DSCR;FECHA;RANURA;KM_REC_0;KM_REC_1;DNI;MES_ANYO;DIA_SEM;DIA;HORA;SEMANA;MES;MES2;ANHO;INI_SEMANA;FIN_SEMANA" 
+					visiblecols="EXTERNAL_EMPLOYEE_ID;DNI;APELLIDOS;NOMBRE;MATRICULA;DSCR;KM_REC;MINUTOS;FECHA;RANURA;KM_REC_0;KM_REC_1" />
+				</Row >
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no">
+			<Column >
+				<Column title="Filtro_Fecha_Comienzo" expand="no" align="left" margin="5;5;5;5">
+						<Row >
+							<Column layout="border" expand="no" align="center">
+								<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+									<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+									<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+									<Column expand="no">
+										<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+										<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+									</Column >
+								</ColumnRadioButtonGroup >
+							</Column >
+						</Row >
+				</Column >
+			
+				<Column title="MOSTRAR" >
+					<BasicDataComponentGroup attr="BANDCFG.1" group="SHOW_MES;SHOW_SEMANA;SHOW_DETALLES" />					
+					<CheckDataField attr="SHOW_MES" align="left" labelposition="right" labelsize="18" />
+					<CheckDataField attr="SHOW_SEMANA" align="left" labelposition="right" labelsize="24" />
+					<CheckDataField attr="SHOW_DETALLES" align="left" labelposition="right" labelsize="18" />
+				</Column >	
+			</Column >
+		</Column >
+	</Row >
+</Form>

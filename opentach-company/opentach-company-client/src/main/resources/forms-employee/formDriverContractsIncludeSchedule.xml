@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+		<Tab attr="TAB_HORARIO" title="EMPLOYEEDATA.SCHEDULE">
+			<Row>
+			 	<!--  WORK TIME -->
+				<Column title="EMPLOYEEDATA.WORK_TIME">
+					<Row title="EMPLOYEEDATA.ORDINARY_WORK_TIME">
+						<Column expand="no">
+							<IntegerDataField attr="DRC_HOURS_PER_DAY"    listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.HOURS_PER_DAY"    />
+							<IntegerDataField attr="DRC_HOURS_PER_WEEK"   listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.HOURS_PER_WEEK"   />
+							<IntegerDataField attr="DRC_HOURS_PER_YEAR"   listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.HOURS_PER_YEAR"   />
+							<IntegerDataField attr="DRC_MINUTES_PER_DAY"  listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MINUTES_PER_DAY"  />
+							<IntegerDataField attr="DRC_MINUTES_PER_WEEK" listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MINUTES_PER_WEEK" />
+							<IntegerDataField attr="DRC_MINUTES_PER_YEAR" listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MINUTES_PER_YEAR" />
+						</Column>
+						<Column width="30" expand="no"/>
+						<Column expand="no">
+							<TextComboDataField
+								attr="DRC_SHIFT_TYPE"
+								align="left"
+								labelalign="right"
+								labelsize="15"
+								text="EMPLOYEEDATA.SHIFT_TYPE"
+								values="UNSPLIT_SHIFT;SPLIT_SHIFT"
+								dim="text"
+								translate="yes"
+								size="15"
+								nullselection="no" />
+							<Row>
+								<TimeDataField attr="DRC_START_HOUR_1" pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.START_HOUR" labelsize="15"/>
+								<TimeDataField attr="DRC_END_HOUR_1"   pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.END_HOUR"   labelsize="15"/>
+							</Row>							
+							<Row>
+								<TimeDataField attr="DRC_START_HOUR_2" pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.START_HOUR" labelsize="15"/>
+								<TimeDataField attr="DRC_END_HOUR_2"   pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.END_HOUR"   labelsize="15"/>
+							</Row>							
+						</Column>
+						<Column />
+					</Row>
+					<Row attr="LIGHTDRIVERTASKS" title="EMPLOYEEDATA.IS_WORKTIME">
+						<Column expand="no">
+							<Row>
+							<CheckDataField attr="DRC_IS_DRIVETIME_WORKTIME" align="left" labelalign="right" labelposition="left" labelsize="20" text="EMPLOYEEDATA.IS_DRIVETIME_WORKTIME" returnstring="no" />
+							<CheckDataField attr="DRC_IS_AVAILABLE_WORKTIME" align="left" labelalign="right" labelposition="left" labelsize="20" text="EMPLOYEEDATA.IS_AVAILABLE_WORKTIME" returnstring="no" />
+							<CheckDataField attr="DRC_IS_OTHERTASK_WORKTIME" align="left" labelalign="right" labelposition="left" labelsize="20" text="EMPLOYEEDATA.IS_OTHERTASK_WORKTIME" returnstring="no" />
+							<CheckDataField attr="DRC_IS_BREAKTIME_WORKTIME" align="left" labelalign="right" labelposition="left" labelsize="20" text="EMPLOYEEDATA.IS_BREAKTIME_WORKTIME" returnstring="no" />
+							</Row>							
+						</Column>
+						<Column />
+					</Row>
+					<Row title="EMPLOYEEDATA.OVERTIME_WORK_TIME">
+						<Column expand="no">
+							<IntegerDataField attr="DRC_HOURS_OVERTIME_WEEK_THLD"   listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.OVERTIME_WEEK_THLD" />
+							<IntegerDataField attr="DRC_MINUTES_OVERTIME_WEEK_THLD" listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MINUTES_OVERTIME_WEEK_THLD" />
+							<IntegerDataField attr="DRC_MAX_OVERTIME_HOURS_YEAR"    listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MAX_OVERTIME_PER_YEAR" />
+							<IntegerDataField attr="DRC_MAX_OVERTIME_MINUTES_YEAR"  listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.MAX_OVERTIME_MINUTES_PER_YEAR" />
+							<Row>
+								<RealDataField attr="DRC_OVERTIME_PRICE" mindecimaldigits="2" maxdecimaldigits="2" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.OVERTIME_PRICE" />
+								<Label attr="EUR_OVERTIME_PRICE" size="4" text="(€)" valign="center" />
+							</Row>
+						</Column>
+						<Column />
+					</Row>
+					<!--  savepoint  -->
+					<Row title="EMPLOYEEDATA.WORKTIME_PLUSES">
+						<Column expand="no">
+							<Row>
+							<RealDataField attr="DRC_NOCTURNE_SUPPLEMENT"     mindecimaldigits="2" maxdecimaldigits="2" labelalign="right" align="left" size="8" text="EMPLOYEEDATA.NOCTURNE_SUPPLEMENT"     labelsize="22"/>
+							<Label attr="EUR_NOCTURNE_SUPPLEMENT" size="4" text="(€)" valign="center" />
+							</Row>
+							<Row>
+							<RealDataField attr="DRC_SHIFTS_SUPPLEMENT"       mindecimaldigits="2" maxdecimaldigits="2" labelalign="right" align="left" size="8" text="EMPLOYEEDATA.SHIFTS_SUPPLEMENT"       labelsize="22"/>
+							<Label attr="EUR_SHIFTS_SUPPLEMENT" size="4" text="(€)" valign="center" />
+							</Row>
+							<Row>
+							<RealDataField attr="DRC_AVAILABILITY_SUPPLEMENT" mindecimaldigits="2" maxdecimaldigits="2" labelalign="right" align="left" size="8" text="EMPLOYEEDATA.AVAILABILITY_SUPPLEMENT" labelsize="22" />
+							<Label attr="EUR_AVAILABILITY_SUPPLEMENT" size="4" text="(€)" valign="center" />
+							</Row>
+						</Column>
+						<Column width="30" expand="no"/>
+						<Column expand="no">
+							<Row>
+								<TimeDataField attr="DRC_NOCTURNE_START_HOUR" pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.START_HOUR" labelsize="15"/>
+								<TimeDataField attr="DRC_NOCTURNE_END_HOUR"   pattern="HH:mm" labelalign="right" size="5" text="EMPLOYEEDATA.END_HOUR"   labelsize="15"/>
+							</Row>
+						</Column>
+						<Column />
+					</Row>
+				</Column>
+			</Row>
+			<Row>	
+					<!--  REST TIME -->
+				<Column title="EMPLOYEEDATA.REST_HOURS">
+					<Row title="" >
+						<Column expand="no">
+							<Row>
+								<IntegerDataField attr="DRC_REST_HOURS_PER_DAY"    listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"  visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.REST_HOURS_PER_DAY" />
+								<IntegerDataField attr="DRC_REST_MINUTES_PER_DAY"  listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"  visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.REST_MINUTES_PER_DAY" />
+							</Row> 
+							<Row> 
+								<IntegerDataField attr="DRC_REST_HOURS_PER_WEEK"   listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="yes" labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.REST_HOURS_PER_WEEK" />
+								<IntegerDataField attr="DRC_REST_MINUTES_PER_WEEK" listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener" visible="no"  labelalign="right" align="left" size="8" labelsize="22" text="EMPLOYEEDATA.REST_MINUTES_PER_WEEK" />
+							</Row>
+							<Row>
+								<IntegerDataField attr="DRC_HOLIDAYS_PER_YEAR"   labelalign="right" align="left" labelsize="22" size="8" text="EMPLOYEEDATA.HOLIDAYS_PER_YEAR" />
+								<Column width="30" expand="no" />
+								<TextComboDataField
+									attr="DRC_HOLIDAYS_POLICY"
+									align="left"
+									labelalign="right"
+									labelsize="15"
+									text="EMPLOYEEDATA.HOLIDAYS_POLICY"
+									values="LABORAL_HOLIDAYS;NATURAL_HOLIDAYS"
+									dim="text"
+									translate="yes"
+									size="15"
+									nullselection="no" />
+							</Row>
+						</Column>
+						<Column />
+					</Row>
+				</Column>
+			</Row>
+		</Tab>

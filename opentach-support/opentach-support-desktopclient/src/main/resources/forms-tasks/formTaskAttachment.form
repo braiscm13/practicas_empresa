@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form 
+	keys="TAT_ID" entity="ETaskAttachment" columns="TAT_NAME" title="tsk.ETaskAttachment.title" 
+	status="no" buttons="no"
+	preferredsizetodialog="800;200"
+>
+
+	<ObjectDataField attr="TSK_ID" visible="no"/>
+	<ObjectDataField attr="TAT_ID" visible="no"/>
+
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Column expandlast="yes" expand="yes">
+			<FileProviderDataField 
+				attr="TAT_NAME" text="tsk.TAT_NAME"
+				size="40" dim="text" labelsize="12" required="yes"
+				/>
+			<Column margin="0;0;0;90">
+				<MemoDataField 
+					attr="TAT_DESCRIPTION" text="tsk.TAT_DESCRIPTION"  required="no"
+					align="left" labelsize="12" dim="text" expand="yes" maxlength="800"
+					/>
+			</Column>
+		</Column>
+		<Row expand="no">
+			<Column />
+			<CancelButton cleanonclose="yes"/>
+			<SaveButton listener="com.opentach.client.tasks.components.attachments.AttachmentAddActionListener"/>
+		</Row>
+	</Column>
+</Form>

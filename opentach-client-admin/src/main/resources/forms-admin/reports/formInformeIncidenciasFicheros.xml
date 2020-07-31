@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="EInformeIncidenciasFicheros" buttons="no">
+<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader> 
+	
+	<Row>
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+				</Column>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<Column>
+				<ColumnRadioButtonGroup
+					selected="ULTIMOS_DIAS"
+					attr="datos"
+					title="Filtro_Fecha_Comienzo"
+					expand="no"
+					margin="5;5;5;5">
+					<RadioButtonDataField
+						attr="ULTIMOS_DIAS"
+						labelsize="20"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<RadioButtonDataField
+						attr="RANGO_FECHA"
+						labelsize="18"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<Column expand="no">
+						<CampoFechaNoEditable
+							attr="FILTERFECINI"
+							text="DESDE"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+						<CampoFechaNoEditable
+							attr="FILTERFECFIN"
+							text="HASTA"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+					</Column>
+				</ColumnRadioButtonGroup>
+				<Column />
+			</Column>
+			</Column>
+	</Row>
+	<Row expand="yes">
+		<Table entity="EInformeIncidenciasFicheros"  key="IDFICHERO" parentkeys="CIF"
+					cols="IDFICHERO;CIF;NOMB;IDORIGEN;NOMB_PROCESADO;FECINI;FECFIN;F_ALTA;OBSR" 
+					visiblecols="CIF;NOMB;IDORIGEN;NOMB_PROCESADO;FECINI;FECFIN;F_ALTA;OBSR" >
+			</Table>
+	</Row>
+</Form>

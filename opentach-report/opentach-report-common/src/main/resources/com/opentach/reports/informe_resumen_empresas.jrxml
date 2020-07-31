@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_resumen_empresas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f844e904-2568-4b74-a677-da13edab6d44">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="528"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date("01/01/1970").getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select '' as cif, '' as nomb,
+0 as numFicheros,
+0 as U_NUM_MAXIMO,
+0 as cond,
+0 as veh,
+0 as cond_baja,
+0 as veh_baja,
+0 as cond_alta,
+0 as veh_alta
+from dual]]>
+	</queryString>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="NOMB" class="java.lang.String"/>
+	<field name="NUMFICHEROS" class="java.math.BigDecimal"/>
+	<field name="COND" class="java.math.BigDecimal"/>
+	<field name="VEH" class="java.math.BigDecimal"/>
+	<field name="COND_BAJA" class="java.math.BigDecimal"/>
+	<field name="VEH_BAJA" class="java.math.BigDecimal"/>
+	<field name="COND_ALTA" class="java.math.BigDecimal"/>
+	<field name="VEH_ALTA" class="java.math.BigDecimal"/>
+	<field name="U_NUM_MAXIMO" class="java.math.BigDecimal"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="2" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="5" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="182" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="282" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="133" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="192" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="359" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="432" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="332" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="332" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="30" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="58" y="85" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="58" y="47" width="71" height="14" uuid="1092d683-5813-4e34-bdab-a30fb0ab68b0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="58" y="62" width="71" height="14" uuid="c2cf96d1-232c-4319-8391-ce68763ed14c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_FIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="128" y="61" width="60" height="15" uuid="413fa12f-5b32-4487-a6fb-26dba6bd2f78"/>
+				<textFieldExpression><![CDATA[$P{f_fin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="128" y="47" width="60" height="14" uuid="803b6802-16b6-42ff-8396-0509e8281ef2"/>
+				<textFieldExpression><![CDATA[$P{f_inicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="180" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" style="Back" mode="Opaque" x="27" y="150" width="500" height="29" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="fb84019d-a100-4f3c-be83-349201ec5cff"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="28" y="150" width="59" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="18e3e9f6-c8ee-44ae-b0c4-53f4c4ab353a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CIF_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="87" y="150" width="79" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="e6bfdace-4ee7-4891-b455-d79abaf195ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NOMB_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="175" y="150" width="62" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="352f587d-6833-49d4-9d34-9dcc12bcdb83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NUM_FICHEROS_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="281" y="150" width="35" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="6e2a7d1a-dc94-479d-9460-20637de086d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{COND_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="314" y="150" width="43" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="e5824a2b-5aab-4465-9b40-8e137b65fecb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{VEH_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="399" y="150" width="47" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="0f4e9be3-bfec-44db-a60b-34a7f521bc5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{COND_BAJA_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="358" y="150" width="41" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="e338943a-39c0-485c-bd59-0e62d6905e66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{COND_ALTA_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="484" y="150" width="41" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="fcc013fd-6c53-4782-9432-58aa87909424"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{VEH_BAJA_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="439" y="150" width="42" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="646fe2f9-a91e-44f6-871b-44258650deb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{VEH_ALTA_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="235" y="150" width="44" height="30" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="28e2420b-384a-43fd-a27f-cad262e6d1d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{U_NUM_MAXIMO_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement style="Zebra" x="27" y="0" width="500" height="16" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="9fb69a6d-eb81-4954-988a-0f3e794a31c5"/>
+			</rectangle>
+			<textField>
+				<reportElement x="361" y="0" width="38" height="16" uuid="c952b338-c30a-49be-a22f-e490a1ec950c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COND_ALTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="0" width="79" height="16" uuid="df571d08-efd2-4831-9585-ec99e2106efa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="0" width="59" height="16" uuid="8f991cad-7da3-45dd-9fd7-263ba413630c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIF}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="175" y="0" width="62" height="16" uuid="cf3e3335-0b41-41c1-a218-97cc8bb7c9e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMFICHEROS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="32" height="16" uuid="87319dce-e3df-4b9b-b28f-a00b57f00d8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COND}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="35" height="16" uuid="2aba82c9-eb19-4f6f-9c64-e5ff7c7c745a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VEH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="33" height="16" uuid="84ccd298-2a5f-4d03-a7f1-04fba7f1bcc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COND_BAJA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="0" width="35" height="16" uuid="4663241c-555c-46c5-8d90-f3c1bc4ba2b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VEH_ALTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="0" width="32" height="16" uuid="56c3d1fe-9897-4b62-ba99-0268dadfe10b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VEH_BAJA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="0" width="35" height="16" uuid="e5651404-f6d1-4834-b50e-ad3bd2e9261c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{U_NUM_MAXIMO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="72" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

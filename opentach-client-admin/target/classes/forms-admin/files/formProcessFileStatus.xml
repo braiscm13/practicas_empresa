@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" status="no" buttons="no">
+
+	<Column>
+		<DataLabel attr="processedCount" />
+		<DataLabel attr="okCount" />
+		<DataLabel attr="koCount" />
+		<DataLabel attr="total" />
+		<DataLabel attr="used" />
+		<DataLabel attr="lastUpdate" />
+		<Table entity="a" keys="IDSOURCE" cols="IDSOURCE;BEGINDATE;DURATION;NUMCONTRACTS;FILETYPE" visiblecols="IDSOURCE;BEGINDATE;DURATION;NUMCONTRACTS;FILETYPE">
+		</Table>
+	</Column>
+
+</Form>

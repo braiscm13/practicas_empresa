@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="formExtraResources" buttons="no" preferredsizetodialog="950;600">
+
+	<ObjectDataField attr="documentId" visible="no"/>
+	<Row margin="15;5;5;5" expand="yes">
+		<com.opentach.client.dms.viewer.DocumentationTable
+			readonly="yes"
+			entity="documentationtable"
+			form_id_dms_doc_field="documentId"
+			cols="ID_DMS_DOC_FILE_VERSION;FILE_NAME;ID_DMS_DOC_FILE;ID_DMS_DOC;FILE_SIZE;VERSION;FILE_DESCRIPTION"
+			visiblecols="FILE_NAME;FILE_SIZE;VERSION;FILE_DESCRIPTION"
+			deletebutton="no" refreshbutton="yes" insertbutton="no"
+			showuncategorized="no"
+			>
+			<HideTableButton attr="changeviewbutton;copybutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton" />
+			
+			<TableColumnProperties attr="FILE_SIZE" minwidth="80" maxwidth="80" defaultwidth="80" preferredwidth="80" resizable="false" hidecolumn="false" />
+			<TableColumnProperties attr="VERSION" minwidth="60" maxwidth="60" defaultwidth="60" preferredwidth="60" resizable="false" hidecolumn="false" />
+
+			<RenderByteSize column="FILE_SIZE" />
+			
+		</com.opentach.client.dms.viewer.DocumentationTable>
+	</Row>
+</FormExt>

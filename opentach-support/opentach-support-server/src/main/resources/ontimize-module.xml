@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-tasks" >
+	<Server package="com.opentach.server.tasks.entities">
+		<EntityProperties archive="tasks-server-conf/entities.properties"/>
+		<RemoteReferences archive="tasks-server-conf/remotereferences.xml"/>
+	</Server>
+</OntimizeModule>

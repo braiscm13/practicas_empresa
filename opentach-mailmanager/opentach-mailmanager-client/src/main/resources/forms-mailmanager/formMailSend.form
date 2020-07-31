@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt 
+	entity="ojee.MailManagerService.mailUser" 
+	keys="MAI_ID" title="mmng.sendMailTitle" 
+	status="no" buttons="no"
+	notqueryfields="attachments"
+	focusorder="MAI_SUBJECT;MAI_BODY" 
+>
+	<ObjectDataField attr="MAI_ID" text="mmng.MAI_ID" visible="no" />
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row expand="no" margin="0;20;0;20">
+			<Column expandlast="no" margin="0;0;20;20">
+				<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="9"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB;EMAIL"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						onsetvalueset="MAI_TO:EMAIL"
+						csize="10" />
+				<TextDataField 
+					attr="MAI_TO" text="mmng.MAI_TO"
+					align="left" labelsize="9" dim="text" required="yes"
+					enabled="no"
+				/>
+				<TextDataField 
+					attr="MAI_CC" text="mmng.MAI_CC"
+					align="left" labelsize="9" dim="text"
+				/>
+				<TextDataField 
+					attr="MAI_SUBJECT" text="mmng.MAI_SUBJECT"
+					align="left" labelsize="9" dim="text" required="yes"
+				/>
+			</Column>
+			<ListComponent
+				attr="attachments" title="mmng.attachments.title"
+				entity="ojee.MailManagerService.attachment" parentkeys="MAI_ID" cols="MAI_ID;MAT_ID;MAT_NAME;MAT_SIZE"
+				startshowed="yes" ignoreinitpreferences="yes"
+				
+				parser="com.opentach.client.mailmanager.im.attachments.AttachmentEntryParser"
+				
+				optionsnames="add"
+				optionsimages="images-mailmanager/navigate_plus10.png"
+				optionslisteners="com.opentach.client.mailmanager.im.attachments.AttachmentAddActionListener"
+			/>
+		</Row>
+		<MemoDataField attr="MAI_BODY" dim="text" expand="yes" labelvisible="no"/>
+		<Row expand="no">
+			<Row />
+			<Button 
+				key="preview"
+				text="mmng.preview"
+				icon="images-mailmanager/eye16.png"
+				listener="com.opentach.client.mailmanager.im.IMMailSendPreviewListener"
+				/>
+			<Button 
+				key="cancel"
+				text="cancel"
+				icon="images/sign_stop16.png"
+				listener="com.opentach.client.mailmanager.im.IMMailSendCancelListener"
+				/>
+			<Button 
+				attr="save" text="mmng.save" tip="mmng.save.tip" 
+				listener="com.opentach.client.mailmanager.im.IMMailSendSaveAndSendListener" 
+				doSend="false"
+				icon="com/opentach/client/rsc/floppy_disk16.png"
+				key="save"
+				name="MainButton"
+				enable.query="true" 
+				/>
+			<Button 
+				attr="send" text="mmng.send" tip="mmng.send.tip" 
+				listener="com.opentach.client.mailmanager.im.IMMailSendSaveAndSendListener" 
+				doSend="true"
+				icon="images/navigate_plus16.png"
+				key="send"
+				name="MainButton"
+				enable.query="true" 
+				/>
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Form buttons="no" entity="" title="CONFIGURACION_SERVICIOS_DESCARGA">
+	<FormHeader>
+		<Button icon="com/opentach/client/rsc/contract.png" key="defecto" tip="TIP_POR_DEFECTO" />
+		<Button icon="com/opentach/client/rsc/ok16.png" key="aceptar" tip="ACEPTAR" />
+		<Button icon="com/opentach/client/rsc/cancel16.png" key="cancelar" tip="CANCELAR" />
+	</FormHeader>
+	<Column>
+		<Column expand="yes" text="">
+			<Row height="5"></Row>
+			<Column title="carpeta_descarga_ficheros" margin="10;10;10;10">
+				<Row layout="flow">
+					<TextDataField attr="tgdstore" dim="no" size="60" labelvisible="no" required="yes" />
+					<Button icon="com/opentach/client/rsc/openfile.png" key="selectTGDdir" tip="SELECT_TGD_STORE" align="left" />
+				</Row>
+			</Column>
+			<!-- <Fila title="FICHEROS_VU"> <CampoComboTexto attr="portlist" align="left" dim="no" modificable="no" /> <CampoComboTexto align="right" attr="VUperiod" 
+				dim="no" size="20" translate="yes" values="ULTIMA_SEMANA;ULTIMOS_15_DIAS;ULTIMO_MES;RANGO_FECHAS"/> <Columna expand="no" align="left"> <CampoFecha align="right" 
+				attr="VUdayfrom" dim="no" labelsize="7" text="DESDE" /> <CampoFecha align="right" attr="VUdayto" dim="no" labelsize="7" text="HASTA" /> </Columna> </Fila> -->
+			<Row title="FICHEROS_TC">
+				<Row>
+					<CheckDataField align="left" attr="autodownloadTC" dim="no" labelposition="right" text="M_DESCARGAR_AUTOMATICAMENTE_TC" />
+					<CheckDataField align="left" attr="autosendrecent" dim="no" labelposition="right" labelsize="60" text="M_AUTOSEND_RECENT" />
+				</Row>
+			</Row>
+		</Column>
+	</Column>
+</Form>

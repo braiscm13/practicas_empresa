@@ -1,0 +1,141 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-server</artifactId>
+	<name>Opentach server</name>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Compiler configuration -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${jdk.server.version}</source>
+						<target>${jdk.server.version}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-server-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-support-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-checktrucker-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-dms-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-remotevehicle-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-labor-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-company-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-report-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-messagequeue-api</artifactId>
+		</dependency>
+		<!-- TODO intentar romper esta dependencia -->
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-tachofiletransfer-server</artifactId>
+		</dependency>
+		<!-- ====== -->
+		<!-- SERVER -->
+		<!-- ====== -->
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<!-- Oracle driver -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+		</dependency>
+		<!-- quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+		<!-- utilmize-server -->
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-server</artifactId>
+		</dependency>
+		<!-- Calling Google Cloud Messaging - GCM -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+		<!-- analisis de infracciones -->
+		<dependency>
+			<groupId>com.imatia.tacho</groupId>
+			<artifactId>tacholibrary-infractions</artifactId>
+		</dependency>
+		<!-- JAX-WS Apache CXF support -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		<!-- JAVA 11-->
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.jws</groupId>
+			<artifactId>jsr181-api</artifactId>
+		</dependency>
+	</dependencies>
+</project>

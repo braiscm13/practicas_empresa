@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_INFRACCIONES" buttons="no">
+	<FormHeader>
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<AssetSelectionDataField
+						assetType="DRIVER" 
+						align="left" 
+						labelsize="12" 
+						dim="text" 
+						required="yes" />
+					<InfracEngineChooser labelsize="12" attr="ENGINEANALYZER" size="30" align="left"/>
+				</Column >
+			</Column >
+			<Column >
+				<Table entity="EInformeInfrac" key="FECINI" keys="TIPO" parentkey="IDCONDUCTOR" otherkeys="DNI;CIF;CG_CONTRATO;FILTERFECINI;FILTERFECFIN" 
+				cols="EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;CIF;TIPO;TIPO_DSCR;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA;COD_BAREMO;IMPORTE;LEVE;GRAVE;MUYGRAVE;DSCR_TIPO_INFRAC" 
+				visiblecols="EXTERNAL_EMPLOYEE_ID;DNI;APELLIDOS;NOMBRE;TIPO;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA" >
+				<BundleCellRenderer column="TIPO"/>
+				</Table>
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no">
+			<Column >
+				<Column valign="top" margin="10;10;10;10">
+					<Button key="ANALIZAR" text="ANALIZAR" labelsize="16" fontsize="12" bold="yes" icon="com/opentach/client/rsc/gear.png" />
+				</Column >
+				<Column title="Filtro_Fecha_Inicio_Infrac">					
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />					
+				</Column >
+				<Column title="MOSTRAR" >
+					<BasicDataComponentGroup attr="BANDCFG.1" group="SHOW_DETALLES" />
+					<CheckDataField attr="SHOW_DETALLES" align="left" labelposition="right" labelsize="18" tip="TIP_DETALLES" />
+				</Column >
+				<Column expand="no" title="TIPOINFRACCION" >
+					<BasicDataComponentGroup attr="FILTER.1" group="COLUMN.1=TIPO;VAL.1a;VAL.1b;VAL.1c;VAL.1d;VAL.1e;VAL.1f;VAL.1g;VAL.1h" />
+					<TextDataField attr="COLUMN.1" align="left" labelsize="14" size="18" visible="no" />
+					<CheckDataField attr="VAL.1a" text="ECD" align="left" labelposition="right"  tip="ECD" />
+					<CheckDataField attr="VAL.1b" text="ECI" align="left" labelposition="right"  tip="ECI" />
+					<CheckDataField attr="VAL.1c" text="ECS" align="left" labelposition="right"  tip="ECS" />
+					<CheckDataField attr="VAL.1d" text="ECB" align="left" labelposition="right"  tip="ECB" />
+					<CheckDataField attr="VAL.1e" text="FDD" align="left" labelposition="right"  tip="FDD" />
+					<CheckDataField attr="VAL.1f" text="FDS" align="left" labelposition="right"  tip="FDS" />
+					<CheckDataField attr="VAL.1g" text="FDS45" align="left" labelposition="right"  tip="FDS45" />
+					<CheckDataField attr="VAL.1h" text="FDSR" align="left" labelposition="right"  tip="FDSR" />
+				</Column >
+				<Column title="Hechos_sancionables" attr="Hechos_sancionables">
+					<Label text="MG_TAG" expand="yes"/>
+					<Label text="G_TAG" expand="yes"/>
+					<Label text="L_TAG" expand="yes"/>
+				</Column >				
+				<Column />
+			</Column >
+		</Column >
+	</Row >
+</Form>

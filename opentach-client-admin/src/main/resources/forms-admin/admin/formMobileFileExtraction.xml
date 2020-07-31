@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" title="CONSULTA_EXTRACCIONES_MOBILE" buttons="no">
+<FormHeader>
+	<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+</FormHeader>
+<ObjectDataField attr="DOWNLOADTIME" visible="no"/>
+	<Row title="" valign="center">
+		<Column valign="center">
+			<TextDataField attr="COMPANY" visible="yes" dim="text" labelsize="14" align="left"/>
+			<TextDataField attr="VEHICLE" visible="yes" dim="text" labelsize="14" align="left"/>
+		</Column>
+		
+		<Column layout="border" expand="no" align="center" title="F_DOWNLOAD" >												
+			<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+				<RadioButtonDataField attr="ULTIMOS_DIAS" text="Ultimos_15_dias" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+				<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+				<Column expand="no">	
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+				</Column >
+			</ColumnRadioButtonGroup >
+		</Column >
+					
+	</Row >
+	<Row title="EMobileFileExtraction" expand="yes">		
+		<Table entity="EMobileFileExtraction" key="IDMOBILEFILEEXTRACTION" 
+		parentkeys="COMPANY;VEHICLE;DOWNLOADTIME" cols="IDMOBILEFILEEXTRACTION;DOWNLOADTIME;COMPANY;VEHICLE;USERMAIL;LICENSEACEPTED;AUTHORIZATIONACEPTED;LICENSEACEPTEDDATE" 
+		visiblecols="DOWNLOADTIME;COMPANY;VEHICLE;USERMAIL;LICENSEACEPTED;AUTHORIZATIONACEPTED;LICENSEACEPTEDDATE" rendertime="DOWNLOADTIME;LICENSEACEPTEDDATE"  />				
+	</Row >		
+</Form>

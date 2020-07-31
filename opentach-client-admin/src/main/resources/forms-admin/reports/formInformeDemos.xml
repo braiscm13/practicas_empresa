@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="EInformeDemos" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<Row>
+		<BasicDataComponentGroup attr="FILTER.2" group="COLUMN.2=FECINI;FILTERFECINI;FILTERFECINI" />
+		<TextDataField attr="COLUMN.2" align="left" visible="no" />
+		<Column title="Filtro_Fecha_Demos" expand="no" align="left" margin="5;5;5;5">
+			<Row>
+				<Column layout="border" expand="no" align="center">
+						<Column expand="no">
+							<DateDataField attr="FILTERFECINI" text="DESDE" align="left"
+								required="no" datevisible="no" dim="no" labelsize="10" />
+							<DateDataField attr="FILTERFECFIN" text="HASTA" align="left"
+								required="no" datevisible="no" dim="no" labelsize="10" />
+						</Column>
+				</Column>
+			</Row>
+		</Column>
+	</Row>
+	<Row expand="yes">
+		<Table entity="EInformeDemos"  key="CIF"
+					cols="CIF;NOMB;DIRECCION;MUNI;POBL;CG_POSTAL;F_ALTA;COND_AUTOM;VEH_AUTOM;IS_COOPERATIVA;DIRECCION_COMPLETA" 
+					visiblecols="CIF;NOMB;DIRECCION;MUNI;POBL;CG_POSTAL;F_ALTA;IS_COOPERATIVA" >
+			<BooleanCellRenderer column="IS_COOPERATIVA" />
+			</Table>
+	</Row>
+</Form>

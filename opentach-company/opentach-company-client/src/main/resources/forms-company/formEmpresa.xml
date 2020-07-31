@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<FormExt entity="EDfEmp" keys="CIF" title="EMPRESA"
+	columns="CIF;NOMB" setvalueorder="CIF" buttons="no" preferredsizetodialog="1350;750"
+	notqueryfields="ojee.ManualJournalService.manualJournalDeleted">
+	<FormHeader standardbuttons="no" />
+
+	<Column margin="0;5;2;5" expandlast="no">
+		<Row attr="formData" expand="no">
+			<Column>
+				<Grid rows="1" columns="3" hgap="15" vgap="2">
+				
+					<Column attr="mainData" title="COMPANY.MAINDATA">
+						<TextDataField 			attr="CIF" align="left" text="CIF/NIF" labelsize="11" dim="no" maxlength="15" required="yes" size="15" />
+						<TextDataField 			attr="NOMB" align="left" dim="text" labelsize="11" required="yes" maxlength="50" />
+						<TextDataField 			attr="CCC" align="left" dim="text" labelsize="11" maxlength="70" visible="no" />
+						<ReferenceComboDataField attr="IDGRUPO" align="left" labelsize="11" cod="IDGRUPO" cols="IDGRUPO;NOMBRE_GRUPO" visiblecols="NOMBRE_GRUPO" dim="text" entity="EGrupoEmp" />
+						<TextComboDataField 	attr="TIPO" values="ME;VJ;AM" labelsize="11" required="no" dim="text" translate="yes" />
+						<TextComboDataField 	attr="LOCALE" labelsize="11" values="es_ES;pt_PT;en_GB;fr_FR" required="yes" dim="text" translate="yes" />
+						<TextDataField 			attr="WEB_DOMAIN" tip="WEB_DOMAIN.tip" align="left" labelsize="11" dim="text" maxlength="50" uppercase="no" />
+					</Column>
+					<Column attr="cooperativeData" title="COMPANY.COOPERATIVEDATA" expandlast="yes">
+						<CheckDataField 		 
+							attr="IS_COOPERATIVA" align="left" labelsize="12" dim="no" text="IS_COOPERATIVA" 
+							returnstring="yes"
+							listener="com.opentach.client.company.listeners.CooperativeValueChangeListener:cooperativeListener" 
+						/>
+						<ReferenceExtDataField 
+							attr="CIF_COOPERATIVA" align="left" labelsize="12" dim="text"
+							entity="EDfEmpCoop" cod="CIF" cols="CIF;NOMB" visiblecols="CIF;NOMB" descriptioncols="NOMB" 
+							codvisible="yes" csize="8" codsearch="CIF;NOMB"   
+							listener="com.opentach.client.company.listeners.CooperativeValueChangeListener:cooperativeListener"
+						/>
+						<CheckDataField 		
+							attr="CONTRATO_COOP" align="left" labelsize="12" dim="text" text="CONTRATO_COOP" tip="CONTRATO_COOP.tip" 
+							returnstring="yes" 
+							listener="com.opentach.client.company.listeners.CooperativeValueChangeListener:cooperativeListener"
+						/>
+						<Column/>
+					</Column>
+					
+					<Column attr="synchData" title="COMPANY.SYNCH_FILES">
+						<CheckDataField attr="SYNCH" valign="center" align="left" dim="no" labelposition="right" text="SYNCH.text" returnstring="yes" />
+						<CheckDataField attr="COND_AUTOM" align="left" dim="no" labelposition="right" text="COND_AUTOM" returnstring="yes" />
+		 				<!--<CheckDataField attr="VEH_AUTOM" align="left" dim="no" labelposition="right" text="VEH_AUTOM" returnstring="yes" /> -->
+						<DateDataField attr="F_LAST_SYNCH" valign="center" align="left" dim="no" enabled="no" />
+						<Column/>
+					</Column>
+				</Grid>
+				<Grid rows="1" columns="3" hgap="15" vgap="2">
+					<Column attr="addressData" title="COMPANY.ADDRESS">
+						<ReferenceComboDataField attr="CG_NACI" align="left" labelsize="11" dim="text" cod="CG_NACI" cols="DSCR" entity="EPaises" size="20" />
+						<ReferenceComboDataField attr="CG_PROV" align="left" labelsize="11" dim="text" cod="CG_PROV" cols="NOMB" entity="EProvincias" parentkey="CG_NACI" size="20" />
+						<TextDataField 			attr="MUNI" align="left" labelsize="11" dim="text" maxlength="255" />
+						<TextDataField 			attr="POBL" align="left" labelsize="11" dim="text" maxlength="255" />
+						<TextDataField 			attr="DIRECCION" align="left" labelsize="11" dim="text" maxlength="150" />
+						<TextDataField 			attr="CG_POSTAL" align="left" labelsize="11" dim="no" maxlength="10" size="10"  />
+					</Column>
+					<Column attr="contactData" title="COMPANY.CONTACT">
+						<TextDataField attr="PCONTACTO" align="left" dim="text" labelsize="12" size="10" maxlength="255" />
+						<WWWDataField attr="EMAIL" labelsize="12" dim="text" maxlength="1024" />
+						<MaskDataField attr="TELF" mask="000000000000000" align="left" dim="text" labelsize="12" size="10" maxlength="15" />
+						<MaskDataField attr="FAX" mask="000000000000000" align="left" dim="text" labelsize="12" size="10" maxlength="15" />
+						<MaskDataField attr="MOVIL" mask="000000000000000" align="left" dim="text" labelsize="12" size="10" maxlength="15" />
+						<MaskDataField attr="MCONTACTO" mask="000000000000000" align="left" dim="text" labelsize="12" size="10" maxlength="15" />
+					</Column>
+					<Column title="NOTAS">
+						<MemoDataField attr="OBSR" dim="text" expand="yes" labelvisible="no" labelsize="0" align="center" labelposition="top" />
+					</Column>
+				</Grid>
+			</Column>
+		</Row>
+		
+		<Row attr="tabsData" expand="yes">
+			<TabPanel attr="TabEmpresas">
+				<Tab attr="Contratos" queryifvisible="no">
+					<Table
+						entity="ECifEmpreReq"
+						key="NUMREQ"
+						parentkey="CIF"
+						cols="CIF;NUMREQ;USUARIO_ALTA;F_ALTA;F_BAJA;FECINID;FECFIND"
+						visiblecols="NUMREQ;USUARIO_ALTA;F_ALTA;F_BAJA;FECINID;FECFIND" 
+						defaultvisiblecols="NUMREQ;F_ALTA;F_BAJA;FECINID;FECFIND" 
+						refreshbutton="yes" 
+						form="formContratoEmp.xml" title="DATOS_CONTRATO" 
+						rows="7"
+					>
+					</Table>
+				</Tab>
+				<Tab attr="COMPANY.LICENSE" title="COMPANY.LICENSE" queryifvisible="no">
+					<Column expand="no" expandlast="yes">
+						<Row height="50" >
+							<Column width="100" expand="no" expandlast="no" >
+								<Label attr="LICENSE_HEADER"  text=" " />
+							</Column>
+							<Column attr="info.1" width="100" expand="no" expandlast="no" >
+									<Label attr="REQUEST_INFO_HEADER"  text="COMPANY.LICENSE.REQUEST_INFO" expand="no" align="center" />
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+									<Label attr="AVAILABLE_HEADER"  text="COMPANY.LICENSE.AVAILABLE_HEADER" expand="no" align="right" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+									<Label attr="AVAILABLE_FROM_HEADER"  text="COMPANY.LICENSE.AVAILABLE_FROM_HEADER" expand="no" align="center" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+									<Label attr="AVAILABLE_TO_HEADER"  text="COMPANY.LICENSE.AVAILABLE_TO_HEADER" expand="no" align="center" />
+							</Column>
+							<Column attr="start.1" width="100" expand="no" expandlast="no" >
+									<Label attr="startContract"  text="COMPANY.LICENSE.CONTRACT_START" expand="no" align="center" />
+							</Column>
+							<Column attr="end.1" width="100" expand="no" expandlast="no" >
+									<Label attr="endContract"  text="COMPANY.LICENSE.CONTRACT_END" expand="no" align="center" />
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+									<Label attr="DEMO_HEADER"  text="COMPANY.LICENSE.DEMO_HEADER" expand="no" align="right" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+									<Label attr="DEMO_FROM_HEADER"  text="COMPANY.LICENSE.DEMO_FROM_HEADER" expand="no" align="center" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+									<Label attr="DEMO_TO_HEADER"  text="COMPANY.LICENSE.DEMO_TO_HEADER" expand="no" align="center" />
+							</Column>
+							<Column attr="start.demo.1" width="100" expand="no" expandlast="no" >
+									<Label attr="startDemo"  text="COMPANY.LICENSE.DEMO_START" expand="no" align="center" />
+							</Column>
+							<Column attr="end.demo.1" width="100" expand="no" expandlast="no" >
+									<Label attr="endDemo"  text="COMPANY.LICENSE.DEMO_END" expand="no" align="center" />
+							</Column>
+						</Row>
+						<Row>
+							<Row height="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+						</Row>
+						<Row height="50" >
+							<Column width="100" expand="no" expandlast="no" >
+								<Label  text="COMPANY.LICENSE.LIC_OPENTACH" />
+							</Column>
+							<Column attr="info.2" width="100" expand="no" expandlast="no" >
+								<Button key="COMPANY.LICENSE.REQUEST_INFO_OPENTACH" align="center" fixedwidth="80" text="COMPANY.LICENSE.REQUEST_INFO" tip="COMPANY.LICENSE.REQUEST_INFO.tip" icon="" listener="com.opentach.client.company.listeners.licensing.RequestLicenseInfoActionListener" licensefield="LIC_OPENTACH" enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row margin="0;0;0;30"><CheckDataField attr="LIC_OPENTACH" align="right" labelvisible="no" returnstring="yes" listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no"/></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_OPENTACH_FROM" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_OPENTACH_TO" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column attr="start.2" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_OPENTACH_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_START" tip="COMPANY.LICENSE.CONTRACT_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartContractActionListener" licensefield="LIC_OPENTACH" demofield="LIC_OPENTACH_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.2" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_OPENTACH_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_END" tip="COMPANY.LICENSE.CONTRACT_END.tip" icon="" listener="com.opentach.client.company.listeners.licensing.EndContractActionListener" licensefield="LIC_OPENTACH" demofield="LIC_OPENTACH_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row margin="0;0;0;12"><CheckDataField attr="LIC_OPENTACH_DEMO" align="right" labelvisible="no" returnstring="yes" listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no"/></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_OPENTACH_DEMO_FROM" align="left" labelvisible="no" size="7"/>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_OPENTACH_DEMO_TO" align="left" labelvisible="no" size="7"/>
+							</Column>
+							<Column attr="start.demo.2" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_OPENTACH_DEMO_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_START" tip="COMPANY.LICENSE.DEMO_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartDemoActionListener" licensefield="LIC_OPENTACH" demofield="LIC_OPENTACH_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.demo.2" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_OPENTACH_DEMO_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_END" tip="COMPANY.LICENSE.DEMO_END.tip" icon="" listener="com.opentach.client.company.listeners.licensing.EndDemoActionListener" licensefield="LIC_OPENTACH" demofield="LIC_OPENTACH_DEMO"  enable.considerchanges="false"/>
+							</Column>
+						</Row>
+						<Row height="50" >
+							<Column width="100" expand="no" expandlast="no" >
+								<Label  text="COMPANY.LICENSE.LIC_TACHOLAB" />
+							</Column>
+							<Column attr="info.3" width="100" expand="no" expandlast="no" >
+								<Button key="COMPANY.LICENSE.REQUEST_INFO_TACHOLAB" align="center" fixedwidth="80" text="COMPANY.LICENSE.REQUEST_INFO" tip="COMPANY.LICENSE.REQUEST_INFO.tip" icon="" listener="com.opentach.client.company.listeners.licensing.RequestLicenseInfoActionListener" licensefield="LIC_OPENTACH" enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row margin="0;0;0;30"><CheckDataField attr="LIC_TACHOLAB" align="right" labelvisible="no" returnstring="yes" listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no"/></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLAB_FROM" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLAB_TO" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column attr="start.3" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLAB_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_START" tip="COMPANY.LICENSE.CONTRACT_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartContractActionListener" licensefield="LIC_TACHOLAB" demofield="LIC_TACHOLAB_DEMO"   enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.3" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLAB_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_END" tip="COMPANY.LICENSE.CONTRACT_END.tip" icon=""  listener="com.opentach.client.company.listeners.licensing.EndContractActionListener" licensefield="LIC_TACHOLAB" demofield="LIC_TACHOLAB_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row margin="0;0;0;12"><CheckDataField attr="LIC_TACHOLAB_DEMO" align="right" labelvisible="no" returnstring="yes" listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no" /></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLAB_DEMO_FROM" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLAB_DEMO_TO" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column attr="start.demo.3" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLAB_DEMO_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_START" tip="COMPANY.LICENSE.DEMO_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartDemoActionListener" licensefield="LIC_TACHOLAB" demofield="LIC_TACHOLAB_DEMO"   enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.demo.3" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLAB_DEMO_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_END" tip="COMPANY.LICENSE.DEMO_END.tip" icon=""  listener="com.opentach.client.company.listeners.licensing.EndDemoActionListener" licensefield="LIC_TACHOLAB" demofield="LIC_TACHOLAB_DEMO"  enable.considerchanges="false"/>
+							</Column>
+						</Row>
+						<Row attr="tacholabplus_row" height="50" >
+							<Column width="100" expand="no" expandlast="no" >
+								<Label attr="COMPANY.LICENSE.LIC_TACHOLABPLUS.label"   text="COMPANY.LICENSE.LIC_TACHOLABPLUS" />
+							</Column>
+							<Column attr="info.4" width="100" expand="no" expandlast="no" >
+								<Button key="COMPANY.LICENSE.REQUEST_INFO_TACHOLABPLUS" align="center" fixedwidth="80" text="COMPANY.LICENSE.REQUEST_INFO" tip="COMPANY.LICENSE.REQUEST_INFO.tip" icon="" listener="com.opentach.client.company.listeners.licensing.RequestLicenseInfoActionListener" licensefield="LIC_OPENTACH" enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row attr="COMPANY.LICENSE.LIC_TACHOLABPLUS.rowlicense"  margin="0;0;0;30"><CheckDataField attr="LIC_TACHOLABPLUS" align="right" labelvisible="no" returnstring="yes"  listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no"/></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLABPLUS_FROM" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLABPLUS_TO" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column attr="start.4" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLABPLUS_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_START" tip="COMPANY.LICENSE.CONTRACT_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartContractActionListener" licensefield="LIC_TACHOLABPLUS" demofield="LIC_TACHOLABPLUS_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.4" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLABPLUS_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.CONTRACT_END" tip="COMPANY.LICENSE.CONTRACT_END.tip" icon="" listener="com.opentach.client.company.listeners.licensing.EndContractActionListener" licensefield="LIC_TACHOLABPLUS" demofield="LIC_TACHOLABPLUS_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column width="2" expand="no" opaque="yes" bgcolor="#3e9bd5" />
+							<Column width="80" expand="no" expandlast="no" >
+								<Row attr="COMPANY.LICENSE.LIC_TACHOLABPLUS.rowdemo" margin="0;0;0;12"><CheckDataField attr="LIC_TACHOLABPLUS_DEMO" align="right" labelvisible="no" returnstring="yes" listener="com.opentach.client.company.listeners.CompanyLicenseValueChangeListener" enabled="no"/></Row>
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLABPLUS_DEMO_FROM" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column width="120" expand="no" expandlast="no" >
+								<DateDataField attr="LIC_TACHOLABPLUS_DEMO_TO" align="left" labelvisible="no" size="7" />
+							</Column>
+							<Column attr="start.demo.4" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLABPLUS_DEMO_START" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_START" tip="COMPANY.LICENSE.DEMO_START.tip" icon="" listener="com.opentach.client.company.listeners.licensing.StartDemoActionListener" licensefield="LIC_TACHOLABPLUS" demofield="LIC_TACHOLABPLUS_DEMO"  enable.considerchanges="false"/>
+							</Column>
+							<Column attr="end.demo.4" width="100" expand="no" expandlast="no" >
+								<Button key="LIC_TACHOLABPLUS_DEMO_END" align="center" fixedwidth="80" text="COMPANY.LICENSE.DEMO_END" tip="COMPANY.LICENSE.DEMO_END.tip" icon="" listener="com.opentach.client.company.listeners.licensing.EndDemoActionListener" licensefield="LIC_TACHOLABPLUS" demofield="LIC_TACHOLABPLUS_DEMO"  enable.considerchanges="false"/>
+							</Column>
+						</Row>
+						<Column/>
+					</Column>
+				</Tab>
+				<Tab attr="Subempresas">
+					<Table
+						entity="EDfEmp"
+						key="CIF"
+						parentkeys="CIF:CIF_COOPERATIVA"
+						cols="CIF;NOMB;IDGRUPO;TIPO;WEB_DOMAIN;LOCALE;CONTRATO_COOP;SYNCH;COND_AUTOM;VEH_AUTOM;CG_NACI;CG_PROV;MUNI;POBL;DIRECCION;CG_POSTAL;PCONTACTO;EMAIL;TELF;FAX;MOVIL;MCONTACTO"
+						visiblecols="CIF;NOMB;IDGRUPO;TIPO;WEB_DOMAIN;LOCALE;CONTRATO_COOP;SYNCH;COND_AUTOM;VEH_AUTOM;CG_NACI;CG_PROV;MUNI;POBL;DIRECCION;CG_POSTAL;PCONTACTO;EMAIL;TELF;FAX;MOVIL;MCONTACTO"
+						defaultvisiblecols="CIF;NOMB;CONTRATO_COOP"
+						form="formEmpresa.xml"
+						deletebutton="yes"
+						refreshbutton="yes" 
+						rows="7"
+						>
+						
+							<TableColumnProperties attr="CIF" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="NOMB" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="IDGRUPO" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="TIPO" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="LOCALE" defaultwidth="150" preferredwidth="150" />
+							<TableColumnProperties attr="WEB_DOMAIN" defaultwidth="150" preferredwidth="150" />
+							
+							<TableColumnProperties attr="IS_COOPERATIVA" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="CIF_COOPERATIVA" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="CONTRATO_COOP" defaultwidth="90" preferredwidth="90" />
+	
+							<TableColumnProperties attr="SYNCH" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="F_LAST_SYNCH" defaultwidth="110" preferredwidth="110" />
+							<TableColumnProperties attr="COND_AUTOM" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="VEH_AUTOM" defaultwidth="90" preferredwidth="90" />
+	
+							<TableColumnProperties attr="CG_NACI" defaultwidth="90" preferredwidth="90" />
+							<TableColumnProperties attr="CG_PROV" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="MUNI" defaultwidth="200" preferredwidth="200" />
+							<TableColumnProperties attr="POBL" defaultwidth="200" preferredwidth="200" />
+							<TableColumnProperties attr="CG_POSTAL" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="DIRECCION" defaultwidth="250" preferredwidth="250" />
+							
+							<TableColumnProperties attr="PCONTACTO" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="EMAIL" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="TELF" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="FAX" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="MOVIL" defaultwidth="250" preferredwidth="250" />
+							<TableColumnProperties attr="MCONTACTO" defaultwidth="250" preferredwidth="250" />
+	
+							<RenderBoolean atrr="CONTRATO_COOP" column="CONTRATO_COOP" returnstring="yes" />
+							<RenderBoolean atrr="SYNCH" column="SYNCH" returnstring="yes" />
+							<RenderBoolean atrr="COND_AUTOM" column="COND_AUTOM" returnstring="yes" />
+							<RenderBoolean atrr="VEH_AUTOM" column="VEH_AUTOM" returnstring="yes" />
+							<RenderBoolean atrr="IS_COOPERATIVA" column="IS_COOPERATIVA" returnstring="yes" />
+							
+					</Table>
+				</Tab>
+				<Tab attr="Delegaciones" queryifvisible="yes">
+					<Table
+						entity="EDelegacionDfEmp"
+						key="IDDELEGACION"
+						parentkey="CIF"
+						cols="CIF;IDDELEGACION;NOMBRE_DEL;DIRECCION_DEL;MUNI_DEL;CG_PROV_DEL;POBL_DEL;PROVINCIA_DEL;TELF_DEL"
+						visiblecols="NOMBRE_DEL;DIRECCION_DEL;POBL_DEL;PROVINCIA_DEL;TELF_DEL"
+						form="formDelegacion.form"
+						deletebutton="yes"
+						refreshbutton="yes" 
+						rows="7"/>
+				</Tab>
+	
+				<Tab attr="Empleados" queryifvisible="yes">
+	
+					<Table entity="EConductoresEmp" keys="IDCONDUCTOR;CIF" parentkeys="CIF"
+							cols="TYPE;CONT_VIGENTE;NOMBRE;APELLIDOS;DNI;IDCONDUCTOR;EXTERNAL_EMPLOYEE_ID;NAF;DURMIENTE;DESCRIP;PARENT_CALENDAR;CAL_PARENT_DESCRIP;CIF;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+							visiblecols="TYPE;CONT_VIGENTE;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;NAF;DURMIENTE;DESCRIP;CAL_PARENT_DESCRIP;CIF;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+							defaultvisiblecols="TYPE;CONT_VIGENTE;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;NAF;DURMIENTE;DESCRIP;CAL_PARENT_DESCRIP;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+							detailformat="({0}) {1} {2};DNI;NOMBRE;APELLIDOS" form="formEmpleado.form" 
+							deletebutton="yes" scrollh="yes" 
+							cellrenderercolormanager="com.opentach.client.employee.render.EmployeeCellRendererColorManager"
+							rows="7"
+						>
+							<com.opentach.client.employee.render.EmployeeTypeCellRenderer attr="TYPE" column="TYPE" />
+							<TableColumnProperties attr="TYPE" text=" " defaultwidth="30" preferredwidth="30" minimumwidth="30" maximunwidth="30" resizable="no" />
+						
+							<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+							<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="150" preferredwidth="150" />
+							<TableColumnProperties attr="NOMBRE" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+							
+							<TableColumnProperties attr="NAF" defaultwidth="150" preferredwidth="150" />
+	
+							<TableColumnProperties attr="CONT_VIGENTE" text="CONT_VIGENTE" defaultwidth="90" preferredwidth="90" />
+							<RenderBoolean atrr="CONT_VIGENTE" column="CONT_VIGENTE" returnstring="yes" />
+	
+							<TableColumnProperties attr="DURMIENTE" text="DURMIENTE_COND" defaultwidth="90" preferredwidth="90" />
+							<RenderBoolean atrr="DURMIENTE" column="DURMIENTE" returnstring="yes" />
+							
+							<TableColumnProperties attr="DESCRIP" text="EMPLOYEEDATA.TYPE" defaultwidth="200" preferredwidth="200" />
+							<BundleCellRenderer attr="DESCRIP" column="DESCRIP" />
+							<TableColumnProperties attr="CAL_PARENT_DESCRIP" text="EMPLOYEEDATA.CALENDAR" defaultwidth="200" preferredwidth="200" />
+							
+							<TableColumnProperties attr="CIF" defaultwidth="200" preferredwidth="200" />
+							<TableColumnProperties attr="IDDELEGACION" defaultwidth="100" preferredwidth="100" />
+							
+							<TableColumnProperties attr="MOVIL" defaultwidth="200" preferredwidth="200" />
+							<TableColumnProperties attr="EMAIL" defaultwidth="200" preferredwidth="200" />
+							
+							<TableColumnProperties attr="WEB_USER" text="EMPLOYEEDATA.WEB_USER" defaultwidth="100" preferredwidth="100" />
+							<TableColumnProperties attr="WEB_INACTIVE" text="EMPLOYEEDATA.WEB_INACTIVE" defaultwidth="90" preferredwidth="90" />
+							<RenderBoolean atrr="WEB_INACTIVE" column="WEB_INACTIVE" returnstring="yes" />
+							
+							<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+						</Table>
+				</Tab>
+				<Tab attr="Usuarios" queryifvisible="yes">
+<!-- 						entity="EUsuDfEmp" -->
+					<Table
+						entity="ojee.CompanyUserService.companyUser"
+						key="USUARIO"
+						keys="CIF"
+						parentkey="CIF"
+						cols="CIF;USUARIO;NOMBRE_PERFIL;EMAIL;TELEFONO"
+						deletebutton="yes"
+						refreshbutton="yes"
+						visiblecols="USUARIO;NOMBRE_PERFIL"
+						form="formUsuariosEmp.xml" 
+						rows="7"/>
+				</Tab>
+				<Tab attr="Contactos" queryifvisible="yes">
+<!-- 						entity="EContactosEmp" -->
+					<Table
+						entity="ojee.CompanyContactService.companyContact"
+						key="ECN_ID"
+						parentkey="CIF"
+						fixattr="CIF"
+						cols="ECN_ID;CIF;ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;ECN_ADDRESS;ECN_NOTE"
+						visiblecols="ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;ECN_ADDRESS;ECN_NOTE"
+						deletebutton="yes"
+						refreshbutton="yes" 
+						form="formContactoEmp.xml"
+						rows="7"
+					/>
+				</Tab>
+<!-- 				<Tab attr="DemoNotif" tip="COMPANY.DEMO_EXP_NOTIF_ADDRESS" queryifvisible="yes"> -->
+<!-- 					<Table -->
+<!-- 						inserttable="yes" -->
+<!-- 						entity="ENotificacionesEmp" -->
+<!-- 						key="IDNOTIFEMP" -->
+<!-- 						parentkeys="CIF" -->
+<!-- 						cols="IDNOTIFEMP;CIF;EMAIL" -->
+<!-- 						deletebutton="yes" -->
+<!-- 						refreshbutton="yes" -->
+<!-- 						visiblecols="EMAIL" -->
+<!-- 						editablecolumns="EMAIL" -->
+<!-- 						updateentityeditablecolumns="EMAIL" -->
+<!-- 						requiredcols="EMAIL" -->
+<!-- 						rows="7" -->
+<!-- 						 /> -->
+<!-- 				</Tab> -->
+				
+				<Tab attr="CAL_CALENDARS">
+					<Table
+						entity="ERootCalendar"
+						key="CALENDAR"
+						parentkeys="CIF"
+						cols="CALENDAR;CIF;DESCRIP"
+						deletebutton="yes"
+						refreshbutton="yes"
+						visiblecols="DESCRIP"
+						requiredcolumns="DESCRIP"
+						form="formCalendar.xml" 
+						rows="7"/>
+				</Tab>
+				
+				<Tab attr="CAL_SHIFTS">
+					<Table
+						entity="ECalendarShifts"
+						inserttable="yes"
+						key="TYPE"
+						parentkeys="CIF"
+						cols="TYPE;CIF;START_HOUR;END_HOUR"
+						deletebutton="yes"
+						refreshbutton="yes"
+						visiblecols="START_HOUR;END_HOUR"
+						editablecolumns="START_HOUR;END_HOUR"
+						updateentityeditablecolumns="START_HOUR;END_HOUR"
+						requiredcolumns="START_HOUR;END_HOUR"
+						rows="7">
+						
+						<com.utilmize.client.gui.field.table.render.UXmlTimeCellRenderer
+							column="START_HOUR" 
+							timeformatter="HH:mm"/>
+						<com.utilmize.client.gui.field.table.editor.UXmlTimeCellEditor
+							column="START_HOUR"
+							pattern="HH:mm" />
+						<com.utilmize.client.gui.field.table.render.UXmlTimeCellRenderer
+							column="END_HOUR" 
+							timeformatter="HH:mm"/>
+						<com.utilmize.client.gui.field.table.editor.UXmlTimeCellEditor
+							column="END_HOUR"
+							pattern="HH:mm" />
+					</Table>
+				</Tab>
+				
+				<Tab attr="CAL_EVENTS">
+					<Table
+						entity="ECalendarEvents"
+						inserttable="yes"
+						key="EVENT"
+						parentkeys="CIF"
+						cols="EVENT;CIF;DESCRIP"
+						deletebutton="yes"
+						refreshbutton="yes"
+						visiblecols="DESCRIP"
+						editablecolumns="DESCRIP"
+						updateentityeditablecolumns="DESCRIP"
+						requiredcolumns="DESCRIP"
+						rows="7">
+					</Table>
+				</Tab>
+				
+				<Tab attr="EVENTS_LIST">
+	
+					<TabPanel attr="TabIncidents">
+					
+						<Tab attr="CAL_EVENTDAYS">
+							<Table entity="ECalendarEventDays"
+								parentkeys="CIF"
+								cols="CIF;APELLIDOS;NOMBRE;DESCRIP;DAY_ID;STARTDATE;ENDDATE;OBS;APPROVED;DISMISSED;TYPE"
+								visiblecols="STARTDATE;ENDDATE;APELLIDOS;NOMBRE;DESCRIP;OBS"
+								editablecolumns=""
+								updateentityeditablecolumns=""
+								refreshbutton="yes"
+								rows="3">
+								<RenderDate column="STARTDATE" format="dd/MM/yyyy" />
+								<RenderDate column="ENDDATE" format="dd/MM/yyyy" />
+								<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton;insertbutton" onlyhide="true" />
+							</Table>
+						</Tab>
+						
+						<Tab attr="CAL_HOLIDAYS" notqueryfields="SHOW_APPROVED;SHOW_DISMISSED">
+							<IntegerDataField attr="SHOW_APPROVED" visible="no" />
+							<IntegerDataField attr="SHOW_DISMISSED" visible="no" />
+							<Table
+								entity="ECalendarHolidays"
+								key="CIF" keys="CALENDAR;DAY_ID"
+								parentkeys="CIF;SHOW_APPROVED:APPROVED;SHOW_DISMISSED:DISMISSED"
+								parentkeysqueryfilter="CIF;SHOW_APPROVED:APPROVED;SHOW_DISMISSED:DISMISSED"
+								parentkeylistener="yes"
+								cols="APELLIDOS;NOMBRE;STARTDATE;ENDDATE;NUMBERDAYS;APPROVED;DISMISSED;RESET_HOLIDAY_DATA"
+								visiblecols="APELLIDOS;NOMBRE;STARTDATE;ENDDATE;NUMBERDAYS;APPROVED;DISMISSED;RESET_HOLIDAY_DATA"
+								editablecolumns="APPROVED;DISMISSED;RESET_HOLIDAY_DATA"
+								updateentityeditablecolumns="APPROVED;DISMISSED;RESET_HOLIDAY_DATA"
+								refreshbutton="yes"
+								rows="3">
+								<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton;insertbutton" onlyhide="true" />
+								<RenderDate column="STARTDATE" format="dd/MM/yyyy" />
+								<RenderDate column="ENDDATE" format="dd/MM/yyyy" />
+								<BooleanCellRenderer column="APPROVED"/>
+								<BooleanCellEditor column="APPROVED" />
+								<BooleanCellRenderer column="DISMISSED"/>
+								<BooleanCellEditor column="DISMISSED" />
+								
+								<TableColumnProperties attr="NUMBERDAYS"  defaultwidth="45" preferredwidth="45" minwidth="45" maxwidth="45" resizable="no"/>
+								<TableColumnProperties attr="APPROVED"  defaultwidth="90" preferredwidth="90" minwidth="90" maxwidth="90" resizable="no"/>
+								<TableColumnProperties attr="DISMISSED"  defaultwidth="90" preferredwidth="90" minwidth="90" maxwidth="90" resizable="no"/>
+								<TableColumnProperties attr="RESET_HOLIDAY_DATA" text="RESET_HOLIDAY_DATA" defaultwidth="60" preferredwidth="60" minwidth="60" maxwidth="60" resizable="no"/>								
+								<RenderButton column="RESET_HOLIDAY_DATA" tip="RESET_HOLIDAY_DATA_TIP" icon="icons-labor/info16.png" uiname="NoMarginsButton"/>
+								<EditorButton column="RESET_HOLIDAY_DATA" tip="RESET_HOLIDAY_DATA_TIP" icon="icons-labor/info16.png" uiname="NoMarginsButton" listener="com.opentach.client.company.listeners.ResetHolidayDataActionListener" />
+								
+								<TableControlsPanel>
+									<Row halign="center">
+										<Column />
+										<TextComboDataField attr="HOLIDAYS_TYPE" tip="HOLIDAYS_TYPE.TIP" nullselection="no" values="PENDING_APPROVAL_HOLIDAYS;APPROVED_HOLIDAYS;DISMISSED_HOLIDAYS"  dim="no" size="25" translate="yes"
+											listener="com.opentach.client.company.listeners.HolidaysFilterValueChangeListener"
+										/>
+										<Column />
+									</Row>
+	                            </TableControlsPanel>
+							</Table>
+						</Tab>
+						
+						<Tab attr="DELETED_JOURNAL">
+	 						<Table entity="ojee.ManualJournalService.manualJournalDeleted"
+								keys="CIF" parentkeys="CIF"
+								cols="CIF;IDCONDUCTOR;APELLIDOS;NOMBRE;MAJ_DAY;MAJ_BEGINDATE;MAJ_ENDDATE;LOCAL_MAJ_BEGINDATE;LOCAL_MAJ_ENDDATE;ELAPSED_TIME;DSCR;ACTIVITY_TYPE;MAJ_DEL_USER;MAJ_DEL_DATE;MAJ_DEL_OBSR"
+								visiblecols="APELLIDOS;NOMBRE;LOCAL_MAJ_BEGINDATE;LOCAL_MAJ_ENDDATE;ELAPSED_TIME;DSCR;MAJ_DEL_USER;MAJ_DEL_DATE;MAJ_DEL_OBSR"
+								refreshbutton="yes"
+								editablecolumns="" updateentityeditablecolumns=""
+								rows="3">
+								
+								<com.utilmize.client.gui.field.table.render.UXmlTimeCellRenderer
+									column="ELAPSED_TIME" />
+								
+								<HideTableButton attr="inserbutton;chartbutton;defaultchartbutton;calculedcolsbutton;sumrowbutton" />
+								
+							</Table>
+						</Tab>
+					</TabPanel>		
+				
+				</Tab>
+				
+				<Tab attr="DOCUMENTS" queryifvisible="no">
+					<IntegerDataField attr="DOCUMENTID" visible="no"/>
+					<Row margin="15;5;5;5" expand="yes">
+						<com.opentach.client.dms.viewer.DocumentationTable
+							readonly="yes"
+							entity="documentationtable"
+							form_id_dms_doc_field="DOCUMENTID"
+							cols="ID_DMS_DOC_FILE_VERSION;FILE_NAME;ID_DMS_DOC_FILE;ID_DMS_DOC;FILE_SIZE;VERSION;FILE_DESCRIPTION"
+							visiblecols="FILE_NAME;FILE_SIZE;VERSION;FILE_DESCRIPTION"
+							deletebutton="no" refreshbutton="yes" insertbutton="no"
+							showuncategorized="yes"
+							rows="7">
+	 						<HideTableButton attr="changeviewbutton;copybutton;htmlexportbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton" />
+							
+							<TableColumnProperties attr="FILE_SIZE" minwidth="80" maxwidth="80" defaultwidth="80" preferredwidth="80" resizable="false" hidecolumn="false" />
+							<TableColumnProperties attr="VERSION" minwidth="60" maxwidth="60" defaultwidth="60" preferredwidth="60" resizable="false" hidecolumn="false" />
+				
+							<RenderByteSize column="FILE_SIZE" />
+							
+						</com.opentach.client.dms.viewer.DocumentationTable>
+					</Row>
+				</Tab>
+			</TabPanel>
+		</Row>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<Button key="delete_special" text="deleteRecord" tip="deleteRecord.tip" icon="images-general/garbage16.png" listener="com.opentach.client.company.listeners.IMEmpresaDeleteActionListener"/>
+			<CancelButton />
+			<SaveButton stayinrecordafterupdate="yes" listener="com.opentach.client.company.listeners.SaveCompanyListener"/>
+		</Row>
+	</Column>
+</FormExt>

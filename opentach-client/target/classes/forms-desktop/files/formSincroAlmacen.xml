@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="SINCRONIZACION_ALMACEN" buttons="no" keys="DNI" columns="DNI;NOMBRE;APELLIDOS">
+	<FormHeader>
+		<!--		<Boton tip="SEND_RECENT_TC_FILES" key="sendrecentTC" icon="es/aisa/uvigo/gui/images/next13.gif" />-->
+		<!--		<Boton tip="SEND_RECENT_VU_FILES" key="sendrecentVU" icon="es/aisa/uvigo/gui/images/prev13.gif" />-->
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png"/>
+	</FormHeader>
+	<Column margin="5;5;5;5">
+		<Column margin="5;5;5;5">
+			<Column title="">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="11" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="no" csize="10" />
+				<ReferenceComboDataField cod="CG_CONTRATO" text="CG_CONTRATO" parentkey="CIF" entity="EContratoEmp" size="20" csize="10" cols="CG_CONTRATO;F_REQ;FECINI;FECFIN;CIF;NOMB" visiblecols="CG_CONTRATO;FECINI;FECFIN;NOMB" descriptioncols="FECINI;FECFIN" codsearch="CG_CONTRATO" align="left" labelsize="11" dim="text" required="yes" />
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="yes">
+			<Row expand="yes">
+				<Column expand="yes" marging="5;5;5;5">
+					<!--		<Fila expand="yes">-->
+					<SplitPane>
+						<Column expandlast="yes" expand="yes">
+							<Row height="30" layout="flow" expand="yes">
+								<Label text="FICHEROS_TC" fontsize="18" color="blue" />
+							</Row >
+							<Row title="" expand="yes">
+								<Table entity="EFicherosTCLocal" controls="no" title="FICHEROS" key="FICHERO" rendertime="F_UPLOAD;F_DOWNLOAD" otherkeys="CG_CONTRATO" cols="FICHERO;F_UPLOAD;F_DOWNLOAD;OBSR" />
+								<Column width="40" expand="no" valign="center">
+									<Button tip="SEND_TC_FILES" key="sendTC" icon="com/ontimize/gui/images/next13.png" />
+									<Button tip="RECEIVE_TC_FILES" key="receiveTC" icon="com/ontimize/gui/images/prev13.png" />
+								</Column >
+								<Table entity="EFicherosTCCSD" controls="no" key="IDFICHERO" otherkeys="CG_CONTRATO" rendertime="F_ALTA;FECINI;FECFIN" cols="IDFICHERO;NOMB;F_ALTA;FECINI;FECFIN;TIPO;IDORIGEN;OBSR" visiblecols="NOMB;F_ALTA;FECINI;FECFIN;TIPO;IDORIGEN;OBSR" />
+							</Row >
+						</Column >
+						<Column expandlast="yes" expand="yes">
+							<Row height="30" layout="flow">
+								<Label text="FICHEROS_VU" fontsize="18" color="blue" bold="true" />
+							</Row >
+							<Row title="" expand="yes">
+								<Table entity="EFicherosVULocal" controls="no" key="FICHERO" rendertime="F_UPLOAD;F_DOWNLOAD" otherkeys="CG_CONTRATO" cols="FICHERO;F_UPLOAD;F_DOWNLOAD;OBSR" />
+								<Column width="40" expand="no" valign="center">
+									<Button tip="SEND_VU_FILES" key="sendVU" icon="com/ontimize/gui/images/next13.png" />
+									<Button tip="RECEIVE_VU_FILES" key="receiveVU" icon="com/ontimize/gui/images/prev13.png" />
+								</Column >
+								<Table entity="EFicherosVUCSD" controls="no" key="IDFICHERO" otherkeys="CG_CONTRATO" rendertime="F_ALTA;FECINI;FECFIN" cols="IDFICHERO;NOMB;F_ALTA;FECINI;FECFIN;TIPO;IDORIGEN;OBSR" visiblecols="NOMB;F_ALTA;FECINI;FECFIN;TIPO;IDORIGEN;OBSR" />
+							</Row >
+						</Column >
+					</SplitPane>
+					<!--		</Fila>-->
+				</Column >
+			</Row >
+		</Column >
+	</Column >
+</Form>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog=""
+	schema="${mainschema}"
+	table="COM_ASSET_GROUP_VEHICLE"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler"
+	nameconverter="defaultNameConverter">
+	<DeleteKeys>
+		<Column>AGV_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>AGV_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>AGV_ID</GeneratedKey>
+	<Queries>
+		<Query id="available">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CAG_ID" prefix="fj"/>
+				<AmbiguousColumn name="COM_ID" prefix="fj"/>
+				<AmbiguousColumn name="VEH_ID" prefix="fj"/>
+			</AmbiguousColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM
+						(
+							SELECT
+								cvh.CIF as COM_ID,
+								cvh.MATRICULA as VEH_ID,
+								cag.CAG_ID 
+							FROM 
+								CDVEHICULOS_EMP cvh,
+								COM_ASSET_GROUP cag
+							WHERE
+								cvh.CIF  = cag.COM_ID
+						) fj,
+						COM_ASSET_GROUP_VEHICLE agv
+					WHERE 
+						fj.COM_ID  = agv.COM_ID  (+)
+						AND fj.VEH_ID  = agv.VEH_ID (+)
+						AND fj.CAG_ID = agv.CAG_ID (+)
+						AND agv.CAG_ID  IS null
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

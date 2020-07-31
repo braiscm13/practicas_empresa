@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- HESSIAN configuration -->
+	<bean id="hessianSerializerFactory" class="com.ontimize.jee.common.hessian.CustomSerializerFactory" lazy-init="true">
+	</bean>
+	<bean id="hessianProxyFactory" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactory" lazy-init="true">
+		<property name="serializerFactory" ref="hessianSerializerFactory" />		
+	</bean>
+
+	<!-- User information stored in server -->
+	<bean id="userInformationService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/userinformationservice" />
+		<property name="serviceInterface" value="com.ontimize.jee.common.services.user.IUserInformationService" />
+	</bean>
+	
+	<!-- DMS service -->
+<!-- 	<bean name="DMSService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true"> -->
+<!-- 		<property name="proxyFactory" ref="hessianProxyFactory" /> -->
+<!-- 		<property name="serviceRelativeUrl" value="/mainservices/hessian/dmsService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.dms.IDMSService" /> -->
+<!-- 	</bean> -->
+
+	<!-- Server management service -->
+	<bean name="ServerManagementService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/serverManagement" />
+		<property name="serviceInterface" value="com.ontimize.jee.common.services.servermanagement.IServerManagementService" />
+	</bean>
+
+	<!-- Preferences service -->
+<!-- 	<bean name="RemotePreferencesService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true"> -->
+<!-- 		<property name="proxyFactory" ref="hessianProxyFactory" /> -->
+<!-- 		<property name="serviceRelativeUrl" value="/mainservices/hessian/remotePreferences" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.preferences.IRemoteApplicationPreferencesService" /> -->
+<!-- 	</bean> -->
+	<!-- I18N service -->
+<!-- 	<bean name="I18nService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true"> -->
+<!-- 		<property name="proxyFactory" ref="hessianProxyFactory" /> -->
+<!-- 		<property name="serviceRelativeUrl" value="/mainservices/hessian/i18nService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.i18n.II18nService" /> -->
+<!-- 	</bean> -->
+
+	<!-- Mail service -->
+<!-- 	<bean name="MailService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true"> -->
+<!-- 		<property name="proxyFactory" ref="hessianProxyFactory" /> -->
+<!-- 		<property name="serviceRelativeUrl" value="/mainservices/hessian/mailService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.mail.IMailService" /> -->
+<!-- 	</bean> -->
+
+	<!-- Base module service -->
+	<!-- Add here new services ........... --> 
+</beans>

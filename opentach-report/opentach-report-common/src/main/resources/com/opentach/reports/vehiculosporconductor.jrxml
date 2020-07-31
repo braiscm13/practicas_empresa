@@ -1,0 +1,2287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehiculosporconductor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fca4eacf-fd83-49b1-95f8-b2f7db0a7135">
+	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1776"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="resumenDia_nogroup" uuid="8cf3a776-15db-4a84-83d9-dee19652b328">
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="dia_anual" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<parameter name="parameter1" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA, DIA_ANUAL
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  $P!{idconductor} AND   DIA_ANUAL = $P{dia_anual}
+ORDER BY FECINI]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+		<field name="DIA_ANUAL" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="resumensemana_nogroup" uuid="b8f88d70-7395-4506-af7b-4cc6b437cb31">
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR= $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) and SEMANA = $P{semana} AND ANHO=$P{anho} ORDER BY FECINI,semana,horas]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="resumenMensual_nogroup" uuid="8bfdce3d-b06f-43a5-8cf8-f7194fe929be">
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR= $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) AND MES = $P{mes} and ANHO = $P{anho} ORDER BY FECINI]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="resumenDia" uuid="feaa4aaf-961f-4cb9-a1a9-f49b230eadc3">
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA["E10593470S0000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String">
+			<defaultValueExpression><![CDATA["0700000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="dia_anual" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT  sum(MINUTOS) as minutos, sum(KM_REC) as km_rec, MATRICULA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq} AND  IDCONDUCTOR = $P{idconductor} AND   DIA_ANUAL = $P{dia_anual}
+group by
+MATRICULA
+ORDER BY MATRICULA]]>
+		</queryString>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="resumensemana" uuid="a5cd39ae-1d37-4203-8b9a-4768f808b4d9">
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA["E10593470S0000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT sum(MINUTOS) as minutos, sum(KM_REC) as km_rec, MATRICULA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) and SEMANA = $P{semana} AND ANHO=$P{anho}
+group by MATRICULA
+ORDER BY MATRICULA]]>
+		</queryString>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="resumenMensual" uuid="6bc487c6-9ae6-4391-96d1-527fe69043d5">
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA["E10593470S0000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT sum(MINUTOS) as minutos, sum(KM_REC) as km_rec, MATRICULA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) AND MES = $P{mes} and ANHO = $P{anho}
+group by MATRICULA ORDER BY MATRICULA]]>
+		</queryString>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="Porcent_por_matricula" uuid="8e3b17cf-567f-4271-b7fe-f3ba3c4c0b85">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[select
+  CDVINFORM_USOVEHICULO_TEMP.MATRICULA,
+  NVL(DNI,'??') AS DNI,
+  SUM(HORAS) AS S_HORAS,
+  SUM(KM_REC) AS S_REC,
+  case when S_HORAS_T != 0 THEN (SUM(HORAS) / S_HORAS_T) ELSE 0 END AS  PERC_HORAS,
+  case when S_REC_T != 0 THEN (SUM(KM_REC) / S_REC_T) ELSE 0 END AS  PERC_REC
+from CDVINFORM_USOVEHICULO_TEMP,
+ (
+ SELECT
+ IDCONDUCTOR ,
+ SUM(HORAS) AS S_HORAS_T,
+ SUM(KM_REC) AS S_REC_T
+ FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE
+  CG_CONTRATO = $P{pnumreq}  and idconductor = $P{pidconductor}
+  and  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char( $P{pf_inicio} ,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+  and  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char( $P{pf_fin}  +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+group by IDCONDUCTOR ) TOTAL
+ where
+  CG_CONTRATO = $P{pnumreq}  AND TOTAL.idconductor = $P{pidconductor} and
+TOTAL.IDCONDUCTOR =CDVINFORM_USOVEHICULO_TEMP.IDCONDUCTOR and
+ to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+ and  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char($P{pf_fin} +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+ GROUP BY CDVINFORM_USOVEHICULO_TEMP.MATRICULA,DNI,S_REC_T,S_HORAS_T]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="S_HORAS" class="java.math.BigDecimal"/>
+		<field name="S_REC" class="java.math.BigDecimal"/>
+		<field name="PERC_HORAS" class="java.math.BigDecimal"/>
+		<field name="PERC_REC" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Percent_por_mes" uuid="a5ad5fd6-66b0-4190-91eb-12c9296d289e">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<queryString language="bsql">
+			<![CDATA[select
+MATRICULA,
+SUM(HORAS) AS S_HORAS,
+SUM(KM_REC) AS S_REC,
+case when S_HORAS_T != 0 THEN (SUM(HORAS) / S_HORAS_T) ELSE 0 END AS  PERC_HORAS,
+case when S_REC_T != 0 THEN (SUM(KM_REC) / S_REC_T) ELSE 0 END AS  PERC_REC
+from CDVINFORM_USOVEHICULO_TEMP,
+ (
+ SELECT
+ SUM(HORAS) AS S_HORAS_T,
+SUM(KM_REC) AS S_REC_T
+FROM CDVINFORM_USOVEHICULO_TEMP
+WHERE
+ to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char($P{pf_fin} +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+) TOTAL
+ where
+ to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char($P{pf_fin} +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+  GROUP BY MATRICULA,S_REC_T,S_HORAS_T]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="S_HORAS" class="java.math.BigDecimal"/>
+		<field name="S_REC" class="java.math.BigDecimal"/>
+		<field name="PERC_HORAS" class="java.math.BigDecimal"/>
+		<field name="PERC_REC" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Percent_por_semana" uuid="64e4a9cf-9942-4256-add6-9b292502dffe">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<queryString language="bsql">
+			<![CDATA[select
+MATRICULA,
+SUM(HORAS) AS S_HORAS,
+SUM(KM_REC) AS S_REC,
+case when S_HORAS_T != 0 THEN (SUM(HORAS) / S_HORAS_T) ELSE 0 END AS  PERC_HORAS,
+case when S_REC_T != 0 THEN (SUM(KM_REC) / S_REC_T) ELSE 0 END AS  PERC_REC
+from CDVINFORM_USOVEHICULO_TEMP,
+ (
+ SELECT
+ SUM(HORAS) AS S_HORAS_T,
+SUM(KM_REC) AS S_REC_T
+FROM CDVINFORM_USOVEHICULO_TEMP
+WHERE
+ to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char($P{pf_fin} +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+) TOTAL
+ where
+ to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy hh24:mi:ss'),'dd/MM/yyyy hh24:mi:ss')  < to_date(to_char($P{pf_fin} +1,'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+  GROUP BY MATRICULA,S_REC_T,S_HORAS_T]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="S_HORAS" class="java.math.BigDecimal"/>
+		<field name="S_REC" class="java.math.BigDecimal"/>
+		<field name="PERC_HORAS" class="java.math.BigDecimal"/>
+		<field name="PERC_REC" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Percent_por_dia" uuid="5d0c6fc4-15bc-4918-9f7b-7e3ff7a81965">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<parameter name="dia_anual" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<queryString language="bsql">
+			<![CDATA[select
+MATRICULA,
+SUM(HORAS) AS S_HORAS,
+SUM(KM_REC) AS S_REC,
+case when S_HORAS_T != 0 THEN (SUM(HORAS) / S_HORAS_T) ELSE 0 END AS  PERC_HORAS,
+case when S_REC_T != 0 THEN (SUM(KM_REC) / S_REC_T) ELSE 0 END AS  PERC_REC
+from CDVINFORM_USOVEHICULO_TEMP,
+ (
+ SELECT
+ SUM(HORAS) AS S_HORAS_T,
+SUM(KM_REC) AS S_REC_T
+FROM CDVINFORM_USOVEHICULO_TEMP
+WHERE
+ to_date(to_char(FECINI,'dd/MM/yyyy'),'dd/MM/yyyy') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy hh24:mi:ss')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy'),'dd/MM/yyyy')  <= to_date(to_char($P{pf_fin} ,'dd/MM/yyyy'), 'dd/MM/yyyy')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+) TOTAL
+ where
+ to_date(to_char(FECINI,'dd/MM/yyyy'),'dd/MM/yyyy') >= to_date(to_char($P{pf_inicio},'dd/MM/yyyy'), 'dd/MM/yyyy')
+and
+  to_date(to_char(FECINI,'dd/MM/yyyy'),'dd/MM/yyyy')  <= to_date(to_char($P{pf_fin},'dd/MM/yyyy'), 'dd/MM/yyyy')
+and  CG_CONTRATO = $P{pnumreq}
+AND IDCONDUCTOR = $P{pidconductor}
+  GROUP BY MATRICULA,S_REC_T,S_HORAS_T]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="S_HORAS" class="java.math.BigDecimal"/>
+		<field name="S_REC" class="java.math.BigDecimal"/>
+		<field name="PERC_HORAS" class="java.math.BigDecimal"/>
+		<field name="PERC_REC" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="resumensemana_nogroup_hours" uuid="b8f88d70-7395-4506-af7b-4cc6b437cb31">
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR= $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) and SEMANA = $P{semana} AND ANHO=$P{anho} ORDER BY hora]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="resumenvehiculoporconductor" uuid="a07ba7b9-73dc-4542-b136-ff52cc598043">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT 
+ IDCONDUCTOR , 
+MATRICULA,
+SUM(MINUTOS) AS MINUTOS
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR= $P{pidconductor} AND  ( FECINI >= $P{pf_inicio}  AND FECINI <= $P{pf_fin}  ) 
+GROUP BY IDCONDUCTOR, MATRICULA
+ORDER BY IDCONDUCTOR, MATRICULA]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="Resumenvehiculomes" uuid="c3001dd9-d01e-459e-8ade-07bf79587535">
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA["E10593470S0000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT sum(HORAS) as HORAS,
+ MATRICULA, MES2, IDCONDUCTOR
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) 
+group by MATRICULA, MES2, IDCONDUCTOR 
+ ORDER BY MATRICULA, MES2, IDCONDUCTOR]]>
+		</queryString>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="resumenvehiculosemana" uuid="653707fa-81ff-4abd-bab3-793827fa2547">
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA["E10593470S0000"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="BEAN_MAP" class="java.util.Map"/>
+		<queryString language="bsql">
+			<![CDATA[SELECT sum(MINUTOS) as MINUTOS, IDCONDUCTOR,
+ MATRICULA, DIA_SEM
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) 
+group by MATRICULA, DIA_SEM,IDCONDUCTOR
+ ORDER BY MATRICULA, DIA_SEM]]>
+		</queryString>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="f_hoy" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 1576800000)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND IDCONDUCTOR = '0597FWV'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_diario" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_mensual" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_semanal" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="detalles" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DIA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_MES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_SEMANA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BEAN_MAP" class="java.util.Map"/>
+	<parameter name="SHOW_GRAFICOS" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_RESUME" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA, DIA_ANUAL
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  $P!{idconductor} AND  ( FECINI >= $P{f_inicio}
+AND FECINI <= $P{f_fin}  )  ORDER BY FECINI,ANHO, MES, MES2,HORA]]>
+	</queryString>
+	<field name="CG_CONTRATO" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="NUMREQ" class="java.lang.String"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="DSCR" class="java.lang.String"/>
+	<field name="FECINI" class="java.sql.Timestamp"/>
+	<field name="FECFIN" class="java.sql.Timestamp"/>
+	<field name="MINUTOS" class="java.math.BigDecimal"/>
+	<field name="KM_INI" class="java.math.BigDecimal"/>
+	<field name="KM_FIN" class="java.math.BigDecimal"/>
+	<field name="KM_REC" class="java.math.BigDecimal"/>
+	<field name="PROCEDENCIA" class="java.lang.String"/>
+	<field name="ORIGEN" class="java.lang.String"/>
+	<field name="DESTINO" class="java.lang.String"/>
+	<field name="DIA" class="java.lang.String"/>
+	<field name="DIA_SEM" class="java.lang.String"/>
+	<field name="SEMANA" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="MES2" class="java.lang.String"/>
+	<field name="HORA" class="java.lang.String"/>
+	<field name="VEL_MED" class="java.math.BigDecimal"/>
+	<field name="ANHO" class="java.lang.String"/>
+	<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+	<field name="HORAS" class="java.math.BigDecimal"/>
+	<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+	<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	<field name="DIA_ANUAL" class="java.lang.String"/>
+	<group name="dni" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{IDCONDUCTOR}]]></groupExpression>
+		<groupHeader>
+			<band height="77" splitType="Immediate">
+				<rectangle>
+					<reportElement x="22" y="14" width="487" height="56" forecolor="#34679A" uuid="22564745-29b0-4603-9026-6b57aa218dc2"/>
+				</rectangle>
+				<textField>
+					<reportElement x="323" y="48" width="99" height="20" uuid="49efef2d-a14a-47e2-a7a3-2a1ca0d2fd17"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{NUM_TARJ_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="28" y="2" width="99" height="20" forecolor="#34679A" backcolor="#FFFFFF" uuid="e5df0d40-44cd-4301-9b74-0a54028168c8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="323" y="22" width="67" height="20" uuid="e846ebab-13a8-4855-9fe2-4d8aa90626e0"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="24" y="22" width="87" height="20" uuid="5e0bf846-cd86-4ce0-8e0d-d9dd90e9d303"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="24" y="48" width="87" height="20" uuid="98aa5499-8cba-44fc-ab0c-601ba938d3a2"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{APELLIDOS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="114" y="48" width="192" height="20" uuid="7d35c08b-ab4a-4015-bf30-c4a5dd443d5b"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{APELLIDOS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="115" y="22" width="192" height="20" uuid="494562f4-4539-4d67-90c5-c56ad70c4b3d"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="427" y="22" width="82" height="20" uuid="67162af5-f56e-4417-b23b-cc22a9a6220c"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="427" y="48" width="80" height="20" uuid="d2c1b37d-e62b-48df-b712-aa26cbad48a0"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{NUM_TRJ_CONDU}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="575" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_RESUME}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="10" width="487" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="77ba2d5c-86a3-412b-ba02-4bd35311a756">
+						<printWhenExpression><![CDATA[$P{resumen_semanal} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="31" y="10" width="333" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="222d4b01-8a88-4729-96db-1fae836f5c33">
+						<printWhenExpression><![CDATA[$P{resumen_semanal} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{RESUMEN_UTILIZACION_DE_VEHICULOS_POR_CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="364" y="10" width="82" height="20" isRemoveLineWhenBlank="true" uuid="b5d464a6-2540-4eb7-ada7-a1373f6580e6"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="141" y="35" width="236" height="96" isRemoveLineWhenBlank="true" uuid="c27cc8ac-4ac8-4c67-9aaf-23b5ca2efafa"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{vehiculo_cond}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumenvehiculoporconductor" uuid="16c39005-a806-4b26-931e-7e69a0085be7">
+								<datasetParameter name="pnumreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pf_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pf_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pidconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="10"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<bar3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="28" y="138" width="497" height="113" isRemoveLineWhenBlank="true" uuid="6ce297c8-7fad-48f7-9795-bec5a74c0a33"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{Uso_de_vehículo_por_día_mes}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="Resumenvehiculomes" uuid="030294b6-c574-444d-893c-e4e4682f6041">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$P{numreq}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{MES2}.trim())]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot isShowLabels="false">
+						<plot labelRotation="-45.0"/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat labelRotation="-45.0">
+							<axisFormat>
+								<tickLabelFont>
+									<font size="8"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<bar3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="25" y="254" width="500" height="105" isRemoveLineWhenBlank="true" uuid="4dbd59e3-cff4-4a76-b54b-15fc17ed20b0"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{titulo_semana}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="resumenvehiculosemana" uuid="570f26ff-5f2c-4166-8066-e6f2ac2c6725">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$P{numreq}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{IDCONDUCTOR}]]></seriesExpression>
+							<categoryExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{DIA_SEM}.trim())]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot isShowLabels="false">
+						<plot labelRotation="-45.0"/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat labelRotation="-45.0">
+							<axisFormat>
+								<tickLabelFont>
+									<font size="8"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<bar3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="25" y="371" width="502" height="113" isRemoveLineWhenBlank="true" uuid="cc743775-b46b-4901-ae1b-a4269befb496"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{titulo_horas}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{IDCONDUCTOR}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{HORA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot isShowLabels="true">
+						<plot/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat>
+							<axisFormat/>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<componentElement>
+					<reportElement key="table" style="table" positionType="Float" x="142" y="488" width="225" height="84" isRemoveLineWhenBlank="true" uuid="c7dff3e6-99c4-4647-9566-07690e4ff0fe"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Porcent_por_matricula" uuid="bab5143e-8750-49b2-a8ed-0945ab8ae9f4">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_inicio">
+								<datasetParameterExpression><![CDATA[$F{FECINI}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_fin">
+								<datasetParameterExpression><![CDATA[$F{FECFIN}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="BEAN_MAP">
+								<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="90" uuid="3719d7a1-bbd2-473f-9686-aa76527ec55d">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="90" height="30" forecolor="#34679A" uuid="cbdf906b-8fcc-4f09-9e62-af713a6c9684"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="90" height="20" uuid="b0d360d8-3e90-427b-a4dd-36333b84aeb2"/>
+									<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="61" uuid="092a1522-646a-4b1a-8477-93f8c411072e">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#34679A" uuid="7a959406-523d-4ea3-9bc8-5a921d8ca3e5"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{S_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="61" height="20" uuid="135746d8-8de2-437b-9fde-2f46e4eb1fae"/>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{S_HORAS}.intValue(), false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="05d8b7d4-0147-43d0-a4ee-49a93f7cbd29">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="60" height="30" forecolor="#34679A" uuid="a46f5d39-0fde-44ef-a461-10e8f5a6275b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="60" height="20" uuid="49da664a-f2eb-42f0-bfeb-dba58becbba3"/>
+									<textFieldExpression><![CDATA[$F{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="61" uuid="bc76e5f3-3f72-4374-9e61-883662acd7a9">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#34679A" uuid="633445a8-895f-41ce-ba31-fa77d4f922d2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="61" height="20" uuid="88918dc5-9d0d-408e-9354-54ba5c9b3a21"/>
+									<textFieldExpression><![CDATA[$F{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="a7c5f75e-281b-433d-8b75-8c4722d00abd">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="60" height="30" forecolor="#34679A" uuid="6e725020-96f3-4f99-a5c8-5eae863d22bf"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="60" height="20" uuid="c6991f9f-2cec-4895-9cba-39c4aea3cd36"/>
+									<textFieldExpression><![CDATA[$F{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumenmensual">
+		<groupExpression><![CDATA[$F{MES}]]></groupExpression>
+		<groupHeader>
+			<band height="26" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_MES}]]></printWhenExpression>
+				<textField>
+					<reportElement positionType="Float" x="25" y="3" width="107" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="5f2d0836-3cdb-4b8b-97f6-a3448684a742"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{MES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="131" y="3" width="100" height="20" isRemoveLineWhenBlank="true" uuid="4f939859-99b3-4ed6-ab92-ae645f25bc03"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{MES2}.trim())]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="386" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_MES}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="0" width="487" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="471782b5-6a85-4830-8e13-f37f50ec27d5"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="31" y="0" width="134" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="b5095550-f114-4c9d-bf8b-1de2b1435f01"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{RESUMEN_DATOS_USOS_VEHICULO_MES}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="22" y="22" width="236" height="134" isRemoveLineWhenBlank="true" uuid="33f5e913-d3ba-46ef-9d8d-27939cba06b3">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_cond}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumenMensual" uuid="07bfab72-308a-402c-a07d-bf0e1f1d9c95">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="mes">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<textField>
+					<reportElement positionType="Float" x="173" y="0" width="100" height="20" isRemoveLineWhenBlank="true" uuid="8c1ba8af-dfb3-42e0-8d9e-1503ed38ebee"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{MES2}.trim())]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="273" y="24" width="236" height="134" isRemoveLineWhenBlank="true" uuid="ca356141-2e61-418c-a702-a76c9943fe44">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_km}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumenMensual" uuid="929eceae-bd11-4348-b6bf-bbb21b1c130b">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="mes">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{KM_REC}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<bar3DChart>
+					<chart>
+						<reportElement positionType="Float" x="25" y="168" width="236" height="127" isRemoveLineWhenBlank="true" uuid="5170ad8b-2c76-4b76-8c5c-eae76d891cbb">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{Uso_de_vehículo_por_semana_mes}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="resumenMensual_nogroup" uuid="a758d71c-56eb-485f-8c92-42c2a15a1607">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="mes">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{SEMANA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot labelRotation="-45.0"/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat labelRotation="-45.0">
+							<axisFormat>
+								<labelFont>
+									<font size="6"/>
+								</labelFont>
+								<tickLabelFont>
+									<font size="6"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<bar3DChart>
+					<chart>
+						<reportElement positionType="Float" x="276" y="168" width="236" height="127" isRemoveLineWhenBlank="true" uuid="589587e3-9b4c-49b0-a3f3-c9fa0ea29a09">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{veh_semana}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="resumenMensual_nogroup" uuid="fb0eee5a-962b-479b-9373-b5d12ac1cee8">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="mes">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{SEMANA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot labelRotation="-45.0"/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat labelRotation="-45.0">
+							<axisFormat>
+								<labelFont>
+									<font size="6"/>
+								</labelFont>
+								<tickLabelFont>
+									<font size="6"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font size="10"/>
+								</labelFont>
+							</axisFormat>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<componentElement>
+					<reportElement key="table 1" style="table 1" positionType="Float" x="131" y="303" width="251" height="79" isRemoveLineWhenBlank="true" uuid="35c0563f-1e98-4025-b784-25919c871eb4"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_mes" uuid="61583b2a-538f-49d0-88c5-2c870cb8f49a">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_inicio">
+								<datasetParameterExpression><![CDATA[$F{FECINI}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_fin">
+								<datasetParameterExpression><![CDATA[$F{FECFIN}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="BEAN_MAP">
+								<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="mes">
+								<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anho">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="59" uuid="e521fa6c-6d8e-40aa-857a-80529341fc5d">
+							<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" forecolor="#34679A" uuid="c22cdf9b-cfdf-481c-9a6a-bb3762d7c153"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="20" uuid="865f65ee-3fdf-4001-b7a0-86038b919d1a"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="3f2e35ad-d25c-4d15-ad9b-9b0c4d320cdf">
+							<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" forecolor="#34679A" uuid="a9887d27-7d97-4831-8446-f72ccf6c159b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="59" height="20" uuid="2bb38a4e-59df-446f-ba94-f01938308725"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{S_HORAS}.intValue(), false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="59" uuid="2a968e56-c7ec-4b21-bc24-568cd188547a">
+							<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" forecolor="#34679A" uuid="e72b65db-0e3c-4c51-90a4-8b43505110a8"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="59" height="20" uuid="c23eebd8-3c88-42c3-8f1a-ee90701fd440"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="59" uuid="1de8d898-7fb9-468f-bf88-23323774cf74">
+							<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" forecolor="#34679A" uuid="d855826b-823a-40d8-a8d6-05182b3ed059"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="59" height="20" uuid="a70a3738-e19d-4694-947c-d8b89b2d8802"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="44936ed3-1dfc-440f-b15c-aaf651b53694">
+							<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" forecolor="#34679A" uuid="71335b27-31b0-4085-b84e-831554450527"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="59" height="20" uuid="0147038f-da31-48da-a4bd-11b26a7627ad"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumensemanal">
+		<groupExpression><![CDATA[$F{SEMANA}]]></groupExpression>
+		<groupHeader>
+			<band height="27" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_SEMANA}]]></printWhenExpression>
+				<textField>
+					<reportElement positionType="Float" x="25" y="3" width="71" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="128" y="3" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dba70d50-ab3f-4d0b-8584-07ea62bdeb68"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{DESDE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="276" y="3" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="4130f6a0-1d00-405a-ab56-f730b59f0e4b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{HASTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="97" y="3" width="26" height="20" isRemoveLineWhenBlank="true" uuid="6019b0f6-4825-4c00-bf71-dc13279d7c4b"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Value" positionType="Float" x="195" y="3" width="81" height="20" isRemoveLineWhenBlank="true" uuid="36f9b212-a468-4a69-9f6e-ec8f71988ead"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{INI_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Value" positionType="Float" x="347" y="3" width="100" height="20" isRemoveLineWhenBlank="true" uuid="9a8ce1d6-d1e6-485f-99c1-99141f013cfa"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{FIN_SEMANA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="414" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_SEMANA}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="1" width="487" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="c0a40cbb-3f69-48fe-805d-f66daff9a58d"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="25" y="1" width="172" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="e9706a5f-d3d4-478e-998b-a710d33401af"/>
+					<textElement verticalAlignment="Middle">
+						<font isStrikeThrough="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RES_SEMANA}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="23" y="29" width="236" height="135" isRemoveLineWhenBlank="true" uuid="26641d6e-0ca8-4ac2-92ab-541bcb1a247f">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_cond}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumensemana" uuid="45733fa4-aee7-4024-885a-312464258ad8">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="semana">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<textField>
+					<reportElement positionType="Float" x="203" y="1" width="46" height="20" isRemoveLineWhenBlank="true" uuid="6e9ed929-8d8d-4160-9836-7cb8eaf36f21"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="271" y="29" width="236" height="135" isRemoveLineWhenBlank="true" uuid="f29b7c18-83db-444b-9886-9007e4ceb765">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_km}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumensemana" uuid="43a7c6da-ade9-4cc7-95e5-48b3f2813ee0">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="semana">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{KM_REC}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<bar3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="25" y="184" width="236" height="124" isRemoveLineWhenBlank="true" uuid="1cedda7a-3e34-4adc-83b1-823a541975b5">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{veh_dia_semana}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="resumensemana_nogroup" uuid="ed69510b-b10e-49c8-8a08-aea9b8a93746">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="semana">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{DIA_SEM}.trim())]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot labelRotation="-45.0"/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat labelRotation="-45.0">
+							<axisFormat>
+								<labelFont>
+									<font size="8"/>
+								</labelFont>
+								<tickLabelFont>
+									<font size="6"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<bar3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="271" y="184" width="236" height="124" isRemoveLineWhenBlank="true" uuid="dcf3c4d8-57e6-45f0-a0ef-6aa26d759613">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{Uso_de_vehículo_por_horas}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<datasetRun subDataset="resumensemana_nogroup_hours" uuid="d563e28d-f034-45c1-ac94-c5e25687d8a3">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_inicio">
+									<datasetParameterExpression><![CDATA[$P{f_inicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_fin">
+									<datasetParameterExpression><![CDATA[$P{f_fin}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="semana">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{HORA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font size="8"/>
+								</labelFont>
+								<tickLabelFont>
+									<font size="6"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<componentElement>
+					<reportElement key="table 2" style="table 2" positionType="Float" x="131" y="319" width="270" height="90" isRemoveLineWhenBlank="true" uuid="329c214e-0caf-4bb9-8bab-15e8b67ae469"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_semana" uuid="bff0f15f-060f-47b8-8d23-c22b8218a277">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_inicio">
+								<datasetParameterExpression><![CDATA[$F{FECINI}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_fin">
+								<datasetParameterExpression><![CDATA[$F{FECFIN}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="BEAN_MAP">
+								<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anho">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="semana">
+								<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="59" uuid="2dd48dd5-f797-4bf0-aaee-a28e2a7d99c0">
+							<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" forecolor="#34679A" uuid="615fb0ba-98ff-4b80-b366-0fb48b3413fe"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="20" uuid="e28a8c50-eedb-4193-99d4-c540a8cc83b2"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="59" uuid="6e4f9eb0-cb4c-4204-9abf-d04dde3423e9">
+							<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" forecolor="#34679A" uuid="6f060b02-5b21-4886-b932-6c15d957da24"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="58" height="20" uuid="22472c5c-c116-4362-9459-fb8ba12f761b"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{S_HORAS}.intValue(), false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="58" uuid="8aff0ec1-a204-4f31-ab0b-0c277696a4b2">
+							<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" forecolor="#34679A" uuid="71cb4769-bb34-4613-ba79-ab04a99abc5a"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="58" height="20" uuid="3854b59d-acd0-4534-9ecf-4169be9a141f"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="58" uuid="cf8776d2-e2e1-4bcf-a323-9a87bfbb090b">
+							<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" forecolor="#34679A" uuid="30eb00d2-fa53-4ac6-909d-aa6293527ee4"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="58" height="20" uuid="eccb4cc9-6530-465b-b47f-e8dddff6b19f"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="ecd55277-9134-4814-ad62-d335e68668cc">
+							<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" forecolor="#34679A" uuid="ca90b7d2-d48c-4d6e-ac1a-0c611f657c4b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="58" height="20" uuid="588a0b1a-2041-488f-b72e-76d476319ab2"/>
+									<textElement>
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="show_dia">
+		<groupExpression><![CDATA[$F{DIA_ANUAL}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<printWhenExpression><![CDATA[$P{SHOW_DIA}]]></printWhenExpression>
+				<textField>
+					<reportElement positionType="Float" x="25" y="3" width="119" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="264f4373-afc7-4426-9765-d95e37f2953e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{DATOS_CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" x="149" y="3" width="356" height="20" uuid="3bb7acbd-33e8-4959-b4c3-af432b94f266"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{DIA_SEM}.trim()) +", "+ $F{DIA} +" de "+ $P{REPORT_RESOURCE_BUNDLE}.getString($F{MES2}.trim()) +" de "+ $F{ANHO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="resumendiario" minHeightToStartNewPage="64">
+		<groupExpression><![CDATA[$F{DIA_ANUAL}]]></groupExpression>
+		<groupHeader>
+			<band height="32" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_DETALLES}]]></printWhenExpression>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="288" y="4" width="53" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="6ad9d554-9e15-4358-9d18-3298ba66374c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{KM_INI}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="169" y="4" width="60" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="981432cb-3b96-445c-a3f5-4d5b97a71725"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{MINUTOS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="235" y="4" width="51" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="b89bb1d1-6899-4b6d-a991-f649f6353ae2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="347" y="4" width="47" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="664c2bcf-1a6d-4d46-9721-6cfb4f351da0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{KM_FIN}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" positionType="Float" x="93" y="4" width="68" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="d80db929-cf77-4721-8698-83169f682d97"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{FECFIN}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" positionType="Float" x="23" y="4" width="61" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="5a7c3749-2032-4f5d-998b-b4bad2e29b1a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{FECINI}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="450" y="4" width="62" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="403deaa8-0e6e-49eb-89f1-9acee22ca669"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{PROCEDENCIA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" positionType="Float" x="400" y="4" width="50" height="27" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="f9f5447a-ac36-4b72-8dbd-0a5f660e5077"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{KM_REC}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="217" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_DIA}]]></printWhenExpression>
+				<componentElement>
+					<reportElement key="table 3" style="table 3" positionType="Float" x="124" y="10" width="267" height="50" isRemoveLineWhenBlank="true" uuid="7728b42e-3b86-4651-a489-3cf07683e493"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_dia" uuid="a3e5cd56-87a2-470a-a43c-b21aa890ba83">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_inicio">
+								<datasetParameterExpression><![CDATA[$F{FECINI}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_fin">
+								<datasetParameterExpression><![CDATA[$F{FECFIN}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="BEAN_MAP">
+								<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="dia_anual">
+								<datasetParameterExpression><![CDATA[$F{DIA_ANUAL}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anho">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="56" uuid="983105d8-f257-4cbf-88a3-9f58f739e99a">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="56" height="30" forecolor="#34679A" uuid="0162516e-c2e0-4cbd-b01e-01e483f304fe"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="10" y="0" width="46" height="20" uuid="d39730e5-9b15-48ca-98ad-937b1fc59bb2"/>
+									<textElement verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="56" uuid="32d0e917-1bad-4194-99de-8de6bd3e86d5">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="56" height="30" forecolor="#34679A" uuid="136c5b20-9c1f-4fe4-9126-9de926c0eeb2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="56" height="20" uuid="4d188869-8446-405d-96cd-bcc7d69f4a92"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{S_HORAS}.intValue(), false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="57" uuid="d14b3deb-e9a0-4e15-aee6-eba8ffe04afe">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="57" height="30" forecolor="#34679A" uuid="377ed923-6993-4d42-9019-d540ff1804a8"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="56" height="20" uuid="099831cc-e7a6-41ed-9a01-e8836dc59b26"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="57" uuid="7b4676a4-6ea2-45a7-9e92-5123028b4497">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="56" height="30" forecolor="#34679A" uuid="7cb1e9e6-1e2d-493a-b9f2-03a1bb63a95c"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="56" height="20" uuid="c0045954-7946-450b-b5bd-f975329b4db6"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_HORAS}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="57" uuid="c32b4dbd-0fe2-45b2-81f4-974523758610">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="56" height="30" forecolor="#34679A" uuid="edd455f8-b29c-4b72-83b4-8eac9a8b236c"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="56" height="20" uuid="247098ea-ea1e-4fb3-8b36-52e989a31e51"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PERC_REC}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="24" y="60" width="236" height="145" isRemoveLineWhenBlank="true" uuid="236af3ee-727f-49cf-90ab-3d289d674ade">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_cond}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumenDia" uuid="21d105d2-719f-4c78-a5b6-45efbad63883">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="dia_anual">
+									<datasetParameterExpression><![CDATA[$F{DIA_ANUAL}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<pie3DChart>
+					<chart isShowLegend="false">
+						<reportElement positionType="Float" x="269" y="60" width="236" height="145" isRemoveLineWhenBlank="true" uuid="262e0fe7-f4f1-40e3-9744-41887d188d46">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{porc_vehiculo_km}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="resumenDia" uuid="d553db49-39de-4e4e-9fa5-783616baa288">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="dia_anual">
+									<datasetParameterExpression><![CDATA[$F{DIA_ANUAL}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="idconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="BEAN_MAP">
+									<datasetParameterExpression><![CDATA[$P{BEAN_MAP}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anho">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{MATRICULA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{KM_REC}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isShowLabels="true" labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel>
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="-10" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="-7" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="170" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="270" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="121" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="180" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="347" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="420" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="320" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="320" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="18" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="134" y="47" width="68" height="16" uuid="6f11f27f-3cba-4284-98f6-872bc01bdf98"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}==null?new java.sql.Timestamp(System.currentTimeMillis()):$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="46" y="48" width="88" height="14" uuid="fcbf291a-07a0-4925-a171-b033d66c5ae0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="92" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="46" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="46" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="135" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{SHOW_DETALLES}]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="22" y="0" width="71" height="20" isRemoveLineWhenBlank="true" uuid="5ff01880-048f-4455-99f1-79d11d677e15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECINI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="233" y="0" width="57" height="20" isRemoveLineWhenBlank="true" uuid="c19f2f2d-86e4-45c7-9b88-cac746911db2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="290" y="0" width="58" height="20" isRemoveLineWhenBlank="true" uuid="ee590e7b-94d5-4454-a158-c9d00973a08c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_INI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="454" y="0" width="55" height="20" isRemoveLineWhenBlank="true" uuid="e0b6eb25-2532-4561-8bd8-4a9ef931fc61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROCEDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="170" y="0" width="63" height="20" isRemoveLineWhenBlank="true" uuid="e1467b89-dce2-4c63-84dc-9e45b04dfe73"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{MINUTOS}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="93" y="0" width="77" height="20" isRemoveLineWhenBlank="true" uuid="abadfd03-369a-4963-8926-41f098d52ea2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECFIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="348" y="0" width="57" height="20" isRemoveLineWhenBlank="true" uuid="e1ccbc5a-6851-44df-a0af-9205156b036b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_FIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="405" y="0" width="49" height="20" isRemoveLineWhenBlank="true" uuid="f3c88b5f-eadc-43fc-aff0-e2afa3050a52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_REC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

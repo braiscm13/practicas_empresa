@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt 
+	keys="TSK_ID" entity="ETasks" columns="TSK_ID;TSK_TITLE" title="tsk.ETasks" 
+	status="no" buttons="no"
+	setvalueorder="TSK_ID;TKC_ID;TSU_ID;TKM_ID;TKCM_ID;"
+	focusorder="TSK_ID;TSK_TITLE;USUARIO_CREATOR;USUARIO_ASIGNEE;TSK_CREATION_DATE;TSK_CLOSED_DATE;TKM_NAME;TKCM_NAME;TKC_ID;TKS_ID;TPR_ID;CIF;ECN_ID;TKM_ID;TKCM_ID;TSK_DESCRIPTION" 
+	preferredsizetodialog="1100;850"
+>
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row expand="no" margin="0;20;0;0">
+			<Column expandlast="no">
+				<IntegerDataField 
+					attr="TSK_ID" text="tsk.TSK_ID"
+					align="left" labelsize="16" dim="no" size="10"
+					/>
+				<TextDataField 
+					attr="TSK_TITLE" text="tsk.TSK_TITLE"
+					align="left" labelsize="16" dim="text" required="yes"
+				/>
+				
+				<Row margin="5;0;5;0" expand="no">
+					<Column>
+						<ReferenceExtDataField 
+							attr="USUARIO_CREATOR" cod="USUARIO" text="tsk.USUARIO_CREATOR"
+							entity="EUsuariosTodos" 
+							cols="USUARIO"
+							descriptioncols="USUARIO" 
+							labelsize="16" dim="text" codvisible="no" required="yes"/>
+						<ReferenceExtDataField 
+							attr="USUARIO_ASIGNEE" cod="USUARIO" text="tsk.USUARIO_ASIGNEE"
+							entity="EUsuariosTodos" 
+							cols="USUARIO"
+							descriptioncols="USUARIO" 
+							labelsize="16" dim="text" codvisible="no" required="yes"/>
+						<com.opentach.client.comp.TimezoneHourDateDataField attr="TSK_CREATION_DATE"  text="tsk.TSK_CREATION_DATE" align="left" labelsize="16" dim="no" size="7" enabled="no"/>
+						<com.opentach.client.comp.TimezoneHourDateDataField attr="TSK_CLOSED_DATE"  text="tsk.TSK_CLOSED_DATE" align="left" labelsize="16" dim="no" size="7" enabled="no"/>
+						<Row/>
+						<CheckDataField attr="TSK_IS_NEW_VEHICLE" align="left" labelposition="right" labelsize="24" returnstring="yes"/>
+						<CheckDataField attr="TSK_IS_WAITING_FOR_AGREEMENT" align="left" labelposition="right" labelsize="20" returnstring="yes"/>
+							
+					</Column>
+					<Column margin="0;15;0;15">
+						<ReferenceComboDataField 
+							attr="TKC_ID" cod="TKC_ID" text="tsk.TKC_ID"
+							entity="ETaskClassifier" 
+							cols="TKC_NAME" 
+							descr="TKC_NAME"
+							align="left" labelsize="10" dim="text"  required="yes"/>
+						<ReferenceComboDataField 
+							attr="TSU_ID" cod="TSU_ID" text="tsk.TSU_ID"
+							parentkeys="TKC_ID" disableonparentkeynull="yes" parentkeylistener="yes"
+							entity="ETaskSubClassifier" 
+							cols="TSU_NAME;TKC_ID"
+							visiblecols="TSU_NAME" 
+							descr="TSU_NAME"
+							align="left" labelsize="10" dim="text"  />
+						<ReferenceComboDataField 
+							attr="TKS_ID" cod="TKS_ID" text="tsk.TKS_ID" 
+							entity="ETaskStatus" 
+							cols="TKS_NAME" 
+							descr="TKS_NAME"
+							align="left" labelsize="10" dim="text"  required="yes"/>
+						<ReferenceComboDataField 
+							attr="TPR_ID" cod="TPR_ID" text="tsk.TPR_ID" 
+							entity="ETaskPriority" 
+							cols="TPR_NAME" 
+							descr="TPR_NAME"
+							align="left" labelsize="10" dim="text"  required="yes"/>
+						<Row/>
+						<CheckDataField attr="TSK_IS_MONTHLY_TURNOVER" align="left" labelposition="right" labelsize="20" returnstring="yes"/>
+						<CheckDataField attr="TSK_IS_NEXT_RENEWAL" align="left" labelposition="right" labelsize="30" returnstring="yes"/>
+								
+					</Column>
+					<Column>
+						<ReferenceExtDataField 
+							attr="CIF" cod="CIF" text="tsk.CIF"  
+							entity="EDfEmp" 
+							cols="CIF;NOMB"
+							descriptioncols="NOMB" 
+							labelsize="20" dim="text" codvisible="no"/>
+						<ReferenceExtDataField 
+							attr="ECN_ID" cod="ECN_ID" text="tsk.ECN_ID" 
+							entity="EContactosEmp" 
+							parentkey="CIF" parenkeylistener="yes" disableonparentkeynull="true"
+							cols="ECN_ID;CIF;ECN_NAME;ECN_TLF1;ECN_TLF2;;ECN_MAIL"
+							visiblecols="ECN_NAME;ECN_TLF1;ECN_TLF2;;ECN_MAIL"
+							descriptioncols="ECN_NAME" 
+							labelsize="20" dim="text" codvisible="no"/>
+							
+						<ReferenceExtDataField 
+							attr="TKM_ID" cod="TKM_ID"
+							entity="ETaskMadeBy" 
+							cols="TKM_ID;TKM_NAME"
+							descriptioncols="TKM_NAME" 
+							labelsize="20" dim="text" codvisible="no"/>
+							
+						<ReferenceExtDataField 
+							attr="TKCM_ID" cod="TKCM_ID"   
+							entity="ETaskCommunicatedBy" 
+							cols="TKCM_ID;TKCM_NAME"
+							descriptioncols="TKCM_NAME" 
+							labelsize="20" dim="text" codvisible="no" />	
+						<Row/>	
+						<CheckDataField attr="TSK_IS_OUTPUT" align="left" labelposition="right" labelsize="16"  returnstring="yes"/>
+							
+							
+					</Column>
+				</Row>
+			</Column>
+		</Row>
+		<CollapsiblePanel 
+			orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;20;0;0" title="tsk.descContainer" expandvertical="no" titlebackgroundfixedwidth="230">
+			<Row height="200">
+				<Column expand="yes" expandlast="yes">
+					<MemoDataField 
+	 							attr="TSK_DESCRIPTION"  labelvisible="no"
+	 							align="left" labelsize="10" dim="text" expand="yes"
+	 						/>
+	 			</Column>
+			</Row>
+		</CollapsiblePanel>
+			
+		<ListComponent
+			attr="journal" title="tsk.journal.title"
+			entity="ETaskJournal" parentkeys="TSK_ID" cols="TKJ_ID;TKJ_ENTRY;USUARIO;TKJ_DATE"
+			startshowed="yes" ignoreinitpreferences="yes"
+			titlebackgroundfixedwidth="230"
+			
+			parser="com.opentach.client.tasks.components.journal.JournalEntryParser"
+			
+			optionsnames="add;refresh"
+			optionsimages="images-admin/navigate_plus10.png;images-admin/arrow_circle2_10.png"
+			optionslisteners="com.utilmize.client.gui.list.listeners.ListComponentAddListener;com.utilmize.client.gui.list.listeners.ListComponentRefreshListener"
+			
+			button.form="formTaskJournal.form" button.title="tsk.formTaskJournal.title"  button.fixedkeys="TSK_ID"
+		/>
+		<Row height="1" expand="no"/>
+		<ListComponent
+			attr="attachments" title="tsk.attachments.title"
+			entity="ETaskAttachment" parentkeys="TSK_ID" cols="TAT_ID;TAT_NAME;TAT_DESCRIPTION;TAT_DATE;USUARIO"
+			startshowed="no" ignoreinitpreferences="yes"
+			titlebackgroundfixedwidth="230"
+			
+			parser="com.opentach.client.tasks.components.attachments.AttachmentEntryParser"
+			
+			optionsnames="add;refresh"
+			optionsimages="images-admin/navigate_plus10.png;images-admin/arrow_circle2_10.png"
+			optionslisteners="com.utilmize.client.gui.list.listeners.ListComponentAddListener;com.utilmize.client.gui.list.listeners.ListComponentRefreshListener"
+			
+			button.form="formTaskAttachment.form" button.title="tsk.formTaskAttachment.title" button.fixedkeys="TSK_ID"
+		/>
+		<com.ontimize.gui.container.CollapsiblePanelFiller />
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

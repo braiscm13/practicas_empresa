@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="" keys="DUMMY" title="tsk.formTasksTitle" 
+	buttons="no" status="no"
+	preferredsizetodialog="1100;850"
+	focusorder="TSK_ID;TSK_TITLE;TSK_DESCRIPTION;TKC_ID;TKS_ID;TPR_ID;CIF;ECN_ID;USUARIO_CREATOR;USUARIO_ASIGNEE;TSK_CREATION_DATE_FROM;TSK_CREATION_DATE_TO;TSK_CLOSED_DATE_FROM;TSK_CLOSED_DATE_TO;TSK_IS_NEW_VEHICLE;"
+	autocompletefocuslist="yes"
+	>
+
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Row margin="5;5;5;5" expand="yes">	
+		<Column expand="yes" expandlast="no">
+			<!-- FILTERS -->
+			<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+				<Row margin="5;5;5;5">
+					<Column title=""  expand="0.7">
+						<Column valign="top">
+							<TextDataField 
+								attr="TSK_ID" text="tsk.TSK_ID"
+								align="left" labelsize="20" dim="no" size="10"
+								/>
+							<TextDataField 
+								attr="TSK_TITLE" text="tsk.TSK_TITLE"
+								align="left" labelsize="20" dim="text"
+							/>
+							<TextDataField 
+								attr="TSK_DESCRIPTION" text="tsk.TSK_DESCRIPTION"
+								align="left" labelsize="20" dim="text" uppercase="no"
+							/>
+							<com.opentach.client.comp.field.CampoComboReferenciaDespl 
+								attr="TKC_ID" cod="TKC_ID" text="tsk.TKC_ID"
+								entity="ETaskClassifier" 
+								cols="TKC_NAME" 
+								align="left" labelsize="20" dim="text" />
+							<com.opentach.client.comp.field.CampoComboReferenciaDespl 
+								attr="TSU_ID" cod="TSU_ID" text="tsk.TSU_ID"
+								parentkeys="TKC_ID" disableonparentkeynull="yes" parentkeylistener="yes"
+								entity="ETaskSubClassifier" 
+								cols="TSU_NAME;TKC_ID"
+								visiblecols="TSU_NAME" 
+								descr="TSU_NAME"
+								align="left" labelsize="20" dim="text" />
+							<com.opentach.client.comp.field.CampoComboReferenciaDespl 
+								attr="TKS_ID" cod="TKS_ID" text="tsk.TKS_ID" 
+								entity="ETaskStatus" 
+								cols="TKS_NAME" 
+								align="left" labelsize="20" dim="text" />
+							<com.opentach.client.comp.field.CampoComboReferenciaDespl 
+								attr="TPR_ID" cod="TPR_ID" text="tsk.TPR_ID" 
+								entity="ETaskPriority" 
+								cols="TPR_NAME" 
+								align="left" labelsize="20" dim="text" />
+							
+							<ReferenceExtDataField 
+							attr="TKM_ID" cod="TKM_ID"
+							entity="ETaskMadeBy" 
+							cols="TKM_ID;TKM_NAME"
+							descriptioncols="TKM_NAME" 
+							labelsize="20" dim="text" codvisible="no"/>
+							
+							<ReferenceExtDataField 
+							attr="TKCM_ID" cod="TKCM_ID"   
+							entity="ETaskCommunicatedBy" 
+							cols="TKCM_ID;TKCM_NAME"
+							descriptioncols="TKCM_NAME" 
+							labelsize="20" dim="text" codvisible="no"/>
+							
+						</Column>
+					</Column>
+					<Column title="" margin="0;5;0;15" expand="0.3">
+						<ReferenceExtDataField 
+							attr="CIF" cod="CIF" text="tsk.CIF"  
+							entity="EDfEmp" 
+							cols="CIF;NOMB"
+							descriptioncols="CIF;NOMB" 
+							labelsize="15" dim="text" codvisible="no"/>
+						<ReferenceExtDataField 
+							attr="ECN_ID" cod="ECN_ID" text="tsk.ECN_ID" 
+							entity="EContactosEmp" 
+							parentkey="CIF" parenkeylistener="yes" disableonparentkeynull="true"
+							cols="ECN_ID;CIF;ECN_NAME;ECN_TLF1;ECN_TLF2;;ECN_MAIL"
+							visiblecols="ECN_NAME;ECN_TLF1;ECN_TLF2;;ECN_MAIL"
+							descriptioncols="ECN_NAME" 
+							labelsize="15" dim="text" codvisible="no"/>
+						<Column height="1"/>
+						<ReferenceExtDataField 
+							attr="USUARIO_CREATOR" cod="USUARIO" text="tsk.USUARIO_CREATOR"
+							entity="EUsuariosTodos" 
+							cols="USUARIO"
+							descriptioncols="USUARIO" 
+							labelsize="15" dim="text" codvisible="no"/>
+						<ReferenceExtDataField 
+							attr="USUARIO_ASIGNEE" cod="USUARIO" text="tsk.USUARIO_ASIGNEE"
+							entity="EUsuariosTodos" 
+							cols="USUARIO"
+							descriptioncols="USUARIO" 
+							labelsize="15" dim="text" codvisible="no"/>
+						<Column height="1"/>
+						<Row>
+							<DateDataField attr="TSK_CREATION_DATE_FROM"  text="tsk.TSK_CREATION_DATE" align="left" labelsize="15" dim="no" size="7"/>
+							<DateDataField attr="TSK_CREATION_DATE_TO" text="UNTIL" align="left" dim="no" size="7"/>
+							<Row/>
+						</Row>
+						<Row>
+							<DateDataField attr="TSK_CLOSED_DATE_FROM"  text="tsk.TSK_CLOSED_DATE" align="left" labelsize="15" dim="no" size="7"/>
+							<DateDataField attr="TSK_CLOSED_DATE_TO" text="UNTIL" align="left" dim="no" size="7"/>
+							<Row/>
+						</Row>
+						<Row>
+							<CheckDataField attr="TSK_IS_NEW_VEHICLE" align="left" labelposition="right" labelsize="20" returnstring="yes"/>
+							<CheckDataField attr="TSK_IS_MONTHLY_TURNOVER" align="left" labelposition="right" labelsize="20" returnstring="yes"/>
+						</Row>
+						<Row>
+							<CheckDataField attr="TSK_IS_OUTPUT" align="left" labelposition="right" labelsize="20"  returnstring="yes"/>
+							<CheckDataField attr="TSK_IS_WAITING_FOR_AGREEMENT" align="left" labelposition="right" labelsize="20" returnstring="yes"/>
+						</Row>
+						<Row>
+							<CheckDataField attr="TSK_IS_NEXT_RENEWAL" align="left" labelposition="right" labelsize="30" returnstring="yes"/>
+						</Row>
+					</Column>
+					<Column expand="no" expandlast="no">
+						<Column/>
+						<SearchPanel 
+							table="ETasks"
+							search.filterfields="TSK_ID;TSK_TITLE;TKS_ID;TKC_ID;TSU_ID;TPR_ID;CIF;ECN_ID;USUARIO_CREATOR;USUARIO_ASIGNEE;TSK_IS_NEW_VEHICLE;TSK_IS_MONTHLY_TURNOVER;TSK_IS_OUTPUT;TSK_IS_WAITING_FOR_AGREEMENT;TSK_IS_NEXT_RENEWAL;TKCM_ID;TKM_ID" 
+							search.containsfilterfields="TSK_DESCRIPTION"
+							search.daterangefilterfields="TSK_CREATION_DATE_FROM:TSK_CREATION_DATE_TO:TSK_CREATION_DATE;TSK_CLOSED_DATE_FROM:TSK_CLOSED_DATE_TO:TSK_CLOSED_DATE"
+						/>
+						<Column/>
+					</Column>
+				</Row>
+			</CollapsiblePanel>
+			
+			<Row expand="yes" valign="center">
+				<Column expand="yes" margin="5;5;5;5">	
+					<com.opentach.client.tasks.components.TableExportRenderer 
+						entity="ETasks" 
+						key="TSK_ID" 
+						parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+						cols="TSK_ID;TSK_TITLE;TSK_DESCRIPTION;TKS_ID;TKS_NAME;TKC_ID;TKC_NAME;TSU_NAME;TPR_ID;TPR_NAME;TSK_CREATION_DATE;TSK_CLOSED_DATE;CIF;ECN_ID;COMPANY_NAME;CONTACT_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;USUARIO_CREATOR;USUARIO_ASIGNEE;TKM_ID;TKM_NAME;TKCM_ID;TKCM_NAME;TSK_IS_NEW_VEHICLE;TSK_IS_MONTHLY_TURNOVER;TSK_IS_OUTPUT;TSK_IS_WAITING_FOR_AGREEMENT;TSK_IS_NEXT_RENEWAL"
+						visiblecols="TSK_ID;TSK_TITLE;TSK_DESCRIPTION;TKS_NAME;TKC_NAME;TSU_NAME;TPR_NAME;TSK_CREATION_DATE;TSK_CLOSED_DATE;CIF;COMPANY_NAME;CONTACT_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;USUARIO_CREATOR;USUARIO_ASIGNEE;TKM_NAME;TKCM_NAME;TSK_IS_NEW_VEHICLE;TSK_IS_MONTHLY_TURNOVER;TSK_IS_OUTPUT;TSK_IS_WAITING_FOR_AGREEMENT;TSK_IS_NEXT_RENEWAL"
+						defaultvisiblecols="TSK_ID;TSK_TITLE;TKS_NAME;TKC_NAME;TSU_NAME;TPR_NAME;TSK_CREATION_DATE;TSK_CLOSED_DATE;CIF;COMPANY_NAME;CONTACT_NAME;ECN_TLF1;ECN_MAIL;USUARIO_CREATOR;USUARIO_ASIGNEE;TKM_NAME;TKCM_NAME;TSK_IS_NEW_VEHICLE;TSK_IS_MONTHLY_TURNOVER;TSK_IS_OUTPUT;TSK_IS_WAITING_FOR_AGREEMENT;TSK_IS_NEXT_RENEWAL" 
+						deletebutton="yes" disableinsert="yes" insertcontrol="no" 
+						detailformat="{0};TSK_ID"  
+						form="formTask.form"
+						title="tsk.ETasks"
+						scrollh="yes"
+						columntext=""
+						minrowheight="22"
+					>
+						<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;chartbutton;defaultchartbutton;insertbutton;printingbutton;deletebutton;pivottablebutton" onlyhide="true" />
+						
+						<TableColumnProperties attr="TSK_ID" text="tsk.TSK_ID"  defaultwidth="125" preferredwidth="125"/>
+						<TableColumnProperties attr="TSK_TITLE" text="tsk.TSK_TITLE"  defaultwidth="250" preferredwidth="250"/>
+						<TableColumnProperties attr="TSK_DESCRIPTION" text="tsk.TSK_DESCRIPTION"  defaultwidth="250" preferredwidth="250" minwidth="150"/>
+						<TableColumnProperties attr="TKS_NAME" text="tsk.TKS_ID"  defaultwidth="125" preferredwidth="125"/>
+						<TableColumnProperties attr="TKC_NAME" text="tsk.TKC_ID"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="TSU_NAME" text="tsk.TSU_ID"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="TPR_NAME" text="tsk.TPR_ID"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="CIF" text="tsk.CIF.table"  defaultwidth="100" preferredwidth="100"/>
+						<TableColumnProperties attr="COMPANY_NAME" text="tsk.COMPANY_NAME"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="CONTACT_NAME" text="tsk.CONTACT_NAME"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="ECN_TLF1" text="tsk.ECN_TLF1"  defaultwidth="100" preferredwidth="100"/>
+						<TableColumnProperties attr="ECN_TLF2" text="tsk.ECN_TLF2"  defaultwidth="100" preferredwidth="100"/>
+						<TableColumnProperties attr="ECN_MAIL" text="tsk.ECN_MAIL"  defaultwidth="125" preferredwidth="125"/>
+						<TableColumnProperties attr="USUARIO_CREATOR" text="tsk.USUARIO_CREATOR"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="USUARIO_ASIGNEE" text="tsk.USUARIO_ASIGNEE"  defaultwidth="150" preferredwidth="150"/>
+						<TableColumnProperties attr="TSK_CREATION_DATE" text="tsk.TSK_CREATION_DATE"  defaultwidth="165" preferredwidth="165"/>
+						<TableColumnProperties attr="TSK_CLOSED_DATE" text="tsk.TSK_CLOSED_DATE"  defaultwidth="165" preferredwidth="165"/>
+						
+						<com.opentach.client.comp.TimezoneDateCellRenderer column="TSK_CREATION_DATE" globalid="TSK_CREATION_DATE" format="dd/MM/yyyy HH:mm:ss"/>
+						<com.opentach.client.tasks.components.TaskClosedRenderer column="TSK_CLOSED_DATE" globalid="TSK_CLOSED_DATE" format="dd/MM/yyyy HH:mm:ss"/>
+					
+						<BooleanCellRenderer column="TSK_IS_NEW_VEHICLE" />
+						<BooleanCellRenderer column="TSK_IS_MONTHLY_TURNOVER" />
+						<BooleanCellRenderer column="TSK_IS_OUTPUT" />
+						<BooleanCellRenderer column="TSK_IS_WAITING_FOR_AGREEMENT" />
+						<BooleanCellRenderer column="TSK_IS_NEXT_RENEWAL" />
+						
+						<RenderMemo column="TSK_DESCRIPTION" maxnumrows="3"  />
+					</com.opentach.client.tasks.components.TableExportRenderer>
+				</Column>
+			</Row>
+			<Row >
+				<Row />
+				<Button 
+					attr="generateReport" text="generateReport.text" tip="generateReport.tip" 
+					listener="com.opentach.client.tasks.im.listeners.GenerateTasksReportListener" 
+					icon="com/opentach/client/rsc/printer16.png" 
+					table="ETasks"
+					filterfields="TSK_ID;TSK_TITLE;TKS_ID;TKC_ID;TSU_ID;TPR_ID;CIF;ECN_ID;USUARIO_CREATOR;USUARIO_ASIGNEE;TKM_ID;TKCM_ID;TSK_IS_NEW_VEHICLE;TSK_IS_MONTHLY_TURNOVER;TSK_IS_OUTPUT;TSK_IS_WAITING_FOR_AGREEMENT;TSK_IS_NEXT_RENEWAL" 
+					containsfilterfields="TSK_DESCRIPTION"
+					daterangefilterfields="TSK_CREATION_DATE_FROM:TSK_CREATION_DATE_TO:TSK_CREATION_DATE;TSK_CLOSED_DATE_FROM:TSK_CLOSED_DATE_TO:TSK_CLOSED_DATE"
+					/>
+					<!-- TODO improve Utilmize search button to avoid repeat this filters-->
+				<OpenTableInsertFormButton table="ETasks" text="tsk.ETasks.add"/>
+			</Row>
+		</Column>			
+	</Row>
+</FormExt>

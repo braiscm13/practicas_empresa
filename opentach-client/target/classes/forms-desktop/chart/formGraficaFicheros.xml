@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="GRAFICA_COND" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row>
+		<Column margin="5;5;5;5">
+			<Column title="" valign="center">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="11" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="no" csize="10" />
+				<TextDataField attr="IDORIGEN" labelsize="11" align="left" />
+				<Row height="10" />
+			</Column>
+		</Column>
+		<Column expand="no" visible="no" >
+			<Row margin="10;5;10;5">
+				<Column expand="no">
+					<DateDataField attr="FILTERFECINI" text="DESDE" align="left" labelsize="10" required="yes" visible="yes" />
+					<DateDataField attr="FILTERFECFIN" text="HASTA" align="left" labelsize="10" required="yes" visible="yes" />
+				</Column>
+			</Row>
+		</Column>
+	</Row>
+	<Row height="200" width="700" expand="yes">
+		<Column expand="yes">
+			<ActivityChartControlPanel title="l_grafica_activ" attr="chartControl">
+			</ActivityChartControlPanel>
+			<Row expand="yes" height="400" title="Gráfica de actividades">
+				<ChartDataField attr="chart" xfontsize="10" entities="EFicherosSubidos" tasks="com.opentach.client.comp.activitychart.taskwrapper.FicherosTaskWrapper"
+					sublegend1="FERRY/OUT_TRAIN" sublegend2="INFRACCIONES" />
+			</Row>
+		</Column>
+	</Row>
+</Form>

@@ -1,0 +1,92 @@
+@import url('downcenter.css');
+Constants {
+	bordertitlefont:Verdana-BOLD-11;
+}
+"OPEN" {
+	font: Verdana-BOLD-28;
+}
+
+"TACH" {
+	font: Verdana-BOLD-28;
+}
+"Subopentach" {
+	font: Verdana-PLAIN-12;
+}
+
+"MainRound" {
+	font: Verdana-BOLD-21;
+}
+
+"MainRoundSmall" {
+	font: Verdana-BOLD-17;
+}
+
+"SubMainRound" {
+	font: Verdana-PLAIN-14;
+}
+
+"StandardRound" {
+	font: Verdana-PLAIN-12;
+}
+
+"StandardBoldRound" {
+	font: Verdana-BOLD-12;
+}
+
+"NewsTitle" {
+	font: Verdana-BOLD-12;
+}
+
+"TechnicalLabel" {
+	font: Verdana-PLAIN-14;
+}
+
+"TechnicalLabelSmall" {
+	font: Verdana-PLAIN-12;
+}
+
+"TechnicalNumberLabel" {
+	font: Verdana-BOLD-18;
+}
+
+"WhiteStandar" {
+	font: Arial-BOLD-13;
+}
+
+"WhiteStandarNumber" {
+	font: Arial-BOLD-14;
+}
+
+
+"WhiteStandarBold" {
+	font: Arial-BOLD-11;
+}
+
+"WhiteSmallBold" {
+	font: Arial-BOLD-10;
+}
+
+"RedStandar" {
+	font: Arial-BOLD-13;
+}
+
+
+"WhiteTitle" {
+	font: Verdana-BOLD-20;
+}
+
+"WhiteTitleBig" {
+	font: Verdana-BOLD-30;
+}
+
+VehicleListCellRenderer {
+	font: Verdana-BOLD-13;
+}
+
+TableHeader {
+	font: Arial-BOLD-12;
+}
+
+Table:"Table.cellRenderer" {
+	font:Arial-BOLD-12;
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler"
+	table="CDDELEGACION_DFEMP">
+	<DeleteKeys>
+		<Column>IDDELEGACION</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>IDDELEGACION</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CIF" prefix="del" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="PROVINCIA_DEL" value="SELECT PROVINCIAS.NOMB FROM PROVINCIAS WHERE CDDELEGACION_DFEMP.CG_PROV_DEL = PROVINCIAS.CG_PROV" />
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM 
+							CDDELEGACION_DFEMP del,
+							DFEMP com
+						WHERE 
+							del.CIF = com.CIF
+						#WHERE_CONCAT#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="drivers">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="IDDELEGACION" prefix="del" />
+				<AmbiguousColumn name="CIF" prefix="del" />
+			</AmbiguousColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM 
+							CDDELEGACION_DFEMP del,
+							CDCONDUCTORES_EMP drv
+						WHERE 
+							del.IDDELEGACION = drv.IDDELEGACION							
+						#WHERE_CONCAT#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="vehicles">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="IDDELEGACION" prefix="del" />
+				<AmbiguousColumn name="CIF" prefix="del" />
+			</AmbiguousColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM 
+							CDDELEGACION_DFEMP del,
+							CDVEHICULOS_EMP veh
+						WHERE 
+							del.IDDELEGACION = veh.IDDELEGACION							
+						#WHERE_CONCAT#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

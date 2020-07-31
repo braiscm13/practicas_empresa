@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="CERTIFICADO_DE_ACTIVIDADES" setvalueorder="CIF;CG_CONTRATO;IDCONDUCTOR" preferredsizetodialog="1020;570">
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<com.utilmize.client.gui.buttons.UButtonGroup attr="selection"
+				buttonskeys="BAJAENFERMEDAD;VACACIONES;PERMISO;CONDEXCLUIDO;TRABAJODIST;DISPONIBLE" visible="no" />
+	<Column margin="5;5;5;5">
+		<Row title="">
+			<Column >
+				<ReferenceComboDataField align="left" attr="IDGRUPO" labelsize="14" cod="IDGRUPO" cols="IDGRUPO;NOMBRE_GRUPO" visiblecols="NOMBRE_GRUPO"
+					dim="text" entity="EGrupoEmpFiltered" />
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="14" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;IDGRUPO;TELF;FAX;DIRECCION;POBL;PAIS;CG_POSTAL"
+					visiblecols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" parentkeys="IDGRUPO" onsetvalueset="IDGRUPO" />
+				<WWWDataField attr="EMAIL" text="EMAIL" labelsize="14" dim="text" maxlength="50" />
+			</Column>
+			<Column valign="top" margin="0;5;0;0">
+					<com.opentach.client.comp.CertifDateDataField attr="F_INI" labelsize="8" align="left" />
+					<com.opentach.client.comp.CertifDateDataField attr="F_FIN" labelsize="8" align="left" />
+			</Column>
+		</Row>
+		<Row title="firmante">
+			<Column>
+				<Row>
+					<TextDataField attr="APELLIDOS_FIRMA" text="APELLIDOS" labelsize="14" dim="text" maxlength="255" />
+					<TextDataField attr="NOMBRE_FIRMA" text="NOMBRE"  maxlength="255" size="25" />
+				</Row>
+				<TextDataField attr="CARGO" text="CARGO" labelsize="14" dim="text" maxlength="255" />
+			</Column>
+		</Row>
+		<Row title="conductor">
+			<Column >
+				<ReferenceExtDataField 
+					parentkeylistener="yes" 
+					populatetableonshowtablewindow="true" 
+					attr="IDCONDUCTOR" 
+					cod="IDCONDUCTOR"
+					codsearch="DNI" 
+					parentkeys="CG_CONTRATO;CIF" 
+					csize="10" 
+					entity="EConductorContFicticio"
+					cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE;F_TRABAJO;F_NAC" 
+					visiblecols="DNI;APELLIDOS;NOMBRE" 
+					cleanonparentkeynull="true" 
+					descriptioncols="DNI;APELLIDOS;NOMBRE" 
+					align="left" 
+					labelsize="14" 
+					dim="text"
+					required="yes" 
+					onsetvalueset="F_TRABAJO;F_NAC"/>
+				<Row>
+					<DateDataField attr="F_NAC" labelsize="14" align="left" />
+					<DateDataField attr="F_TRABAJO" align="left"  />
+					<Row/>
+				</Row>
+			</Column>
+		</Row>
+		<Row title="motivo_certif">
+			
+			<Column expand="no">
+				<CheckDataField attr="BAJAENFERMEDAD" labelposition="right" align="left" labelsize="45" />
+				<CheckDataField attr="VACACIONES" labelposition="right" align="left" labelsize="45" />
+				<CheckDataField attr="PERMISO" labelposition="right" align="left" labelsize="45" />
+				<CheckDataField attr="CONDEXCLUIDO" labelposition="right" align="left" labelsize="45" />
+				<CheckDataField attr="TRABAJODIST" labelposition="right" align="left" labelsize="45" />
+				<CheckDataField attr="DISPONIBLE" labelposition="right" align="left" labelsize="45" />
+			</Column>
+			<Column expand="yes">
+				<Row>
+					<TextDataField attr="LUGAR" dim="text" />
+					<TextDataField attr="LUGAR2" dim="text" />
+					<DateDataField attr="FECHA" />
+				</Row>
+				<Row title="OBSR" expand="yes">
+					<MemoDataField attr="OBSR" labelvisible="no" expand="yes" uppercase="no" dim="text" />
+				</Row>
+			</Column>
+		</Row>
+		<Row expand="no">
+			<Row/>
+			<Button key="btnGenerar" text="TIP_GENERAR" tip="TIP_GENERAR" icon="com/opentach/client/rsc/printer16.png" 
+			listener="com.opentach.client.modules.report.IMCartaCertificateActividadesGenerateReportListener"/>
+														 
+		</Row>
+	</Column>
+</Form>

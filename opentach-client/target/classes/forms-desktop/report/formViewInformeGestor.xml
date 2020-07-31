@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="GESTION_INFORME_GESTOR" entity="" buttons="yes">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnSaveReport" tip="GUARDAR_INFORME" icon="com/ontimize/gui/images/savefile.png" />
+		<Button key="btnViewReport" tip="VER_INFORME" icon="com/ontimize/gui/images/zoomin.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row>
+		<Column margin="10;5;10;5" title="Datos" valign="top">
+			<Row>
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="yes" csize="10" />
+			</Row>
+		</Column>
+		<Column title="Filtro_Inicio_Datos" expand="no" align="right" margin="10;5;10;5">
+			<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right"
+				datevisible="no" labelsize="10" required="yes" />
+			<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right"
+				datevisible="no" labelsize="10" required="yes" />
+		</Column>
+	</Row>
+	<Table entity="EInformeGestor" title="EInformeGestor" key="IDINFORMEGESTOR" parentkeys="CG_CONTRATO;CIF" otherkeys="F_INFORME" rendertime="F_INFORME;F_ALTA"
+		cols="IDINFORMEGESTOR;CG_CONTRATO;F_INFORME;F_ALTA;USUARIO_ALTA;CIF" visiblecols="F_INFORME;F_ALTA;USUARIO_ALTA" deletebutton="yes" />
+</Form>

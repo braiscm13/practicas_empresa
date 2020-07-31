@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="managerqueryrestricciones">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<Row>
+		<Column margin="7;5;2;5">
+			<Column title="" valign="center">
+				<ReferenceComboDataField align="left" attr="IDTIPO_RESTRICCION" labelsize="16" cod="IDTIPO_RESTRICCION" cols="IDTIPO_RESTRICCION;DSCR" visiblecols="DSCR" dim="text" entity="ETipoRestricciones" />
+				<Row>
+					<TextDataField align="left" attr="POBL_INICIAL" labelsize="16" dim="text" maxlength="255" />
+					<ReferenceComboDataField  align="left" 	attr="CG_PROV_INICIAL" labelsize="16"	cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias" parentkey="CG_NACI" size="20" />
+				</Row>
+				<Row>
+					<TextDataField align="left" attr="POBL_FINAL" labelsize="16" dim="text" maxlength="255" />
+					<ReferenceComboDataField  align="left" 	attr="CG_PROV_FINAL" labelsize="16"	cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias" parentkey="CG_NACI" size="20" />
+				</Row>
+			</Column>
+		</Column>
+		<BasicDataComponentGroup attr="FILTER.2" group="COLUMN.2=FECINI;FILTERFECINI;FILTERFECINI" />
+		<TextDataField attr="COLUMN.2" align="left" visible="no" />
+		<Column title="FECHA_INICIO_RESTRICCION" expand="no" align="left" margin="5;5;5;5">
+			<Row>
+				<Column layout="border" expand="no" align="center">
+					<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+						<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+						<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+						<Column expand="no">
+							<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left"
+								required="yes" datevisible="no" dim="no" labelsize="10" />
+							<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left"
+								required="yes" datevisible="no" dim="no" labelsize="10" />
+						</Column>
+					</ColumnRadioButtonGroup>
+				</Column>
+			</Row>
+		</Column>
+	</Row>
+	<Row expand="yes">
+		<Table entity="ERestricciones" key="IDRESTRICCION" parentkeys="CG_PROV_INICIAL;CG_PROV_FINAL;IDTIPO_RESTRICCION;POBL_INICIAL;POBL_FINAL" 
+			cols="IDRESTRICCION;IDTIPO_RESTRICCION;TIPO_RESTRICCION;CARRETERA;SENTIDO;PK_INICIAL;POBL_INICIAL;MUNI_INICIAL;PROVINCIA_INICIAL;PK_FINAL;POBL_FINAL;MUNI_FINAL;PROVINCIA_FINAL;F_INICIAL;F_FINAL;F_ALTA;USUARIO_ALTA;CG_PROV_INICIAL;CG_PROV_FINAL"
+			visiblecols="TIPO_RESTRICCION;CARRETERA;SENTIDO;PK_INICIAL;POBL_INICIAL;MUNI_INICIAL;PROVINCIA_INICIAL;PK_FINAL;POBL_FINAL;MUNI_FINAL;PROVINCIA_FINAL;F_INICIAL;F_FINAL" />
+	</Row>
+</Form>

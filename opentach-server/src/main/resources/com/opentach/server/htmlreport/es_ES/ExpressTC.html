@@ -1,0 +1,81 @@
+<HTML>
+	<HEAD>
+		<TITLE>Informe Express</TITLE>
+	<style type="text/css">
+	table.sample{
+	border-color: #FFFFFF;
+	}
+	</style>
+	</HEAD>
+	<BODY>
+	
+	<CENTER><table class="sample" border=3>
+		<TR border=0>
+		<td border=0>
+		<table bgcolor="#FFFFFF" align="center">
+			<TR align="left" border=0 >
+				<TH colspan="2"  border=0 >						
+					<CENTER><FONT COLOR="navy" size="6">Empresa:       %EMPRESA%</FONT></CENTER>							
+				</TH>
+			</TR>			
+			<TR align="left" border=0 >
+				<TH colspan="2"  border=0 align="left">						
+					<FONT COLOR="navy" size="5">Conductor:     %CONDUCTOR%</FONT>							
+				</TH>
+			</TR>
+			<TR align="left" border=0>
+				<TD>					
+					<FONT COLOR="blue" size="5">Periodo Analizado del %INITDATE% al %ENDDATE%</FONT>
+				</TD>
+				<TD>						
+					<FONT COLOR="blue" size="5">Pr&oacute;xima descarga recomendada:  %FDESCARGA%</FONT>									
+				</TD>
+			</TR>	
+			<tr align="left">	
+				<th align="left">			
+					<FONT COLOR="blue" size="5">Resumen de Actividades</FONT>		
+					<TABLE border="1" bordercolor="green">
+						<TR bgcolor="green" color="white">
+							<TH>Conducci&oacute;n</TH>
+							<TH>Disponibilidad</TH>
+							<TH>Pausa/Descanso</TH>
+							<TH>Trabajo</TH>
+							<TH>KM Recorridos</TH>	
+							</FONT>				
+						</TR>
+						%TABLA_ACTIVIDADES%
+					</TABLE>
+					<br>
+				<FONT COLOR="blue" size="5">Resumen de Veh&iacute;culos Utilizados</FONT>		
+					<TABLE border="1" bordercolor="green">
+						<TR bgcolor="green" color="white">
+							<TH>Matr&iacute;culas</TH>					
+						</TR>
+						%TABLA_MATRICULAS%			
+					</TABLE>
+				</TH>
+				<th align="left" valign="top" >
+				<FONT COLOR="blue" size="5">Resumen de Infracciones en los &Uacute;ltimos 28 D&iacute;as</font>	
+				<table border="1" bordercolor="green">
+					<TR bgcolor="green" color="white">
+						<th>Tipo</th>
+						<th>F. Inicio</th>
+						<th>F. Fin</th>						
+						<th>Naturaleza</th>					
+					</tr>
+					%TABLA_INFRAC%				
+				</table>
+				</th>	
+			</TR>
+			<TR align="left">
+				<th align="left" colspan="2">
+					%INCIDENCIAS_INICIO%
+					%ERRORES%
+				</th>
+			</tr>
+		</table>
+		</td>
+		</TR>
+		</table></CENTER>
+	</BODY>
+</HTML>

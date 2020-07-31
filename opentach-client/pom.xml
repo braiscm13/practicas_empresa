@@ -1,0 +1,265 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-client</artifactId>
+	<name>Cliente opentach</name>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Compiler configuration -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${jdk.client.version}</source>
+						<target>${jdk.client.version}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Utilmize-App-Version>${project.version}</Utilmize-App-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-company-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-web</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<classifier>win</classifier>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-controls</artifactId> -->
+		<!-- <classifier>mac</classifier> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-web</artifactId> -->
+		<!-- <classifier>mac</classifier> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-swing</artifactId> -->
+		<!-- <classifier>mac</classifier> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-controls</artifactId> -->
+		<!-- <classifier>linux</classifier> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-web</artifactId> -->
+		<!-- <classifier>linux</classifier> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openjfx</groupId> -->
+		<!-- <artifactId>javafx-swing</artifactId> -->
+		<!-- <classifier>linux</classifier> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-client-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-company-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-support-desktopclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-devices</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-dms-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-remotevehicle-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-labor-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-checktrucker-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-mailmanager-client</artifactId>
+		</dependency>
+		<!-- reports -->
+		<dependency>
+			<groupId>ar.com.fdvs</groupId>
+			<artifactId>DynamicJasper</artifactId>
+		</dependency>
+		<!-- ====== -->
+		<!-- CLIENT -->
+		<!-- ====== -->
+		<!-- dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+		<!-- UTILMIZE -->
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilplaf-j7</artifactId>
+		</dependency>
+		<!-- JEP -->
+		<dependency>
+			<groupId>org.nfunk</groupId>
+			<artifactId>jep</artifactId>
+		</dependency>
+		<!-- ontimize plaf -->
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-more-plaf-styles-white</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-more-plaf-styles-black</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-more-plaf-styles-brown</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-more-plaf-styles-lightblue</artifactId>
+		</dependency>
+		<!-- permissions button -->
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-more-permission</artifactId>
+		</dependency>
+		<!-- POI -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+		</dependency>
+		<!-- ncalendar -->
+		<dependency>
+			<groupId>net.sf.nachocalendar</groupId>
+			<artifactId>nachocalendar</artifactId>
+		</dependency>
+		<!-- javahelp -->
+		<dependency>
+			<groupId>javax.help</groupId>
+			<artifactId>javahelp</artifactId>
+		</dependency>
+		<!-- client jnlp -->
+		<dependency>
+			<groupId>javax.jnlp</groupId>
+			<artifactId>jnlp</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-gisclt</artifactId>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>javafx</groupId> -->
+		<!-- <artifactId>jfxrt</artifactId> -->
+		<!-- <version>1.7.0</version> -->
+		<!-- <scope>system</scope> -->
+		<!-- <systemPath>C:/Program Files/Java/jdk1.7.0_51/jre/lib/jfxrt.jar</systemPath> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-client-j8</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>

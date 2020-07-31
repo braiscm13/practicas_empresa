@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="EInformeVehDescargaRemota" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+			<Column title="" margin="0;5;5;5" valign="center">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+			</Column>
+			<Column>
+				<Table entity="EInformeVehDescargaRemota" key="CIF" keys="MATRICULA" parentkeys="CIF" 
+				cols="CIF;MATRICULA;DSCR;CG_CONTRATO" visiblecols="CIF;MATRICULA;DSCR" />
+			</Column>
+		</Column>
+	</Row>
+</Form>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="formSurveys.xml" buttons="no" status="no" preferredsizetodialog="950;600">
+    <ObjectDataField attr="ID_SURVEY" visible="no" />
+
+		<Column margin="10;10;10;10" expandlast="no">
+			<Table entity="ESurveys" key="ID_SURVEY" cols="ID_SURVEY;SURVEY_NAME;SURVEY_EXPIRATION_DATE;N_QUESTIONS" visiblecols="SURVEY_NAME;SURVEY_EXPIRATION_DATE;N_QUESTIONS"
+				refreshbutton="yes" deletebutton="yes" form="formSurvey.xml" insertbutton="yes">
+				<HideTableButton
+					attr="changeviewbutton;copybutton;excelexportbutton;htmlexportbutton;printingbutton;chartbutton;defaultchartbutton;visiblecolsbutton;sumrowbutton;reportbutton;filtersavebutton;calculedcolsbutton;deletebutton;insertbutton" />
+			</Table>
+			<Row margin="0;0;0;0">
+				<Row />
+				<DeleteFromTableButton table="ESurveys" icon="images-admin/garbage16.png" />
+				<OpenTableInsertFormButton table="ESurveys" icon="images-admin/survey_16.png" />
+			</Row>
+		</Column>
+</FormExt>

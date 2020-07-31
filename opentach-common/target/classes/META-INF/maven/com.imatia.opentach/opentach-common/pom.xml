@@ -1,0 +1,79 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-common</artifactId>
+	<name>Opentach common</name>
+
+	<build>
+		<plugins>
+			<!-- Compiler configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.server.version}</source>
+					<target>${jdk.server.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+
+		<!-- ====== -->
+		<!-- COMMON -->
+		<!-- ====== -->
+		<!-- tacholibrary -->
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-common-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.tacho</groupId>
+			<artifactId>tacholibrary</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.imatia.tacho</groupId> -->
+<!-- 			<artifactId>tachodata</artifactId> -->
+<!-- 		</dependency> -->
+		<!-- bcprov -->
+		<dependency>
+			<artifactId>bcprov-jdk16</artifactId>
+			<groupId>org.bouncycastle</groupId>
+		</dependency>
+		<!-- bsh -->
+		<dependency>
+			<groupId>bsh</groupId>
+			<artifactId>bsh</artifactId>
+		</dependency>
+		<!-- apache commons -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+		</dependency>
+		<!-- utilmize-common -->
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-common</artifactId>
+		</dependency>
+		<!-- dynamic jasper -->
+		<dependency>
+			<groupId>ar.com.fdvs</groupId>
+			<artifactId>DynamicJasper</artifactId>
+		</dependency>
+	</dependencies>
+</project>

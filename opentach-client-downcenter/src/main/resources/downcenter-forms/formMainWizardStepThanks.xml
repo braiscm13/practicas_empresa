@@ -1,0 +1,29 @@
+<Column attr="StepThanks" expand="yes" margin="15;15;0;15" expandlast="no">
+	<Row >
+		<Column expandlast="no">
+			<Column/>
+			<Row expand="no">
+				<Row/>
+				<com.opentach.downclient.component.ResizableLabel icon="images/devices.png" maxfullheight="715"/>
+			</Row>
+			<Column/>
+		</Column>
+		<Column expandlast="no">
+			<Column/>
+			<Row expand="no">
+				<Row expand="no">
+					<Label icon="images/success.png" />
+					<Column>
+						<Label text="thanks" uiname="WhiteStandar" align="left"  />
+						<Label text="downloadOpentach" uiname="WhiteTitle" align="left" />
+					</Column>
+				</Row>
+				<Column expand="yes" />
+			</Row>
+			<Column/>
+			<Column/>
+		</Column>
+	</Row>
+	<Label text="url" uiname="WhiteSmallBold" align="center" />
+	<Row height="10" expand="no"/>
+</Column>

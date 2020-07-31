@@ -1,0 +1,6 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>DMSService</Name>
+		<Class>com.opentach.server.dms.services.DMSService</Class>
+	</RemoteReference>
+</RemoteReferences>

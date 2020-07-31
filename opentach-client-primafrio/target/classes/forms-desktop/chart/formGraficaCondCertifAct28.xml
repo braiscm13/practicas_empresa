@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managergraficaactivcertifactiv28" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+
+	<Row>
+		<Column margin="5;5;5;5">
+			<Column valign="center" title="">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="20" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;IDGRUPO;LOCALE" descriptioncols="NOMB" visiblecols="CIF;NOMB" required="no" csize="10" onsetvalueset="IDGRUPO" />
+				<ReferenceExtDataField attr="IDCONDUCTOR" cod="IDCONDUCTOR" parentkeys="CIF;CG_CONTRATO" csize="10" entity="EConductorContFicticio" cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE;F_NAC;F_ALTA" visiblecols="DNI;APELLIDOS;NOMBRE" descriptioncols=";APELLIDOS;NOMBRE" align="left" labelsize="20" dim="text" required="no" parentkeylistener="yes" populatetableonshowtablewindow="true"/>
+				<ReferenceComboDataField align="left" attr="IDGRUPO" labelsize="20" cod="IDGRUPO" cols="IDGRUPO;NOMBRE_GRUPO" visiblecols="NOMBRE_GRUPO" dim="text" entity="EGrupoEmp" visible="no"/>
+				<ReferenceExtDataField entity="EDfEmpCertificado" text="EMPRESA_CERTIFICADO" labelsize="20" attr="CIF_CERTIFICADO" dim="text" cod="CIF" cols="CIF;NOMB;IDGRUPO" descriptioncols="NOMB" visiblecols="CIF;NOMB" required="no" csize="10" parentkey="IDGRUPO" />
+				<ReferenceExtDataField entity="EFirmantesEmpresa" labelsize="20" attr="NIF" text="FIRMANTE" dim="text" cod="NIF" cols="CIF;NIF;NOMBRE;APELLIDOS;CARGO" descriptioncols="NOMBRE;APELLIDOS" visiblecols="NOMBRE;APELLIDOS" codintenger="no" required="no" csize="10" parentkey="CIF" />
+				<Row>
+					<ReferenceComboDataField 
+						attr="NUM_TARJ" 
+						cod="IDTARJETAS_COND" 
+						entity="ETarjetasCond" 
+						parentkey="IDCONDUCTOR" 
+						cols="IDTARJETAS_COND;NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST;IDCONDUCTOR" 
+						visiblecols="NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST" 
+						align="left" 
+						labelsize="20" 
+						dim="no" 
+						size="25" 
+						required="no" 
+						visible="yes" />
+					<Label text="l_grafica_activ" attr="l_grafica_activ" font="ARIAL-BOLD-14" fontcolor="#03fb06"/>
+					<Button key="matriculas_used" text ="matriculas_used" align="right" />
+				</Row>	
+				<Row/>
+				
+				
+				
+			</Column>
+			<DateDataField attr="F_DESCARGA_DATOS" visible ="no" />
+			
+		</Column>
+		<Column expand="no" margin="5;5;5;5">
+			<Column expand="no" title="" valign="no">
+				<DateDataField attr="FILTERFECINI" text="DESDE" align="left" labelsize="6" required="yes" visible="no" />
+				<DateDataField attr="FILTERFECFIN" text="HASTA" align="left" labelsize="6" required="yes" visible="yes" />
+			</Column>
+		</Column>
+	</Row>
+	<Row expand="yes">
+		<Column expand="yes" margin="0;10;0;10">
+			<ActivityChartControlPanel title="l_grafica_activ" attr="chartControl">
+				<Button key="btnInformeCAP" text="INFORME_CAP_INDEF" labelsize="30" bold="yes" icon="com/opentach/client/rsc/printer16.png" name="activitygraphbutton" />
+			</ActivityChartControlPanel>
+			<Row expand="no" height="3"></Row>
+			<ChartDataField attr="chart" xfontsize="10" yfontsize="10" legendimagename="chart_legend.gif" legendimagepath="com/opentach/client/rsc/i18n/" entities="EActividadesIndefinidas;EActividades;EResumenActividades;EResumenActividades;EInfracciones;EPeriodosTrabajo"
+				tasks="com.opentach.client.comp.activitychart.taskwrapper.IndefinidaTaskWrapper;com.opentach.client.modules.chart.PrimafrioActividadesTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.RulerTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.ResumenActividadesTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.InfraccionTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.PaisesTaskWrapper"
+				ylabelformat="EE dd/MM/yy" summaryclass="com.opentach.client.modules.chart.ActividadesSummaryComputer" summaryentity="EResumenActividades" 
+				legendbg="white" origen="origen" sublegend1="FERRY/OUT_TRAIN" sublegend2="DOBLE_TRIPULACION" />
+			<Row expand="yes" />
+		</Column>
+	</Row>
+</Form>

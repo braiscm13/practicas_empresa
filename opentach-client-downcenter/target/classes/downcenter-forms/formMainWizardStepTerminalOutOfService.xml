@@ -1,0 +1,29 @@
+<Row attr="StepTerminalOutOfService" expand="yes">
+	<Column expand="yes"/>
+	<Column margin="15;15;0;15" expandlast="no" expand="no">
+		<Row expand="yes" height="20" />
+		<Row expand="no">
+			<Column expand="no" expandlast="no">
+				<Label icon="images/errorOutOfService.png" align="center"/>
+				<Label text="TerminalOutOfService1" uiname="WhiteTitle" align="center"/>
+				<Label text="TerminalOutOfService2" uiname="WhiteTitleBig" align="center"/>
+				<Row expand="no" height="5" />
+				<Label text="Apologize" uiname="WhiteStandar" align="center"/>
+			</Column>
+		</Row>
+		<Row height="20" expand="no" />
+		<Column expand="no" margin="0;0;0;5">
+			<Row expand="no" margin="0;5;0;5" uiname="TechnicalRowBright" title="">
+				<Column>
+					<Label text="TechnicalAssistance" uiname="TechnicalLabel" align="right" />
+					<Label text="TechnicalAssistanceNumber" uiname="TechnicalNumberLabel" align="right" />
+					<Label text="TechnicalDays" uiname="TechnicalLabelSmall" align="right" />
+					<Label text="TechnicalHours" uiname="TechnicalLabelSmall" align="right" />
+				</Column>
+				<Column bgimage="images/operator.png" width="97" margin="0;0;0;0" expand="no" />
+			</Row>
+		</Column>
+		<Row height="20" expand="yes" />
+	</Column>
+	<Column expand="yes"/>
+</Row>

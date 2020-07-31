@@ -1,0 +1,229 @@
+pipeline {
+	environment {
+		registry = "openservices/opentach"
+		registryCredential = 'opentachsregistry'
+		dockerImage = ''
+		registryServer = "http://10.12.0.154:5000"
+
+		svnServerURL = 'https://svn.imatia.com/labs/'
+		svnProjectName = 'opentach'
+	}
+	options { 
+		skipDefaultCheckout() 
+	} 
+	parameters {
+		string(defaultValue: 'trunk', description: 'Rama a generar', name: 'RAMA')
+        string(defaultValue: '0.0.0', description: 'Versión a generar', name: 'VERSION')
+		booleanParam(defaultValue: false, description:'Etiquetar version en svn', name:"TAG")
+		booleanParam(defaultValue: false, description:'Realizar análisis sonar', name:"SONAR")
+		choice( choices:['deploy war','release zip'],description: 'Tipo de construcción', name: 'BUILD_MODE')
+		choice( choices:['dev','server-dev','pre-pro'],description: 'Entorno a generar', name: 'ENVIRONMENT_TYPE')
+    }	
+	agent any
+	stages {
+		stage ('Initialize') {
+			steps {
+				deleteDir()
+				checkEnvironment()
+	    	}
+		}
+		stage('Tag') {
+			steps {		
+				script {
+					if (params.TAG) {
+						createSVNTag("${svnServerURL}", "${svnProjectName}", "${VERSION}", "${RAMA}")
+						svnTagCheckout("${svnServerURL}", "${svnProjectName}", "${VERSION}",".")
+					} else {
+						svnRamaCheckout("${svnServerURL}", "${svnProjectName}", "${RAMA}",".")
+					}
+//					svnInfo()	
+//					if (params.TAG) {
+//						svnCommit()	
+//					}
+				}
+			}		
+		}
+    	//stage('Test') {
+        //	withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
+        //  		sh 'ng test --progress=false --watch false'
+        //	}
+        //	junit '**/test-results.xml'
+		//}
+      
+    	stage('Build war') {
+    		when { 
+    			expression  {params.BUILD_MODE == 'deploy war'}
+    		}
+			steps {
+				antBuild("-Ddeploy.environment=${ENVIRONMENT_TYPE} -DVERSION=${VERSION} -Dcli_executable=sh -Dcli_parameter=-c -Dmaven=mvn","./src/jenkins/build_jenkins.xml","make_war")
+			}
+    	}
+      
+    	stage('Build release') {
+    		when { 
+    			expression  {params.BUILD_MODE == 'release zip'}
+    		}
+			steps {
+				antBuild("-Drelease.environment=${ENVIRONMENT_TYPE} -DVERSION=${VERSION} -Dcli_executable=sh -Dcli_parameter=-c -Dmaven=mvn","./src/jenkins/build_jenkins.xml","release")
+			}
+    	}
+    	
+    	stage('SonarQube analysis') {
+    		when { 
+    			expression  {params.SONAR == true}
+    		}
+			steps {
+				script {
+  					// requires SonarQube Scanner 2.8+
+  					scannerHome = tool 'Sonar-3.7.3'
+				}
+				withSonarQubeEnv('Sonar 5.6.3 LTS') {
+	  				sh "/var/lib/jenkins/.sonar/native-sonar-scanner/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectVersion=${VERSION}"
+    			}
+  			}
+  		}
+  		stage('Build zip') {
+    		when { 
+    			expression  {params.BUILD_MODE == 'release zip'}
+    		}
+			steps {
+				withCredentials([usernamePassword(credentialsId: '4bfe6082-43a3-4427-8a78-e49044e720e0', passwordVariable: 'clave', usernameVariable: 'usuario')]) {					
+					antBuild("-Ddomain.user=${usuario} -Ddomain.pass=${clave} -DVERSION=${VERSION} -Dcli_executable=sh -Dcli_parameter=-c -Dmaven=mvn","./src/jenkins/build_jenkins.xml","make_release_zip")
+				}
+			}
+    	}
+	}
+	
+	post {
+	    // always {
+		// 	sh "docker rmi $registry:$BUILD_NUMBER"
+    	// }
+    	failure {
+	        mail to: "joaquin.romero@imatia.com", subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}"	        
+	    }
+	}
+}
+
+
+def getProjectVersion() {
+	script {
+		packageJSON = readJSON file: 'package.json'
+		return packageJSON.version
+	}
+}
+
+void setJsonVersion(version) {
+	sh 'npm version '+version
+}
+
+void createSVNTag(serverURL, projectName, tagVersion, fromRama) {
+	withCredentials([usernamePassword(credentialsId: '4bfe6082-43a3-4427-8a78-e49044e720e0', passwordVariable: 'clave', usernameVariable: 'usuario')]) {
+		sh 'svn copy ' +
+		serverURL + projectName + '/' + fromRama +' '+ 
+		serverURL + projectName + '/tags/' + projectName + '-' + tagVersion + 
+   		' -m "Creación de tag por jenkins"' +
+   		' --username=${usuario} --password=${clave}'
+	}
+}
+
+void svnTagCheckout(serverURL, projectName, tagVersion, destination) {
+	withCredentials([usernamePassword(credentialsId: '4bfe6082-43a3-4427-8a78-e49044e720e0', passwordVariable: 'clave', usernameVariable: 'usuario')]) {
+		sh 'svn checkout ' + 
+		serverURL + projectName + '/tags/' + projectName + '-' + tagVersion +   		
+   		' -q --username=${usuario} --password=${clave} '+ destination
+	}
+}
+
+void svnRamaCheckout(serverURL, projectName, rama, destination) {
+	withCredentials([usernamePassword(credentialsId: '4bfe6082-43a3-4427-8a78-e49044e720e0', passwordVariable: 'clave', usernameVariable: 'usuario')]) {
+		sh 'svn checkout ' + 
+		serverURL + projectName + '/' +rama +   		
+   		' -q --username=${usuario} --password=${clave} '+ destination
+	}
+}
+
+void svnCommit() {
+	withCredentials([usernamePassword(credentialsId: '4bfe6082-43a3-4427-8a78-e49044e720e0', passwordVariable: 'clave', usernameVariable: 'usuario')]) {
+		sh 'svn commit ' +		 
+   		' -m "commit por jenkins"' +
+   		' --username=${usuario} --password=${clave}'
+	}
+}
+
+void svnInfo() {	
+	sh 'svn info'   	
+}
+
+def dockerBuild(registry, version) {
+	sh 'pwd'
+	sh 'mkdir --parents ./docker/build_resources/dist/'
+	sh 'cp -a ./dist/* ./docker/build_resources/dist/'
+	sh 'ls ./docker'
+	sh 'ls ./docker/build_resources/dist'
+	dockerImage = docker.build( registry + ':' +version, "./docker")
+}
+
+void dockerPublish(dockerImage, registyServer ) {
+	docker.withRegistry( registryServer ) {
+        				dockerImage.push()
+        				dockerImage.push('latest')
+	}
+	//docker.withRegistry( registryServer, registryCredential ) {
+	//	dockerImage.push()
+	//}
+}
+
+void npmInstall() {
+	withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+		sh 'npm install'
+	}
+}
+
+void npmBuildProduction() {
+	sh '''
+	export NODE_OPTIONS=--max_old_space_size=8192
+	node --max-old-space-size=8192
+	npm run production-aot
+	'''
+}
+
+void antBuild(cmdOptions, buildFile, target) {
+withMaven(
+        // Maven installation declared in the Jenkins "Global Tool Configuration"
+        maven: 'mvn 3.5.2',
+        // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
+        // We recommend to define Maven settings.xml globally at the folder level using
+        // navigating to the folder configuration in the section "Pipeline Maven Configuration / Override global Maven configuration"
+        // or globally to the entire master navigating to  "Manage Jenkins / Global Tools Configuration"
+        ) {
+ 
+ 
+    sh "mvn -version"
+	sh 'ant -d ' +		 
+   		cmdOptions +
+   		' -buildfile '+buildFile+
+   		' ' + target
+    }
+   		
+}
+
+void checkEnvironment() {
+	sh '''
+	    echo "PATH = ${PATH}"
+	    echo "BUILD_NUMBER = ${BUILD_NUMBER}"
+	    echo "RAMA = ${RAMA}"
+	    echo "VERSION = ${VERSION}"
+	    echo "TAG = ${TAG}"
+	    pwd
+	    ls
+	    ant -version
+	    java -version
+	    mvn -version
+	    ls -lha /opt/sonar
+	    ls -lha /opt/sonar/bin
+	    ls -lha /opt/sonar/bin/linux-x86-64
+	    ls /var/lib/jenkins/.sonar/native-sonar-scanner/sonar-scanner-3.3.0.1492-linux/bin/
+	'''
+//	    find / | grep sonar-scanner
+	
+}

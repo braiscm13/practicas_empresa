@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+    <FormExt entity="EPersonalEmp" keys="IDPERSONAL;CIF" title="PERSONAL_EMP" buttons="no" columns="APELLIDOS;NOMBRE"> 
+	<FormHeader standardbuttons="yes" />
+	<Column margin="5;5;5;5">
+		<Row margin="5;5;5;5">
+		<TextDataField attr="IDPERSONAL" text="IDPERSONAL" dim="no" maxlength="14" required="no" size="12" labelsize="16" visible="no"/>
+		<Column title="DATOS_PERSONAL" expand="yes">
+			<Row>
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" attr="CIF" dim="text" labelsize="16" align="left" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="yes" csize="9" />
+			</Row>
+			<Row height="4" />
+			<Row>
+				<Column>
+					<ReferenceComboDataField attr="IDDELEGACION" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" labelsize="16"
+						visiblecols="NOMBRE_DEL" parentkey="CIF" entity="EDelegacionDfEmp" dim="text" align="right" />
+					<TextDataField attr="NOMBRE" dim="no" labelsize="16" maxlength="40" size="30" required="yes" align="left" />
+					<Row layout="flow" align="left">
+					   	<!-- 	<Label attr="DNI/NIF" text="DNI/NIF" size="17"/> -->
+							<TextDataField attr="DNI" text="DNI/NIF" dim="no" maxlength="9" required="yes" align="left" size="9" labelsize="16" />
+							<Column margin="4;0;0;0" expand="no">
+						    	<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="DNI" tip="CALCULA_LETRA"
+									icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+						    </Column>
+					</Row>
+					<MaskDataField mask="000000000000000" attr="MOVIL" dim="no" align="left" required="no" size="12" labelsize="16" />
+				</Column>
+				<Column>
+					<WWWDataField attr="EMAIL" text="EMAIL" dim="text" maxlength="50" align="right" required="no" uppercase="no" labelsize="15"/>
+					<TextDataField attr="APELLIDOS" dim="text" maxlength="100" required="yes" align="left"  labelsize="15"/>
+					<DateDataField attr="F_NAC" dim="no" required="no"  labelsize="15" align="left"/>
+					<DateDataField attr="F_ALTA" dim="no" required="no" labelsize="15" align="left" enabled="no"/>
+				</Column>
+			</Row>			
+		</Column>
+		<Column expand="no" title="Foto" width="200">
+			<com.opentach.client.comp.SingleImageDataFieldExtended attr="PHOTO" emptyimage="images-general/noDisponible.png" dim="text" labelvisible="no"
+				vexpand="yes" hexpand="yes" />
+		</Column>
+		</Row>
+		<Row expand="yes" margin="15;15;10;10">
+			<MemoDataField attr="OBSR" uppercase="no" expand="yes" dim="text" maxlength="800"  rows="3"  labelsize="16"/>
+		</Row>
+	</Column >	
+</FormExt>

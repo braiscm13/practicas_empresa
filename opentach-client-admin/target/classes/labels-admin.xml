@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Labels>
+	<import src="utilmize_labels.xml" />
+	<import src="com/opentach/client/labels.xml" />
+	<Table>
+		<com.opentach.client.comp.field.OpentachTable />
+	</Table>
+	<InsertTable>
+		<com.opentach.client.comp.OpentachInsertTable />
+	</InsertTable>		
+	<CheckDataField>
+		<com.opentach.client.comp.field.OpentachCheckDataField />
+	</CheckDataField>
+	<ComboCellEditor>
+		<com.utilmize.client.gui.field.table.editor.UXmlReferenceCellEditor/>
+	</ComboCellEditor>
+	<ComboCellRenderer>
+		<com.utilmize.client.gui.field.table.render.UXmlComboReferenceCellRenderer/>
+	</ComboCellRenderer>
+	<ExpansibleTable>
+		<com.opentach.client.comp.OpentachExpansibleTable/>
+	</ExpansibleTable>
+	<TransparentLabel>
+		<com.opentach.client.comp.TransparentLabel/>
+	</TransparentLabel>
+	<TransparentButton>
+		<com.opentach.client.comp.TransparentButton/>
+	</TransparentButton>
+	<LocaleTransparentLabel>
+		<com.opentach.client.comp.LocaleTransparentLabel/>
+	</LocaleTransparentLabel>
+	<LocaleTransparentButton>
+		<com.opentach.client.comp.LocaleTransparentButton/>
+	</LocaleTransparentButton>
+	<LocaleMenuItem>
+		<com.opentach.client.comp.field.OpentachLocaleMenuItem/>
+	</LocaleMenuItem>
+	<HTMLHelpField>
+		<com.opentach.client.comp.field.HTMLHelpField/>
+	</HTMLHelpField>
+	<LocaleImageColumn>
+		<com.opentach.client.comp.LocaleImageColumn/>
+	</LocaleImageColumn>
+	<LocaleImageRow>
+		<com.opentach.client.comp.LocaleImageRow/>
+	</LocaleImageRow>
+	<LocaleImageTelephoneRow>
+		<com.opentach.client.comp.LocaleImageTelephoneRow/>
+	</LocaleImageTelephoneRow>
+	<LocaleImageTelephoneColumn>
+		<com.opentach.client.comp.LocaleImageTelephoneColumn/>
+	</LocaleImageTelephoneColumn>
+	<ChartDataField>
+		<com.opentach.client.comp.activitychart.ChartDataField/>
+	</ChartDataField>
+	<FormExt>
+		<com.opentach.client.comp.OpentachFormExt/>
+	</FormExt>
+	<BooleanCellRenderer>
+		<com.utilmize.client.gui.field.table.render.UXmlBooleanCellRenderer/>
+	</BooleanCellRenderer>
+	<BooleanCellEditor>
+		<com.utilmize.client.gui.field.table.editor.UXmlBooleanCellEditor/>
+	</BooleanCellEditor>
+	<Row>
+		<com.utilmize.client.gui.Row/>
+	</Row>
+	<Column>
+		<com.utilmize.client.gui.Column/>
+	</Column>
+	<ApToolBarButton>
+		<com.opentach.client.comp.ApToolBarButton/>
+	</ApToolBarButton>
+	<Button>
+		<com.utilmize.client.gui.buttons.UButton/>
+	</Button>
+	<ActivityChartControlPanel>
+		<com.opentach.client.comp.activitychart.ActivityChartControlPanel/>
+	</ActivityChartControlPanel>
+	<NewTabButton>
+		<com.opentach.client.comp.TabbedFormOpenButton/>
+	</NewTabButton>
+	<OQuestion>
+		<com.opentach.client.comp.questionary.OQuestion />
+	</OQuestion>
+	<OQuestionary>
+		<com.opentach.client.comp.questionary.OQuestionary />
+	</OQuestionary>
+	<TimezoneHourDateDataField>
+		<com.opentach.client.comp.TimezoneHourDateDataField/>
+	</TimezoneHourDateDataField>
+	<TimezoneDateCellRenderer>
+		<com.opentach.client.comp.TimezoneDateCellRenderer/>
+	</TimezoneDateCellRenderer>
+</Labels>

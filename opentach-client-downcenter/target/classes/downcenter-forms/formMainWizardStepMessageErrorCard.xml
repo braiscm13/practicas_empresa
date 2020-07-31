@@ -1,0 +1,15 @@
+<Row attr="StepErrorCard" expand="yes">
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row expand="no" height="5" />
+		<Row expand="yes">
+			<RoundPanel attr="ErrorCardRoundPanel" expand="yes">
+				<Row expand="no" height="8" />
+				<Label icon="images/errorCard.png" />
+				<Label text="ErrorCardTitle" uiname="MainRoundSmall" />
+				<Row expand="no" height="8" />
+				<Label text="ErrorInstructions" uiname="StandardRound" />
+			</RoundPanel>
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+</Row>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column title="DATOS_VEHICULO">
+	<Row>
+		<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="10" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+			descriptioncols="NOMB" required="yes" csize="10" />
+	</Row>
+	<Row>
+		<TextDataField attr="MATRICULA" dim="no" maxlength="10" size="10" required="yes" align="left" labelsize="10" />
+		<TextDataField attr="IDORIGEN" dim="no" maxlength="10" required="no" align="right" size="10" visible="no" />
+		<ReferenceComboDataField attr="IDDELEGACION" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" visiblecols="NOMBRE_DEL"
+			parentkey="CIF" entity="EDelegacionDfEmp" dim="text" align="right" />
+	</Row>
+	<Row>
+		<TextDataField attr="DSCR" dim="text" labelsize="10" maxlength="100" size="20" required="no" align="left" />
+		<TextComboDataField attr="IDVEHICLETYPE" translate="yes" values="M;P"
+			equivalences="forms-desktop/data/equivalencesVehicleType.properties" align="left" dim="no" size="20" />
+		<CheckDataField attr="DURMIENTE" text ="DURMIENTE_VEH" tip="TIP_DURMIENTE_VEH" returnstring="yes" />
+	</Row>
+	<Row height="5"/>
+	<Row>
+	
+		<Column>
+			<TextDataField attr="MARCA" dim="no" maxlength="50" size="20" align="left" labelsize="16" />
+		<!-- 	<TextDataField attr="DESCARGA_REMOTA" dim="no" maxlength="50" size="20" align="left" labelsize="16" />
+			<TextDataField attr="LOCALIZACION" dim="no" maxlength="50" size="20" align="left" labelsize="16" />
+			<TextDataField attr="DIAGNOSIS" dim="no" maxlength="50" size="20" align="left" labelsize="16" /> -->
+			<CheckDataField attr="DESCARGA_REMOTA" text ="DESCARGA_REMOTA" tip="DESCARGA_REMOTA" returnstring="yes" size="20" align="left" labelsize="16" dim="no"/>
+			<CheckDataField attr="LOCALIZACION" text ="LOCALIZACION" tip="LOCALIZACION" returnstring="yes" size="20" align="left" labelsize="16" dim="no"/>
+			<CheckDataField attr="DIAGNOSIS" text ="DIAGNOSIS" tip="DIAGNOSIS" returnstring="yes" size="20" align="left" labelsize="16" dim="no"/>
+			
+		</Column>
+		<Column>
+			<Row>
+				<TextDataField attr="MODELO" dim="text" maxlength="50" align="left"  labelsize="20" />
+				<TextDataField attr="ANYO" dim="no" maxlength="4" align="right" size="5" labelsize="6" />
+			</Row>
+			<ReferenceExtDataField attr="PROVEEDOR_DESC_REMOTA" labelsize="20" text="CARGADOR" cod="IDREMOTE" codvisible="no" entity="EProveedorRemote"
+					cols="IDREMOTE;NAME" visiblecols="NAME" dim="text" />
+			<ReferenceExtDataField attr="PROVEEDOR_LOCALIZACION" labelsize="20" text="PROVEEDOR_LOCALIZACION" cod="IDREMOTE" codvisible="no" entity="EProveedorRemote"
+					cols="IDREMOTE;NAME" visiblecols="NAME" dim="text" />
+			<ReferenceExtDataField attr="PROVEEDOR_DIAGNOSIS" labelsize="20" text="PROVEEDOR_DIAGNOSIS" cod="IDREMOTE" codvisible="no" entity="EProveedorRemote"
+					cols="IDREMOTE;NAME" visiblecols="NAME" dim="text" />
+		</Column>
+		
+	</Row>
+</Column>

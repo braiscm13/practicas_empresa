@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="EConductoresEmp" buttons="no" title="ELIMINAR_VEHICULO" keys="CIF" parentkey="MATRICULA" columns="CG_CONTRATO;FECINI;FECFIN">
+	<FormHeader standardbuttons="no" />
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	
+	<Row >
+		<Column align="left" expand="yes">
+			<Column expand="no"  align="left">
+			<Row height="20"/>
+				<Row >
+			    	<ReferenceExtDataField attr="MATRICULA" labelsize="12" text="MATRICULA" cod="MATRICULA" csize="9" entity="EVehiculosEmp" cols="MATRICULA" descriptioncols="MATRICULA" codsearch="MATRICULA" dim="text" visible="no"/>
+					<ReferenceExtDataField attr="CIF" labelsize="12" text="EMPRESA" cod="CIF" csize="9" entity="EDfEmp" cols="CIF;NOMB" descriptioncols="NOMB" codsearch="CIF" dim="text" visible="no"/>
+				</Row >
+				<Row >
+					<Column expand="yes" align="center">
+						<ColumnRadioButtonGroup selected="BAJA_VEHICULO_CONTRATO" attr="contrato">
+							<RadioButtonDataField attr="BAJA_VEHICULO_CONTRATO" labelsize="25" align="left" labelposition="right" returnboolean="yes" />
+							<RadioButtonDataField attr="BORRAR_TODO_VEHICULO" labelsize="25" align="left" labelposition="right" returnboolean="yes" />
+							</ColumnRadioButtonGroup >
+					</Column >
+				</Row >
+				<Row height="20"/>
+			</Column >
+		</Column >
+	</Row >
+	<Row align="center">
+			<Button icon="com/ontimize/gui/images/ok.png" key="aceptar" text="ACEPTAR" tip="ACEPTAR" />
+			<Button icon="com/ontimize/gui/images/cancel.png" key="cancelar" text="CANCELAR" tip="CANCELAR" />
+	</Row >
+</Form>

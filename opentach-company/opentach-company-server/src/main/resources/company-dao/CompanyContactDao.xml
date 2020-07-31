@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="DFEMP_CONTACT">
+	<DeleteKeys>
+		<Column>ECN_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>ECN_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>ECN_ID</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							DFEMP_CONTACT ecn
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Column expandlast="yes">
+	<Row expand="no">
+		<Column title="DATOS_CONDUCTOR" expand="yes">
+			<Row>
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" attr="CIF" dim="text" labelsize="12" align="left" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="yes" csize="9" />
+			</Row>
+			<Row height="4" />
+			<Row>
+				<ReferenceComboDataField attr="IDDELEGACION" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" labelsize="12"
+					visiblecols="NOMBRE_DEL" parentkey="CIF" entity="EDelegacionDfEmp" dim="text" align="right" />
+				<WWWDataField attr="EMAIL" text="EMAIL" dim="text" maxlength="50" align="right" required="no" uppercase="no" />
+			</Row>
+			<Row height="15" />
+			<Row>
+				<TextDataField attr="NOMBRE" dim="no" labelsize="12" maxlength="40" size="12" required="yes" align="left" />
+				<TextDataField attr="APELLIDOS" labelsize="25" dim="text" size="13" maxlength="100" required="yes" align="left" />
+			</Row>
+			<Row>
+				<Column expand="no">
+					<Row>
+					   		<Label attr="DNI/NIF" text="DNI/NIF" size="14"/>
+					   		<Column margin="4;0;0;0" expand="no">
+						    	<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="DNI" tip="CALCULA_LETRA"
+									icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+						    </Column>
+							<TextDataField attr="DNI" text="DNI/NIF" dim="text" maxlength="9" required="yes" align="left" size="9" labelsize="0" labelvisible="no"/>
+					</Row>
+					<TextDataField attr="IDCONDUCTOR" text="5B" dim="no" maxlength="14" required="yes" size="12" labelsize="12" />
+					<TextDataField attr="EXTERNAL_EMPLOYEE_ID" dim="no" maxlength="50" required="no" size="12" labelsize="12" />
+				</Column>
+				<Column expand="no">
+					<DateDataField attr="EXPIRED_DATE_TRJCONDU" dim="no" required="no" align="left" labelsize="25" enabled="no"/>
+					<DateDataField attr="F_NAC" dim="no" required="no"  labelsize="25" align="left"/>
+					<MaskDataField mask="000000000000000" attr="MOVIL" dim="no" align="left" required="no" size="12" labelsize="25" />
+				</Column>
+				<Column>
+					<TextComboDataField attr="CONTRACT_TYPE" values="TIEMPO_PARCIAL;TIEMPO_COMPLETO" labelsize="16"	dim="text"	translate="yes"	size="30" />
+					<ReferenceComboDataField attr="AGR_ID" cod="AGR_ID" cols="AGR_ID;AGR_NAME" labelsize="16" entity="ELabAgreement" size="30"
+						visiblecols="AGR_NAME" dim="text" />
+					<DateDataField attr="F_ALTA" dim="no" required="no" labelsize="16" align="left"/>
+				</Column>
+				<Column expand="no">
+					<TextComboDataField attr="ENVIAR_A" values="NINGUNO;EMPRESA;CONDUCTOR;AMBOS" labelsize="14" dim="text" translate="yes" size="14" />
+					<CheckDataField attr="DURMIENTE" tip="TIP_DURMIENTE" returnstring="yes" align="left" labelsize="14" />
+				</Column>
+				<Column expand="yes" />
+			</Row>
+			<TextDataField attr="CG_ITEM" dim="no" maxlength="10" required="no" align="right" size="10" visible="no" />
+			<TextDataField attr="IDORIGEN" dim="no" maxlength="10" required="no" align="right" size="10" visible="no" />
+		</Column>
+		<Column expand="no" title="Foto" width="200"><!-- <com.utilmize.client.gui.field.USingleImageDataField text="photo" attr="PHOTO" vexpand="yes" 
+				dim="text" hexpand="yes" labelvisible="no" buttons="right" emptyimage="com/opentach/client/ui/images/photo.gif"/> -->
+			<com.opentach.client.comp.SingleImageDataFieldExtended attr="PHOTO" emptyimage="images-general/noDisponible.png" dim="text" labelvisible="no"
+				vexpand="yes" hexpand="yes" />
+
+		</Column>
+	</Row>
+	<Column/>
+</Column>

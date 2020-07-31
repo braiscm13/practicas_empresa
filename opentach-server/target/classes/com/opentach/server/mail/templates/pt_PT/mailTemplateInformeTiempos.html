@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Opentach</title>
+<style type="text/css">
+table.ex1 thead {
+	text-align: center;
+	color: #FFFFFF;
+	font-style: normal;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Times New Roman", Serif;
+}
+
+.note {
+	font-size: 10px;
+	font-family: "Times New Roman", Serif;
+}
+
+.title {
+	color: #008080;
+	font-size: 16px;
+	font-family: "Times New Roman", Serif;
+	text-decoration: underline;
+	font-weight: bold;
+	text-align: center;
+}
+
+.maintitle {
+	color: #003366;
+	font-size: 20px;
+	font-family: "Times New Roman", Serif;
+	font-weight: bold;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table width="100%" border="0" >
+   <tr>
+      <td><span class="maintitle">%TITLE%</span> <br />
+      <br />
+      </td>
+   </tr>
+   <tr>
+      <td>
+      <table>
+         <tr>
+            <td>Nombre del conductor:</td>
+            <td>%NOMBRECONDUCTOR%</td>
+         </tr>
+         <tr>
+            <td>Fecha y hora del informe:</td>
+            <td>%FECHAINFORME%</td>
+         </tr>
+         <tr>
+            <td>Fecha y hora de extracci&oacute;n del fichero:</td>
+            <td>%FECHAENVIO%</td>
+         </tr>
+      </table>
+      </td>
+   </tr>
+   <!-- %INITREPORT% -->
+   <tr>
+      <td height="10"></td>
+   </tr>
+   <tr>
+      <td><span class="title">Infracciones detectadas en el
+      &uacute;ltimo fichero:</span><br />
+      <br />
+      <table border="1" width="100%" class="ex1">
+         <thead >
+            <tr bgcolor="#008080">
+               <td rowspan="2">Tipo</td>
+               <td rowspan="2">Naturaleza</td>
+               <td colspan="2">Periodo</td>
+               <td rowspan="2">EC/FC<br />
+               (hh:mm)</td>
+            </tr>
+            <tr bgcolor="#008080">
+               <td>Inicio</td>
+               <td>Fin</td>
+            </tr>
+         </thead>
+         <!--%INFRACROWS%-->
+      </table>
+      
+      %NO_INFRACROWS_INFO_START%<span >No tiene ninguna infracción.</span><br/>%NO_INFRACROWS_INFO_END%
+      <span class="note"> Nota: El periodo analizado corresponde
+      a los 30 &uacute;ltimos días anteriores a la descarga.</span></td>
+   </tr>
+   <tr>
+      <td height="10" />
+   </tr>
+   <tr>
+      <td><span class="title">Avisos para pr&oacute;ximos
+      periodos:</span><br />
+      <br />
+      <table border="1" width="100%">
+         <thead class="tableheader">
+            <tr bgcolor="#008080">
+               <td width="25%">Tipo</td>
+               <td>Mensaje</td>
+            </tr>
+         </thead>
+         <!--%NOTICEROWS%-->
+      </table>
+      %NO_NOTICEROWS_INFO_START%<span >No tiene ningún aviso.</span><br/>%NO_NOTICEROWS_INFO_END%
+      <span class="note">Nota: La fecha y la hora de referencia
+      es la de descarga. </span></td>
+   </tr>
+   <!-- %ENDREPORT% -->
+</table>
+</body>
+</html>

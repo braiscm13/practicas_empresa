@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	buttons="no"
+	title="formCDOViewer"
+	preferredsizetodialog="1024;768">
+	<CheckDataField attr="PRIVATE" returnstring="yes" visible="no" />
+	<Row
+ 		expand="yes"
+		width="1">
+		<Column
+			expand="0.5"
+			margin="5;5;5;5"
+			width="1"
+			title="CDO">
+			<Table
+				entity="EUsuariosCDO"
+				keys="USUARIO"
+				parentkeys="PRIVATE"
+				cols="USUARIO;DSCR;NAME;PROVINCIA;POBL;LATITUDE;LONGITUDE;OP_GAS;OP_STORE;OP_CASH;OP_BED;OP_MEAL;OP_24H;TELEFONO"
+				visiblecols="NAME;PROVINCIA;POBL"
+				listener="com.opentach.client.modules.tachoinfo.IMCDOViewerTableModelListener"
+				>
+				<HideTableButton attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton" onlyhide="true" />
+			</Table>
+		</Column>
+		<Column
+			width="5"
+			expand="1"
+			margin="5;5;5;5"
+			title="MAP"
+			>
+				<OGisJFxComponent attr="gisJFxComponent"
+					xrefpoint="-3.6975517" yrefpoint="40.4154421" zoomlevel="6" useactionpanel="no"
+					heightbuttons="40" widthbuttons="60" buttonsvisible="no"		/>
+		</Column>
+	</Row>
+</FormExt>

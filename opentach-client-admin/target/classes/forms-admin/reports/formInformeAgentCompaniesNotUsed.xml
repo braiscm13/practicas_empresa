@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformeagentcompaniesnotused" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+	</FormHeader>
+	<Row>
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EUsuariosAgente"
+						labelsize="12"
+						attr="AGENTE"
+						dim="text"
+						cod="USUARIO"
+						cols="USUARIO"
+						visiblecols="USUARIO"
+						descriptioncols="USUARIO"
+						required="no"
+						codvisible="no"
+						/>
+
+				</Column>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<ColumnRadioButtonGroup visible="no"
+					selected="ULTIMOS_DIAS"
+					attr="datos"
+					title="Filtro_Fecha_Comienzo"
+					expand="no"
+					margin="5;5;5;5">
+					<RadioButtonDataField
+						attr="ULTIMOS_DIAS"
+						labelsize="20"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<RadioButtonDataField
+						attr="RANGO_FECHA"
+						labelsize="18"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<Column expand="no">
+						<CampoFechaNoEditable
+							attr="FILTERFECINI"
+							text="DESDE"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+						<CampoFechaNoEditable
+							attr="FILTERFECFIN"
+							text="HASTA"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+					</Column>
+				</ColumnRadioButtonGroup>
+		</Column>
+	</Row>
+	<Row expand="yes">
+	    <Column>
+				<Row expand="yes">
+					<Table entity="EInformeAgentCompaniesNotUsed" keys="AGENTE;CIF" parentkeys="AGENTE" 
+					    cols="AGENTE;CIF;EMPRESA" 
+						visiblecols="AGENTE;CIF;EMPRESA"/>
+				</Row>
+		</Column>
+	</Row>
+</Form>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="ojee.AlertService.alertExecution" keys="ALE_ID" title="ojee.AlertService.alertExecution" buttons="no" columns="ALE_NUMBER"	
+	preferredsizetodialog="1050;700"
+>
+
+	<ObjectDataField attr="ALE_ID" visible="no" />
+	
+	<Column margin="5;5;5;5" expadn="yes" expandlast="no">
+		<Column expandlast="no">
+			<Row expand="no" >
+				<Column  title="execution.basicData" expandlast="yes">
+					<IntegerDataField attr="ALE_NUMBER" labelsize="15" dim="no" size="10" align="left" />
+					<ReferenceExtDataField attr="ALR_ID" key="ALR_ID" cod="ALR_ID"
+							entity="ojee.AlertService.alert"
+							cols="ALR_CODE;ALR_NAME;ALR_DESC;ALR_SENDMAIL;ALR_SAVEDB" visiblecols="ALR_CODE;ALR_NAME;ALR_DESC;ALR_SENDMAIL;ALR_SAVEDB" 
+							descriptioncols="ALR_CODE;ALR_NAME" format="({0}){1};ALR_CODE;ALR_NAME"
+							codvisible="no" translate="yes"
+							labelsize="15" align="left" dim="text" />
+					
+					<HourDateDataField attr="ALE_EXEDATE" align="left" labelsize="15" dim="no" size="7" />
+					<HourDateDataField attr="ALE_READDATE" align="left" labelsize="15" dim="no" size="7" />
+				</Column>
+				<Column  title="execution.email"  margin="0;10;0;10" >
+					<CheckDataField attr="ALE_SENDMAIL" text="ALR_SENDMAIL" labelposition="right" dim="no" align="left" returnstring="yes" />
+					<CheckDataField attr="ALE_SENTMAIL" labelposition="right" dim="no" align="left" returnstring="yes" />
+					<TextDataField attr="ALE_SENTMAIL_TO" labelsize="8" dim="text" align="left" />
+					<TextDataField attr="ALE_SENTMAIL_CC" labelsize="8" dim="text" align="left" />
+					<TextDataField attr="ALE_SENTMAIL_BCC" labelsize="8" dim="text" align="left" />
+				</Column>
+				<Column title="execution.savedb">
+					<CheckDataField attr="ALE_SAVEDB" text="ALR_SAVEDB" labelposition="right" dim="no" align="left" returnstring="yes"/>
+					<CheckDataField attr="ALE_SAVEDDB" labelposition="right" dim="no" align="left" returnstring="yes"/>
+					<ReferenceExtDataField
+						attr="COM_ID"
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="10"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						csize="10" />
+					<com.utilmize.client.gui.field.reference.UReferenceDataField
+						attr="DRV_ID"
+						text="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="COM_ID:CIF" disableonparentkeynull="yes"
+						csize="10"
+						entity="EConductorContFicticio"
+						cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+						visiblecols="DNI;APELLIDOS;NOMBRE"
+						descriptioncols="DNI;NOMBRE;APELLIDOS"
+						format="{0} {1};NOMBRE;APELLIDOS"
+						codsearch="DNI"
+						align="left"
+						labelsize="10"
+						dim="text"
+						/>
+				</Column>
+			</Row>
+			<Column expand="yes" expandlast="yes" margin="0;0;10;0">
+						<TextDataField attr="ALE_SUBJECT" text="ALR_SUBJECT" labelsize="15" dim="text" align="left" maxlength="512" />
+						<Column >
+							<com.utilmize.client.gui.field.UFxHtmlEditorDataField attr="ALE_BODY" text="ALR_BODY" dim="text" expand="yes" align="center" labelsize="15" />
+						</Column>
+			</Column>
+			<CollapsiblePanel orientation="vertical" startshowed="no" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="ALE_ERROR">
+				<MemoDataField attr="ALE_ERROR" labelvisible="no" rows="15" dim="text" expand="yes"/>
+			</CollapsiblePanel>
+		</Column>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<!-- TODO mark as read button -->
+			<!-- 
+			<Button key="execute" text="execution.execute" icon="images-indicator/play16.png" listener="com.opentach.client.alert.listeners.LaunchAlertActionListener" enable="yes"/>
+			<Column attr="separator1" width="10" expand="no"/>
+			 -->
+			<CancelButton/>
+		</Row>
+	</Column>
+</FormExt>

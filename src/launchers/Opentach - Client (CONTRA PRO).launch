@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/opentach-client/src/main/java/com/opentach/client/OpentachLauncher.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+        <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+        <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+    </listAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.opentach.client.OpentachLauncher"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="com/opentach/client/labels.xml&#13;&#10;clientapplication.xml&#13;&#10;-Dcom.ontimize.gui.lafclassname=com.opentach.client.laf.OpentachLAF&#13;&#10;-Dcom.ontimize.gui.lafstyle=com/opentach/client/laf/blue.css&#13;&#10;-Dcom.ontimize.util.rmitunneling.cgipath=/openservices/rmi&#13;&#10;-Dcom.ontimize.util.rmitunneling.port=8080&#13;&#10;-Dcom.ontimize.util.rmitunneling.debug=false&#13;&#10;-Dcom.ontimize.locator.ReferenceLocator.Port=34007&#13;&#10;-Dcom.ontimize.locator.ReferenceLocator.Hostname=212.89.13.60&#13;&#10;-Dremotedownload.base.url=ws://212.89.13.60:8080/openservices&#13;&#10;-Dtachoredurl=http://www.opentach.com&#13;&#10;-DlafName=lafOpentach&#13;&#10;-Djnlp.packEnabled=true&#13;&#10;-DwebDocPath=http://212.89.13.60:8080/openservices/doc/&#13;&#10;-DNUMMAX_FILES_TOSEND=1000&#13;&#10;-DBASE_JNLP_URI=http://212.89.13.60:8080/openservices/Pack200&#13;&#10;-nathttp&#13;&#10;-Dcom.ontimize.services.baseUrl=http://212.89.13.60:8080/openservices"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="opentach-client"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1024M"/>
+</launchConfiguration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt 
+	entity="EContactosEmp" title="CONTACTOS_EMP" keys="ECN_ID" columns="ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL"
+	preferredsizetodialog="850;450" buttons="no" 
+	focusorder="ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;ECN_ADDRESS;ECN_NOTE" 
+>
+	<FormHeader standardbuttons="yes"/>
+	<ObjectDataField attr="CIF" visible="no"/>
+	
+	<Column margin="5;5;5;5" expandlast="no">
+		<Column title="DATOS_CONTACTO" expandlast="yes">
+			<Row >
+				<Column expand="0.2">
+					<TextDataField attr="ECN_NAME" dim="text" maxlength="500" required="yes" align="left" labelsize="10" />
+					<Row>
+						<TextDataField attr="ECN_TLF1" dim="text" maxlength="50" align="left" labelsize="10" />
+						<TextDataField attr="ECN_TLF2" dim="text" maxlength="50" align="left" labelsize="10" />
+					</Row>
+					<EmailDataField attr="ECN_MAIL" dim="text" maxlength="800" align="left" labelsize="10" />
+				</Column>
+				<Column expand="0.8">
+					<MemoDataField attr="ECN_ADDRESS" uppercase="no" expand="yes" dim="text" maxlength="800" labelvisible="yes" labelposition="topleft" rows="3" />
+				</Column>
+			</Row >
+			<Row expand="yes">
+				<MemoDataField attr="ECN_NOTE" uppercase="no" expand="yes" dim="text" maxlength="800" labelvisible="yes" labelposition="topleft" rows="3"  labelsize="10"/>
+			</Row>	
+		</Column >
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row  />
+		</Row>
+	</Column>
+</FormExt>

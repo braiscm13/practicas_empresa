@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean name="/remotevehiclemanagement" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="RemoteVehicleManagementService" />
+		<property name="serviceInterface" value="com.opentach.common.remotevehicle.services.IRemoteVehicleManagementService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>
+	
+	<bean name="/remotevehicle" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="RemoteVehicleService" />
+		<property name="serviceInterface" value="com.opentach.common.remotevehicle.services.IRemoteVehicleService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>
+	
+</beans>

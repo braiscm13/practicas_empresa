@@ -1,0 +1,16 @@
+<Row attr="StepErrorUsbEmpty" expand="yes">
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row expand="no" height="5" />
+		<Row expand="yes">
+			<RoundPanel attr="ErrorCardRoundPanel" expand="yes">
+				<Row expand="no" height="8" />
+				<Row margin="0;10;0;0">
+					<Label icon="images/usb_red.png" />
+				</Row>
+				<Label text="ErrorUsbEmptyTitle" uiname="MainRoundSmall" />
+				<Row expand="no" height="8" />
+			</RoundPanel>
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+</Row>

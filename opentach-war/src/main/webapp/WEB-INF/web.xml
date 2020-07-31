@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	<display-name>OpenTach</display-name>
+	<description>Servidor OpenTach</description>
+	
+	<!-- SPRING -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:/spring-config-opentach.xml
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- ONTIMIZE -->
+	<context-param>
+		<param-name>ontimizeServerProperties</param-name>
+		<param-value>com/opentach/server/prop/server.properties</param-value>
+	</context-param>
+<!--	<listener>
+		<listener-class>com.opentach.server.OpentachServer</listener-class>
+	</listener>-->
+
+	<!-- Filtro de seguridad para servicios web -->
+	<filter>
+		<filter-name>wssecurity</filter-name>
+		<filter-class>com.opentach.server.webservice.security.OpentachSecurityFilter</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>wssecurity</filter-name>
+		<url-pattern>/services/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Filtro de seguridad para aplicacion cliente rico -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/mainservices/*</url-pattern>
+	</filter-mapping>
+	<!-- Ontimize STATICS FILTER -->
+	<filter>
+		<filter-name>OntimizeFilterChainRequestStatistics</filter-name>
+		<filter-class>com.ontimize.jee.server.requestfilter.OntimizeRequestStatisticsServletFilter</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>OntimizeFilterChainRequestStatistics</filter-name>
+		<url-pattern>/mainservices/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Servlets de hessian -->
+	<servlet>
+		<servlet-name>HessianCloudFilesService</servlet-name>
+		<servlet-class>com.opentach.server.cloudfiles.CloudFilesHessianServiceServlet</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet>
+		<servlet-name>HessianTaskAttachmentsFilesService</servlet-name>
+		<servlet-class>com.opentach.server.tasks.services.TaskAttachmentFilesHessianServiceServlet</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet>
+		<servlet-name>MainHessianService</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+	<!-- ********** RECEPCION DE FICHEROS ************** -->
+	<servlet>
+		<display-name>J2MEFileReceptionServlet</display-name>
+		<servlet-name>J2MEFileReceptionServlet</servlet-name>
+		<servlet-class>com.opentach.server.mobilefileupload.J2MEFileReceptionServlet</servlet-class>
+		<async-supported>true</async-supported>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- ********** DESCARGA REMOTA OPENATACH ************** -->
+	<servlet>
+		<display-name>J2MERemoteDownloadServlet</display-name>
+		<servlet-name>J2MERemoteDownloadServlet</servlet-name>
+		<servlet-class>com.opentach.server.remotevehicle.provider.opentach.J2MERemoteDownloadServlet</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+
+	<!-- *********** SERVLET DE TUNNELING ************* -->
+	<servlet>
+		<description>RMIServletHandler</description>
+		<servlet-name>RMIServletHandler</servlet-name>
+		<servlet-class>com.ontimize.util.rmitunneling.ServletHandler</servlet-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>ports</param-name>
+			<param-value>${server.port}</param-value>
+		</init-param>
+		<init-param>
+			<param-name>host</param-name>
+			<param-value>127.0.0.1</param-value>
+		</init-param>
+		<!-- <init-param> -->
+		<!-- <param-name>httpsession</param-name> -->
+		<!-- <param-value>true</param-value> -->
+		<!-- </init-param> -->
+		<async-supported>true</async-supported>
+	</servlet>
+
+	<!-- ********** SERVLET PARA EL PACK200 *************** -->
+	<servlet>
+		<servlet-name>Pack200</servlet-name>
+		<servlet-class>com.utilmize.jnlpservlet.JnlpDownloadServlet</servlet-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>logLevel</param-name>
+			<param-value>WARN</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- ********** SERVLET PARA CUBRIR JNLP (CODEBASE, SERVERNAME) -->
+	<servlet>
+		<servlet-name>JNLPNATServletHandler</servlet-name>
+		<servlet-class>com.ontimize.util.rmitunneling.JNLPNatServletHandler</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+	<!-- ********** SERVLET DE SERVICIOS WEB *************** -->
+	<servlet>
+		<description>Apache CXF Endpoint</description>
+		<display-name>cxf</display-name>
+		<servlet-name>cxf</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<async-supported>true</async-supported>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- ********** SERVLET SERVICIOS REST PUBLICOS *************** -->
+	<servlet>
+		<servlet-name>RestPublicServices</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- *********** MAPEO DE SERVLETS ********** -->
+	<servlet-mapping>
+		<servlet-name>J2MEFileReceptionServlet</servlet-name>
+		<url-pattern>/J2MEFileReceptionServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>J2MERemoteDownloadServlet</servlet-name>
+		<url-pattern>/J2MERemoteDownloadServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Pack200</servlet-name>
+		<url-pattern>/Pack200/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Pack200</servlet-name>
+		<url-pattern>//Pack200/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RMIServletHandler</servlet-name>
+		<url-pattern>/rmi</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RMIServletHandler</servlet-name>
+		<url-pattern>//rmi</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JNLPNATServletHandler</servlet-name>
+		<url-pattern>*.jnlp</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JNLPNATServletHandler</servlet-name>
+		<url-pattern>*.onlp</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>HessianCloudFilesService</servlet-name>
+		<url-pattern>/hessian/cloud</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>HessianTaskAttachmentsFilesService</servlet-name>
+		<url-pattern>/hessian/taskAttachment</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>MainHessianService</servlet-name>
+		<url-pattern>/mainservices/hessian/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>cxf</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RestPublicServices</servlet-name>
+		<url-pattern>/public/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<mime-mapping>
+		<extension>jnlp</extension>
+		<mime-type>application/x-java-jnlp-file</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>onlp</extension>
+		<mime-type>application/x-java-jnlp-file</mime-type>
+	</mime-mapping>
+
+	<welcome-file-list>
+		<welcome-file>
+			index.jsp
+        </welcome-file>
+		<welcome-file>
+			index.html
+        </welcome-file>
+		<welcome-file>
+			index.htm
+        </welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Labels>
+	<import src="utilmize_labels.xml" />
+	<LocaleImageColumn>
+		<com.opentach.client.comp.LocaleImageColumn/>
+	</LocaleImageColumn>
+	<LocaleImageRow>
+		<com.opentach.client.comp.LocaleImageRow/>
+	</LocaleImageRow>
+	<RoundPanel>
+		<com.opentach.downclient.component.RoundPanel/>
+	</RoundPanel>
+	<ProgressBar>
+		<com.opentach.downclient.component.UProgressBar/>
+	</ProgressBar>
+	<CardPanel>
+		<com.opentach.downclient.component.SizedCardPanel/>
+	</CardPanel>
+</Labels>

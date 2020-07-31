@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<OntimizeModule id="opentach-company" >
+	<Client package="">
+		
+		<!-- ************************************ COMPANIES  ************************************ -->
+		
+		<!-- Company list (shown) -->
+		<TabbedFormManager id="managerEmpresas" showframe="yes" delayedload="yes" 
+			form="forms-company/formEmpresas.form" imanager="com.opentach.client.company.fim.IMEmpresas" > 
+		
+			<InteractionManager form="formEmpresa.xml" 				class="com.opentach.client.company.fim.IMEmpresa"/>
+			<InteractionManager form="formEliminarEmpresa.xml" 		class="com.opentach.client.company.fim.IMEliminarEmpresa" />
+			<InteractionManager form="formUsuariosEmp.xml" 			class="com.opentach.client.company.fim.IMUsuarioEmp" />
+			<InteractionManager form="formAskLicenseDates.form" 	class="com.utilmize.client.fim.UBasicFIM" />
+			
+			<FManager fmid="managerContratos" form="formContratoEmp.xml" />
+			<FManager fmid="managerContratos" form="formConductorCont.xml" />
+			<FManager fmid="managerContratos" form="formEliminarContrato.xml" />
+			
+			<FManager fmid="managerDelegaciones" form="formDelegacion.form" />
+			
+			<FManager fmid="managerEmpleados" form="formEmpleado.form" />
+			<FManager fmid="managerEmpleados" form="formEliminarConductor.xml" />
+			<FManager fmid="managerEmpleados" form="formDriverContracts.xml" />
+			<FManager fmid="managerEmpleados" form="formUnManagedStaff.xml" />
+			<FManager fmid="managerEmpleados" form="formAcceptHolidays.xml" />
+			
+			<FManager fmid="managercalendar" form="formCalendar.xml" />
+		</TabbedFormManager>
+		
+		<!-- MyCompany form (and access to all things)-->
+		<FormManager id="managerEmpresa" showframe="yes" delayedload="yes" 
+			form="forms-company/formEmpresa.xml" imanager="com.opentach.client.company.fim.IMEmpresa" >
+			
+			<FManager fmid="managerContratos" form="formContratoEmp.xml" />
+			<FManager fmid="managerContratos" form="formConductorCont.xml" />
+			<FManager fmid="managerContratos" form="formEliminarContrato.xml" />
+			
+			<FManager fmid="managerDelegaciones" form="formDelegacion.form" />
+			
+			<FManager fmid="managerEmpleados" form="formEmpleado.form" />
+			<FManager fmid="managerEmpleados" form="formEliminarConductor.xml" />
+			<FManager fmid="managerEmpleados" form="formDriverContracts.xml" />
+			<FManager fmid="managerEmpleados" form="formUnManagedStaff.xml" />
+			<FManager fmid="managerEmpleados" form="formAcceptHolidays.xml" />
+			
+			<FManager fmid="managerEmpresas" form="formUsuariosEmp.xml" />
+			<FManager fmid="managerEmpresas" form="formEliminarEmpresa.xml" />
+			<FManager fmid="managerEmpresas" form="formAskLicenseDates.form" />
+			
+			<FManager fmid="managercalendar" form="formCalendar.xml" />
+		</FormManager>
+		
+		<!-- Contract list (not shown) -->
+		<TabbedFormManager id="managerContratos" showframe="yes" delayedload="yes"
+			form="forms-contract/formContratos.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch"  >
+			
+			<InteractionManager form="formContratoEmp.xml" class="com.opentach.client.contract.fim.IMContratoEmp"/>
+<!-- 			<InteractionManager form="formConductorCont.xml" 		class="com.opentach.client.contract.fim.IMCondVehContrato" /> -->
+			
+			<InteractionManager form="formEliminarContrato.xml" 	class="com.opentach.client.contract.fim.IMEliminarContrato" />
+			
+			<FManager fmid="managerEmpresas" form="formEmpresa.xml" />
+		</TabbedFormManager>
+		
+		<!-- Delegation list (not shown) -->
+		<TabbedFormManager id="managerDelegaciones" showframe="yes" delayedload="yes" 
+			form="forms-company/formDelegaciones.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch"  >
+			
+			<InteractionManager form="formDelegacion.form" 			class="com.opentach.client.company.fim.IMDelegacion"/>
+		</TabbedFormManager>
+		
+		
+		
+		
+		<!-- ************************************ EMPLOYEES  ************************************ -->
+		
+		<!-- Employe list  (shown) -->
+		<TabbedFormManager id="managerEmpleados" showframe="yes" delayedload="yes"
+			form="forms-employee/formEmpleados.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch"   >
+			
+			<InteractionManager form="formEmpleado.form" 			class="com.opentach.client.employee.fim.IMEmpleado"/>
+			
+			<InteractionManager form="formEliminarConductor.xml" 	class="com.opentach.client.employee.fim.IMEliminarConductor" />
+			
+			<InteractionManager form="formDriverContracts.xml" 		class="com.opentach.client.employee.fim.IMDriverContracts" />
+			
+			<InteractionManager form="formUnManagedStaff.xml" 		class="com.opentach.client.employee.fim.IMUnManagedStaff" />
+			
+			<InteractionManager form="formAcceptHolidays.xml" 		class="com.utilmize.client.fim.UBasicFIM" />
+		</TabbedFormManager>
+		
+		
+		
+		
+		<!-- ************************************ DISTRIBUTORS  ************************************ -->
+		
+		<TabbedFormManager id="managerDistributors" showframe="yes" delayedload="yes" 
+			form="forms-distributor/formDistributorManagement.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+		</TabbedFormManager>
+		
+		<!-- ************************************   INFORMES    ************************************ -->
+		<FormManager id="managerInformeLicencias" showframe="yes" delayedload="yes" 
+			form="reports-company/formReportLicenses.form" imanager="com.opentach.client.report.IMReportLicenses"/>
+	</Client>
+</OntimizeModule>

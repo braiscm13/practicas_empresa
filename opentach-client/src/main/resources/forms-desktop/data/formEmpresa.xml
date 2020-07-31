@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<FormExt entity="EDfEmp" keys="CIF" title="EMPRESA" columns="CIF;NOMB" setvalueorder="CIF">
+	<FormHeader standardbuttons="yes" >
+		<FormHeaderButton attr="makefix" listener="com.opentach.client.modules.data.IMEmpresaMakeDemoCompanyFixActionListener" icon="com/opentach/client/rsc/democompany16.png"/>
+	</FormHeader>
+	<Include file="forms-desktop/data/formEmpresaIncludeMain.xml" />
+</FormExt>

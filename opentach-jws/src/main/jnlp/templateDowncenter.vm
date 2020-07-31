@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="$jnlpspec" codebase="$jnlpCodebase"  href="launchcdo.jnlp" version="$project.Version">
+	<information>
+		#if($project.Name) 
+		<title>$project.Name downcenter</title>
+		#end 
+		#if($project.Organization.Name) 
+		<vendor>$project.Organization.Name</vendor>
+		#end 
+		#if($project.Url) 
+		<homepage href="$project.Url" />
+		#end 
+		#if($project.Description) 
+		<description>$project.Description</description>
+		#end
+		#if($offlineAllowed) 
+		<offline-allowed />
+		#end 
+		<icon kind="splash" href="logo.gif" />
+		<icon kind="shortcut" href="logo.ico" />
+		<shortcut online="true">
+			<desktop />
+			<menu submenu="Openservices/Opentach" />
+		</shortcut>
+	</information> 
+	#if($allPermissions) 
+	<security>
+	  <all-permissions />
+	</security>
+	#end 
+	<resources>
+		<j2se version="1.8+" initial-heap-size="64m" max-heap-size="512m" />
+		$dependencies 
+	</resources>
+	<application-desc main-class="$mainClass">
+		 <argument>downcenter_labels.xml</argument>
+		 <argument>clientapplication-downcenter.xml</argument>
+		 <argument>-http</argument>
+		 <argument>-Dcom.ontimize.gui.lafclassname=com.opentach.downclient.DownCenterLAF</argument>
+		 <argument>-Dcom.ontimize.gui.lafstyle=downcenter.css</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.cgipath=$jnlpcgipath</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.port=$jnlptunnelingport</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.debug=false</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Port=$serverPort</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Hostname=$$hostname</argument>
+		 <argument>-Dcom.ontimize.services.baseUrl=http://$$hostname:$jnlptunnelingport/$contexPath</argument>
+		 <argument>-Dopentach.proxy.url=${proxyUrl}</argument>
+		 <argument>ignore</argument>
+		 <argument>ignore</argument>
+		 <argument>ignore</argument>
+		 <argument>ignore</argument>
+		 <argument>ignore</argument>
+		 <argument>ignore</argument>
+	</application-desc>
+	<update check="always" policy="always"/>
+</jnlp>

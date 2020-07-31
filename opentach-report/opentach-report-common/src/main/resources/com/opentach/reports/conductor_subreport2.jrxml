@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="44580ce9-1d12-4355-b97b-e97416ba7da8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="3.1384283767210053"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["00000001050800"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["596930283"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cif" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["ESB15296072"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dni" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+				MATRICULA
+			FROM
+				(
+				SELECT
+					DISTINCT CDVINFORM_USOVEHICULO.MATRICULA
+				FROM
+					CDVINFORM_USOVEHICULO
+				WHERE
+					CDVINFORM_USOVEHICULO.IDCONDUCTOR = $P{idconductor}
+					AND CDVINFORM_USOVEHICULO.CG_CONTRATO = $P{cgcontrato}
+					AND CDVINFORM_USOVEHICULO.CIF = $P{cif}
+					AND CDVINFORM_USOVEHICULO.FECINI < $P{fhasta} 
+					AND CDVINFORM_USOVEHICULO.FECFIN > $P{fdesde}
+				ORDER BY
+					MATRICULA )
+				WHERE ROWNUM <= 10]]>
+	</queryString>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="73" y="47" width="135" height="19" forecolor="#E8F0FF" backcolor="#CCCCCC" uuid="6372a4da-df74-4a64-ba77-234944432684"/>
+			</rectangle>
+			<line>
+				<reportElement key="line-1" x="73" y="47" width="136" height="1" forecolor="#E8F0FF" uuid="d570574a-2320-4823-91a2-a6a2bbca1e92"/>
+			</line>
+			<line>
+				<reportElement key="line-2" x="73" y="65" width="136" height="1" forecolor="#E8F0FF" uuid="e5bfae88-eb94-4468-b489-602afea2297f"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="73" y="49" width="1" height="17" forecolor="#E8F0FF" uuid="b11e885b-ee3b-4b4e-bde9-20ffd1052ef7"/>
+			</line>
+			<line>
+				<reportElement key="line-5" x="208" y="49" width="1" height="17" forecolor="#E8F0FF" uuid="d40a7c5d-6ed5-4bf1-824d-1154ae19b7b9"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="88" y="48" width="100" height="17" uuid="fa4bb44a-4f0d-4ea4-aa4d-e15383317d4b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Matricula}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="10" y="10" width="286" height="21" forecolor="#000000" uuid="eb812030-bcf4-4b38-be59-3da9d5b9c5d7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{RESUMEN_VEHICULOS_UTILIZADOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="73" y="1" width="136" height="15" forecolor="#FFFFFF" backcolor="#E8F0FF" uuid="50b00136-354f-4c1b-b4bb-33f2e6f39949">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="74" y="0" width="134" height="16" uuid="052a7ab8-dd0f-432b-b6f3-bdc9bd9d104d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

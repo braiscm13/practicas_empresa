@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="ID_SURVEY" entity="ESurveys" title="formSurvey.xml" buttons="no" status="no" preferredsizetodialog="950;600">
+    <IntegerDataField attr="ID_SURVEY" visible="no" />
+
+	<Column margin="10;10;5;10" expandlast="no">
+		<Row title="BasicData">
+			<Column>
+				<TextDataField attr="SURVEY_NAME" required="yes" dim="text" align="left" labelsize="13" maxlength="255" />
+				<DateDataField attr="SURVEY_EXPIRATION_DATE" text="SURVEY_EXPIRATION_DATE" align="left" labelsize="13" required="no" visible="yes" size="15" />
+			</Column>
+		</Row>
+		<Scroll>
+		<Row expand="yes">
+			<Column expand="yes">
+				<CollapsiblePanel
+						orientation="vertical"
+						startshowed="yes"
+						ignoreinitpreferences="yes"
+						borderposition="top"
+						insets="21;0;0;0"
+						title="Mostrar/Ocultar test">
+						<Row attr="filaexc" expand="yes">
+							<Column expandlast="no" title="QUESTIONS">
+								<Row margin="0;0;0;0" expand="yes">
+									<OQuestionary attr="QUESTIONARY" parentkey="ID_SURVEY" rows="3" disableChecks="true" isEstablshingFormValues="false" editable="true" />
+								</Row>
+								<Row>
+									<Label attr="NUM_QUESTIONS" dim="text" align="left" labelsize="20" maxlength="255" required="yes" />
+								</Row>
+								<Row margin="5;0;0;0" expand="no">
+									<Row />
+									<ShowFormButton text="ADDQUESTION" dim="no" align="right" key="addquestion" icon="com/opentach/client/rsc/navigate_plus16.png"
+										title="addquestion" detailformname="formQuestionCreate.xml" listener="com.opentach.adminclient.modules.surveys.listeners.ShowNewQuestionFormListener"/> 
+								</Row>
+							</Column>
+						</Row>
+						
+				</CollapsiblePanel>
+				<CollapsiblePanelFiller/>
+			</Column>
+		</Row>
+		</Scroll>
+		<Row expand="no" align="bottom">
+			<NavigationToolbar />
+			<Row />
+			<CancelButton />
+			<SaveButton listener="com.opentach.adminclient.modules.surveys.listeners.SaveButtonListener"/>
+		</Row>
+	</Column>
+</FormExt>

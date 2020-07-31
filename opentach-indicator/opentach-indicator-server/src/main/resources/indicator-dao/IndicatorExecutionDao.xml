@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="IND_EXECUTIONS">
+	<DeleteKeys>
+		<Column>NONE</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>NONE</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="query">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="IND_ID" prefix="exe"/>
+				<AmbiguousColumn name="CIF" prefix="com"/>
+			</AmbiguousColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							IND_EXECUTIONS exe,
+							IND_INDICATOR ind,
+							CDCONDUCTORES_EMP drv,
+							DFEMP com
+						WHERE
+							exe.IND_ID = ind.IND_ID(+)
+							and (exe.COM_ID = drv.CIF(+) and exe.DRV_ID = drv.IDCONDUCTOR(+))
+							and exe.COM_ID = com.CIF(+)
+							#WHERE_CONCAT#
+						ORDER BY EXE_DATE desc, EXE_NUMBER desc
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="nextExecutionNumber">
+			<Sentence>
+				<![CDATA[
+					SELECT SEQ_IND_EXECUTIONS_NUMBER.nextval as EXE_NUMBER FROM dual
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

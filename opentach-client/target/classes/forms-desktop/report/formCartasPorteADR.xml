@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="CARTAS_PORTE" setvalueorder="" preferredsizetodialog="875;855">
+	<Column margin="5;5;5;5">
+		<Row expand="no" margin="10;10;0;10">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="16" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;IDGRUPO"
+				visiblecols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" parentkeys="IDGRUPO" onsetvalueset="IDGRUPO" />
+		</Row>
+		<Row title="EXPEDIDOR" margin="10;10;0;10">
+			<Column>
+				<Row>
+				<TextDataField attr="EXPEDIDOR" text="NOMBRE_EXPEDIDOR" labelsize="16" dim="text" align="left"/>
+					<Row layout="flow" align="left">
+								<TextDataField attr="DNI_EXPEDIDOR"  text="DNI_EXPEDIDOR" dim="no" maxlength="9" labelsize="8" align="left" size="9" />
+							    <com.opentach.client.comp.BotonLetraNIF key="calculaletranif2" nif="DNI_EXPEDIDOR" tip="CALCULA_LETRA"
+										icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+					</Row>	
+				</Row>
+				<Row>
+				 	<TextDataField attr="DOMICILIO_EXPEDIDOR" text="DOMICILIO_EXPEDIDOR" labelsize="16" maxlength="255" dim="text" align="left"/>
+				</Row>
+				<Row>
+					<TextDataField attr="LOCALIDAD_EXPEDIDOR" text="LOCALIDAD_EXPEDIDOR" labelsize="16" maxlength="255" dim="text" align="left"/>
+					<TextDataField attr="PROVINCIA_EXPEDIDOR" text="PROVINCIA_EXPEDIDOR" labelsize="8" maxlength="255" dim="text" align="left"/>
+				</Row>
+			</Column>
+		</Row>
+		<Row title="CARGADOR_ADR" margin="0;10;0;10">
+		    <TextDataField attr="CARGADOR" text="NOMBRE_CARGADOR" labelsize="16" maxlength="255" dim="text"  align="left"/>
+		</Row>
+		<Row title="DESTINATARIO" margin="0;10;0;10">
+			<Column>
+				<Row>
+				<TextDataField attr="DESTINATARIO" text="NOMBRE_DESTINATARIO" labelsize="16" dim="text" align="left"/>
+					<Row layout="flow" align="left">
+								<TextDataField attr="DNI_DESTINATARIO"  text="DNI_DESTINATARIO" dim="no" maxlength="9" labelsize="8" align="left" size="9" />
+							    <com.opentach.client.comp.BotonLetraNIF key="calculaletranif3" nif="DNI_DESTINATARIO" tip="CALCULA_LETRA"
+										icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+					</Row>	
+				</Row>
+				<Row>
+				 	<TextDataField attr="DOMICILIO_DESTINATARIO" text="DOMICILIO_DESTINATARIO" labelsize="16" maxlength="255" dim="text" align="left"/>
+				</Row>
+				<Row>
+					<TextDataField attr="LOCALIDAD_DESTINATARIO" text="LOCALIDAD_DESTINATARIO" labelsize="16" maxlength="255" dim="text" align="left"/>
+					<TextDataField attr="PROVINCIA_DESTINATARIO" text="PROVINCIA_DESTINATARIO" labelsize="8" maxlength="255" dim="text" align="left"/>
+				</Row>
+			</Column>
+		</Row>
+		
+		<Row title="DATOS_MERCANCIA" margin="10;10;10;10">	    
+			<Column>
+				<Row>
+					<TextDataField attr="DESIGNACION" text="DESIGNACION" labelsize="25" dim="text"  align="left"/>
+				</Row>
+				<Row>
+					<Column>
+						<TextDataField attr="ETIQUETAS" text="ETIQUETAS" labelsize="25" size="25"  align="left"/>
+						 <TextDataField attr="CANTIDAD" text="CANTIDAD" labelsize="25"  align="left"  size="20"/>
+						<TextDataField attr="RESTRICCION_TUNELES" text="RESTRICCION_TUNELES" dim="no" size="20" labelsize="25" align="left"/>
+						<TextDataField attr="ID_PELIGRO" text="ID_PELIGRO" dim="no" size="20" labelsize="25" align="left"/> 
+						<TextDataField attr="ID_MATERIA" text="ID_MATERIA" dim="no" size="20" labelsize="25" align="left"/> 
+						<TextDataField attr="N_BULTOS" text="N_BULTOS" dim="no" size="20" labelsize="25" align="left"/> 
+					</Column>
+					<Column>
+					 	<TextDataField attr="GRUPO_EMBALAJE" text="GRUPO_EMBALAJE" labelsize="16" dim="no" size="20" align="left"/>
+						<DateDataField attr="FECHA_EXP" dim="no" size="10" align="left" labelsize="16"  />
+						<TextDataField attr="MAX_LLENADO" text="MAX_LLENADO"  labelsize="16" dim="no" size="20" align="left"/> 
+						<TextDataField attr="UN" text="UN"  dim="no" labelsize="16"  size="20" align="left"/> 
+						<TextDataField attr="PESO_BRUTO" text="PESO_BRUTO"  dim="no" labelsize="16" size="20" align="left" /> 
+						<TextDataField attr="TIPO_BULTOS" text="TIPO_BULTOS"  dim="no" labelsize="16" size="20" align="left" /> 
+					</Column>
+				</Row>
+			
+			</Column>
+			
+		</Row>
+		<Row title="TRANSPORTE" margin="10;10;10;10">
+			<Column>
+				<TextDataField attr="TRANSPORTISTA" text="NOMBRE_TRANSPORTISTA" labelsize="16" dim="text"  />
+		   		<Row layout="flow" align="left">
+								<TextDataField attr="DNI_TRANSPORTISTA"  text="DNI_TRANSPORTISTA" dim="no" maxlength="9" labelsize="16" align="left" size="9" />
+							    <com.opentach.client.comp.BotonLetraNIF key="calculaletranif4" nif="DNI_TRANSPORTISTA" tip="CALCULA_LETRA"
+										icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+		   		</Row>	
+			</Column>
+			<Column>
+				<TextDataField attr="MATRICULA_TRACTORA" text="MATRICULA_TRACTORA" dim="no" size="10" labelsize="16" /> 
+		  		<TextDataField attr="MATRICULA_REMOLQUE" text="MATRICULA_REMOLQUE" dim="no" size="10" labelsize="16" /> 
+			</Column>
+		</Row>
+		<Row title="CONDUCTOR" margin="10;10;10;10">
+		         <TextDataField attr="NOMBRE_CONDUCTOR" text="NOMBRE_CONDUCTOR" labelsize="16" dim="text" />
+		 		<Row layout="flow" align="left">
+								<TextDataField attr="DNI_CONDUCTOR"  text="DNI_CONDUCTOR" dim="no" maxlength="9" align="left" size="9" />
+								<Column>
+							    	<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="DNI_CONDUCTOR" tip="CALCULA_LETRA"
+										icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+							    </Column>
+							    <DateDataField attr="FECHA" dim="no" size="10" align="left" labelsize="8"  />
+				</Row>	
+				
+		</Row>
+		<Row expand="no">
+			<Row/>
+			<Button key="btnGenerar" type="ADR_GENERAL_1" tip="TIP_GENERAR_PORTE" text="GENERAR_PORTE_ADR" icon="com/opentach/client/rsc/printer16.png" listener="com.opentach.client.modules.report.IMCartasPorteADRGenerateReportListener"/>
+			<Button key="btnGenerarRev" type="ADR_GENERAL_2" tip="TIP_GENERAR_PORTE" text="GENERAR_PORTE_ADR_REV" icon="com/opentach/client/rsc/printer16.png" listener="com.opentach.client.modules.report.IMCartasPorteADRGenerateReportListener"/>
+			<Button key="btnGenerarBultos" type="ADR_BULTOS" tip="TIP_GENERAR_PORTE" text="GENERAR_PORTE_ADR_BULTOS" icon="com/opentach/client/rsc/printer16.png" listener="com.opentach.client.modules.report.IMCartasPorteADRGenerateReportListener"/>
+		</Row>
+	</Column>
+</Form>

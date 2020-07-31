@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="formConductorCAP" entity="" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />		 		
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="no" margin="5;5;5;5" >
+		<Column>
+			<Column valign="top">
+				<Column valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl attr="IDCONDUCTOR" text="IDCONDUCTOR" cod="IDCONDUCTOR" parentkeys="CG_CONTRATO;CIF" csize="10" 
+					entity="EConductorContFicticio" cols="IDCONDUCTOR;APELLIDOS;NOMBRE" visiblecols="IDCONDUCTOR;APELLIDOS;NOMBRE"	descriptioncols="IDCONDUCTOR;APELLIDOS;NOMBRE" 
+					codsearch="IDCONDUCTOR" codvisible="no" align="left" labelsize="12" dim="text" required="no" />
+				</Column >	
+			</Column>
+		</Column>
+		<Column align="right" expand="no" margin="5;5;5;5" >
+			<Row>
+			<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMININI" size="5" mask="00:00" text="DESDE" labelsize="7" visible="no"/>
+				<DateDataField
+								attr="FILTERFECINI"
+								text="DESDE"
+								align="left"
+								required="yes"
+								datevisible="no"
+								dim="no"
+								labelsize="7"/>
+			</Row>
+			<Row>
+				<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMINFIN" size="5" mask="00:00" text="HASTA" labelsize="7" visible="no"/>
+					<DateDataField
+								attr="FILTERFECFIN"
+								text="HASTA"
+								align="left"
+								required="yes"
+								datevisible="no"
+								dim="no"
+								labelsize="7" />
+					</Row>
+		</Column>
+	</Row>
+		<Table entity="EConductoresCAP" key="IDCONDUCTOR" keys="CIF;SECCION" parentkey="CIF" otherkeys="SECCION;IDCONDUCTOR" 
+					 cols="IDCONDUCTOR;CIF;SECCION;F_OBT_CAP;F_DESDE;F_HASTA" 
+					visiblecols="IDCONDUCTOR;SECCION;F_OBT_CAP;F_DESDE;F_HASTA" form ="formConductorCAP.xml" >
+			<RenderDate column="F_DESDE" globalid="F_DESDE" format="dd/MM/yyyy" align="center"/>
+			<RenderDate column="F_HASTA" globalid="F_HASTA" format="dd/MM/yyyy" align="center"/>
+			<RenderDate column="F_OBT_CAP" globalid="F_OBT_CAP" format="dd/MM/yyyy" align="center"/>
+			<BundleCellRenderer column="SECCION" globalid="SECCION"/>
+		</Table>
+</Form>

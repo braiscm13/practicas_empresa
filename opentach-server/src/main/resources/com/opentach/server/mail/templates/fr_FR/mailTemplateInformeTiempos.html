@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Opentach</title>
+<style type="text/css">
+table.ex1 thead {
+	text-align: center;
+	color: #FFFFFF;
+	font-style: normal;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Times New Roman", Serif;
+}
+
+.note {
+	font-size: 10px;
+	font-family: "Times New Roman", Serif;
+}
+
+.title {
+	color: #008080;
+	font-size: 16px;
+	font-family: "Times New Roman", Serif;
+	text-decoration: underline;
+	font-weight: bold;
+	text-align: center;
+}
+
+.maintitle {
+	color: #003366;
+	font-size: 20px;
+	font-family: "Times New Roman", Serif;
+	font-weight: bold;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table width="100%" border="0" >
+   <tr>
+      <td><span class="maintitle">%TITLE%</span> <br />
+      <br />
+      </td>
+   </tr>
+   <tr>
+      <td>
+      <table>
+         <tr>
+            <td>Nom du pilote:</td>
+            <td>%NOMBRECONDUCTOR%</td>
+         </tr>
+         <tr>
+            <td>Date et heure du rapport:</td>
+            <td>%FECHAINFORME%</td>
+         </tr>
+         <tr>
+            <td>Date et heure de la suppression du fichier:</td>
+            <td>%FECHAENVIO%</td>
+         </tr>
+      </table>
+      </td>
+   </tr>
+   <!-- %INITREPORT% -->
+   <tr>
+      <td height="10"></td>
+   </tr>
+   <tr>
+      <td><span class="title">Les infractions détectées dans le dernier fichier:</span><br />
+      <br />
+      <table border="1" width="100%" class="ex1">
+         <thead >
+            <tr bgcolor="#008080">
+               <td rowspan="2">Type</td>
+               <td rowspan="2">Nature</td>
+               <td colspan="2">période</td>
+               <td rowspan="2">EC/FC<br />
+               (hh:mm)</td>
+            </tr>
+            <tr bgcolor="#008080">
+               <td>Initiation</td>
+               <td>Fin</td>
+            </tr>
+         </thead>
+         <!--%INFRACROWS%-->
+      </table>
+      %NO_INFRACROWS_INFO_START%<span >Vous n'avez pas d'infraction.</span><br/>%NO_INFRACROWS_INFO_END%
+      <span class="note"> Note: La période analysée correspond aux 30 derniers jours, avant d'être rejetés.</span></td>
+   </tr>
+   <tr>
+      <td height="10" />
+   </tr>
+   <tr>
+      <td><span class="title">Alertes pour les périodes futures:</span><br />
+      <br />
+      <table border="1" width="100%">
+         <thead class="tableheader">
+            <tr bgcolor="#008080">
+               <td width="25%">Type</td>
+               <td>Message</td>
+            </tr>
+         </thead>
+         <!--%NOTICEROWS%-->
+      </table>
+      %NO_NOTICEROWS_INFO_START%<span >Vous n'avez pas d'avis.</span><br/>%NO_NOTICEROWS_INFO_END%
+      <span class="note">Note: La date et l'heure de référence
+      est la décharge. </span></td>
+   </tr>
+   <!-- %ENDREPORT% -->
+</table>
+</body>
+</html>

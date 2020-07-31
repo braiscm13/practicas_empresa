@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_laboral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fd4d3f2-70c1-476a-b04a-e259eb04cf1a">
+	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="336"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="42168a5f-26a3-49f7-a630-1de4170e5a24"/>
+	<subDataset name="RESUMEN2" uuid="11aed58d-f00c-4923-b960-acbfae66f627">
+		<parameter name="DNI" class="java.lang.String"/>
+		<parameter name="SEMANA" class="java.lang.String"/>
+		<parameter name="ANHO" class="java.lang.String"/>
+		<parameter name="idconductor" class="java.lang.String">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.lang.String"/>
+		<parameter name="f_fin" class="java.lang.String"/>
+		<parameter name="MES" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+NULL AS SEMANA,
+NULL AS  MES,
+NULL AS ANHO,
+NULL AS TIPO_T,
+-1 AS VALOR
+FROM
+CDVCONDUCTOR_CONT
+ORDER BY DNI, SEMANA,MES,ANHO,TIPO_T]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="TIPO_T" class="java.lang.String"/>
+		<field name="VALOR" class="java.lang.Number"/>
+	</subDataset>
+	<subDataset name="RESUMEN_MES" uuid="38cdaa1f-585e-467d-b9c0-831b35bfd4dd">
+		<parameter name="MES" class="java.lang.String"/>
+		<parameter name="ANHO" class="java.lang.String"/>
+		<parameter name="DNI" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+NULL AS  MES,
+NULL AS ANHO,
+NULL AS TIPO_T,
+-1 AS VALOR
+FROM
+CDVCONDUCTOR_CONT
+ORDER BY DNI, MES,ANHO,TIPO_T]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="TIPO_T" class="java.lang.String"/>
+		<field name="VALOR" class="java.lang.Number"/>
+	</subDataset>
+	<subDataset name="RESUMEN_DNI" uuid="4bf87451-9395-441e-a751-cc62a8fed6c9">
+		<parameter name="DNI" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+NULL AS TIPO_T,
+-1 AS VALOR
+FROM
+CDVCONDUCTOR_CONT
+ORDER BY DNI,TIPO_T]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="TIPO_T" class="java.lang.String"/>
+		<field name="VALOR" class="java.lang.Number"/>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 15768000)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_MES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_SEMANA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATASOURCE_RESUMEN" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="DATASOURCE_RESUMEN_MES" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="DATASOURCE_RESUMEN_DNI" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="numreq" class="java.lang.String"/>
+	<parameter name="idconductor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" = '79865421' AND "]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  DISTINCT DATERANGE,
+	A.IDCONDUCTOR,
+	A.NOMBRE,
+	A.DNI,
+	CONS_SEMANA.TOTAL as TOTAL_SEMANA,
+	CONS_MES.TOTAL AS TOTAL_MES,
+	A.DTDIARIO * 60 * 24 AS DTDIARIO,
+	A.DCDIARIO * 60 * 24 AS DCDIARIO,
+	A.DDDIARIO * 60 * 24 AS DDDIARIO,
+	A.DPDIARIO * 60 * 24 AS DPDIARIO,
+	(CASE WHEN (( 1 - A.DTDIARIO - A.DPDIARIO - A.DDDIARIO - A.DCDIARIO) * 60 * 24 ) < 0 THEN 0 ELSE (( 1 - A.DTDIARIO - A.DPDIARIO - A.DDDIARIO - A.DCDIARIO) * 60 * 24 )  END) AS DPINDEF,
+	(A.DTDIARIO + A.DCDIARIO ) * 60 * 24 AS TDIARIO,
+	TO_CHAR(DATERANGE,'Day') AS DIA_SEM ,
+	TO_CHAR(DATERANGE,'DD') AS DIA,
+	TO_CHAR(DATERANGE,'IW') AS SEMANA,
+	TO_CHAR(DATERANGE,'Month') AS MES2,
+	'MES' || TO_CHAR(DATERANGE,'MM') || '.' || TO_CHAR(DATERANGE,'Month') AS MES,
+	TO_CHAR(trunc(DATERANGE, 'iw'),'DD/MM/YYYY') AS INI_SEMANA,
+	TO_CHAR(trunc(DATERANGE, 'iw') + 6,'DD/MM/YYYY') AS FIN_SEMANA,
+	TO_CHAR(DATERANGE,'YYYY') AS ANHO
+FROM(
+		SELECT TRUNC(COND.DATERANGE) AS DATERANGE,
+		cOND.IDCONDUCTOR, COND.NOMBRE, COND.DNI,
+		SUM(CASE WHEN TPACTIVIDAD IN (3) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DTDIARIO,
+		SUM(CASE WHEN TPACTIVIDAD IN (4) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DCDIARIO,
+		SUM(CASE WHEN TPACTIVIDAD IN (2) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DDDIARIO,
+		SUM(CASE WHEN TPACTIVIDAD IN (1) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DPDIARIO
+		FROM
+		(SELECT TRUNC(FEC_COMIENZO) AS T, FEC_COMIENZO, FEC_FIN, TPACTIVIDAD, IDCONDUCTOR
+		 FROM CDACTIVIDADES
+		 WHERE
+		IDCONDUCTOR $P!{idconductor}
+		 NUMREQ = $P{numreq}
+		 AND FEC_COMIENZO > $P{f_inicio}
+		 AND FEC_FIN      < TRUNC($P{f_fin}) + 1) ACTIVIDADES,
+		(SELECT DATERANGE, IDCONDUCTOR, DNI, NOMBRE FROM(
+		 (SELECT $P{f_inicio} + level AS DateRange
+		  FROM    DUAL
+		  WHERE   ($P{f_inicio} + level) <= $P{f_fin} CONNECT BY LEVEL <= ( TRUNC((CAST($P{f_fin} AS DATE)- CAST($P{f_inicio} AS DATE))*24)))),
+		(SELECT IDCONDUCTOR, DNI, APELLIDOS||', '||NOMBRE AS NOMBRE FROM CDVCONDUCTOR_CONT
+		 WHERE IDCONDUCTOR $P!{idconductor}  CG_CONTRATO = $P{numreq})  ) COND
+		WHERE T(+) = COND.DATERANGE
+		AND COND.IDCONDUCTOR =  ACTIVIDADES.IDCONDUCTOR(+)
+		GROUP BY TRUNC(COND.DATERANGE), COND.IDCONDUCTOR, COND.NOMBRE, COND.DNI
+		ORDER BY  TRUNC(COND.DATERANGE), COND.NOMBRE ) A,
+		(
+		SELECT TO_CHAR(DATERANGE,'IW') AS SEMANA,
+		TO_CHAR(DATERANGE,'YYYY') AS ANHO,
+		cOND.IDCONDUCTOR, COND.NOMBRE, COND.DNI,
+		SUM(CASE WHEN TPACTIVIDAD IN (3,4,2,1) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS TOTAL
+		FROM
+		(SELECT TRUNC(FEC_COMIENZO) AS T, FEC_COMIENZO, FEC_FIN, TPACTIVIDAD, IDCONDUCTOR
+		 FROM CDACTIVIDADES
+		 WHERE
+		 IDCONDUCTOR  $P!{idconductor}
+		 NUMREQ = $P{numreq}
+		 AND FEC_COMIENZO > $P{f_inicio}
+		 AND FEC_FIN      < TRUNC($P{f_fin}) + 1) ACTIVIDADES,
+		(SELECT DATERANGE, IDCONDUCTOR, DNI, NOMBRE FROM(
+		 (SELECT $P{f_inicio} + level AS DateRange
+		  FROM    DUAL
+		  WHERE   ($P{f_inicio} + level) <= $P{f_fin} CONNECT BY LEVEL <= ( TRUNC((CAST($P{f_fin} AS DATE)- CAST($P{f_inicio}  AS DATE))*24)))),
+		(SELECT IDCONDUCTOR, DNI, APELLIDOS||', '||NOMBRE AS NOMBRE FROM CDVCONDUCTOR_CONT
+		 WHERE IDCONDUCTOR  $P!{idconductor}   CG_CONTRATO = $P{numreq}  )  ) COND
+		WHERE T(+) = COND.DATERANGE
+		AND COND.IDCONDUCTOR =  ACTIVIDADES.IDCONDUCTOR(+)
+		GROUP BY  COND.IDCONDUCTOR, TO_CHAR(DATERANGE,'YYYY'),TO_CHAR(DATERANGE,'IW'),COND.NOMBRE, COND.DNI
+		ORDER BY COND.IDCONDUCTOR, TO_CHAR(DATERANGE,'YYYY'),TO_CHAR(DATERANGE,'IW'), COND.NOMBRE ) CONS_SEMANA,
+		(
+		SELECT TO_CHAR(DATERANGE,'Month') AS MES,
+		TO_CHAR(DATERANGE,'YYYY') AS ANHO,
+		cOND.IDCONDUCTOR, COND.NOMBRE, COND.DNI,
+		SUM(CASE WHEN TPACTIVIDAD IN (3,4,2,1) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS TOTAL
+		FROM
+		(SELECT TRUNC(FEC_COMIENZO) AS T, FEC_COMIENZO, FEC_FIN, TPACTIVIDAD, IDCONDUCTOR
+		 FROM CDACTIVIDADES
+		 WHERE
+		IDCONDUCTOR $P!{idconductor}
+		 NUMREQ = $P{numreq}
+		 AND FEC_COMIENZO > $P{f_inicio}
+		 AND FEC_FIN      < TRUNC($P{f_fin} ) + 1) ACTIVIDADES,
+		(SELECT DATERANGE, IDCONDUCTOR, DNI, NOMBRE FROM(
+	(SELECT $P{f_inicio}  + level AS DateRange
+	 FROM    DUAL
+	 WHERE   ($P{f_inicio}  + level) <= $P{f_fin}  CONNECT BY LEVEL <= ( TRUNC((CAST($P{f_fin} AS DATE)- CAST($P{f_inicio} AS DATE))*24)))),
+		(SELECT IDCONDUCTOR, DNI, APELLIDOS||', '||NOMBRE AS NOMBRE FROM CDVCONDUCTOR_CONT
+		 WHERE IDCONDUCTOR $P!{idconductor}  CG_CONTRATO = $P{numreq}  )  ) COND
+		WHERE T(+) = COND.DATERANGE
+		AND COND.IDCONDUCTOR =  ACTIVIDADES.IDCONDUCTOR(+)
+	GROUP BY  COND.IDCONDUCTOR, TO_CHAR(DATERANGE,'YYYY'), TO_CHAR(DATERANGE,'Month'),COND.NOMBRE, COND.DNI
+		ORDER BY  COND.IDCONDUCTOR,TO_CHAR(DATERANGE,'YYYY'),TO_CHAR(DATERANGE,'IW'), COND.NOMBRE ) CONS_MES
+		WHERE TO_CHAR(A.DATERANGE,'IW') = CONS_SEMANA.SEMANA AND
+		 TO_CHAR(A.DATERANGE,'YYYY') = CONS_SEMANA.ANHO AND
+		TO_CHAR(A.DATERANGE,'Month') = CONS_MES.MES AND
+	TO_CHAR(A.DATERANGE,'YYYY') = CONS_MES.ANHO AND
+	A.IDCONDUCTOR = CONS_MES.IDCONDUCTOR AND
+	A.IDCONDUCTOR = CONS_SEMANA.IDCONDUCTOR
+order by A.IDCONDUCTOR, A.DATERANGE]]>
+	</queryString>
+	<field name="DATERANGE" class="java.sql.Timestamp"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="TOTAL_SEMANA" class="java.lang.Number"/>
+	<field name="TOTAL_MES" class="java.lang.Number"/>
+	<field name="DTDIARIO" class="java.lang.Number"/>
+	<field name="DCDIARIO" class="java.lang.Number"/>
+	<field name="DDDIARIO" class="java.lang.Number"/>
+	<field name="DPDIARIO" class="java.lang.Number"/>
+	<field name="DPINDEF" class="java.lang.Number"/>
+	<field name="TDIARIO" class="java.lang.Number"/>
+	<field name="DIA_SEM" class="java.lang.String"/>
+	<field name="DIA" class="java.lang.String"/>
+	<field name="SEMANA" class="java.lang.String"/>
+	<field name="MES2" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="INI_SEMANA" class="java.lang.String"/>
+	<field name="FIN_SEMANA" class="java.lang.String"/>
+	<field name="ANHO" class="java.lang.String"/>
+	<variable name="vSemanal" class="java.lang.Number" resetType="Group" resetGroup="semana" calculation="Sum">
+		<variableExpression><![CDATA[$F{TDIARIO}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="vMensual" class="java.lang.Number" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{TDIARIO}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_SEMANA_1" class="java.lang.Number" resetType="Group" resetGroup="semana" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_SEMANA}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_MES_1" class="java.lang.Number" resetType="Group" resetGroup="mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_MES}]]></variableExpression>
+	</variable>
+	<group name="dni" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{IDCONDUCTOR}]]></groupExpression>
+		<groupHeader>
+			<band height="2" splitType="Immediate"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="254">
+				<pie3DChart>
+					<chart evaluationTime="Group" evaluationGroup="dni">
+						<reportElement positionType="Float" x="18" y="52" width="219" height="162" uuid="fa5076dd-24ff-4a58-a547-8cf88a0651ae"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$P{DNI}.equals($F{DNI})]]></incrementWhenExpression>
+							<datasetRun subDataset="RESUMEN_DNI" uuid="0e286089-51cc-4bf7-a1df-962f19b2296f">
+								<datasetParameter name="DNI">
+									<datasetParameterExpression><![CDATA[$F{DNI}]]></datasetParameterExpression>
+								</datasetParameter>
+								<dataSourceExpression><![CDATA[$P{DATASOURCE_RESUMEN_DNI}]]></dataSourceExpression>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{TIPO_T}]]></keyExpression>
+						<valueExpression><![CDATA[$F{VALOR}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<crosstab>
+					<reportElement positionType="Float" mode="Opaque" x="224" y="52" width="308" height="162" uuid="01db446f-9da7-4a69-8ce8-f3eae6173edb"/>
+					<crosstabDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$P{DNI}.equals($F{DNI})]]></incrementWhenExpression>
+							<datasetRun subDataset="RESUMEN_DNI" uuid="ba1702f7-21ae-4949-9fca-d46d1f3ce891">
+								<datasetParameter name="DNI">
+									<datasetParameterExpression><![CDATA[$F{DNI}]]></datasetParameterExpression>
+								</datasetParameter>
+								<dataSourceExpression><![CDATA[$P{DATASOURCE_RESUMEN_DNI}]]></dataSourceExpression>
+							</datasetRun>
+						</dataset>
+					</crosstabDataset>
+					<rowGroup name="DNI" width="55">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{DNI}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="55" height="25" uuid="3b6e7014-c8b4-4ba0-a609-14f39ed6f5a9"/>
+									<textElement verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{DNI}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents/>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="TIPO_T" height="30">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{TIPO_T}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="49" height="30" uuid="d4e46f6c-933d-4bc3-8077-ad2c115a2bbf"/>
+									<textElement verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TIPO_T}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents/>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="VALORMeasure" class="java.lang.Number" calculation="Sum">
+						<measureExpression><![CDATA[$F{VALOR}]]></measureExpression>
+					</measure>
+					<crosstabCell width="49" height="25">
+						<cellContents>
+							<textField pattern="###0">
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="49" height="25" uuid="163b5856-fa15-494d-9388-819662d10ece"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{VALORMeasure}.intValue(),false)]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell height="25" rowTotalGroup="DNI">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="064a5e3a-307f-4bd2-965b-d635445e428d"/>
+								<textFieldExpression><![CDATA[$V{VALORMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="50" columnTotalGroup="TIPO_T">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="a74f6f8c-b13d-4e07-9ab7-c7dc73f849eb"/>
+								<textFieldExpression><![CDATA[$V{VALORMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="DNI" columnTotalGroup="TIPO_T">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="1037fbf0-f6a5-4e25-9052-84bfe4ad196d"/>
+								<textFieldExpression><![CDATA[$V{VALORMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+				<rectangle>
+					<reportElement key="rectangle-2" style="Back" positionType="Float" mode="Opaque" x="21" y="17" width="503" height="18" printWhenGroupChanges="dni" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="d5f11d17-2051-42cb-9b2d-6b88a6e94e40"/>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" positionType="Float" x="34" y="19" width="101" height="14" printWhenGroupChanges="semana" uuid="12b42931-06cb-4f77-b345-97969ba65f6b"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RESUMEN_DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="145" y="19" width="133" height="14" uuid="35bf8e44-4af2-4185-9f3f-fb84eba6155d"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="ANHO">
+		<groupExpression><![CDATA[$F{ANHO}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="mes" keepTogether="true">
+		<groupExpression><![CDATA[$F{MES2}]]></groupExpression>
+		<groupHeader>
+			<band height="30" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_DETALLES} &&
+$P{SHOW_MES}==true  && $F{TOTAL_MES}.doubleValue() > 0]]></printWhenExpression>
+				<rectangle>
+					<reportElement key="rectangle-2" style="Back" mode="Opaque" x="22" y="10" width="491" height="18" printWhenGroupChanges="mes" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e44e12e5-cc73-4977-a427-2cb539975960">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement x="80" y="12" width="110" height="16" printWhenGroupChanges="mes" uuid="7ad45fac-6439-473b-835f-8d6aa1d48b27">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="27" y="12" width="53" height="14" printWhenGroupChanges="mes" uuid="4b71d736-98c6-48e6-9459-324d4113c7ed">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{MES}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="224" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_MES} && $F{TOTAL_MES}.intValue() != 0]]></printWhenExpression>
+				<rectangle>
+					<reportElement key="rectangle-2" style="Back" positionType="Float" mode="Opaque" x="19" y="4" width="503" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="18e7a78a-dde3-45a2-bdac-06b4f53271e9">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" positionType="Float" x="29" y="6" width="101" height="14" printWhenGroupChanges="semana" uuid="c752c6c5-dbe3-4359-89c1-348db65c4b12">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RESUMEN_MES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="129" y="6" width="100" height="14" printWhenGroupChanges="mes" uuid="28c6c74d-ccb2-4c16-b711-0b400a051276">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart>
+						<reportElement positionType="Float" x="141" y="34" width="220" height="176" uuid="bb770f79-67cb-4869-a69e-08cbbf8d613e">
+							<printWhenExpression><![CDATA[$P{SHOW_MES} == true &&
+(((java.lang.Number)$V{vMensual}).intValue()!= 0)]]></printWhenExpression>
+						</reportElement>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$P{MES}.equals($F{MES}) && $P{ANHO}.equals($F{ANHO}) && $P{DNI}.equals($F{DNI})]]></incrementWhenExpression>
+							<datasetRun subDataset="RESUMEN_MES" uuid="6440395f-e0ab-4d40-9496-adc8b097c5ae">
+								<datasetParameter name="DNI">
+									<datasetParameterExpression><![CDATA[$F{DNI}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="MES">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="ANHO">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<dataSourceExpression><![CDATA[$P{DATASOURCE_RESUMEN_MES}]]></dataSourceExpression>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{TIPO_T}]]></keyExpression>
+						<valueExpression><![CDATA[$F{VALOR}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="semana" minHeightToStartNewPage="74" keepTogether="true">
+		<groupExpression><![CDATA[$F{SEMANA}]]></groupExpression>
+		<groupHeader>
+			<band height="47" splitType="Prevent">
+				<printWhenExpression><![CDATA[$P{SHOW_DETALLES} && (
+($P{SHOW_SEMANA} == true &&  $F{TOTAL_SEMANA}.doubleValue() > 0)
+||
+($P{SHOW_MES} == true && $F{TOTAL_MES}.doubleValue() > 0))]]></printWhenExpression>
+				<rectangle>
+					<reportElement key="rectangle-2" style="Back" mode="Opaque" x="22" y="4" width="491" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="0a646a17-8ec4-452f-9de7-4a2453a4a952">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}==true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="26" y="6" width="54" height="14" printWhenGroupChanges="semana" uuid="36f4bd38-5c63-4cc3-9ffe-3123aa0e21b4">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}==true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="6" width="433" height="14" isRemoveLineWhenBlank="true" uuid="1c960c5f-d763-467a-a197-5a34f37c6434">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}==true]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{SEMANA}+", "+$F{INI_SEMANA}+" - "+$F{FIN_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" style="Value" x="22" y="22" width="97" height="24" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="9c4bb6fd-09e1-438a-99d7-a5f7639e14cf">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DATERANGE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" style="Value" x="118" y="22" width="100" height="24" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="cd22ef81-fa95-4b7b-baa4-151300ce45d6">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DCDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-9" style="Value" x="217" y="22" width="100" height="24" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="7bf62804-a7cb-4d64-8199-b99d237951ec">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DTDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" x="415" y="22" width="98" height="24" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="95a9fdb9-173d-4fba-895c-6d777c4e265d">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{TDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-9" style="Value" x="317" y="22" width="100" height="24" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="7bf62804-a7cb-4d64-8199-b99d237951ec">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DDDIARIO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="205" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_SEMANA}==true && $F{TOTAL_SEMANA}.doubleValue()> 0]]></printWhenExpression>
+				<pie3DChart>
+					<chart>
+						<reportElement x="162" y="28" width="230" height="173" isRemoveLineWhenBlank="true" uuid="4c37891a-619b-4ba0-952d-2bc2c231ea3d"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$P{DNI}.equals($F{DNI}) && $P{ANHO}.equals($F{ANHO}) && $P{SEMANA}.equals($F{SEMANA}) && $P{MES}.equals($F{MES})]]></incrementWhenExpression>
+							<datasetRun subDataset="RESUMEN2" uuid="bbef8619-af4a-4f64-945a-390b45e2024b">
+								<datasetParameter name="SEMANA">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="ANHO">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="DNI">
+									<datasetParameterExpression><![CDATA[$F{DNI}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="MES">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<dataSourceExpression><![CDATA[$P{DATASOURCE_RESUMEN}]]></dataSourceExpression>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{TIPO_T}]]></keyExpression>
+						<valueExpression><![CDATA[$F{VALOR}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot isCircular="true" labelFormat="{2} " legendLabelFormat="{0}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<rectangle>
+					<reportElement key="rectangle-2" style="Back" positionType="Float" mode="Opaque" x="19" y="6" width="503" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="32b8c7fc-2682-4022-b4f9-0134aa1854d2">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="129" y="8" width="100" height="14" printWhenGroupChanges="mes" uuid="a72623ec-ebf7-4484-a121-1638aed2def6">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" positionType="Float" x="29" y="8" width="101" height="14" printWhenGroupChanges="semana" uuid="f5914cbb-411f-44cb-bc98-ea518bbd77c7">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RESUMEN_SEMANA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="-8" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="-5" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="172" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="272" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="123" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="182" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="349" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="422" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="322" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="322" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="20" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="94" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="48" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="48" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="48" y="49" width="91" height="14" uuid="f1b9e4a7-cf85-4af2-b801-77ccd76cca02"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="139" y="50" width="60" height="14" uuid="e1c43663-5aab-46e8-8421-55d945fba277"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="203" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{SHOW_DETALLES} &&
+(($F{TOTAL_SEMANA}.doubleValue() > 0 && $P{SHOW_SEMANA})
+ || ( $F{TOTAL_MES}.doubleValue()> 0 && $P{SHOW_MES} ))]]></printWhenExpression>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="416" y="1" width="99" height="20" isRemoveLineWhenBlank="true" uuid="b4c33c63-4512-476e-a369-f2d83d59e33b">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TDIARIO}.intValue(),false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="false">
+				<reportElement key="textField" style="Zebra" x="119" y="1" width="97" height="20" isRemoveLineWhenBlank="true" uuid="0ee64b49-604b-421d-9165-9070bc4fb898">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{DCDIARIO}.intValue(),false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="216" y="1" width="100" height="20" isRemoveLineWhenBlank="true" uuid="59e03a12-2ff4-4875-8867-91ba9b798df6">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{DTDIARIO}.intValue(),false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="22" y="1" width="97" height="20" isRemoveLineWhenBlank="true" uuid="69011197-e86b-44bf-b7e7-2e822c3f19d4">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATERANGE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="316" y="1" width="100" height="20" isRemoveLineWhenBlank="true" uuid="59e03a12-2ff4-4875-8867-91ba9b798df6">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{DDDIARIO}.intValue(),false)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="74" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

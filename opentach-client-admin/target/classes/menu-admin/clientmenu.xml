@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ApplicationMenuBar visible="no">
+	<Menu attr="INICIO">
+		<MenuItem attr="managerhome" icon="com/opentach/client/rsc/home_inicio24.png" shortcut="ctrl I" />
+		<Menu attr="PREFERENCIAS">
+			<Menu attr="MOSTRAR/OCULTAR">
+				<CheckMenuItem attr="ShowHideTableRowNumber" />
+			</Menu>
+			<MenuItem attr="ChangeTableFieldLook" />
+			<MenuSeparator />
+			<MenuLocale attr="SeleccionIdioma" resourceBundle="i18n-admin.bundle">
+				<LocaleMenuItem attr="espanhol" locale="es_ES" icon="com/opentach/client/rsc/flag_spain24.png" />
+				<LocaleMenuItem attr="portugues" locale="pt_PT" icon="com/opentach/client/rsc/flag_portugal24.png" />
+				<LocaleMenuItem attr="ingles" locale="en_GB" icon="com/opentach/client/rsc/flag_great_britain24.png" />
+				<LocaleMenuItem attr="frances" locale="fr_FR" icon="com/opentach/client/rsc/flag_france24.png" />
+				<LocaleMenuItem attr="aleman" locale="de_DE" icon="com/opentach/client/rsc/flag_germany24.png" />
+				<LocaleMenuItem attr="italiano" locale="it_IT" icon="com/opentach/client/rsc/flag_itaty24.png" />
+				<LocaleMenuItem attr="catalan" locale="ca_ES" icon="com/opentach/client/rsc/catalunya24.png" />
+				<!-- <ItemMenuLocale attr="galego" locale="es_GL" /> -->
+			</MenuLocale>
+			<MenuItem attr="SendToTray" icon="com/ontimize/gui/images/sendtotray.png" />
+			<MenuSeparator />
+			<CheckMenuItem attr="RememberPassword" />
+			<CheckMenuItem attr="ArrancarMinimizado" />
+		</Menu>
+		<MenuSeparator/>
+		<MenuItem attr="Exit" icon="com/opentach/client/rsc/exit24.png" />
+	</Menu>
+	<Menu attr="ACCESS_CONTROL">
+		<MenuItem attr="managerusuario" icon="com/opentach/client/rsc/usuario24.png" />
+		<MenuItem attr="managerperfil" icon="com/opentach/client/rsc/perfil24.png" />
+		<MenuItem attr="managerviewsolicitudes" icon="com/opentach/client/rsc/book_blue_view24.png" />
+		<MenuItem attr="managermonitorizacion" icon="com/opentach/client/rsc/console24.png" />
+		<MenuItem attr="managerrestricciones" icon="com/opentach/client/rsc/console24.png" />
+	</Menu>
+	<Menu attr="FILE_MANAGEMENT">
+		<MenuItem attr="managerlistadoficheros" icon="com/opentach/client/rsc/documents_gear24.png" />
+		<MenuItem attr="managerlistadoregistro" icon="com/opentach/client/rsc/register24.png" />
+		<MenuItem attr="managerconsultaficheros" icon="com/opentach/client/rsc/index_view24.png" />
+		<MenuItem attr="managerinformependdescargafull" icon="com/opentach/client/rsc/warning24_files.png"/>
+		<Menu attr="managerprocess" icon="com/opentach/client/rsc/gear_connection24.png">
+			<CheckMenuItem attr="file_process" icon="com/opentach/client/rsc/gear_run24.png" />
+			<!-- <CheckMenuItem attr="queue_process" icon="com/opentach/client/rsc/redo_24.png"/> -->
+			<!--<CheckMenuItem attr="pda_process" icon="com/opentach/client/rsc/pda_write24.png"/> -->
+		</Menu>
+		<MenuItem attr="processFileStatus" icon="com/opentach/client/rsc/safe_out24.png" listener="com.opentach.adminclient.modules.files.ProcessFileStatusMenuListener"/>
+		<MenuItem attr="cleardb" icon="com/opentach/client/rsc/safe_out24.png" listener="com.opentach.adminclient.modules.maintenance.MaintenanceDBMenuListener"/>
+	</Menu>
+	<Menu attr="SMARTPHONES_MANAGEMENT">
+		<MenuItem attr="manageradminmobilefileextraction" icon="com/opentach/client/rsc/documents_gear24.png" />
+		<MenuItem attr="manageradminmobilevipcodes" icon="com/opentach/client/rsc/documents_gear24.png" />
+		<!-- <MenuItem attr="managerpushblackberry" icon="com/opentach/client/rsc/chart24.png" /> -->
+	</Menu>
+	<Menu attr="News">
+		<MenuItem attr="managernews" icon="com/opentach/client/rsc/newspaper24.png"/>
+	</Menu>
+	<Menu attr="sistemaavisos">
+		<MenuItem attr="managercreatenotice" icon="com/opentach/client/rsc/mail_new.png"/>
+	</Menu>
+	<Menu attr="CDO">
+		<MenuItem attr="managerusuariocdo" icon="com/opentach/client/rsc/managedownloadcenters.png"/>
+		<MenuItem attr="managercdonews" icon="com/opentach/client/rsc/managenews24.png"/>
+		<MenuItem attr="managermonitorizacioncdo" icon="com/opentach/client/rsc/console24.png" />
+	</Menu>
+	<Menu attr="REPORT_MANAGEMENT">
+		<MenuItem attr="manageralertas" icon="com/opentach/client/rsc/alarmclock.png" />
+		<MenuItem attr="managergeninformegestor" icon="com/opentach/client/rsc/mail_forward24.png" />
+		<MenuItem attr="managerinformeexpireduser" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerstats" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerinformeresumentiposinfracciones" icon="com/opentach/client/rsc/informe24.png"/>
+		<!--  <MenuItem attr="managerkmsempresa" icon="com/opentach/client/rsc/informe24.png"/>-->
+		<!-- <MenuItem attr="managerpendDescargaEmpresa" icon="com/opentach/client/rsc/informe24.png"/> -->
+		<MenuItem attr="managerinformedemos" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerinformeincidenciasficheros" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerinformeresumenempresas" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerinformeconexionesusu" icon="com/opentach/client/rsc/informe24.png"/>
+		<MenuItem attr="managerinformecooperativas" icon="com/opentach/client/rsc/informe24.png"/>
+	</Menu>
+	<Menu attr="SURVEYS">
+		<MenuItem attr="managersurveys" icon="com/opentach/client/rsc/survey24.png"/>
+		<MenuItem attr="managerreportsurveys" icon="com/opentach/client/rsc/informe24.png"/>
+	</Menu>
+	<Menu attr="SETUP">
+		<MenuItem attr="managertablasmaestras" icon="com/opentach/client/rsc/chart24.png" />
+		<MenuItem attr="setupVersionNews" icon="com/opentach/client/rsc/chart24.png" listener="com.opentach.adminclient.modules.setup.IMVersionNewsEditorMenuListener"/>
+	</Menu>
+	
+	<Menu attr="SUPPORT">	
+	    <MenuItem attr="managerTasks" icon="com/opentach/client/rsc/incidences24.png" />
+	</Menu>
+</ApplicationMenuBar>

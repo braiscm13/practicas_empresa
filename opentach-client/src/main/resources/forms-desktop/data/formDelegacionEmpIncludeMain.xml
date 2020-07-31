@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Column >
+	<Column title="DATOS_DELEGACION">
+		<Column>
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="11" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+				descriptioncols="NOMB" required="no" csize="10" />
+			<Row height="5" />
+			<Row>
+				<IntegerDataField attr="IDDELEGACION" dim="no" maxlength="10" required="no" align="left" size="10" labelsize="11" visible="no" />
+				<TextDataField attr="NOMBRE_DEL" dim="text" labelsize="11" maxlength="255" size="15" required="yes" align="left" />
+			</Row>
+			<Row>
+				<TextDataField align="left" attr="DIRECCION_DEL" dim="text" labelsize="11" maxlength="255" />
+				<MaskDataField mask="000000000000000" align="right" attr="TELF_DEL" dim="no" labelsize="10" size="10" />
+			</Row>
+			<Row height="10" />
+			<Row>
+				<Column expand="no">
+					<TextDataField align="left" attr="MUNI_DEL" labelsize="11" dim="text" maxlength="255" />
+					<ReferenceComboDataField align="left" attr="CG_PROV_DEL" labelsize="11" cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias"
+						parentkey="CG_NACI" size="30" />
+				</Column>
+				<Column expand="yes">
+					<TextDataField align="left" attr="POBL_DEL" labelsize="16" dim="text" maxlength="255" />
+					<Row>
+						<ReferenceComboDataField align="left" attr="CG_NACI_DEL" labelsize="16" cod="CG_NACI" cols="DSCR" dim="no" entity="EPaises"
+							size="20" />
+						<TextDataField attr="CG_POSTAL" dim="no" maxlength="10" size="16" labelsize="14" align="right" />
+					</Row>
+				</Column>
+			</Row>
+		</Column>
+	</Column>
+	<Column>
+		<TabPanel attr="TabEmpresas">
+			<Tab attr="Conductores">
+				<!-- <Table entity="EConductoresEmp" key="DNI" parentkey="CIF" otherkeys="IDDELEGACION" cols="DNI;CIF;NOMBRE;APELLIDOS;F_ALTA" refreshbutton="yes" 
+					requiredcols="NOMBRE;APELLIDOS" updateentityeditablecolumns="NOMBRE;APELLIDOS" visiblecols="DNI;NOMBRE;APELLIDOS;F_ALTA" deletebutton="no" form="formDatosConductor.xml" 
+					disableinsert="yes"/> -->
+				<!-- TODO: IDCONDUCTOR-DNI -->
+				<Table entity="EConductoresEmp" key="IDCONDUCTOR" parentkey="CIF" otherkeys="IDDELEGACION" cols="IDCONDUCTOR;DNI;CIF;NOMBRE;APELLIDOS;F_ALTA"
+					refreshbutton="yes" requiredcols="NOMBRE;APELLIDOS" updateentityeditablecolumns="NOMBRE;APELLIDOS" visiblecols="DNI;NOMBRE;APELLIDOS;F_ALTA"
+					deletebutton="no" form="formDatosConductor.xml" disableinsert="yes" />
+
+
+			</Tab>
+			<Tab attr="Vehiculos">
+				<Table entity="EVehiculosEmp" key="MATRICULA" parentkey="CIF" otherkeys="IDDELEGACION" fixattr="CIF" cols="MATRICULA;CIF;DSCR;F_ALTA"
+					refreshbutton="yes" requiredcols="MATRICULA;DSCR" updateentityeditablecolumns="DSCR" visiblecols="MATRICULA;DSCR;F_ALTA" deletebutton="no"
+					form="formDatosVehiculo.xml" disableinsert="yes" />
+			</Tab>
+		</TabPanel>
+	</Column>
+</Column>

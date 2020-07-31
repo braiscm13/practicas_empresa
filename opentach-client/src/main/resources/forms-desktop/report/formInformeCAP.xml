@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="a" keys="a" title="INFORME_CAP" buttons="no" preferredsizetodialog="800;600">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnMassive" tip="TIP_BTN_QUERY_CAP_MASSIVE" icon="com/opentach/client/rsc/server_to_client16.png" listener="com.opentach.client.modules.report.IMInformeCAPRequestCapListener" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" listener="com.opentach.client.modules.report.IMInformeCAPReportListener" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO"  required="no" visible="no" />
+	<Row expand="yes">
+		<Column margin="5;5;5;5" expandlast="yes" expand="yes">
+			<Column title="" margin="0;5;5;5" valign="center">
+				<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+			</Column>
+			<Column>
+				<Table entity="EInformeCAP" keys="IDCONDUCTOR" parentkeys="CG_CONTRATO;CIF" 
+					cols="IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;CIF;CG_CONTRATO;CAP_VIAJEROS;CAP_MERCANCIAS;BUTTON" 
+					visiblecols="DNI;NOMBRE;APELLIDOS;CAP_VIAJEROS;CAP_MERCANCIAS;BUTTON"
+					editablecolumns="BUTTON" >
+					<RenderButton column="BUTTON" tip="TIP_CAP_QUERY" icon="com/opentach/client/rsc/server_to_client16.png" />
+					<EditorButton column="BUTTON" tip="TIP_CAP_QUERY" icon="com/opentach/client/rsc/server_to_client16.png" listener="com.opentach.client.modules.report.IMInformeCAPRequestCapListener"/>
+					<RenderDate column="CAP_VIAJEROS" format="dd/MM/yyyy"/>
+					<RenderDate column="CAP_MERCANCIAS" format="dd/MM/yyyy"/>
+					<TableColumnProperties attr="BUTTON" minwidth="30" maxwidth="30" defaultwidth="30" preferredwidth="30" resizable="false" text="" />
+				</Table>
+			</Column>
+		</Column>
+	</Row>
+</FormExt>

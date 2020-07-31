@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Opentach</title>
+<style type="text/css">
+table.ex1 thead {
+	text-align: center;
+	color: #FFFFFF;
+	font-style: normal;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Times New Roman", Serif;
+}
+
+.note {
+	font-size: 10px;
+	font-family: "Times New Roman", Serif;
+}
+
+.title {
+	color: #008080;
+	font-size: 16px;
+	font-family: "Times New Roman", Serif;
+	text-decoration: underline;
+	font-weight: bold;
+	text-align: center;
+}
+
+.maintitle {
+	color: #003366;
+	font-size: 20px;
+	font-family: "Times New Roman", Serif;
+	font-weight: bold;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table width="100%" border="0" >
+   <tr>
+      <td><span class="maintitle">%TITLE%</span> <br />
+      <br />
+      </td>
+   </tr>
+   <tr>
+      <td>
+      <table>
+         <tr>
+            <td>Driver's name:</td>
+            <td>%NOMBRECONDUCTOR%</td>
+         </tr>
+         <tr>
+            <td>Date and time of report:</td>
+            <td>%FECHAINFORME%</td>
+         </tr>
+         <tr>
+            <td>Date and time of extraction file:</td>
+            <td>%FECHAENVIO%</td>
+         </tr>
+      </table>
+      </td>
+   </tr>
+   <!-- %INITREPORT% -->
+   <tr>
+      <td height="10"></td>
+   </tr>
+   <tr>
+      <td><span class="title">Infringements in the last file:</span><br />
+      <br />
+      <table border="1" width="100%" class="ex1">
+         <thead >
+            <tr bgcolor="#008080">
+               <td rowspan="2">Type</td>
+               <td rowspan="2">Nature</td>
+               <td colspan="2">Period</td>
+               <td rowspan="2">EC/FC<br />
+               (hh:mm)</td>
+            </tr>
+            <tr bgcolor="#008080">
+               <td>Init</td>
+               <td>End</td>
+            </tr>
+         </thead>
+         <!--%INFRACROWS%-->
+      </table>
+      %NO_INFRACROWS_INFO_START%<span >You have no infringements.</span><br/>%NO_INFRACROWS_INFO_END%
+      <span class="note"> Note: The period analyzed corresponds
+      the last 30 days of discharge.</span></td>
+   </tr>
+   <tr>
+      <td height="10" />
+   </tr>
+   <tr>
+      <td><span class="title">Warnings for next
+      periods:</span><br />
+      <br />
+      <table border="1" width="100%">
+         <thead class="tableheader">
+            <tr bgcolor="#008080">
+               <td width="25%">Type</td>
+               <td>Message</td>
+            </tr>
+         </thead>
+         <!--%NOTICEROWS%-->
+      </table>
+      %NO_NOTICEROWS_INFO_START%<span >You have no warnings.</span><br/>%NO_NOTICEROWS_INFO_END%
+      <span class="note">Note: The date and time of reference is the discharge. </span></td>
+   </tr>
+   <!-- %ENDREPORT% -->
+</table>
+</body>
+</html>

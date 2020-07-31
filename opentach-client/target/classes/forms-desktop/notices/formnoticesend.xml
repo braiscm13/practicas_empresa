@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="NoticeId" entity="EAvisos" title="Avisos" buttons="yes">
+	<FormHeader standardbuttons="q" />
+	<Column expandlast="no">
+		<SplitPane attr="splitnoticesend">
+			<Column expandlast="no">
+				<Row height="10" />
+				<IntegerDataField attr="NoticeId" visible="no" />
+				<TextDataField attr="SendUser" visible="no" />
+				<DateDataField attr="CreationDate" align="left" calendar="no" enabled="no" />
+
+				<HTMLDataField attr="Subject" dim="text" align="left" labelsize="12" required="yes" enabled="no" />
+				<Row expand="yes" title="Contenido">
+					<HTMLDataField attr="Content" dim="text" align="left" expand="yes" labelsize="12" labelvisible="no" enabled="no"/>
+				</Row >
+				<Row align="left" expand="no">
+					<CheckDataField attr="ResponseRequest" labelposition="right" enabled="no"/>
+					<CheckDataField attr="MandatoryRead" labelposition="right" enabled="no"/>
+					<!--  <CampoCheck attr="EnviarMail" labelposition="right"  enabled="no"/> -->
+					<TextComboDataField attr="NoticeType" translate="yes" dim="text" enabled="no" />
+				</Row >
+
+			</Column >
+
+			<Column expandlast="no">
+				<Row title="Destinatarios" attr="UpdateMode" expand="yes">
+					<com.ontimize.util.notice.NoticeTable entity="EDestinosAvisos" cols="DestinyId;NoticeId;DestinyUser;DestinyEMail;Sent;SendingDate" key="DestinyId" parentkey="NoticeId" visiblecols="DestinyUser;Sent;SendingDate" controls="yes" expand="yes" deletebutton="no" />
+				</Row >
+			</Column >
+		</SplitPane>
+	</Column >
+</FormExt>

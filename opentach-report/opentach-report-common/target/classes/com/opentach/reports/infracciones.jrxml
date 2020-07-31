@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-07-18T09:39:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="infracciones2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="4ba93fca-cb2e-44a8-95a9-3eb1a958029c">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0245201830476058"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Crosstab Data Text"/>
+	<subDataset name="group" uuid="a2d93bef-af2d-4e16-9cf8-398178c21d13">
+		<parameter name="pgrupo" class="java.math.BigDecimal" isForPrompting="false"/>
+		<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="f_desde" class="java.sql.Timestamp" isForPrompting="false"/>
+		<parameter name="sqldeleg" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<parameter name="f_hasta" class="java.sql.Timestamp"/>
+		<queryString>
+			<![CDATA[SELECT * FROM(
+SELECT 	COND.GRUPO,
+	CDCONDUCTOR_CONT.DNI || ', ' || NVL(CDCONDUCTORES_EMP.NOMBRE,'') || ' ' || NVL(CDCONDUCTORES_EMP.APELLIDOS,'') AS DNI,
+	TIPO.TIPO,
+	NATURALEZA.NATU,
+	SUM(CASE WHEN NATURALEZA.NATU = CDINFRACCIONES_TEMP.NATURALEZA THEN 1 ELSE 0 END ) AS NUM_INF_NATURALEZA,
+	SUM(CASE WHEN CDINFRACCIONES_TEMP.TIPO = TIPO.TIPO AND NATURALEZA.NATU = CDINFRACCIONES_TEMP.NATURALEZA THEN 1 ELSE 0 END ) AS NUM_INF,
+	(CASE WHEN  NATURALEZA.NATU = 'L' THEN 0 ELSE (CASE WHEN NATURALEZA.NATU = 'G' THEN 1 ELSE 2 END)END) AS ORDEN_NATU
+	FROM CDINFRACCIONES_TEMP, CDCONDUCTORES_EMP, CDCONDUCTOR_CONT,CDVEMPRE_REQ_REALES,
+	(SELECT 'L' AS NATU FROM DUAL
+ 	UNION ALL
+ 	SELECT 'G' AS NATU FROM DUAL
+ 	UNION ALL
+ 	SELECT 'MG' AS NATU FROM DUAL
+	) NATURALEZA,
+	(SELECT 'ECI' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'FDD' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'ECD' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'ECS' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'ECB' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'FDS' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'FDSR' AS TIPO FROM DUAL
+ 	UNION ALL
+ 	SELECT 'FDS45' AS TIPO FROM DUAL
+ 	)  TIPO,
+(SELECT TRUNC((ROWNUM -1)/10) AS GRUPO,
+	DNI,
+	NOMBRE
+	FROM (
+	SELECT DISTINCT CDCONDUCTOR_CONT.DNI, CDCONDUCTORES_EMP.NOMBRE || ' ' || CDCONDUCTORES_EMP.APELLIDOS AS NOMBRE
+	FROM CDINFRACCIONES_TEMP, CDCONDUCTORES_EMP, CDCONDUCTOR_CONT, CDVEMPRE_REQ_REALES
+	WHERE CDINFRACCIONES_TEMP.IDCONDUCTOR = CDCONDUCTORES_EMP.IDCONDUCTOR
+	  $P!{sqldeleg}
+	  AND CDCONDUCTOR_CONT.DNI = CDCONDUCTORES_EMP.DNI
+	  AND CDINFRACCIONES_TEMP.NUMREQ = CDCONDUCTOR_CONT.CG_CONTRATO
+	  AND CDVEMPRE_REQ_REALES.NUMREQ = CDINFRACCIONES_TEMP.NUMREQ
+	  AND CDCONDUCTORES_EMP.CIF = CDVEMPRE_REQ_REALES.CIF
+	  AND CDINFRACCIONES_TEMP.NUMREQ = $P{numreq}
+	  AND CDINFRACCIONES_TEMP.FECHORAINI > $P{f_desde}
+	  AND CDINFRACCIONES_TEMP.FECHORAINI < $P{f_hasta})
+)COND
+WHERE CDINFRACCIONES_TEMP.IDCONDUCTOR = CDCONDUCTORES_EMP.IDCONDUCTOR
+  AND CDCONDUCTOR_CONT.DNI = CDCONDUCTORES_EMP.DNI
+  $P!{sqldeleg}
+  AND CDINFRACCIONES_TEMP.NUMREQ = CDCONDUCTOR_CONT.CG_CONTRATO
+  AND CDINFRACCIONES_TEMP.NUMREQ = $P{numreq}
+  AND CDINFRACCIONES_TEMP.FECHORAINI > $P{f_desde}
+  AND CDINFRACCIONES_TEMP.FECHORAINI < $P{f_hasta}
+  AND COND.DNI = CDCONDUCTOR_CONT.DNI
+  AND CDVEMPRE_REQ_REALES.NUMREQ = CDINFRACCIONES_TEMP.NUMREQ
+  AND CDCONDUCTORES_EMP.CIF = CDVEMPRE_REQ_REALES.CIF
+GROUP BY CDCONDUCTOR_CONT.DNI || ', ' || NVL(CDCONDUCTORES_EMP.NOMBRE,'') || ' ' || NVL(CDCONDUCTORES_EMP.APELLIDOS,''), TIPO.tipo, NATURALEZA.natu,COND.GRUPO
+ORDER BY CDCONDUCTOR_CONT.DNI || ', ' || NVL(CDCONDUCTORES_EMP.NOMBRE,'') || ' ' || NVL(CDCONDUCTORES_EMP.APELLIDOS,''), TIPO.tipo, CASE NATURALEZA.natu WHEN 'L' THEN 0 WHEN 'G' THEN 1 ELSE 2 END,COND.GRUPO
+)
+WHERE GRUPO = $P{pgrupo}]]>
+		</queryString>
+		<field name="GRUPO" class="java.math.BigDecimal"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="TIPO" class="java.lang.String"/>
+		<field name="NATU" class="java.lang.String"/>
+		<field name="NUM_INF_NATURALEZA" class="java.math.BigDecimal"/>
+		<field name="NUM_INF" class="java.math.BigDecimal"/>
+		<field name="ORDEN_NATU" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INFRACCIONES"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqldeleg" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_desde" class="java.sql.Timestamp"/>
+	<parameter name="f_hasta" class="java.sql.Timestamp"/>
+	<parameter name="ppagenumber" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  DISTINCT GRUPO
+FROM(
+SELECT 	COND.GRUPO,
+	CDCONDUCTOR_CONT.DNI,
+	CDCONDUCTORES_EMP.NOMBRE || ' ' || CDCONDUCTORES_EMP.APELLIDOS AS NOMBRE,
+	TIPO.TIPO,
+	NATURALEZA.NATU,
+	SUM(CASE WHEN NATURALEZA.NATU = CDINFRACCIONES_TEMP.NATURALEZA THEN 1 ELSE 0 END ) AS NUM_INF_NATURALEZA,
+	SUM(CASE WHEN CDINFRACCIONES_TEMP.TIPO = TIPO.TIPO AND NATURALEZA.NATU = CDINFRACCIONES_TEMP.NATURALEZA THEN 1 ELSE 0 END ) AS NUM_INF,
+	(CASE WHEN  NATURALEZA.NATU = 'L' THEN 0 ELSE (CASE WHEN NATURALEZA.NATU = 'G' THEN 2 ELSE 3 END)END) AS ORDEN_NATU
+    FROM CDINFRACCIONES_TEMP, CDCONDUCTORES_EMP, CDCONDUCTOR_CONT, CDVEMPRE_REQ_REALES,
+	(SELECT 'L' AS NATU FROM DUAL
+	 UNION ALL
+	 SELECT 'G' AS NATU FROM DUAL
+	 UNION ALL
+	 SELECT 'MG' AS NATU FROM DUAL
+	) NATURALEZA,
+	(SELECT 'ECI' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'FDD' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'ECD' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'ECS' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'ECB' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'FDS' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'FDSR' AS TIPO FROM DUAL
+	 UNION ALL
+	 SELECT 'FDS45' AS TIPO FROM DUAL
+	 )  TIPO,
+	(SELECT TRUNC((ROWNUM -1)/10) AS GRUPO,
+		DNI,
+		NOMBRE
+	  FROM (
+SELECT DISTINCT CDCONDUCTOR_CONT.DNI, CDCONDUCTORES_EMP.NOMBRE || ' ' || CDCONDUCTORES_EMP.APELLIDOS AS NOMBRE
+	FROM CDINFRACCIONES_TEMP, CDCONDUCTORES_EMP, CDCONDUCTOR_CONT, CDVEMPRE_REQ_REALES
+	WHERE CDINFRACCIONES_TEMP.IDCONDUCTOR = CDCONDUCTORES_EMP.IDCONDUCTOR
+	  AND CDCONDUCTOR_CONT.DNI = CDCONDUCTORES_EMP.DNI
+          $P!{sqldeleg}
+	  AND CDVEMPRE_REQ_REALES.CIF      = CDCONDUCTORES_EMP.CIF
+	  AND CDVEMPRE_REQ_REALES.NUMREQ   = CDINFRACCIONES_TEMP.NUMREQ
+	  AND CDINFRACCIONES_TEMP.NUMREQ = CDCONDUCTOR_CONT.CG_CONTRATO
+	  AND CDINFRACCIONES_TEMP.NUMREQ = $P{numreq}
+   	  AND CDINFRACCIONES_TEMP.FECHORAINI > ($P{f_desde})
+	  AND CDINFRACCIONES_TEMP.FECHORAINI < $P{f_hasta})
+)COND
+WHERE CDINFRACCIONES_TEMP.IDCONDUCTOR = CDCONDUCTORES_EMP.IDCONDUCTOR
+  AND CDCONDUCTOR_CONT.DNI = CDCONDUCTORES_EMP.DNI
+  AND CDINFRACCIONES_TEMP.NUMREQ = CDCONDUCTOR_CONT.CG_CONTRATO
+  AND CDVEMPRE_REQ_REALES.CIF      = CDCONDUCTORES_EMP.CIF
+  AND CDVEMPRE_REQ_REALES.NUMREQ   = CDINFRACCIONES_TEMP.NUMREQ
+  AND CDINFRACCIONES_TEMP.NUMREQ =  $P{numreq}
+  AND CDINFRACCIONES_TEMP.FECHORAINI > ($P{f_desde})
+  AND CDINFRACCIONES_TEMP.FECHORAINI < $P{f_hasta}
+  AND COND.DNI = CDCONDUCTOR_CONT.DNI
+  GROUP BY CDCONDUCTOR_CONT.DNI,CDCONDUCTORES_EMP.NOMBRE || ' ' || CDCONDUCTORES_EMP.APELLIDOS, TIPO.tipo, NATURALEZA.natu,COND.GRUPO
+)ORDER BY GRUPO]]>
+	</queryString>
+	<field name="GRUPO" class="java.math.BigDecimal"/>
+	<variable name="ECI" class="java.lang.String">
+		<variableExpression><![CDATA["ECI"]]></variableExpression>
+	</variable>
+	<variable name="ECD" class="java.lang.String">
+		<variableExpression><![CDATA["ECD"]]></variableExpression>
+	</variable>
+	<variable name="MG" class="java.lang.String">
+		<variableExpression><![CDATA["MG"]]></variableExpression>
+	</variable>
+	<variable name="G" class="java.lang.String">
+		<variableExpression><![CDATA["G"]]></variableExpression>
+	</variable>
+	<variable name="L" class="java.lang.String">
+		<variableExpression><![CDATA["L"]]></variableExpression>
+	</variable>
+	<group name="GRUPO">
+		<groupExpression><![CDATA[$F{GRUPO}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="394" splitType="Stretch">
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" positionType="Float" x="346" y="170" width="165" height="60" forecolor="#34679A" uuid="7ce9581a-8f5a-48b1-85ee-53fe2f9f09bd"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.25" lineStyle="Solid"/>
+						<leftPen lineWidth="1.25"/>
+						<bottomPen lineWidth="1.25"/>
+						<rightPen lineWidth="1.25"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{LEGEND_INFRAC}]]></textFieldExpression>
+				</textField>
+				<crosstab>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="13" width="497" height="154" isRemoveLineWhenBlank="true" uuid="0725bd9b-afce-4bf4-9c68-8979d5c96cc1"/>
+					<crosstabDataset>
+						<dataset>
+							<datasetRun subDataset="group" uuid="bc4092db-8d4b-4908-aa1a-2c777620c912">
+								<datasetParameter name="pgrupo">
+									<datasetParameterExpression><![CDATA[$F{GRUPO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$P{numreq}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_desde">
+									<datasetParameterExpression><![CDATA[$P{f_desde}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="sqldeleg">
+									<datasetParameterExpression><![CDATA[$P{sqldeleg}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_hasta">
+									<datasetParameterExpression><![CDATA[$P{f_hasta}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+					</crosstabDataset>
+					<rowGroup name="DNI" width="94" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{DNI}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="25" uuid="07fc67db-4bd7-4c83-a7e4-4a943a1cbbd1"/>
+									<textElement textAlignment="Left" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{DNI}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#005FB3" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="16" uuid="32cc926b-3940-428f-aae5-20f44b87e4af"/>
+									<textElement verticalAlignment="Middle">
+										<font size="7"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TOTAL}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<rowGroup name="NOMBRE" width="0" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque"/>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#BFE1FF" mode="Opaque"/>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="TIPO" height="18">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{TIPO}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" x="0" y="0" width="16" height="18" uuid="cd18f1c6-a08a-428c-9ed2-24915ec30023"/>
+									<textElement verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TIPO}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents/>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<columnGroup name="NATU" height="20">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{NATU}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="16" height="20" uuid="8eae98af-4a96-4837-b96f-9e3214c8aeb0"/>
+									<textElement verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NATU}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents/>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="NUM_INFMeasure" class="java.math.BigDecimal" calculation="Sum">
+						<measureExpression><![CDATA[$F{NUM_INF}]]></measureExpression>
+					</measure>
+					<crosstabCell width="16" height="25">
+						<cellContents>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="16" height="25" uuid="dece4234-7921-4b87-8eab-ed87c212e8bb"/>
+								<textElement verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="16" height="16" rowTotalGroup="DNI">
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="16" height="16" forecolor="#FFFFFF" uuid="c40dd0ac-dd99-46f3-aede-3e9dbcda3d34"/>
+								<textElement verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="50" columnTotalGroup="TIPO">
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="c5bb4fee-c587-4642-8da9-f53ecd1cec12"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="DNI" columnTotalGroup="TIPO">
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="594066c9-6c87-4783-a4b0-8541dd216b1a"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="50" columnTotalGroup="NATU">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="425b6b52-f492-467c-91f7-9e625df624ab"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="DNI" columnTotalGroup="NATU">
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="379b5661-574c-40d2-9b9c-e4e45216ccf9"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="16" height="0" rowTotalGroup="NOMBRE">
+						<cellContents backcolor="#BFE1FF" mode="Opaque"/>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="NOMBRE" columnTotalGroup="TIPO">
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="8d0ab562-43f8-4d4b-b369-1d0a43c3da0a"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="NOMBRE" columnTotalGroup="NATU">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="8f1b449b-66da-4afa-a474-17758f0b440a"/>
+								<textFieldExpression><![CDATA[$V{NUM_INFMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+				<elementGroup>
+					<stackedBarChart>
+						<chart customizerClass="com.opentach.common.reports.JRInfracChartCustomizer">
+							<reportElement key="element-1" positionType="Float" x="31" y="260" width="480" height="130" printWhenGroupChanges="GRUPO" uuid="cd3cd8ab-dde0-4ae5-9aed-4e0c046b858e"/>
+							<chartTitle/>
+							<chartSubtitle/>
+							<chartLegend textColor="#000000" backgroundColor="#FFFFFF" position="Bottom">
+								<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							</chartLegend>
+						</chart>
+						<categoryDataset>
+							<dataset>
+								<datasetRun subDataset="group" uuid="f5a72656-2178-44bb-918d-ca28834426a7">
+									<datasetParameter name="pgrupo">
+										<datasetParameterExpression><![CDATA[$F{GRUPO}]]></datasetParameterExpression>
+									</datasetParameter>
+									<datasetParameter name="f_desde">
+										<datasetParameterExpression><![CDATA[$P{f_desde}]]></datasetParameterExpression>
+									</datasetParameter>
+									<datasetParameter name="numreq">
+										<datasetParameterExpression><![CDATA[$P{numreq}]]></datasetParameterExpression>
+									</datasetParameter>
+									<datasetParameter name="f_hasta">
+										<datasetParameterExpression><![CDATA[$P{f_hasta}]]></datasetParameterExpression>
+									</datasetParameter>
+								</datasetRun>
+							</dataset>
+							<categorySeries>
+								<seriesExpression><![CDATA[$F{NATU}]]></seriesExpression>
+								<categoryExpression><![CDATA[$F{DNI}]]></categoryExpression>
+								<valueExpression><![CDATA[$F{NUM_INF_NATURALEZA}]]></valueExpression>
+							</categorySeries>
+						</categoryDataset>
+						<barPlot>
+							<plot labelRotation="-45.0"/>
+							<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+							<categoryAxisFormat labelRotation="-45.0">
+								<axisFormat>
+									<labelFont>
+										<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									</labelFont>
+									<tickLabelFont>
+										<font fontName="Arial" size="4" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									</tickLabelFont>
+								</axisFormat>
+							</categoryAxisFormat>
+							<valueAxisFormat>
+								<axisFormat/>
+							</valueAxisFormat>
+						</barPlot>
+					</stackedBarChart>
+					<textField isBlankWhenNull="false">
+						<reportElement key="textField-6" positionType="Float" x="31" y="235" width="480" height="25" forecolor="#34679A" uuid="1178dad5-e7be-47e8-9266-75dfd6405801"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$R{RESUMEN_INFRACCIONES_POR_CONDUCTOR}]]></textFieldExpression>
+					</textField>
+				</elementGroup>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="infrac">
+		<groupExpression><![CDATA[""]]></groupExpression>
+		<groupHeader>
+			<band splitType="Prevent"/>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<line>
+				<reportElement key="line-11" x="24" y="109" width="495" height="1" forecolor="#34679A" uuid="186d56f0-98f5-42d8-94f1-edf9b33bd007"/>
+			</line>
+			<image scaleImage="RetainShape">
+				<reportElement key="image-3" x="367" y="742" width="94" height="33" uuid="b3edcaa6-687b-4a19-9e05-3ad3a8db3fa6"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+			<rectangle radius="21">
+				<reportElement key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="11" y="10" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF" uuid="43ba8ac7-1bd9-4837-869c-820771c3968d"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement key="image-2" x="33" y="22" width="63" height="55" uuid="f36d819c-72d1-4cbc-8537-09308c7c3305"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="420" y="80" width="60" height="14" uuid="86405116-c372-46c0-9454-83a222a84292"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}==null?new java.sql.Timestamp(System.currentTimeMillis()):$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="10" y="706" width="522" height="90" backcolor="#34679A" uuid="e3606efd-8804-4043-aeb8-230bf8cb91b7"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement key="ellipse" x="127" y="36" width="14" height="14" backcolor="#34679A" uuid="acca12c2-1142-44f9-b3ca-a2130dcf84b5"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="146" y="36" width="14" height="14" backcolor="#34679A" uuid="73ed71b4-0e4c-4863-8b09-9c46df6f80b5"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="168" y="30" width="346" height="64" uuid="4b5b2ebd-0080-49ea-8258-1142822e3d9c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="16" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="332" y="80" width="88" height="14" uuid="63dfcc63-e8c2-443f-ba18-b16fb625efea"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="332" y="94" width="46" height="14" uuid="b4400095-d879-42fa-8ceb-164b6fca8506"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="378" y="94" width="300" height="14" uuid="fe0fc4ca-a02c-4b42-8f7a-7ef0e7e31ad7"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="16" y="678" width="512" height="79" uuid="0abb3075-8cad-4967-973b-98b46dcb9b40">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-1" x="44" y="743" width="283" height="26" uuid="e7484792-c392-47ad-ae6c-8262b8f2d775"/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="477" y="763" width="45" height="18" forecolor="#FFFFFF" uuid="c4ac16cc-2773-41a6-bad1-59eb51b945fc">
+					<printWhenExpression><![CDATA[$P{ppagenumber}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-6" mode="Transparent" x="31" y="114" width="484" height="140" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="0ba130b6-671e-40c7-a9a8-bb3ecb6cd5aa">
+					<printWhenExpression><![CDATA[($V{PAGE_NUMBER}.intValue() == 1) && ($P{f_informe}!=null)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Courier New" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{infracciones_dscr}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement key="ellipse" x="108" y="36" width="14" height="14" backcolor="#34679A" uuid="a794037b-cfb5-4289-be38-10ff86cb2675"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<image scaleImage="RetainShape">
+				<reportElement key="image-3" x="367" y="742" width="94" height="33" uuid="035a399e-ae8b-4d91-9b8a-0f05d4975596"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="141">
+			<printWhenExpression><![CDATA[($V{PAGE_NUMBER}.intValue() == 1) && ($P{f_informe}!=null)]]></printWhenExpression>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="113"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="102" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

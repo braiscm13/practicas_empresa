@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incidentes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="6c84c34d-1683-4f11-a76e-cdf1b90fef30">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.9487171000000179"/>
+	<property name="ireport.x" value="46"/>
+	<property name="ireport.y" value="816"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ppagenumber" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="conductor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="calendario" class="net.sf.jasperreports.engine.JRRenderable"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="KM_INI" class="java.lang.Number"/>
+	<field name="KM_FIN" class="java.lang.Number"/>
+	<field name="FECINI" class="java.util.Date"/>
+	<field name="FECFIN" class="java.util.Date"/>
+	<variable name="vpagenumber" class="java.lang.Integer" resetType="None">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}+1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="800" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{ppagenumber}]]></printWhenExpression>
+			<rectangle radius="21">
+				<reportElement uuid="0c7eaf8c-ee03-4e3d-a635-e64a1ea93d2d" key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="11" y="10" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="abc31bce-15a6-4a4c-a8c4-c038926486d5" key="rectangle" x="10" y="709" width="522" height="90" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="27cebfce-55b8-4b2c-99cd-36fa5969e965" key="rectangle" x="17" y="678" width="511" height="79"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement uuid="22851b78-cfc4-47d6-81cf-5f190534b0e3" key="ellipse" x="108" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<line>
+				<reportElement uuid="8a526b01-5c6f-41dc-9c26-2d6b49e239ed" key="line-11" x="24" y="119" width="495" height="1" forecolor="#34679A"/>
+			</line>
+			<ellipse>
+				<reportElement uuid="c129b802-619f-4f6f-9e4b-28af85d12cbb" key="ellipse" x="146" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<staticText>
+				<reportElement uuid="aa2adbfd-18c7-468e-bf57-6b243f5be802" key="staticText-1" x="49" y="737" width="283" height="26"/>
+				<textElement/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement uuid="ba6499e7-4f42-49e0-af80-3a8d0191f7fd" key="ellipse" x="127" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="31ec9506-85cb-4359-994e-ec4e6977ac9c" key="textField-1" x="168" y="40" width="336" height="48"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str($P{title})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="5465c143-87ce-4a4d-8a3c-dcdc25307d26" key="textField" x="482" y="763" width="45" height="18" forecolor="#FFFFFF">
+					<printWhenExpression><![CDATA[$P{ppagenumber}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="c6334383-2d80-44f4-abf1-5637b545d8e1" key="image-3" x="397" y="740" width="63" height="22"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="7744acd5-e462-430e-818e-b6a9b4830bf8" key="image-2" x="33" y="32" width="63" height="55"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="ac236914-f23a-40df-8273-fd0c2552f1a4" key="textField-4" x="368" y="88" width="90" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="7343700d-11ac-43b2-9ea0-86c7a5550fca" key="textField-2" x="456" y="88" width="62" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="13cd5685-006e-4eff-b04f-be471dd2969c" key="textField-3" x="97" y="102" width="271" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{conductor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="d3bb05e0-fa56-43ba-bac4-8a41df30699b" key="textField-5" x="31" y="88" width="66" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="ca978bff-5576-4752-bd73-e3bd50e1ba8a" key="textField-3" x="97" y="88" width="300" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="8e2a62cb-ab9a-4ae2-a96b-a16ad760d2dd" key="textField-5" x="31" y="102" width="66" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CONDUCTOR_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="449" splitType="Stretch">
+			<image>
+				<reportElement uuid="17b28a12-2c87-43e2-abae-0290fdba38c7" x="24" y="134" width="495" height="315"/>
+				<imageExpression><![CDATA[$P{calendario}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="126" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}>1]]></printWhenExpression>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="909abf98-4262-463b-8853-8d2acf0da7af" key="rectangle-1" mode="Opaque" x="24" y="3" width="494" height="30" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="89f4a8ff-5026-4000-b387-183ef353fddf" key="textField-7" x="25" y="5" width="91" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="8dba54b9-af7b-40b9-aaf7-1c268176cc16" key="textField-9" x="115" y="5" width="77" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FECINI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="110d925d-bd94-4fff-b3ba-5040f4312a26" key="textField-12" x="191" y="5" width="76" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FECFIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="1c9823fc-5786-4bca-86d8-11375be38ce6" key="textField-9" x="266" y="5" width="77" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_INI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="adfbe850-8a81-4445-aae2-9732e0abdb2f" key="textField-12" x="342" y="5" width="76" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_FIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="76557113-d98d-491f-982b-78405a9646e7" key="textField-12" x="417" y="5" width="76" height="27" forecolor="#34679A"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{TOTALKM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="09c0cf53-6ae1-494e-b74e-5d5c62f4a067" key="rectangle-1" mode="Opaque" x="24" y="0" width="494" height="21" forecolor="#E8F0FF" backcolor="#E8F0FF">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="c54d7eec-33a6-495d-9112-d4263be75f62" key="textField" x="25" y="0" width="91" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="true">
+				<reportElement uuid="50716ec3-c8c0-497d-8489-c87b614f35f1" key="textField" x="115" y="0" width="77" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECINI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="true">
+				<reportElement uuid="b8ce4307-b864-477d-981d-21396b2786fa" key="textField" x="191" y="0" width="76" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECFIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###" isBlankWhenNull="true">
+				<reportElement uuid="d18d5648-82f6-42eb-a41b-49556391a67b" key="textField" x="266" y="0" width="77" height="19"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_INI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###" isBlankWhenNull="true">
+				<reportElement uuid="8d031cec-3cc6-4368-9188-502a6f1a5d50" key="textField" x="342" y="0" width="76" height="19"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_FIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###" isBlankWhenNull="true">
+				<reportElement uuid="c5bfbf44-85c5-49db-8747-0d0072915aa1" key="textField" x="417" y="0" width="76" height="19"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_FIN}.longValue()-$F{KM_INI}.longValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="104" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

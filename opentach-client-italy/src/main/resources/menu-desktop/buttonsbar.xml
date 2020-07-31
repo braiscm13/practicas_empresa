@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ApplicationToolBar toolbarheight = "30">
+	<ApToolBarButton icon="com/opentach/client/rsc/home_inicio24.png" attr="manageracercade2" />
+	<ApToolBarSeparator attr="mseparator1" width="20" align="right" />
+	<ApToolBarButton icon="com/opentach/client/rsc/truck_dude24.png" attr="managercondveh" />
+	<ApToolBarButton icon="com/opentach/client/rsc/truck_dude24.png" attr="managerempresaagente" />
+	<ApToolBarButton icon="com/opentach/client/rsc/chartcond24.png" attr="managergraficacond" />
+	<ApToolBarButton icon="com/opentach/client/rsc/date-time.png" attr="managercalendaruso" />
+	<ApToolBarButton icon="com/opentach/client/rsc/scroll224.png" attr="managercontratoemp" />
+	<ApToolBarSeparator attr="mseparator1" width="20" align="right" />
+	<ApToolBarButton attr="managercargaficheros" icon="com/opentach/client/rsc/server_from_client24.png" />
+	<ApToolBarButton attr="managerdescargaficheros" icon="com/opentach/client/rsc/server_to_client24.png" />
+	<ApToolBarButton icon="com/opentach/client/rsc/document_view.png" attr="managervertgd" />
+	<ApToolBarButton icon="com/opentach/client/rsc/box24.png" attr="manageralmacenficheros" />
+	<ApToolBarSeparator attr="mseparator2" width="20" align="right" height="30" />
+	<ApToolBarButton icon="com/opentach/client/rsc/gears24.png" attr="managercfgservicios" />
+	<ApToolBarSeparator attr="mseparator3" width="20" align="right" />
+	<!--<ApToolBarButton attr="manageracercade" align="right" icon="com/opentach/client/rsc/information24.png" /> -->
+	<ApToolBarSeparator attr="mseparator4" width="20" align="right" />
+	<ApToolBarButton attr="SendToTray" icon="com/opentach/client/rsc/minimize24.png" />
+	<ApToolBarButton attr="Exit" icon="com/opentach/client/rsc/exit24.png" align="right" />
+	<ApToolBarFiller />
+	<Row margin="0;0;0;20">
+		<Label icon="com/opentach/client/rsc/assistant.png"/>
+		<Column>
+			<Label align="center" fontcolor="#ffffff" font="Arial-BOLD-12" text="TECH_SUPPORT" margin="-1;0;-3;0"/>
+			<!-- <Label align="center" fontcolor="#ffffff" font="Arial-PLAIN-11" text="SEVEN_DAYS" margin="-3;0;-2;0" /> -->
+		</Column>
+		<!-- <Label uiname="PhoneNumber" font="Arial-BOLD-18" text="672 049 022"/> -->
+	</Row>
+
+</ApplicationToolBar>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Node entity="EPerfil"  
+  text="EPerfil"	
+  attr="NIVEL_CD;DSCR;NIVEL_NUM"
+  sortattr="NIVEL_NUM"
+  hideattr="NIVEL_NUM"
+  form="formPerfiles.xml"
+  keys="NIVEL_CD"
+  separator=" - "
+  iconorg="com/opentach/client/rsc/llaves16.png"
+  iconnoorg="com/opentach/client/rsc/perfil16.png">
+  <Node entity="EUsuariosTodos"    
+    text="Usuario"
+    attr="USUARIO"
+    sortattr="USUARIO"
+    form="formUsuarios.xml"
+    keys="USUARIO"
+    parentkeys="NIVEL_CD;NIVEL_CD"
+    separator=" - "
+    iconorg="com/opentach/client/rsc/usuarios16.png"
+  	iconnoorg="com/opentach/client/rsc/dude416.png">
+  </Node>
+</Node>

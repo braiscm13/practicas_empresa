@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Column expand="yes">	
+	<ObjectDataField attr="MAI_ID" text="mmng.MAI_ID" visible="no" />
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row expand="no" margin="0;20;0;20">
+			<Column expandlast="no" margin="0;0;20;20">
+				<TextDataField 
+					attr="COM_NAME" text="EMPRESA"
+					align="left" labelsize="9" dim="text" required="yes"
+					enabled="no"
+				/>
+				<TextDataField 
+					attr="MAI_TO" text="mmng.MAI_TO"
+					align="left" labelsize="9" dim="text" required="yes"
+					enabled="no"
+				/>
+				<TextDataField 
+					attr="MAI_CC" text="mmng.MAI_CC"
+					align="left" labelsize="9" dim="text"
+					enabled="no"
+				/>
+				<TextDataField 
+					attr="MAI_SUBJECT" text="mmng.MAI_SUBJECT"
+					align="left" labelsize="9" dim="text" required="yes"
+					enabled="no"
+				/>
+			<TimezoneHourDateDataField attr="MAI_DATE"  text="mmng.MAI_DATE" align="left" labelsize="9" dim="no" size="7" enabled="no"/>
+			</Column>
+			<ListComponent
+				attr="attachments" title="mmng.attachments.title"
+				entity="ojee.MailManagerService.attachment" parentkeys="MAI_ID" cols="MAI_ID;MAT_ID;MAT_NAME;MAT_SIZE"
+				startshowed="yes" ignoreinitpreferences="yes"
+				parser="com.opentach.client.mailmanager.im.attachments.AttachmentReadOnlyEntryParser"
+				optionsnames=""
+				optionsimages=""
+				optionslisteners=""
+			/>
+		</Row>
+		<HTMLDataField attr="MAI_BODY" dim="text" expand="yes" labelvisible="no"/>
+		<Row expand="no">
+<!-- 			<NavigationToolbar /> -->
+			<Row />
+			<Button 
+				key="cancel"
+				text="cancel"
+				icon="images/sign_stop16.png"
+				listener="com.opentach.client.mailmanager.im.IMMailSendCancelListener"
+				/>
+		</Row>
+	</Column>
+</Column>

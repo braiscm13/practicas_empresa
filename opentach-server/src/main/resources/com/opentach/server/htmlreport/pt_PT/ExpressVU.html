@@ -1,0 +1,93 @@
+<HTML>
+	<HEAD>
+		<TITLE>Relat&oacute;rio Express</TITLE>
+			<style type="text/css">
+				table.sample{
+				border-color: #FFFFFF
+				}
+			</style>
+	</HEAD>
+	<BODY>	
+	<table class="sample" border=3>
+		<TR border=0>
+			<td border=0>
+				<table  class="sample" bgcolor="#FFFFFF" align="center" border="0">
+					<TR align="left" border=0 >
+						<TH colspan="3"  border=0 >						
+							<CENTER><FONT COLOR="navy" size="6">Empresa:       %EMPRESA%</FONT></CENTER>							
+						</TH>
+					</TR>
+					<TR align="left" border=0>
+						<TD width="20%">					
+							<FONT COLOR="navy" size="5">Ve&iacute;culo: %VEHICULO%</FONT>
+						</TD>
+						<TD width="43%">					
+							<FONT COLOR="blue" size="4">Periodo Analisado a partir de %INITDATE% at&eacute; %ENDDATE%</FONT>
+						</TD>
+						<TD width="37%">						
+							<FONT COLOR="blue" size="4">Pr&oacute;xima descarga: %FDESCARGA%</FONT>									
+						</TD>
+					</TR>
+					<TR align="left" border=0 >	
+							<TD valign="top" colspan="3">
+								<TABLE border=0>	
+									<TR align="left" border=0>
+										<TD align="left" valign="top" width="40%">				
+											<FONT COLOR="blue" size="5">Kil&oacute;metros Recorridos</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Km Iniciais</TH>
+													<TH>Km Finales</TH>
+													<TH>Km Totales</TH>				
+												</TR>
+												%TABLA_KM%
+											</TABLE>
+											<BR/>											
+											<FONT COLOR="blue" size="5">Resumo de Incidentes e Falhas</FONT>		
+											<TABLE border="1" bordercolor="green">
+												%TABLA_INCIDENTES%				
+											</TABLE>
+											<BR/>
+											<FONT COLOR="blue" size="5">Condutores do ve&iacute;culo</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>DNI</TH>
+													<TH>Nombre</TH>
+													<TH>Apellidos</TH>
+												</TR>
+												%TABLA_CONDUCTORES%			
+											</TABLE>	
+											
+										</TD>	
+										</TD>												
+										<TD align="left" valign="top" width="60%">
+											<FONT COLOR="blue" size="5">Controles (oficina, agente de controle)</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Fecha</TH>
+													<TH>Descripci&oacute;n</TH>
+													<TH>Nº Tarjeta de Control</TH>
+												</TR>
+												%TABLA_CONTROLES%			
+											</TABLE>
+											<BR/>											
+											<FONT COLOR="blue" size="5">Calibragems</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Descripci&oacute;n</TH>
+													<TH>Nº Tarjeta Taller</TH>
+													<TH>F. Pr&oacute;ximo</TH>
+												</TR>
+												%TABLA_CALIBRADOS%			
+											</TABLE>											
+										</TD>																											
+									</tr>								
+							</TABLE>
+							</TD>		
+							</TR>			
+				</table>
+			</td>
+			</TR>
+			</table>			
+	</BODY>
+</HTML>

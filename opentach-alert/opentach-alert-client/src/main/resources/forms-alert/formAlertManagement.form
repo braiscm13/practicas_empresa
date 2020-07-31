@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="managerAlerts" buttons="no" status="no"
+	preferredsizetodialog="1300;850" autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;10;0">
+				<Column  expand="0.3">
+					<TextDataField attr="ALR_CODE" labelsize="12" align="left" dim="text" />
+					<TextDataField attr="ALR_NAME" labelsize="12" align="left" dim="text" />
+					<ReferenceExtDataField attr="ALR_ACTION" key="ALR_ACTION" cod="ALR_ACTION"
+						entity="ojee.AlertService.alertImplementation"
+						cols="ALR_ACTION" visiblecols="ALR_ACTION" descriptioncols="ALR_ACTION"
+						codvisible="no" translate="yes"
+						labelsize="12" align="left" dim="text" />
+
+					<Row align="left">
+			            <DateDataField attr="LAST_EXECUTION_FROM" text="execution.LAST_EXECUTION" align="left" labelsize="12" dim="no" size="7" />
+			            <DateDataField attr="LAST_EXECUTION_TO" text="UNTIL" align="left" dim="no" size="7" />
+			            <Row />
+			        </Row>
+				</Column>
+				<Column margin="0;10;0;0" expand="0.3">
+					<TextDataField attr="ALR_DESC" labelsize="12" dim="text" align="left" />
+					<TextDataField attr="ALR_PROPERTIES" labelsize="12" dim="text" align="left" />
+					<TextDataField attr="ALR_SUBJECT" labelsize="12" dim="text" align="left" />
+					<TextDataField attr="ALR_BODY" labelsize="12" dim="text" align="left" />
+					
+				</Column>
+				<Column margin="0;10;0;0" expand="0.3">
+					<CheckDataField attr="ALR_SENDMAIL" labelposition="right" dim="no" align="left" returnstring="yes" />
+					<CheckDataField attr="ALR_SAVEDB" labelposition="right" dim="no" align="left" returnstring="yes"/>
+				</Column>
+				<Column expand="0.1" />
+				<SearchPanel 
+					table="ojee.AlertService.alert" 
+					search.filterfields="ALR_CODE;ALR_NAME;ALR_ACTION;ALR_SENDMAIL;ALR_SAVEDB"
+					containsfilterfields="ALR_DESC;ALR_PROPERTIES;ALR_SUBJECT;ALR_BODY"
+					search.daterangefilterfields="LAST_EXECUTION_FROM:LAST_EXECUTION_TO:LAST_EXECUTION"/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" >
+			<Table 
+				entity="ojee.AlertService.alert" key="ALR_ID" parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="ALR_ID;ALR_CODE;ALR_NAME;ALR_ACTION;ALR_DESC;ALR_PROPERTIES;ALR_SUBJECT;ALR_BODY;ALR_SENDMAIL;ALR_SAVEDB;LAST_EXECUTION"
+				visiblecols="ALR_CODE;ALR_NAME;ALR_ACTION;ALR_DESC;ALR_PROPERTIES;ALR_SUBJECT;ALR_BODY;ALR_SENDMAIL;ALR_SAVEDB;LAST_EXECUTION"
+				defaultvisiblecols="ALR_CODE;ALR_NAME;ALR_ACTION;ALR_DESC;ALR_SENDMAIL;ALR_SAVEDB;LAST_EXECUTION"
+				backgroundcols="ALR_PROPERTIES;LAST_EXECUTION" 
+				form="formAlert.form" detailformat="{0};ALR_NAME"
+				deletebutton="yes" insertbutton="yes">
+
+				<TableColumnProperties attr="ALR_CODE" defaultwidth="150" preferredwidth="150" />
+				<TableColumnProperties attr="ALR_NAME" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="ALR_ACTION" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="ALR_DESC" defaultwidth="300" preferredwidth="300" />
+				<TableColumnProperties attr="ALR_PROPERTIES" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="ALR_BODY" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="ALR_SUBJECT" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="ALR_SENDMAIL" defaultwidth="110" preferredwidth="110" />
+				<TableColumnProperties attr="ALR_SAVEDB" defaultwidth="110" preferredwidth="110" />
+				<TableColumnProperties attr="LAST_EXECUTION" text="execution.LAST_EXECUTION" defaultwidth="110" preferredwidth="110" />
+				
+				<RenderBoolean atrr="ALR_SENDMAIL" column="ALR_SENDMAIL" returnstring="yes" />
+				<RenderBoolean atrr="ALR_SAVEDB" column="ALR_SAVEDB" returnstring="yes" />
+				
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+			</Table>
+			
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<Button key="execute" text="execution.execute" icon="images-indicator/play16.png" listener="com.opentach.client.alert.listeners.LaunchAlertActionListener" enable="yes"/>
+			<DeleteFromTableButton table="ojee.AlertService.alert" icon="images-general/garbage16.png" />
+			<OpenTableInsertFormButton table="ojee.AlertService.alert" />
+		</Row>
+	</Column>
+</FormExt>

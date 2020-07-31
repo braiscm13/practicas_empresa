@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-checktrucker" >
+	
+	<Client package="">
+		<!-- CHECKTRUCKER -->
+		<FormManager id="managerinformechecktrucker" showframe="yes" delayedload="yes" form="forms-checktrucker/formInformeCheckTrucker.xml" imanager="com.opentach.client.modules.report.IMInformeCheckTrucker">
+			<!-- <InteractionManager form="formDriverDetailResponses.xml" class="com.opentach.client.modules.report.IMDriverDetailResponses" /> -->
+			<FManager fmid="managerdriverdetailresponses" form="formDriverDetailResponses.xml" />
+		</FormManager>
+		<FormManager id="managerdriverdetailresponses" showframe="yes" delayedload="yes" form="forms-checktrucker/formDriverDetailResponses.xml" imanager="com.opentach.client.modules.report.IMDriverDetailResponses"/>
+	</Client>
+</OntimizeModule>

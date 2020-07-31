@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form 
+	entity="" title="TABLAS_MAESTRAS"  buttons="no"
+	preferredsizetodialog="1200;750" 
+>
+	<Row width="600" />
+	<TabPanel attr="TMTabPanel">
+		<Tab attr="TIPO_CALIBRADO">
+			<Table entity="ETipoCalibrado" confvisiblecols="yes" key="TPCALIBRADO" cols="TPCALIBRADO;DSCR"  refreshbutton="yes" />
+		</Tab>
+		<Tab attr="TIPO_CONTROL" queryifvisible="yes">
+			<Table entity="ETipoControl" confvisiblecols="yes" key="TPCONTROL" cols="TPCONTROL;DSCR"  refreshbutton="yes" />
+		</Tab>
+		<Tab attr="TIPO_FALLOS" queryifvisible="yes">
+			<Table entity="ETipoFallo" confvisiblecols="yes" key="TPFALLO" cols="TPFALLO;DSCR"  refreshbutton="yes"/>
+		</Tab>
+		<Tab attr="TIPO_PROPOSITO" queryifvisible="yes">
+			<Table entity="ETipoProposito" confvisiblecols="yes" key="TPPROPOSITO" cols="TPPROPOSITO;DSCR"  refreshbutton="yes" />
+		</Tab>
+		<Tab attr="EPaises" queryifvisible="yes">
+			<Table entity="EPaises" confvisiblecols="yes" key="CG_NACI" cols="CG_NACI;DSCR;PREFIJO" editablecolumns="DSCR;PREFIJO" deletebutton="yes" refreshbutton="yes" updateentityeditablecolumns="DSCR;PREFIJO"/>
+		</Tab>
+		<Tab attr="REGIONES" queryifvisible="yes">
+			<Table entity="ERegiones" confvisiblecols="yes" key="IDREGION" cols="IDREGION;DSCR" editablecolumns="DSCR" deletebutton="yes" refreshbutton="yes" updateentityeditablecolumns="DSCR"/>
+		</Tab>
+		<Tab attr="TIPO_PERIODO" queryifvisible="yes">
+			<Table entity="ETipoPeriodTrab" confvisiblecols="yes" key="TPPERIODO" cols="TPPERIODO;DSCR" refreshbutton="yes"  />
+		</Tab>
+		<Tab attr="TIPO_ACTIVIDAD" queryifvisible="yes">
+			<Table entity="ETipoActividad" confvisiblecols="yes" key="TPACTIVIDAD" cols="TPACTIVIDAD;DSCR"   refreshbutton="yes" />
+		</Tab>
+		<Tab attr="PARAMETROS" queryifvisible="yes">
+			<Table entity="EParametros" confvisiblecols="yes" key="COD" cols="COD;DSCR;VALOR" editablecolumns="DSCR;VALOR" deletebutton="yes" refreshbutton="yes" updateentityeditablecolumns="DSCR;VALOR" />
+		</Tab>
+		<Tab attr="CODBAREMO" queryifvisible="yes">
+			<Table entity="EBaremo" confvisiblecols="yes" key="BARE1" keys="BARE2;BARE34;BARE56" cols="CODBAREMO;BARE1;BARE2;BARE34;BARE56;TMIN;TMAX;IMIN;CG_NATU;TP_INFRAC" visiblecols="CODBAREMO;TMIN;TMAX;IMIN;CG_NATU;TP_INFRAC" editablecolumns="TMIN;TMAX;IMIN;CG_NATU;TP_INFRAC" deletebutton="yes" refreshbutton="yes" updateentityeditablecolumns="TMIN;TMAX;IMIN;CG_NATU;TP_INFRAC"  />
+		</Tab>
+		<Tab attr="CDGRUPO" queryifvisible="yes">
+			<InsertTable entity="EGrupoEmp" confvisiblecols="yes" key="IDGRUPO" cols="IDGRUPO;NOMBRE_GRUPO" visiblecols="NOMBRE_GRUPO" editablecolumns="NOMBRE_GRUPO" updateentityeditablecolumns="IDGRUPO;NOMBRE_GRUPO" refreshbutton="yes" deletebutton="yes" />			
+		</Tab>
+		<Tab attr="CDTIPOAGENTE" queryifvisible="yes">
+			<InsertTable entity="ETipoAgente" confvisiblecols="yes" key="IDTIPOAGENTE" cols="IDTIPOAGENTE;SHORTDSCR;DSCR" visiblecols="SHORTDSCR;DSCR" editablecolumns="SHORTDSCR;DSCR" updateentityeditablecolumns="IDTIPOAGENTE;DSCR;SHORTDSCR" refreshbutton="yes" deletebutton="yes" />			
+		</Tab>
+		<Tab attr="CDSMARTPHONE" queryifvisible="yes">
+			<InsertTable entity="ESmartphone" confvisiblecols="yes" key="IDSMARTPHONE" cols="IDSMARTPHONE;NOMB" visiblecols="NOMB" editablecolumns="NOMB" updateentityeditablecolumns="IDSMARTPHONE;NOMB" refreshbutton="yes" deletebutton="yes" />			
+		</Tab>
+	  <Tab attr="PREFERENCIAS_SERVIDOR" queryifvisible="yes">
+	    <Table entity="EPreferenciasServidor" confvisiblecols="yes" key="NOMBRE"	      
+	      cols="NOMBRE;DESCRIPCION;VALOR"
+	      visiblecols="NOMBRE;DESCRIPCION;VALOR"
+	      editablecolumns="VALOR" deletebutton="no"
+	      refreshbutton="yes"
+	      updateentityeditablecolumns="VALOR" />
+	  </Tab>
+	  <Tab attr="CONFIGURACIONES_USBKEY" queryifvisible="yes">
+	    <InsertTable entity="EConfUSBKey" confvisiblecols="yes" key="KEYID"	      
+	      cols="KEYNAME;KEYPATH"
+	      visiblecols="KEYNAME;KEYPATH"
+	      editablecolumns="KEYNAME;KEYPATH" deletebutton="yes"
+	      refreshbutton="yes"
+	      updateentityeditablecolumns="KEYNAME;KEYPATH" />
+	  </Tab>
+	  <Tab attr="tsk.TasksMasterTitle" queryifvisible="yes">
+	  	<Row expand="yes">
+	  		<Column title="tsk.TaskStatusTitle" expandlast="yes">
+	 		   	<InsertTable 
+	 		   		  entity="ETaskStatus" confvisiblecols="yes" key="TKS_ID"	      
+				      cols="TKS_ID;TKS_NAME;TKS_IS_INITIAL;TKS_IS_FINAL"
+				      visiblecols="TKS_NAME;TKS_IS_INITIAL;TKS_IS_FINAL"
+				      editablecolumns="TKS_NAME;TKS_IS_INITIAL;TKS_IS_FINAL" 
+				      updateentityeditablecolumns="TKS_NAME;TKS_IS_INITIAL;TKS_IS_FINAL"
+				      deletebutton="yes" refreshbutton="yes" >
+				      
+				      <HideTableButton attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton" onlyhide="true" />
+				      <TableColumnProperties attr="TKS_NAME" text="tsk.TKS_NAME" defaultwidth="200" preferredwidth="200"/>
+				      <TableColumnProperties attr="TKS_IS_INITIAL" text="tsk.TKS_IS_INITIAL" defaultwidth="70" preferredwidth="70"/>
+				      <TableColumnProperties attr="TKS_IS_FINAL" text="tsk.TKS_IS_FINAL" defaultwidth="70" preferredwidth="70"/>
+				      
+				      <RenderBoolean column="TKS_IS_FINAL"/>
+                  	  <EditorBoolean attr="TKS_IS_FINAL" column="TKS_IS_FINAL" autostopediting="yes" returnstring="yes" />
+                	  <RenderBoolean column="TKS_IS_INITIAL"/>
+                  	  <EditorBoolean attr="TKS_IS_INITIAL" column="TKS_IS_INITIAL" autostopediting="yes" returnstring="yes" />
+				</InsertTable>
+	  		</Column>
+	  		<Column expandlast="no">
+	  			<Row visible="no">
+					<ObjectDataField attr="TKC_ID" />
+				</Row>
+				<Column title="tsk.TaskClassifierTitle" expandlast="no">
+		 		   	<InsertTable 
+		 		   		  entity="ETaskClassifier" confvisiblecols="yes" key="TKC_ID"	      
+					      cols="TKC_ID;TKC_NAME"
+					      visiblecols="TKC_NAME"
+					      editablecolumns="TKC_NAME" 
+					      updateentityeditablecolumns="TKC_NAME" 
+					      deletebutton="yes" refreshbutton="yes">
+					      
+					      <HideTableButton attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton" onlyhide="true" />
+					      <TableColumnProperties attr="TKC_NAME" text="tsk.TKC_NAME" />
+					</InsertTable>
+				</Column>
+				<Row height="10" expand="no"/>
+				<Column title="tsk.TaskSubClassifierTitle" expandlast="yes" >
+					<InsertTable 
+		 		   		  entity="ETaskSubClassifier" confvisiblecols="yes" key="TSU_ID"
+		 		   		  parentkeys="TKC_ID" disableonparentkeynull="yes" parentkeylistener="yes"
+					      cols="TSU_ID;TSU_NAME;TKC_ID"
+					      visiblecols="TSU_NAME"
+					      editablecolumns="TSU_NAME" 
+					      updateentityeditablecolumns="TSU_NAME" 
+					      deletebutton="yes" refreshbutton="yes">
+					      
+					      <HideTableButton attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton" onlyhide="true" />
+					      <TableColumnProperties attr="TSU_NAME" text="tsk.TSU_NAME" />
+					      
+					</InsertTable>
+				</Column>
+	  		</Column>
+	  		<Column title="tsk.TaskPriorityTitle" expandlast="yes">
+	 		   	<InsertTable 
+	 		   		  entity="ETaskPriority" confvisiblecols="yes" key="TPR_ID"	      
+				      cols="TPR_ID;TPR_NAME;TPR_DEFAULT"
+				      visiblecols="TPR_NAME;TPR_DEFAULT"
+				      editablecolumns="TPR_NAME;TPR_DEFAULT"
+				      updateentityeditablecolumns="TPR_NAME;TPR_DEFAULT"  
+				      deletebutton="yes" refreshbutton="yes"
+				      >
+				      
+					  <HideTableButton attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton" onlyhide="true" />
+				      <TableColumnProperties attr="TPR_NAME" text="tsk.TPR_NAME" defaultwidth="250" preferredwidth="250"/>
+				      <TableColumnProperties attr="TPR_DEFAULT" text="tsk.TPR_DEFAULT" defaultwidth="80" preferredwidth="80"/>
+				      
+				      <RenderBoolean column="TPR_DEFAULT"/>
+                  	  <EditorBoolean attr="TPR_DEFAULT" column="TPR_DEFAULT" autostopediting="yes" returnstring="yes" />
+				</InsertTable>
+	  		</Column>
+	  	</Row>
+	  </Tab>
+  		<Tab attr="SURVEYS" queryifvisible="yes">
+			<InsertTable entity="ESurQuestionType" confvisiblecols="yes" key="ID_QUESTION_TYPE" cols="ID_QUESTION_TYPE;QUESTION_TYPE_NAME" visiblecols="QUESTION_TYPE_NAME" editablecolumns="QUESTION_TYPE_NAME" updateentityeditablecolumns="ID_QUESTION_TYPE;QUESTION_TYPE_NAME" refreshbutton="yes" deletebutton="yes" />			
+		</Tab>
+		<Tab attr="IDTIPO_RESTRICCION" queryifvisible="yes">
+			<InsertTable entity="ETipoRestricciones" confvisiblecols="yes" key="IDTIPO_RESTRICCION" cols="IDTIPO_RESTRICCION;DSCR" visiblecols="DSCR" editablecolumns="DSCR" updateentityeditablecolumns="IDTIPO_RESTRICCION;DSCR"
+			 refreshbutton="yes" deletebutton="yes" />			
+		</Tab>
+	</TabPanel>
+</Form>

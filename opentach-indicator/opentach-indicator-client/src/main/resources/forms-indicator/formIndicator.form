@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.IndicatorService.indicator"
+	keys="IND_ID"
+	title="ojee.IndicatorService.indicator"
+	buttons="no"
+	columns="IND_NAME"
+	notqueryfields="FEC_FILTER;FILTERFECINI;FILTERFECFIN;ojee.IndicatorService.indicatorExecution">
+
+	<ObjectDataField attr="IND_ID" visible="no" />
+	
+	<Column margin="5;5;5;5" expadn="yes" expandlast="no">
+		<Row expand="0.5" >
+			<Column expand="0.3" expandlast="yes" title="IND_DEFINITION">
+				<TextDataField
+					attr="IND_CODE"
+					labelsize="10"
+					dim="text"
+					required="yes"
+					align="left" 
+					maxlength="32"
+					/>
+				<TextDataField
+					attr="IND_NAME"
+					labelsize="10"
+					dim="text"
+					required="yes"
+					align="left" 
+					maxlength="256"/>
+				<ReferenceExtDataField
+					attr="IND_ACTION" key="IND_ACTION" cod="IND_ACTION"
+					entity="ojee.IndicatorService.indicatorImplementation"
+					cols="IND_ACTION" visiblecols="IND_ACTION" descriptioncols="IND_ACTION"
+					labelsize="10" codvisible="no"
+					translate="yes"
+					align="left"
+					dim="text" 
+					required="yes"/>
+				<MemoDataField attr="IND_DESC" dim="text" expand="yes" labelvisible="yes" align="center" labelsize="10" />
+			</Column>
+			<Column expand="0.7" expandlast="yes" margin="0;10;0;0">
+				<Column title="IND_PROPERTIES" expand="yes" expandlast="yes">
+					<MemoDataField attr="IND_PROPERTIES" dim="text" expand="yes" labelvisible="no" labelsize="0" align="center"  />
+				</Column>
+			</Column>
+		</Row>
+		
+		<Row attr="tabsData" expand="0.5">
+			<TabPanel attr="tabs">
+				<Tab attr="indicator.TabExecutions" queryifvisible="no">
+					<Table
+						entity="ojee.IndicatorService.indicatorExecution"
+						key="EXE_ID"
+						parentkeys="IND_ID;FEC_FILTER:EXE_DATE" requiredparentkeys="IND_ID" parentkeylistener="yes" disableonparentkeynull="no"
+						cols="EXE_ID;EXE_NUMBER;EXE_DATE;IND_ID;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE;EXE_ERROR"
+						visiblecols="EXE_NUMBER;EXE_DATE;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE;EXE_ERROR" 
+						defaultvisiblecols="EXE_NUMBER;EXE_DATE;IND_CODE;IND_NAME;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;EXE_IDEXTRA;EXE_VALUE" 
+						refreshbutton="yes" deletebutton="no" insertbutton="no"  
+						headergroups="execution.basicData:EXE_NUMBER,EXE_DATE,IND_CODE,IND_NAME;execution.companyData:COM_ID,NOMB;execution.employeeData:EXTERNAL_EMPLOYEE_ID,DNI,IDCONDUCTOR,NOMBRE,APELLIDOS;execution.otherData:EXE_IDEXTRA;execution.valueData:EXE_VALUE,EXE_ERROR"
+						cellrenderercolormanager="com.utilmize.client.gui.field.table.DeprecatedCellRendererColorManager" deprecatedcolumn="EXE_ERROR"
+						>
+					
+						<TableColumnProperties attr="EXE_NUMBER" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="EXE_DATE" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="IND_CODE" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="IND_NAME" text="IND_ID" defaultwidth="150" preferredwidth="150" />
+	
+						<TableColumnProperties attr="COM_ID" text="CIF" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="NOMB" text="EMPRESA" defaultwidth="250" preferredwidth="250" />
+							
+						<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="140" preferredwidth="140" />
+						<TableColumnProperties attr="NOMBRE" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+				
+						<TableColumnProperties attr="EXE_VALUE" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="EXE_ERROR" defaultwidth="200" preferredwidth="200" />
+						
+						<TableControlsPanel>
+							<Row>
+								<Row/>
+								<ObjectDataField attr="FEC_FILTER" visible="no"/>
+								<DateDataField attr="FILTERFECINI" text="DESDE" dim="no" listener="com.opentach.client.indicator.listeners.ExecutionsTableFilterByDatesValueChangeListener" />
+								<DateDataField attr="FILTERFECFIN" text="HASTA" dim="no" listener="com.opentach.client.indicator.listeners.ExecutionsTableFilterByDatesValueChangeListener" />
+								<Row/>
+							</Row>
+						</TableControlsPanel>
+						
+						<HideTableButton attr="changeviewbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton" onlyhide="true" />
+					</Table>
+				</Tab>
+			</TabPanel>
+		</Row>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Column />
+			<Button key="execute" text="execution.execute" icon="images-indicator/play16.png" listener="com.opentach.client.indicator.listeners.LaunchIndicatorActionListener"/>
+			<CancelButton />
+			<SaveButton stayinrecordafterupdate="yes"/>
+		</Row>
+	</Column>
+</FormExt>

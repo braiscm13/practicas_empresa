@@ -1,0 +1,211 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach-remotevehicle</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-remotevehicle-server</artifactId>
+	<profiles>
+		<profile>
+			<id>wsdl2java</id>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- NOTA: BORAR DIRECTIROS src/generated y el target -->
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-codegen-plugin</artifactId>
+						<version>${cxf.version}</version>
+						<executions>
+							<execution>
+								<id>generate-sources</id>
+								<phase>generate-sources</phase>
+								<configuration>
+									<sourceRoot>src/generated/cxf/</sourceRoot>
+									<!-- <wsdlRoot>src/onvif</wsdlRoot> -->
+									<!-- <includes> -->
+									<!-- <include>**/*.wsdl</include> -->
+									<!-- </includes> -->
+									<wsdlOptions>
+										<!-- <wsdlOption> -->
+										<!-- <wsdl>${basedir}/src/main/resources/test.wsdl</wsdl> -->
+										<!-- <wsdlLocation>classpath:test.wsdl</wsdlLocation> -->
+										<!-- <extraargs> -->
+										<!-- <extraarg>-client</extraarg> -->
+										<!-- </extraargs> -->
+										<!-- </wsdlOption> -->
+										<wsdlOption>
+											<!-- <bindingFile>${basedir}/src/onvif/bindings.xml</bindingFile> -->
+											<wsdl>${basedir}/src/main/resources/remotevehicle-providers/jaltest/jaltestAPI.wsdl</wsdl>
+											<wsdlLocation>classpath:remotevehicle-providers/jaltest/jaltestAPI.wsdl</wsdlLocation>
+											<packagenames>
+												<packagename>
+													http://tempuri.org/=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.tempuri
+												</packagename>
+												<packagename>
+													http://schemas.microsoft.com/2003/10/Serialization/=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.serialization
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/System=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.system
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telmanagecomungesttelematica
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.gesttelematica.telmanagecomunwebuser
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Constantes=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telmanagecomunconstants
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/WsJaltestTelematicsAPI.WsJaltestTelematicsClients=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telapiclients
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telapidto
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.Tacografo=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telclidtotachograph
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.PosicionesVehiculos=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telclipositions
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telclield
+												</packagename>
+												<packagename>
+													http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD=com.opentach.server.remotevehicle.provider.jaltest.wsinvoker.telcliconstanteseld
+												</packagename>
+											</packagenames>
+											<extraargs>
+												<extraarg>-client</extraarg>
+											</extraargs>
+										</wsdlOption>
+									</wsdlOptions>
+								</configuration>
+								<goals>
+									<goal>wsdl2java</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-remotevehicle-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-server-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-tachofiletransfer-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-company-common</artifactId>
+		</dependency>
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<!-- websocket -->
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+		</dependency>
+		<!-- CXF -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-features-logging</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.cxf</groupId> -->
+		<!-- <artifactId>cxf-rt-ws-security</artifactId> -->
+		<!-- <version>${cxf.version}</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.jws</groupId>
+			<artifactId>jsr181-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+		</dependency>
+
+		<!-- JACKSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.joschi.jackson</groupId>
+			<artifactId>jackson-datatype-threetenbp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

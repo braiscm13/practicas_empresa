@@ -1,0 +1,13 @@
+app:
+  redirections: 
+    filseService: http://localhost:8080/openservices/public/rest/fileService/uploadFile, http://localhost:8090/openservices/public/rest/fileService/uploadFile
+    checkTruckerService: http://localhost:8080/openservices/services/
+  backup-location: D:/RECURSOS_PROYECTOS/OPENTACH/test/opentach-proxy/opentach-proxy-boot/target/repository
+server:
+  ssl:
+    key-store: jok.p12
+    key-store-password: 123456
+    key-store-type: pkcs12
+    key-alias: jok
+    key-password: 123456
+  port: 8443

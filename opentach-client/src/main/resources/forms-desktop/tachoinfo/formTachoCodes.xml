@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="a" keys="a" buttons="no" title="formTachoCodes">
+	<ObjectDataField visible="no" attr="PARENT_ID" />
+	<Row expand="yes" width="1">
+		<Column expad="yes" margin="5;5;5;5" title="COUNTRY_CODES">
+			<Table entity="ETachoRegions" keys="ID" cols="ID;NAME" visiblecols="ID;NAME">
+			</Table>
+		</Column>
+		<Column expad="yes" margin="5;5;5;5" title="REGION_CODES" width="1">
+			<Label attr="SELECT_COUNTRY" text="SELECT_COUNTRY"/>
+			<Table entity="ETachoRegions" keys="ID" cols="ID;PARENT_ID;NAME" visiblecols="ID;NAME" parentkeys="PARENT_ID">
+			</Table>
+		</Column>
+	</Row>
+</FormExt>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<Form buttons="no" customfocus="yes" status="no" margin="0;0;0;0" >
+  <Column expandlast="no" attr="backpanel">
+		<Row expand="no"  height="60" valign="top" opaque="yes" >
+			<ImageDataField attr="PHOTO" emptyimage="images-general/noDisponible.png" dim="no" size="160" labelvisible="no" expand="no" width="160"/>					
+		</Row >
+		
+  </Column >
+</Form>

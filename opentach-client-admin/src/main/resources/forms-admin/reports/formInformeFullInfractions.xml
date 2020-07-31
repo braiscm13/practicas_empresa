@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity=""
+	keys="DUMMY"
+	title="rep.formInfractions"
+	buttons="no"
+	preferredsizetodialog="1100;850"
+	focusorder=""
+	autocompletefocuslist="yes">
+
+	<ObjectDataField
+		attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+		visible="no" />
+
+	<Column
+		margin="5;5;5;5"
+		expand="yes">
+		<Column
+			expand="yes"
+			expandlast="no">
+			<!-- FILTERS -->
+			<CollapsiblePanel
+				orientation="vertical"
+				startshowed="yes"
+				ignoreinitpreferences="yes"
+				borderposition="top"
+				insets="21;0;0;0"
+				title="general.SEARCH_CRITERIAS">
+				<Row margin="5;5;5;5">
+					<Column expand="no">
+						<Row>
+							<Column
+								title=""
+								margin="20;5;0;15"
+								expand="0.3">
+								<ReferenceExtDataField
+									attr="CIF"
+									cod="CIF"
+									text="sta.CIF"
+									entity="EDfEmp"
+									cols="CIF;NOMB"
+									descriptioncols="CIF;NOMB"
+									labelsize="12"
+									dim="text"
+									codvisible="no" />
+							</Column>
+							<Column
+								expand="no"
+								expandlast="no">
+								<Column />
+								<SearchPanel
+									table="EInformeFullInfraction"
+									search.filterfields="CIF"/>
+							</Column>
+						</Row>
+					</Column>
+					<Column expand="yes" />
+					<Column expand="no">
+						<Row title="ire.generate">
+							<Column title="ire.status">
+								<DataLabel attr="ire.status" />
+								<DataLabel attr="ire.numdrivers" />
+								<DataLabel attr="ire.numdprocessed" />
+							</Column>
+							<Column title="">
+								<Row>
+									<Column>
+										<DateDataField
+											attr="sta.FECHORAINI"
+											text="sta.DATE_FROM"
+											align="left"
+											labelsize="6"
+											dim="no"
+											required="yes" />
+										<DateDataField
+											attr="sta.FECHORAFIN"
+											text="UNTIL"
+											align="left"
+											dim="no"
+											labelsize="6"
+											required="yes" />
+										<Row />
+									</Column>
+									<Column>
+										<Button
+											key="ire.generate"
+											text="ire.generate"
+											icon="com/opentach/client/rsc/gear.png"
+											iconalign="top"
+											listener="com.opentach.adminclient.modules.reports.IMInformeFullInfractionsGenerateListener" />
+
+									</Column>
+								</Row>
+							</Column>
+						</Row>
+					</Column>
+				</Row>
+			</CollapsiblePanel>
+			<Row
+				expand="yes"
+				title="result">
+				<Table
+					entity="EInformeFullInfraction"
+					keys="FECINI;IDCONDUCTOR"
+					parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+					cols="CIF;NOMB;TOTAL;NUMCONDUCTORES;FDSR;FDD;ECI;FDS;ECD;FDS45;ECB;ECS"
+					visiblecols="NOMB;TOTAL;NUMCONDUCTORES;FDSR;FDD;ECI;FDS;ECD;FDS45;ECB;ECS">
+					<HideTableButton
+						attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton;printingbutton"
+						onlyhide="true" />
+				</Table>
+			</Row>
+		</Column>
+
+	</Column>
+</FormExt>
+			

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="managerDistributors" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	 autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;0;0">
+				<Column margin="0;10;0;0" expand="0.3">
+					<TextDataField
+						attr="DIS_NAME"
+						labelsize="8"
+						dim="text"
+						align="left" />
+						<TextDataField
+						attr="USUARIO"
+						labelsize="8"
+						dim="text"
+						align="left" />
+				</Column>
+				<Column expand="0.7" />
+				<SearchPanel 
+					table="ojee.DistributorService.distributor"
+					search.filterfields="DIS_NAME;USUARIO"
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" >
+				
+			<Table 
+				entity="ojee.DistributorService.distributor" 
+				key="DIS_ID" 
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="DIS_ID;DIS_NAME;DIS_NOTES;EMAIL;F_ALTA"
+				visiblecols="DIS_NAME;DIS_NOTES;EMAIL;F_ALTA"
+				defaultvisiblecols="DIS_NAME;DIS_NOTES;EMAIL;F_ALTA"
+				backgroundcols="EMAIL;F_ALTA"
+				form="formDistributor.form"
+				deletebutton="yes" insertbutton="yes" 
+				detailformat="{0};DIS_NAME">
+
+				<TableColumnProperties attr="DIS_NAME" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="DIS_NOTES" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="EMAIL" defaultwidth="300" preferredwidth="300" />
+				<TableColumnProperties attr="F_ALTA" defaultwidth="110" preferredwidth="110" />
+				
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+			</Table>
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<DeleteFromTableButton table="ojee.DistributorService.distributor" icon="images-general/garbage16.png" />
+			<OpenTableInsertFormButton table="ojee.DistributorService.distributor"  />
+		</Row>
+	</Column>
+</FormExt>

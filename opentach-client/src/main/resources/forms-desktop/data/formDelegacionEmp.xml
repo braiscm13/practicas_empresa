@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EDelegacionDfEmp" keys="CIF;IDDELEGACION" title="EDelegacionDfEmp" buttons="no" columns="NOMBRE_DEL">
+	<FormHeader standardbuttons="yes" />
+	
+	<Column margin="5;5;5;5" expandlast="no">
+		<Include file="forms-desktop/data/formDelegacionEmpIncludeMain.xml" />
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row  />
+		</Row>
+	</Column>
+</FormExt>

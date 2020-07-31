@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="a" keys="a" buttons="no" title="formVersionNewsEditor" preferredsizetodialog="800;600">
+	<Column expand="yes" margin="5;5;5;5" expandlast="no">
+		<TextComboDataField attr="locale" values="default;es_ES;de_DE;en_GB;fr_FR;it_IT;pt_PT;ca_ES" align="left" size="50"/>
+		<com.utilmize.client.gui.field.UFxHtmlEditorDataField attr="CONTENT" labelsize="10"
+			labelvisible="no" />
+		<Row height="5" expand="no" />
+		<Button key="save" listener="com.opentach.adminclient.modules.setup.IMVersionNewsEditorSaveListener" align="right" text="applychanges" />
+	</Column>
+</FormExt>

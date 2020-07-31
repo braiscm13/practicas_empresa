@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="CARTAS_PORTE" setvalueorder="" preferredsizetodialog="810;590">
+
+	<Column margin="5;5;5;5">
+		<Row title="">
+			<Column title="CARGADOR_CONTRACTUAL" align="left">
+				
+			    <TextDataField attr="NOMBRE_CARGADOR" text="NOMBRE" labelsize="12" maxlength="255" size="25" align="left"/>
+			    <TextDataField attr="DIRECCION_CARGADOR" text="DIRECCION" labelsize="12" maxlength="255" size="25"  align="left"/>
+			    <TextDataField attr="POBRACION_CARGADOR" text="POBLACION" labelsize="12" maxlength="255" size="25"  align="left"/>
+			    <Row layout="flow" align="left">
+						   		<!-- <Label attr="NIF_CARGADOR" text="CIF/NIF" size="12" labelsize="25" /> -->
+								<TextDataField attr="NIF_CIF_CARGADOR"  text="CIF/NIF" dim="no" maxlength="9" required="yes" align="left" size="9" labelsize="12"/>
+								<Column>
+							    	<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="NIF_CIF_CARGADOR" tip="CALCULA_LETRA"
+										icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+							    </Column>
+				</Row>	
+			</Column>
+			<Column  title="TRANSPORTISTA" align="left">
+			    <TextDataField attr="NOMBRE_TRANSPORTISTA" text="NOMBRE" labelsize="12" maxlength="255" size="25"  align="left"/>
+			    <TextDataField attr="DIRECCION_TRANSPORTISTA" text="DIRECCION" labelsize="12" maxlength="255" size="25"  align="left"/>
+			    <TextDataField attr="POBRACION_TRANSPORTISTA" text="POBLACION" labelsize="12" maxlength="255" size="25"  align="left"/>
+			    <Row layout="flow" align="left">
+					<!--<Label attr="NIF_TRANSPORTISTA" text="CIF/NIF" size="12" labelsize="12" />  -->
+					<TextDataField attr="NIF_CIF_TRANSPORTISTA" text="CIF/NIF" dim="no" maxlength="9" required="yes" align="left" size="9" labelsize="12"/>
+					<Column>
+					<com.opentach.client.comp.BotonLetraNIF key="calculaletranif2" nif="NIF_CIF_TRANSPORTISTA" tip="CALCULA_LETRA"
+							icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+					</Column>
+				</Row>	
+			</Column>
+			
+		</Row>
+		<Row title="ORIGEN/DESTINO">
+		   <TextDataField attr="LUGAR_ORIGEN" text="LUGAR_ORIGEN" labelsize="12" dim="text" maxlength="255" />
+		   <TextDataField attr="LUGAR_DESTINO" text="LUGAR_DESTINO"  maxlength="255" dim="text" /> 
+		</Row>
+		<Row title="NATURALEZA/PESO">
+		   <TextDataField attr="NATURALEZA" text="NATURALEZA" labelsize="12" dim="text" maxlength="255" />
+		   <TextDataField attr="PESO" text="PESO" dim="no" size="10" /> 
+		   <DateDataField attr="FECHA_ENVIO" dim="no" size="10" align="left" /> /> 
+		</Row>
+		<Row title="MATRICULAS">
+		    <Column title="VEHICULO">
+		         <TextDataField attr="MATRICULA_TRACTOR" text="MATRICULA_TRACTOR" labelsize="20" />
+		 		 <TextDataField attr="MATRICULA_SEMIREMOLQUE" text="MATRICULA_SEMIREMOLQUE" labelsize="20"/> 
+		 		 <TextDataField attr="MATRICULA_REMOLQUE" text="MATRICULA_REMOLQUE" labelsize="20"/> 
+		    </Column>
+		  	<Column title="CAMBIO_VEHICULO">
+		         <TextDataField attr="MATRICULA_CAMBIO_TRACTOR" text="MATRICULA_CAMBIO_TRACTOR" labelsize="28" />
+		 		 <TextDataField attr="MATRICULA_CAMBIO_SEMIREMOLQUE" text="MATRICULA_CAMBIO_SEMIREMOLQUE" labelsize="28"/> 
+		 		 <TextDataField attr="MATRICULA_CAMBIO_REMOLQUE" text="MATRICULA_CAMBIO_REMOLQUE" labelsize="28"/> 
+		    </Column>
+		</Row>
+		<Row>
+			<MemoDataField attr="OBSR" expand="yes" uppercase="no" dim="text" />
+		</Row>
+		<Row margin="5;0;0;0">
+			<Row/>
+			<Button key="btnGenerar"  type="CARTA_PORTE"  tip="TIP_GENERAR_PORTE" text="GENERAR_PORTE" icon="com/opentach/client/rsc/printer16.png" listener="com.opentach.client.modules.report.IMCartasPorteGenerateReportListener"/>
+		</Row>
+	</Column>
+</Form>

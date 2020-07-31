@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="RDW_VEH_CFG"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>RDV_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>RDV_ID</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<Sentence>
+			<![CDATA[
+				SELECT
+					#COLUMNS#
+				FROM
+				    RDW_VEH_CFG rdv,
+				    RDW_CFG rdw
+				WHERE
+				    rdv.RDV_ID = rdw.RDW_ID
+					#WHERE_CONCAT#
+				#ORDER#
+			]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

@@ -1,0 +1,182 @@
+@import url('bluebusiness/style.css');
+
+Constants{
+	launchpadmenubarbackground: #366581;
+	homeLaunchpadSeparatorbackground: #eeeeee;
+	colorsummarynews: #a1c057;
+	noconverticons: images-admin/link_broken_24.png com/opentach/client/rsc/pf.png com/opentach/client/rsc/titulo.jpg com/opentach/client/rsc/OpentachLaunchPad.png com/opentach/client/rsc/flag_spain24.png com/opentach/client/rsc/flag_portugal24.png com/opentach/client/rsc/flag_great_britain24.png com/opentach/client/rsc/flag_france24.png com/opentach/client/rsc/flag_germany24.png com/opentach/client/rsc/flag_itaty24.png com/opentach/client/rsc/catalunya24.png com/opentach/client/rsc/opentach.png com/opentach/client/rsc/opentach32.png cargando.jpg cargando_white.jpg images-admin/i18n/es_ES/cargando.png images-admin/i18n/ca_ES/cargando.png images-admin/i18n/de_DE/cargando.png images-admin/i18n/es_GL/cargando.png images-admin/i18n/fr_FR/cargando.png images-admin/i18n/it_IT/cargando.png images-admin/i18n/en_EN/cargando.png images-admin/i18n/es_ES/logoarriba.png images-admin/i18n/ca_ES/logoarriba.png images-admin/i18n/de_DE/logoarriba.png images-admin/i18n/es_GL/logoarriba.png images-admin/i18n/fr_FR/logoarriba.png images-admin/i18n/it_IT/logoarriba.png images-admin/i18n/en_EN/logoarriba.png images-admin/i18n/es_ES/contactoB.png images-admin/i18n/ca_ES/contactoB.png images-admin/i18n/de_DE/contactoB.png images-admin/i18n/es_GL/contactoB.png images-admin/i18n/fr_FR/contactoB.png images-admin/i18n/it_IT/contactoB.png images-admin/i18n/en_EN/contactoB.png images-admin/titulo.jpg com/opentach/client/rsc/navigator/menuGroupHeaderLeft.png com/opentach/client/rsc/AppBackground.png com/opentach/client/rsc/publi_remote.png com/opentach/client/rsc/publi_flota.png com/opentach/client/rsc/jaltest24.png com/opentach/client/rsc/delivery_truck24.png com/opentach/reports/ico.png;
+	
+	navigatorheaderleftimage: com/opentach/client/rsc/navigator/menuGroupHeaderLeft.png;
+	
+	collapsiblemainbackgroundtop: #8ca9ba;
+	collapsiblemainbackgroundmiddle: #8ca9ba;
+	collapsiblemainbackgroundbottom: #8ca9ba; 
+}
+
+ActivityChart {
+	legedForeground:#1c304bff;
+	activityWork:#002eedff;
+	activityAvailable:#55d500ff;
+	activityRest:#fffe00ff;
+	activityDriving:#e11c00ff;
+	activityUndefined:#fe6c0cff;
+	activityBoxTop:#2d5b7bff;
+	activityBoxBottom:#7198b4ff;
+	activityBottomShadow:#000000ff;
+	underlinesBackground:#57627eff;
+	underlinesRegimen:#FF0000ff;
+	underlinesOrigin:#ffff00ff;
+	underlinesOutOfScope:#000000ff;
+	underlinesFerry:#ffffffff;
+
+	background:#5b8aabff;
+	separatorBackground:#406e8eff;
+	separatorBorderSecond:#719dbcff;
+	separatorBorderFirst:#2d5b7bff;		
+	
+	lineBottom:#7198b4ff;
+	lineTop:#2d5b7bff;
+	vaxisDateForeground:#ffffffff;
+	vaxisDayForeground:#194767ff;
+	vaxisDateGradientFirst:#2d5b7bff;
+	vaxisDateGradientSecond:#4c7795ff;
+	vaxisLegendFont:Arial-BOLD-8;
+	vaxisDateFont:Arial-BOLD-12;
+	vaxisDayFont:Arial-BOLD-10;
+	haxisForeground:#111188;
+	
+	sumIconForeground:#2d5b7bff;
+	sumIconBorder:#2d5b7bff;
+	sumIconInnerBorder:#9bbad0ff;
+	sumIconBackground:#719dbcff;
+	
+	controlPanelFont:Arial-BOLD-14;
+	controlPanelTitleForeground:#03fb06ff;
+	controlPanelTitleDateBackground:#4f7b9aff;
+	controlPanelBackground:#5b8aabff;
+}
+
+StatusBarLabels {
+	colorUserLabel:#FFFFFF;
+	colorAppVersion:#fe9292;
+}
+
+"activitygraphbutton" {
+	contentMargins:1 1 1 1;
+	background:#324c5f;
+	font:Verdana-BOLD-12;
+	textForeground:#FFFFFF;
+	[Disabled].textForeground:#646464;
+	[Default].alphaTransparency:0.1;
+	[Default+Focused].alphaTransparency:0.5;
+	[Default+MouseOver].alphaTransparency:0.8;
+	[Default+Focused+MouseOver].alphaTransparency:0.8;
+	[Default+Pressed].alphaTransparency:1.0;
+	[Default+Focused+Pressed].alphaTransparency:1.0;
+	[Disabled].alphaTransparency:0.1;
+	[Enabled].alphaTransparency:1.0;
+	[Focused].alphaTransparency:0.5;
+	[MouseOver].alphaTransparency:0.8;
+	[Focused+MouseOver].alphaTransparency:0.8;
+	[Pressed].alphaTransparency:1.0;
+	[Focused+Pressed].alphaTransparency:1.0;	
+	[MouseOver].textForeground:#ffffff;
+	[Enabled].border:#ffffff;
+}
+
+"CHART_RESUME_LABEL" {
+	font:arial-PLAIN-10;
+	foreground:#ff0000;
+}
+
+"PhoneNumber" {
+	font:arial-PLAIN-10;
+	foreground:converticoncolor;
+	disabledText: converticoncolor;
+	[Enabled].textForeground: converticoncolor;
+	[Disabled].textForeground: converticoncolor;
+	[Focused].textForeground: converticoncolor;
+	[Selected].textForeground: converticoncolor;
+}
+
+
+"NoMarginsButton" {
+	contentMargins:0 0 0 0;
+	defaultButtonFollowsFocus:false;
+	font:buttonfont;
+	textForeground:buttonenabledtextforeground;
+	background:buttonbackground;
+	[Disabled].textForeground:buttondisabledtextforeground;
+	[Enabled].textForeground:buttonenabledtextforeground;
+	[Focused].textForeground:buttonenabledtextforeground;
+	[MouseOver].textForeground:buttonmouseovertextforeground;
+	[Focused+MouseOver].textForeground:buttonmouseovertextforeground;
+	[Pressed].textForeground:buttonmouseovertextforeground;
+	[Focused+Pressed].textForeground:buttonmouseovertextforeground;
+	[Default].textForeground:buttonenabledtextforeground;
+	[Default+Focused].textForeground:buttonenabledtextforeground;
+	[Default+MouseOver].textForeground:buttonmouseovertextforeground;
+	[Default+Focused+MouseOver].textForeground:buttonmouseovertextforeground;
+	[Default+Pressed].textForeground:buttonmouseovertextforeground;
+	[Default+Focused+Pressed].textForeground:buttonmouseovertextforeground;
+	[Default].alphaTransparency:0.5;
+	[Default+Focused].alphaTransparency:0.5;
+	[Default+MouseOver].alphaTransparency:0.5;
+	[Default+Focused+MouseOver].alphaTransparency:0.5;
+	[Default+Pressed].alphaTransparency:0.5;
+	[Default+Focused+Pressed].alphaTransparency:0.5;
+	[Enabled].alphaTransparency:0.3;
+	[Focused].alphaTransparency:0.3;
+	[MouseOver].alphaTransparency:0.5;
+	[Disabled].alphaTransparency:0.5;
+	[Focused+MouseOver].alphaTransparency:0.5;
+	[Pressed].alphaTransparency:0.5;
+	[Focused+Pressed].alphaTransparency:0.5;
+}
+
+"PreferencesButton"{
+    font: toolbarbuttonfont;
+    contentMargins: toolbarbuttoncontentmargins;
+    size: toolbarsize;
+    textForeground: toolbarbuttonforeground;
+        
+    background: toolbarbuttonbackground;
+    
+    [Default].alphaTransparency:0.5;
+	[Default+Focused].alphaTransparency:0.5;
+	[Default+MouseOver].alphaTransparency:0.5;
+	[Default+Focused+MouseOver].alphaTransparency:0.5;
+	[Default+Pressed].alphaTransparency:0.5;
+	[Default+Focused+Pressed].alphaTransparency:0.5;
+	[Enabled].alphaTransparency:0.3;
+	[Focused].alphaTransparency:0.3;
+	[MouseOver].alphaTransparency:0.5;
+	[Disabled].alphaTransparency:0.5;
+	[Focused+MouseOver].alphaTransparency:0.5;
+	[Pressed].alphaTransparency:0.5;
+	[Focused+Pressed].alphaTransparency:0.5;
+}
+
+"launchpadmenubar"{
+    contentMargins: containercontentmargins;
+    opaque: true;
+    /*bgpaint: null;*/
+    background: launchpadmenubarbackground;
+}
+
+"homeLaunchpadSeparator"{
+    contentMargins: containercontentmargins;
+    opaque: true;
+    /*bgpaint: null;*/
+    background: homeLaunchpadSeparatorbackground;
+}
+
+"homeTitleLabels" {
+	font:arial-BOLD-20;
+	foreground:converticoncolor;
+	disabledText: converticoncolor;
+	[Enabled].textForeground: converticoncolor;
+	[Disabled].textForeground: converticoncolor;
+	[Focused].textForeground: converticoncolor;
+	[Selected].textForeground: converticoncolor;
+}

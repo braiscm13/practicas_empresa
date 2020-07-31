@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column>
+	<Row margin="5;5;5;5">
+		<Column title="DATOS_CONDUCTOR" expand="yes">
+			<Row>
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" attr="CIF" dim="text" labelsize="12" align="left" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="yes" csize="9" />
+				<ReferenceComboDataField attr="CG_CONTRATO" cod="CG_CONTRATO" entity="EEmpreReq" parentkey="CIF" cols="NUMREQ" align="right"
+					dim="no" size="15" required="yes" visible="no" />
+			</Row>
+			<Row height="4" />
+			<Row>
+				<ReferenceComboDataField attr="IDDELEGACION" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" labelsize="12"
+					visiblecols="NOMBRE_DEL" parentkey="CIF" entity="EDelegacionDfEmp" dim="text" align="right" />
+				<WWWDataField attr="EMAIL" text="EMAIL" dim="text" maxlength="50" align="right" required="no" uppercase="no" />
+			</Row>
+			<Row height="15" />
+			<Row>
+				<TextDataField attr="NOMBRE" dim="no" labelsize="16" maxlength="40" size="12" required="yes" align="left" />
+				<TextDataField attr="APELLIDOS" dim="text" labelsize="22" maxlength="100" required="yes" align="left" />
+			</Row>
+			<Row>
+				<Column expand="no">
+					<Row>
+						<!-- -->
+						<Label attr="DNI/NIF" text="DNI/NIF" size="16" />
+						<Column margin="4;0;0;0" expand="no">
+							<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="DNI" tip="CALCULA_LETRA"
+								icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+						</Column>
+						<TextDataField attr="DNI" text="DNI/NIF" dim="text" maxlength="9" required="yes" align="left" size="9" labelsize="0" labelvisible="no" />
+						<!-- -->
+					</Row>
+					<TextDataField attr="IDCONDUCTOR" text="5B" dim="no" maxlength="14" required="yes" size="12" labelsize="16" align="left"/>
+					<MaskDataField mask="000000000000000" attr="MOVIL" dim="no" align="left" required="no" size="12" labelsize="16" />
+					<ReferenceComboDataField attr="AGR_ID" cod="AGR_ID" cols="AGR_ID;AGR_NAME" labelsize="16" entity="ELaborAgreement" parentkeys="CIF:COM_ID" visiblecols="AGR_NAME" dim="text" align="right" />
+				</Column>
+				<Column expand="no">
+					<DateDataField attr="EXPIRED_DATE_TRJCONDU" dim="no" required="no" align="right" labelsize="22" enabled="no" />
+					<DateDataField attr="F_NAC" dim="no" required="no" labelsize="22" />
+					<DateDataField attr="F_ALTA" dim="no" required="no" labelsize="22" />
+					<TextComboDataField attr="CONTRACT_TYPE" values="TIEMPO_PARCIAL;TIEMPO_COMPLETO" labelsize="22"	dim="text"	translate="yes"	 />
+				</Column>
+				<Column expand="no">
+					<TextDataField attr="EXTERNAL_EMPLOYEE_ID"  dim="text" maxlength="70" align="left" labelsize="14"  />
+					<TextComboDataField attr="ENVIAR_A" values="NINGUNO;EMPRESA;CONDUCTOR;AMBOS" labelsize="14" dim="text" translate="yes" size="14" />
+					<CheckDataField attr="DURMIENTE" tip="TIP_DURMIENTE" returnstring="yes" align="left" labelsize="14" />
+					<TextDataField attr="NAF"  dim="text" maxlength="70" align="left" labelsize="14"  />
+				</Column>
+				<Column expand="yes" />
+			</Row>
+			<TextDataField attr="CG_ITEM" dim="no" maxlength="10" required="no" align="right" size="10" visible="no" />
+			<TextDataField attr="IDORIGEN" dim="no" maxlength="10" required="no" align="right" size="10" visible="no" />
+		</Column>
+		<Column expand="no" title="Foto" width="200"><!-- <com.utilmize.client.gui.field.USingleImageDataField text="photo" attr="PHOTO" vexpand="yes" dim="text" 
+				hexpand="yes" labelvisible="no" buttons="right" emptyimage="com/opentach/client/ui/images/photo.gif"/> -->
+			<com.opentach.client.comp.SingleImageDataFieldExtended attr="PHOTO"
+				emptyimage="images-general/noDisponible.png" dim="text" labelvisible="no" vexpand="yes" hexpand="yes" />
+
+		</Column>
+		<ColumnRadioButtonGroup selected="RANGO_FECHA" attr="datos" title="Filtro_Fecha_Comienzo" expand="no">
+			<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+			<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+			<Column expand="no">
+				<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left"
+					required="no" datevisible="no" dim="no" labelsize="10" />
+				<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left"
+					required="no" datevisible="no" dim="no" labelsize="10" />
+			</Column>
+			<Row expand="yes" />
+		</ColumnRadioButtonGroup>
+	</Row>
+	<Row expand="yes">
+		<Column>
+			<Row expand="yes">
+				<TabPanel>
+					<Tab attr="CONTRATOS" title="CONTRATOS" expand="yes">
+						<Table entity="EDriverContracts" keys="DRC_ID" parentkeys="IDCONDUCTOR;CIF"
+								refreshbutton="yes"
+								cols="DRC_ID;IDCONDUCTOR;CIF;DRC_TYPE;AGR_ID;DRC_IRREGULAR_JOURNAL;DRC_DATE_FROM;DRC_DATE_TO;AGR_NAME"
+								visiblecols="DRC_TYPE;AGR_NAME;DRC_DATE_FROM;DRC_DATE_TO"
+								form="formDriverContracts.xml">
+								<BundleCellRenderer column="DRC_TYPE"/>
+						</Table>
+					</Tab>
+					<Tab attr="GRAFICAACTIVIDADES" title="GRAFICAACTIVIDADES" expand="yes">
+						<SplitPane orientation="h" expand="no">
+							<com.opentach.client.comp.GraficaExt attr="GRAFICA1" xaxis="DSCR_ACT" yaxis="HORAS_COND" 
+							type="bar" width="150" height="250" dim="no" showlegend="no" 
+							xlabel="Actividades" ylabel="Tiempo_(horas)" activecolors="true" distinctcategories="CONDUCCION;TRABAJO;DISPONIBILIDAD;PAUSA/DESCANSO;INDEFINIDA"/>
+						
+							<com.opentach.client.comp.GraficaExt attr="GRAFICA" xaxis="DSCR_ACT" yaxis="MINUTOS"	type="pie" 
+							height="250" width="150" dim="no" showlegend="yes"  labeltype="VALUE_LABELS"  							
+							distinctcategories="CONDUCCION;TRABAJO;DISPONIBILIDAD;PAUSA/DESCANSO;INDEFINIDA" />
+						</SplitPane>
+					</Tab>
+					<Tab attr="ACTIVIDADES" title="ACTIVIDADES">
+						<Row expand="yes">
+							<Table entity="EInformeActivCond" key="NUMREQ" keys="IDCONDUCTOR;TPACTIVIDAD;FECINI;FECFIN;RANURA" parentkey="CIF"
+								otherkeys="IDCONDUCTOR;FECINI;CG_CONTRATO" rendertime="FECINI;FECFIN"
+								cols="NUMREQ;IDCONDUCTOR;NOMBRE;APELLIDOS;TPACTIVIDAD;FECINI;FECFIN;ESTADO_TRJ_RANURA;ESTADO_TRJ_RANURA_DSCR;ORIGEN_DSCR;ORIGEN;REGIMEN;REGIMEN_DSCR;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA;RANURA;DIA;RANURA_DSCR;DSCR_ACT;MINUTOS;CIF;NOMB;IDINSPECCION;INSP_FECINI;INSP_FECFIN;PROCEDENCIA;SEMANA;MES;DIA_SEM;HORA;HORAS_COND;FUERA_AMBITO;TRANS_TREN"
+								visiblecols="FECINI;FECFIN;DSCR_ACT;MINUTOS;MATRICULA;RANURA_DSCR;PROCEDENCIA;ORIGEN_DSCR;FUERA_AMBITO;TRANS_TREN">
+								<BooleanCellRenderer column="FUERA_AMBITO" />
+								<BooleanCellRenderer column="TRANS_TREN" />
+							</Table>
+						</Row>
+					</Tab>
+					<Tab attr="USOS_VEHICULO">
+						<Table entity="EInformeUsoVehiculoConductor" key="IDCONDUCTOR" keys="MATRICULA;FECINI;PROCEDENCIA" parentkey="NUMREQ"
+							otherkeys="IDCONDUCTOR;CG_CONTRATO;FECINI"
+							cols="CG_CONTRATO;DNI;NUMREQ;IDCONDUCTOR;MATRICULA;FECINI;FECFIN;MINUTOS;KM_INI;KM_FIN;KM_REC;PROCEDENCIA;ORIGEN;DESTINO;NOMBRE;APELLIDOS;DIA;DIA_SEM;SEMANA;MES;MES2;HORA;VEL_MED;ANHO;NUM_TRJ_CONDU;HORAS;INI_SEMANA;FIN_SEMANA"
+							visiblecols="MATRICULA;FECINI;FECFIN;MINUTOS;KM_INI;KM_FIN;PROCEDENCIA">
+							</Table>
+					</Tab>
+					<Tab attr="USOS_TARJETA">
+						<Table entity="EUsoTarjeta" key="NUMREQ" keys="IDCONDUCTOR;MATRICULA;FECINI" parentkey="NUMREQ" otherkeys="IDCONDUCTOR;FECINI;CG_CONTRATO"
+							rendertime="FECINI;FECFIN"
+							cols="NUMREQ;IDCONDUCTOR;FECINI;FECFIN;MATRICULA;KM_INS;KM_EXT;NUM_TRJ_CONDU;RANURA;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA_PREV"
+							visiblecols="FECINI;FECFIN;MATRICULA;KM_INS;KM_EXT;RANURA;MATRICULA_PREV" />
+					</Tab>
+					<Tab attr="REGISTRO_KM_COND">
+						<Table entity="EKmConductor" key="NUMREQ" keys="IDCONDUCTOR;FECHA" parentkey="NUMREQ" otherkeys="IDCONDUCTOR;CG_CONTRATO"
+							cols="NUMREQ;IDCONDUCTOR;FECHA;KM;NUM_TRJ_CONDU;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF" visiblecols="FECHA;KM" />
+					</Tab>
+					<Tab attr="JORNADAS_TRABAJO">
+						<Row expand="yes">
+							<Table entity="EPeriodosTrabajo" key="IDPERIODO" rendertime="FECINI" parentkey="IDCONDUCTOR" otherkeys="CIF;FECINI;CG_CONTRATO"
+								cols="IDCONDUCTOR;IDPERIODO;DSCRTIPO;TPPERIODO;FECINI;DSCRPAIS;DSCRREGION;PROCEDENCIA;ERROR" visiblecols="DSCRTIPO;FECINI;DSCRPAIS;DSCRREGION" />
+						</Row>
+					</Tab>
+					<Tab attr="CAPS"> 
+						<Row expand="yes">
+							<Table entity="EConductoresCAP" key="IDCONDUCTOR" keys="CIF;SECCION" parentkeys="CIF;IDCONDUCTOR"
+								cols="CIF;IDCONDUCTOR;SECCION;F_OBT_CAP;F_DESDE;F_HASTA" visiblecols="SECCION;F_OBT_CAP;F_DESDE;F_HASTA" form="formConductorCAP.xml" >
+								<BundleCellRenderer column="SECCION" globalid="SECCION"/>
+								<RenderDate column="F_DESDE" globalid="F_DESDE" format="dd/MM/yyyy" align="center"/>
+								<RenderDate column="F_HASTA" globalid="F_HASTA" format="dd/MM/yyyy" align="center"/>
+								<RenderDate column="F_OBT_CAP" globalid="F_OBT_CAP" format="dd/MM/yyyy" align="center"/>
+								</Table>
+						</Row>
+					</Tab>
+					<Tab attr="NOTAS">
+						<Row title="" expand="yes">
+							<MemoDataField attr="OBSR" dim="text" expand="yes" border="lowered" labelvisible="no" labelsize="0" align="center"
+								labelposition="top" />
+						</Row>
+					</Tab>
+				</TabPanel>
+			</Row>
+		</Column>
+	</Row>
+</Column>

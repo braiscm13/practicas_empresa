@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="core-module">
+	<Server package="com.opentach.server.entities">
+		<EntityProperties archive="com/opentach/server/opentach-server-core-entities.properties"/>
+		<RemoteReferences archive="opentach-server-core-remote-references.xml"/>
+	</Server>
+</OntimizeModule>

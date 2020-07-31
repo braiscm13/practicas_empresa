@@ -1,0 +1,229 @@
+<Column attr="StepSummaryTC" expand="yes" expandlast="yes" margin="10;10;5;10">
+
+	<Row>
+		<Column expand="yes">
+			<Column expand="yes" uiname="OutBorderColumn" title="Company" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Label uiname="WhiteStandar" attr="company" text="hola" />
+					</Column>
+				</Column>
+			</Column>
+
+			<Row expand="no" height="10" />
+
+			<Column expand="yes" uiname="OutBorderColumn" title="Driver" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Row>
+							<Label uiname="WhiteStandar" attr="driverName" align="left" text="name" />
+							<Row />
+							<Column width="5" expand="no" />
+							<Column width="3" expand="no" opaque="yes" bgcolor="#014b85" />
+							<Column width="5" expand="no" />
+							<Label uiname="WhiteStandar" attr="driverDNI" align="right" text="dni" />
+						</Row>
+					</Column>
+				</Column>
+			</Column>
+
+		</Column>
+
+		<Column expand="no" width="10" />
+
+		<Column expand="no">
+			<Column expand="yes" uiname="OutBorderColumn" title="Period" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Row>
+							<Label icon="images/desde.png" valign="center"/>
+							<Column width="5" expand="no" />
+							<Label uiname="WhiteStandar" attr="beginPeriod" align="left" text="hola" />
+							<Row />
+							<Column width="5" expand="no" />
+							<Column width="3" expand="no" opaque="yes" bgcolor="#007cb2"/>
+							<Column width="5" expand="no" />
+							<Row />
+							<Label uiname="WhiteStandar" attr="endPeriod" align="right" text="hola" />
+							<Column width="5" expand="no" />
+							<Label icon="images/hasta.png" valign="center"/>
+						</Row>
+					</Column>
+				</Column>
+			</Column>
+
+			<Row expand="no" height="10" />
+
+			<Column expand="yes" uiname="OutBorderColumn" title="NextDownload" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Label uiname="WhiteStandar" attr="nextDownload" align="center" text="nextDownloadDate" />
+					</Column>
+				</Column>
+			</Column>
+
+		</Column>
+	</Row>
+
+	<Row expand="no" height="10" />
+
+	<Row expand="yes">
+		<Column expand="no" expandlast="no">
+			<Row expand="no">
+			
+				<Column expand="no" uiname="OutBorderColumn" title="ActivitySummary" margin="0;0;0;0">
+					<Column expand="no" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="no" uiname="InnerBorderColumn" title="" margin="5;5;5;5">
+							<Row>
+								<Grid rows="3" columns="2" vgap="6" hgap="6">
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text="DrivingTitle"/>
+											</Column>
+										</Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+												<Label uiname="WhiteStandarNumber" attr="drivingTime" text="217:25" align="right" valign="bottom" />
+												<Column width="5" expand="no" />
+												<Label uiname="WhiteSmallBold" text="HH:MM" align="right" valign="bottom" />
+											</Row>
+										</Column>
+									</Column>
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text="AvailableTitle" />
+											</Column>
+										</Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+												<Label uiname="WhiteStandarNumber" attr="availableTime" text="341:25" align="right" valign="bottom" />
+												<Column width="5" expand="no" />
+												<Label uiname="WhiteSmallBold" text="HH:MM" align="right" valign="bottom"  />
+											</Row>
+										</Column>
+									</Column>
+		
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text="PausingTitle" />
+											</Column>
+										</Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+												<Label uiname="WhiteStandarNumber" attr="pausingTime" text="02:25" align="right" valign="bottom" />
+												<Column width="5" expand="no" />
+												<Label uiname="WhiteSmallBold" text="HH:MM" align="right" valign="bottom" />
+											</Row>
+										</Column>
+									</Column>
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text="OtheringTitle" />
+											</Column>
+										</Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+												<Label uiname="WhiteStandarNumber" attr="otherWorksTime" text="11:25" align="right" valign="bottom" />
+												<Column width="5" expand="no" />
+												<Label uiname="WhiteSmallBold" text="HH:MM" align="right" valign="bottom" />
+											</Row>
+										</Column>
+									</Column>
+		
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text="KilometersTitle" />
+											</Column>
+									    </Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+												<Label uiname="WhiteStandarNumber" attr="kilometersDriving" text="2.512,00" align="right" valign="bottom" />
+												<Column width="5" expand="no" />
+												<Label uiname="WhiteSmallBold" text="KM" align="right" valign="bottom" />
+											</Row>
+										</Column>
+									</Column>
+									<Column expandlast="no" >
+									    <Row>
+											<Column uiname="BlueHeaderColumn" margin="3;5;3;5">
+												<Label uiname="WhiteStandarBold" align="left" text=" " />
+											</Column>
+										</Row>
+										<Column uiname="LightBlueHeaderColumn">
+											<Row margin="0;5;0;5" expand="yes">
+												<Row/>
+											</Row>
+										</Column>
+									</Column>
+		
+								</Grid>
+							</Row>
+						</Column>
+					</Column>
+				</Column>
+			</Row>				
+			<Column />
+			<Row>
+				<Column expand="yes" uiname="OutBorderColumn" title="BeginEndSessionTitle" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="">
+							<Label uiname="RedStandar" attr="beginEndSessions" text="hola" align="center"/>
+						</Column>
+					</Column>
+				</Column>
+			</Row>
+			<Column />
+		</Column>
+		
+		<Column expand="no" width="20" />
+
+
+		<Column expand="yes">
+			<Column expand="yes" uiname="OutBorderColumn" title="InfractionSummary" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+						<Table entity="infractionSummary" keys="a" cols="type;severity" controls="no" quickfiltervisible="no" >
+							<BundleCellRenderer column="type" globalid="typeInfraction" align="center"/>
+							<com.opentach.downclient.component.SeverityCellRenderer column="severity" globalid="severity" align="center"/>
+							 
+							 <TableColumnProperties attr="type" minwidth="220" defaultwidth="220" preferredwidth="220" />
+							 <TableColumnProperties attr="severity" minwidth="56" defaultwidth="56" preferredwidth="56" /> 
+						</Table>
+					</Column>
+				</Column>
+			</Column>
+
+		</Column>
+		
+		<Column expand="no" width="20" />
+		
+		<Column expand="no">
+			<Column expand="yes" uiname="OutBorderColumn" title="UsedVehicles" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes" width="170">
+						<Table entity="usedVehicles" keys="a" cols="vehicle" controls="no" quickfiltervisible="no" >
+							<com.opentach.downclient.component.VehicleListCellRenderer column="vehicle" globalid="vehicle" align="center"/> 
+							 <TableColumnProperties attr="vehicle" text="" /> 
+						</Table>
+						
+<!-- 							<com.utilmize.client.gui.UList  -->
+<!-- 								attr="usedVehicles" selection="no" scrollh="no" scrollv="no" -->
+<!-- 								renderer="com.opentach.downclient.component.VehicleListCellRenderer"/> -->
+					</Column>
+				</Column>
+			</Column>
+
+		</Column>
+	</Row>
+
+</Column>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.AssetGroupService.assetGroup"
+	keys="CAG_ID"
+	title="formAssetGroup"
+	buttons="no"
+	status="no">
+
+	<ObjectDataField
+		attr="CAG_ID"
+		visible="no" />
+	<ObjectDataField
+		attr="COM_ID"
+		visible="no" />
+
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		<TextDataField
+			attr="CAG_NAME"
+			text="assetgroup.CAG_NAME"
+			size="60"
+			align="left"
+			dim="no" />
+		<Row expand="yes">
+			<Column
+				title="assetgroup.vehicles"
+				expandlast="no">
+				<Table
+					entity="ojee.AssetGroupService.vehicleGroup"
+					keys="AGV_ID"
+					parentkeys="COM_ID;CAG_ID"
+					cols="VEH_ID"
+					visiblecols="VEH_ID"
+					refreshbutton="yes"
+					deletebutton="yes">
+					<HideTableButton attr="pivottablebutton;reportbutton;changeviewbutton;copybutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton;deletebutton;refreshbutton" />
+					<TableColumnProperties attr="VEH_ID" text="assetgroup.VEH_ID" />
+				</Table>
+				<Row>
+					<Column />
+					<DeleteFromTableButton text="assetgroup.deleteVehicles" table="ojee.AssetGroupService.vehicleGroup" />
+					<Button text="assetgroup.addVehicles" listener="com.opentach.client.modules.data.IMAssetGroupAddAssetActionListener" assetType="vehicle" icon="images/navigate_plus16.png" />
+				</Row>
+			</Column>
+			<Column
+				title="assetgroup.drivers"
+				expandlast="no">
+				<Table
+					entity="ojee.AssetGroupService.driverGroup"
+					keys="AGD_ID"
+					parentkeys="COM_ID;CAG_ID"
+					cols="DRV_ID;NOMBRE;APELLIDOS"
+					visiblecols="DRV_ID;NOMBRE;APELLIDOS"
+					refreshbutton="yes"
+					deletebutton="yes">
+					<HideTableButton attr="pivottablebutton;reportbutton;changeviewbutton;copybutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton;deletebutton;refreshbutton" />
+					<TableColumnProperties attr="DRV_ID" text="assetgroup.DRV_ID" />
+				</Table>
+				<Row>
+					<Column />
+					<DeleteFromTableButton text="assetgroup.deleteDrivers" table="ojee.AssetGroupService.driverGroup" />
+					<Button text="assetgroup.addDrivers" listener="com.opentach.client.modules.data.IMAssetGroupAddAssetActionListener" assetType="driver" icon="images/navigate_plus16.png" />
+				</Row>
+			</Column>
+		</Row>
+
+		<Row
+			expand="no"
+			margin="5;0;0;0">
+			<Column />
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

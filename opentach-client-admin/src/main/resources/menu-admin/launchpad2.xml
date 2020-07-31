@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<SliderBar>
+		
+	<SliderBarSection attr="SURVEYS" icon="com/opentach/client/rsc/survey32.png" >
+		<SliderBarItem attr="managersurveys" icon="com/opentach/client/rsc/survey24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerreportsurveys" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+	</SliderBarSection>
+
+	<SliderBarSection attr="REPORT_COMPANIES" icon="images-admin/portfolio_folder32.png">
+		<SliderBarItem attr="managerinformedemos" text="managerinformedemos.short" tip="managerinformedemos" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformeresumenempresas" text="managerinformeresumenempresas.short" tip="managerinformeresumenempresas" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformecooperativas" text="managerinformecooperativas.short" tip="managerinformecooperativas" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformedemosactivas" text="managerinformedemosactivas" tip="managerinformedemosactivas" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformeresumentiposinfracciones"  text="managerinformeresumentiposinfracciones.short" tip="managerinformeresumentiposinfracciones" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformecompaniesbyagent" text="managerinformecompaniesbyagent" tip="managerinformecompaniesbyagent" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>	
+		<SliderBarItem attr="managerempresaflota" text="managerempresaflota.short"  tip="managerempresaflota" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+	</SliderBarSection>
+
+	<SliderBarSection attr="REPORT_VEHICLES" icon="images-admin/portfolio_folder32.png">
+		<SliderBarItem attr="managerinformevehiclesnotdownloading" text="managerinformevehiclesnotdownloading" tip="managerinformevehiclesnotdownloading" icon="com/opentach/client/rsc/informe24.png" fixedwidth="350"/>
+		<SliderBarItem attr="managervehaltabaja" text="managervehaltabaja.short"  tip="managervehaltabaja" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+		<SliderBarItem attr="managervehagente" text="managervehagente.short"  tip="managervehagente" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+		<SliderBarItem attr="managervehprovincias" text="managervehprovincias.short"  tip="managervehprovincias" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="REPORT_DRIVERS" icon="images-admin/portfolio_folder32.png">
+			<SliderBarItem attr="managerinformedriversnotdownloading" text="managerinformedriversnotdownloading" tip="managerinformedriversnotdownloading" icon="com/opentach/client/rsc/informe24.png" fixedwidth="370"/>
+			<SliderBarItem attr="managercondaltabaja" text="managercondaltabaja.short"  tip="managercondaltabaja" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+			<SliderBarItem attr="managercondagente" text="managercondagente.short"  tip="managercondagente" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="LABORAL" icon="com/opentach/client/rsc/id_card32.png">
+		<SliderBarItem attr="managerlaborrecordwarehouse" icon="com/opentach/client/rsc/document_attachment32.png" fixedwidth="186" />
+		<SliderBarItem attr="managerdriverjournalrecord" icon="com/opentach/client/rsc/document_pulse24.png" fixedwidth="186"/>
+		<SliderBarItem attr="managerdriverstatustimerecord" icon="com/opentach/client/rsc/document_pulse24.png" fixedwidth="186"/>
+		<SliderBarItem attr="managerinformeagreements" icon="com/opentach/client/rsc/document_pulse24.png" fixedwidth="186"/>
+	</SliderBarSection>
+	
+	<SliderBarSection attr="REPORT_FILES" icon="images-admin/portfolio_folder32.png">
+		<SliderBarItem attr="managergeninformefullinfractions" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+		<SliderBarItem attr="managerpendDescargaEmpresa" text="managerpendDescargaEmpresa.short"  tip="managerpendDescargaEmpresa" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformeincidenciasficheros" text="managerinformeincidenciasficheros.short" tip="managerinformeincidenciasficheros" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managermincondnocturnidad" text="managermincondnocturnidad.short"  tip="managermincondnocturnidad" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>		
+	</SliderBarSection>
+	
+	<SliderBarSection attr="REPORT_USER_CONECTIONS" icon="images-admin/portfolio_folder32.png">
+		<SliderBarItem attr="managerinformeconexionesusu" text="managerinformeconexionesusu.short" tip="managerinformeconexionesusu" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerinformeincidencesbyweek" text="managerinformeincidencesbyweek" tip="managerinformeincidencesbyweek" icon="com/opentach/client/rsc/informe24.png" fixedwidth="270"/>
+		<SliderBarItem attr="managerinformeagentcompaniesnotused" text="managerinformeagentcompaniesnotused" tip="managerinformeagentcompaniesnotused" icon="com/opentach/client/rsc/informe24.png" fixedwidth="350"/>	
+		<SliderBarItem attr="managerconexionesdescargas" text="managerconexionesdescargas.short"  tip="managerconexionesdescargas" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+			
+	</SliderBarSection>
+	
+	<SliderBarSection attr="REPORT_MANAGEMENT" icon="images-admin/portfolio_folder32.png">
+		<SliderBarItem attr="manageralertas" icon="com/opentach/client/rsc/alarmclock.png" fixedwidth="210"/>
+		<SliderBarItem attr="managergeninformegestor" text="managergeninformegestor.short" tip="managergeninformegestor" icon="com/opentach/client/rsc/mail_forward24.png" fixedwidth="210"/>
+		<SliderBarItem attr="managerstats" icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/>
+		<!-- <SliderBarItem attr="managerinformeexpireduser" text="managerinformeexpireduser.short" tip="managerinformeexpireduser"  icon="com/opentach/client/rsc/informe24.png" fixedwidth="210"/> -->
+	</SliderBarSection>
+	
+</SliderBar>
+

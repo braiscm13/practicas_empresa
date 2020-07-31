@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="DATOS_FICHERO_TC">
+	<FormHeader>
+		<Button key="abrirfichero" align="right" tip="SELECCIONAR" icon="com/opentach/client/rsc/openfile.png" />
+	</FormHeader>
+	<Column margin="5;10;5;10" title="">
+		<Column expand="yes">
+			<Column title="CONDUCTOR">
+				<Row>
+					<TextDataField attr="IDCONDUCTOR" labelsize="12" align="left" maxlength="14" size="20" dim="no" required="yes" enabled="no" />
+					<TextDataField attr="NUM_TRJ_CONDU" maxlength="17" dim="no" size="20" align="right" enabled="no" />
+					<Column/>
+				</Row>
+				<Row>
+					<TextDataField attr="NOMBRE" align="left" size="20" maxlength="35" dim="no" required="yes" labelsize="12" enabled="no" />
+					<TextDataField attr="APELLIDOS" align="left" maxlength="70" dim="text" required="yes" enabled="no" />
+				</Row>
+			</Column>
+			<Column valign="center" expand="yes" title="VEHICULO" width="100">
+				<TextDataField attr="MATRICULA" text="MATRICULA" align="left" maxlength="9" size="20" labelsize="12" dim="no" required="yes" enabled="no" />
+			</Column>
+		</Column>
+	</Column>
+	<Row expand="yes">
+		<Column expand="yes" margin="0;10;0;10">
+			<ActivityChartControlPanel title="l_grafica_activ" attr="chartControl">
+			</ActivityChartControlPanel>
+			<Row expand="no" height="3"></Row>
+			<ChartDataField attr="chart" xfontsize="10" yfontsize="10" legendimagename="chart_legend.gif" legendimagepath="com/opentach/client/rsc/i18n/"
+				ylabelformat="EE dd/MM/yy" legendbg="white" sublegend1 = "FERRY/OUT_TRAIN" sublegend2="INFRACCIONES"/>
+			<Row expand="yes" />
+		</Column>
+	</Row>
+</Form>

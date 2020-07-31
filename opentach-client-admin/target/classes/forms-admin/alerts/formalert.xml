@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="Alert" buttons="yes">
+	<FormHeader standardbuttons="u" />
+<!--			<CampoTexto attr="NOTICE_FROM_PARAMETER" align="left" labelsize="14" enabled="yes"/>-->
+	<Column expand="yes">
+		<Row title="">
+			<Column >
+				<TextDataField attr="TASK_NAME" align="left" labelsize="14" dim="text" enabled="no"/>
+			</Column >
+			<Column >
+				<TextDataField attr="TASK_GROUP" align="left" labelsize="8" dim="text" enabled="no"/>
+			</Column >
+		</Row >
+		<Row title="">
+			<TextDataField attr="NOTICE_SUBJECT" align="left" labelsize="14" dim="text" enabled="yes"/>
+		</Row >
+		<Row title="">
+			<Column >
+				<TextDataField attr="TASK_CRON" align="left" labelsize="14" dim="no" enabled="yes"/><!-- enabled="no" -->
+			</Column >
+			<Column >
+				<Row >
+					<CheckDataField attr="NOTICE_RESPONSE_REQUEST" align="left" labelposition="right" labelsize="14" visible="no" enabled="yes"/>
+					<CheckDataField attr="NOTICE_FORCE_READ" align="left" labelposition="right" labelsize="16" enabled="yes"/>
+					<!-- 
+					<CampoCheck attr="NOTICE_SEND_MAIL" align="left" labelposition="right" labelsize="16" enabled="yes"/>
+					 -->
+				</Row >
+			</Column >
+			<Column >
+					<TextComboDataField attr="STATE" text="CHANGE_STATE" values="STATE_NORMAL;STATE_PAUSED"  translate="yes"  equivalences="com/opentach/client/modules/alerts/states.properties" align="left" labelsize="16" size="30"/>
+			</Column >
+		</Row >
+		<Row title="" expand="yes">
+			<TabPanel>
+				<Tab title="NOTICE_CONTENT">
+					<Row expand="yes">
+						<HTMLDataField attr="NOTICE_CONTENT"  expand="yes" align="left" labelsize="14" labelvisible="no" dim="text" enabled="yes"/>
+					</Row >
+				</Tab>				
+			</TabPanel>
+		</Row >
+	</Column >
+</FormExt>

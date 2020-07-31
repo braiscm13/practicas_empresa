@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="$encoding"?>
+<onlp xmlns="http://www.imatia.com/onlp">
+	<version>$project.version</version>
+	$dependencies
+	<application-desc >
+		<main-class>$mainClass</main-class>
+		 <argument>com/opentach/client/labels.xml</argument>
+		 <argument>${clientapplicationxml}</argument>
+		 <argument>-Dcom.ontimize.gui.lafclassname=com.opentach.client.laf.OpentachLAF</argument>
+		 <argument>-Dcom.ontimize.gui.lafstyle=com/opentach/client/laf/blue.css</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.cgipath=$jnlpcgipath</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.port=$jnlptunnelingport</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.debug=false</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Port=$serverPort</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Hostname=$$hostname</argument>
+		 <argument>-Dremotedownload.base.url=ws://$$hostname:$jnlptunnelingport/$remoteDownloadPath</argument>
+		 <argument>-Dtachoredurl=http://www.opentach.com/descargas</argument>
+		 <argument>-DlafName=lafOpentach</argument>
+		 <argument>-Djnlp.packEnabled=true</argument>
+		 <argument>-DwebDocPath=$docpath</argument>
+		 <argument>-DNUMMAX_FILES_TOSEND=1000</argument>
+		 <argument>-DBASE_JNLP_URI=$jnlpCodebase</argument>
+		 <argument>-http</argument>
+		 <argument>-Dcom.ontimize.services.baseUrl=http://$$hostname:$jnlptunnelingport/$contexPath</argument>
+		 <argument>-Dopentach.proxy.url=${proxyUrl}</argument>
+	     <argument>ignore</argument>
+	</application-desc>
+</onlp>
+

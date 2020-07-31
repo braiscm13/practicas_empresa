@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="managerinformechecktrucker"
+	buttons="no"
+	setvalueorder="DNI;IDCONDUCTOR;IDPERSONAL">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<Button
+			key="btnInforme2"
+			tip="TIP_INFORME"
+			icon="com/opentach/client/rsc/printer16.png" /> 
+		<NewTabButton />
+	</FormHeader>
+	<Row expand="yes">
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+					<AssetSelectionDataField
+						assetType="DRIVER"
+						parentkeys="CIF"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="no" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDPERSONAL"
+						text="IDPERSONAL"
+						cod="IDPERSONAL"
+						parentkeys="CIF"
+						csize="10"
+						entity="EPersonalEmp"
+						cols="IDPERSONAL;APELLIDOS;NOMBRE"
+						visiblecols="IDPERSONAL;APELLIDOS;NOMBRE"
+						descriptioncols="IDPERSONAL;APELLIDOS;NOMBRE"
+						codsearch="IDPERSONAL"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="no" />
+					<ReferenceExtDataField
+						entity="ESurveys"
+						text="SURVEY_NAME"
+						labelsize="12"
+						attr="ID_SURVEY"
+						dim="text"
+						cod="ID_SURVEY"
+						cols="ID_SURVEY;SURVEY_NAME"
+						visiblecols="SURVEY_NAME"
+						descriptioncols="SURVEY_NAME"
+						required="no"
+						codvisible="no"
+						csize="10" />
+				</Column>
+			</Column>
+			<Column>
+				<Row expand="yes">
+					<Table
+						entity="EInformeCheckTrucker"
+						key="NUMREQ"
+						keys="IDCONDUCTOR;IDPERSONAL"
+						parentkeys="CIF;ID_SURVEY;IDCONDUCTOR;IDPERSONAL"
+						rendertime="SUR_DATE"
+						cols="IDCONDUCTOR;IDPERSONAL;NAME;CIF;ID_SURVEY;SURVEY_NAME;SUR_DATE;CORRECT;WRONG"
+						visiblecols="IDCONDUCTOR;IDPERSONAL;NAME;SURVEY_NAME;SUR_DATE;CORRECT;WRONG"
+						form="formDriverDetailResponses.xml"
+						insertbutton="no"
+						detailformopener = "com.opentach.client.modules.report.listeners.DetailFormOpenerDataFromTable">
+					</Table>
+				</Row>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<Column>
+				<ColumnRadioButtonGroup
+					selected="ULTIMOS_DIAS"
+					attr="datos"
+					title="Filtro_Fecha_Comienzo"
+					expand="no"
+					margin="5;5;5;5">
+					<RadioButtonDataField
+						attr="ULTIMOS_DIAS"
+						labelsize="20"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<RadioButtonDataField
+						attr="RANGO_FECHA"
+						labelsize="18"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<Column expand="no">
+						<CampoFechaNoEditable
+							attr="FILTERFECINI"
+							text="DESDE"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+						<CampoFechaNoEditable
+							attr="FILTERFECFIN"
+							text="HASTA"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+					</Column>
+				</ColumnRadioButtonGroup>
+				<Column />
+			</Column>
+		</Column>
+	</Row>
+</Form>

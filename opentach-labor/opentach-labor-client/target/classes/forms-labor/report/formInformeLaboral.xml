@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="LABOR_RECORD"
+	buttons="no">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="images-labor/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField
+		attr="CG_CONTRATO"
+		required="yes"
+		visible="no" />
+	<Row expand="yes" margin="5;5;5;5">
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="CG_CONTRATO;CIF"
+						csize="10"
+						entity="EConductorContFicticio"
+						cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+						visiblecols="DNI;APELLIDOS;NOMBRE"
+						descriptioncols="DNI;APELLIDOS;NOMBRE"
+						codsearch="DNI"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="yes" />
+				</Column>
+			</Column>
+			<Row
+				expand="no"
+				margin="0;0;10;0"
+				title="MAJ_INSERT_TITLE">
+				<IntegerDataField
+					attr="MAJ_DAY_YEAR"
+					size="4"
+					labelposition="top"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralDayValueChangeListener" />
+				<TextComboDataField
+					attr="MAJ_DAY_MONTH"
+					size="15"
+					labelposition="top"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralDayValueChangeListener"
+					equivalences="forms-labor/report/month_equivalences.properties"
+					values="1;2;3;4;5;6;7;8;9;10;11;12" />
+				<IntegerDataField
+					attr="MAJ_DAY_DAY"
+					size="3"
+					labelposition="top"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralDayValueChangeListener" />
+				<com.ontimize.gui.field.HourDateDataField
+					attr="MAJ_BEGINDATE"
+					labelposition="top" />
+				<com.ontimize.gui.field.HourDateDataField
+					attr="MAJ_ENDDATE"
+					labelposition="top" />
+				<com.opentach.client.labor.comp.HourMinuteDataField
+					attr="MAJ_WORK_TIME"
+					size="4"
+					labelposition="top"
+					align="left" />
+				<Column
+					expand="no"
+					expandlast="no"
+					valign="bottom">
+					<Button
+						key="insertrecord"
+						listener="com.opentach.client.labor.modules.report.IMInformeLaboralAddJournalActionListener"
+						icon="images-labor/floppy_disk16.png"
+						tip="TIP_INSERT_RECORD" />
+				</Column>
+				<Column />
+			</Row>
+			<Column>
+				<Row expand="yes">
+					<Table
+						entity="Table"
+						key="NUMREQ"
+						keys="IDCONDUCTOR;DIA"
+						parentkey="CIF"
+						otherkeys="IDCONDUCTOR;FECINI;CG_CONTRATO;NUM_TARJ"
+						rendertime="FECINI;FECFIN"
+						cols="IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;DIA;FECINI;FECFIN;MINUTOS;CIF;NOMB;ORIGEN"
+						visiblecols="IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;DIA;FECINI;FECFIN;MINUTOS">
+					</Table>
+				</Row>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<Column title="Filtro_Fecha_Comienzo">
+				<CampoFechaNoEditable
+					attr="FILTERFECINI"
+					text="DESDE"
+					align="left"
+					required="yes"
+					datevisible="no"
+					dim="no"
+					labelsize="10" />
+				<CampoFechaNoEditable
+					attr="FILTERFECFIN"
+					text="HASTA"
+					align="left"
+					required="yes"
+					datevisible="no"
+					dim="no"
+					labelsize="10" />
+			</Column>
+			<Column>
+				<Button
+					key="btFindContracts"
+					text="btFindContracts"
+					tip="TIP_FIND_CONTRACTS"
+					icon="images-labor/scroll216.png"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralShowSelectedContractsActionListener"
+					dim="text" />
+				<Button
+					key="btpDailyRecordReport"
+					text="btpDailyRecordReport"
+					tip="TIP_DAILY_RECORD_REPORT"
+					icon="images-labor/printer16.png"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralPrintReportActionListener"
+					report="daily"
+					dim="text" />
+				<Button
+					key="btpLaborReport"
+					text="btpLaborReport"
+					tip="TIP_LABOR_REPORT"
+					icon="images-labor/printer16.png"
+					listener="com.opentach.client.labor.modules.report.IMInformeLaboralPrintReportActionListener"
+					report="labor"
+					dim="text" />
+			</Column>
+		</Column>
+	</Row>
+</FormExt>

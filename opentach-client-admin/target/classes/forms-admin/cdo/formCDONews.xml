@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="formCDONews.xml" buttons="no"
+	preferredsizetodialog="950;600"
+	>
+	<Row margin="5;5;5;5" expand="yes">
+		<Column title="News" width="400" expand="no">
+			<Table 
+				entity="ECDONews" 
+				key="IDCDONEW" 
+				cols="IDCDONEW;TITLE;LOCALE;ACTIVE;CREATION_DATE" 
+				visiblecols="TITLE;LOCALE;ACTIVE;CREATION_DATE"
+				insertablecols="TITLE;LOCALE;ACTIVE" 
+				editablecolumns="LOCALE;ACTIVE"
+				updateentityeditablecolumns="LOCALE;ACTIVE" 
+				requiredcols="TITLE;LOCALE" 
+				inserttable="yes" deletebutton="yes" refreshbutton="yes">
+				
+				<RenderBoolean attr="ACTIVE" column="ACTIVE" returnstring="yes" />
+				<EditorBoolean attr="ACTIVE" column="ACTIVE" returnstring="yes" />
+				
+				<RenderTextCombo column="LOCALE" values="es_ES;es_GL;ca_ES;pt_PT;en_GB;fr_FR;it_IT;de_DE" translate="yes" nullselection="no"/>
+				<TextComboEditor column="LOCALE" globalid="editorLocale" values="es_ES;es_GL;ca_ES;pt_PT;en_GB;fr_FR;it_IT;de_DE" translate="yes" nullselection="no"/>
+				
+				
+				<TableColumnProperties attr="TITLE" minwidth="30" defaultwidth="150" preferredwidth="150" resizable="true"/>
+				<TableColumnProperties attr="LOCALE" minwidth="30" defaultwidth="90" preferredwidth="90" resizable="true" text="LOCALE"/>
+				<TableColumnProperties attr="ACTIVE" minwidth="30" maxwidth="30" defaultwidth="30" preferredwidth="30" resizable="false"
+					hidename="false" text="ACTIVE" hidecolumn="false" />
+				<TableColumnProperties attr="CREATION_DATE" minwidth="90" maxwidth="90" defaultwidth="90" preferredwidth="90" resizable="false"
+					hidename="false" text="CREATION_DATE" hidecolumn="false" />
+				<HideTableButton
+					attr="changeviewbutton;copybutton;excelexportbutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;reportbutton;filtersavebutton;calculedcolsbutton" />
+
+			</Table>
+		</Column>
+		<Column title="NewsDetail" expand="0.8" expandlast="no">
+			<ObjectDataField attr="IDCDONEW" visible="no" />
+			<Row>
+				<TextDataField attr="TITLE" dim="text" labelsize="7"/>
+				<DateDataField attr="CREATION_DATE" enabled="no"  labelsize="15"/>
+			</Row>
+			<Row>
+				<TextComboDataField attr="LOCALE" values="es_ES;es_GL;ca_ES;pt_PT;en_GB;fr_FR;it_IT;de_DE" translate="yes" nullselection="no"  labelsize="7" size="15"/>
+				<Row/>
+				<IntegerDataField attr="TIME_TO_SHOW" labelsize="15" size="11"/>
+			</Row>
+			<Column expand="yes" title="CONTENT">
+				<com.utilmize.client.gui.field.UFxHtmlEditorDataField attr="CONTENT" labelsize="10"
+					labelvisible="no" />
+			</Column>
+			<Button key="save" text="save" listener="com.opentach.adminclient.modules.cdo.IMCDONewsSaveActionListener" align="right" />
+		</Column>
+	</Row>
+</FormExt>

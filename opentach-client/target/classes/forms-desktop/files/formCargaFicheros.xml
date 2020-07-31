@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EFicherosTGD" keys="CG_CONTRATO;CIF" title="M_ENVIO_FICHEROS_CSD" buttons="no">
+	<FormHeader>
+		<FormHeaderButton key="btnSelecTGD" icon="com/opentach/client/rsc/formheader/insert.png" fontsize="10" tip="SELECCIONAR_FICHEROS" align="right" />
+		<FormHeaderButton key="btnDeleteTGD" icon="com/opentach/client/rsc/formheader/delete_document.png" fontsize="10" tip="ELIMINAR_FICHEROS" align="right" />
+		<FormHeaderButton key="btnUpload" tip="ENVIAR_FICHEROS_SELECCIONADOS" icon="com/opentach/client/rsc/server_from_client16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Column expand="yes">
+		<Row expand="yes">
+			<Column margin="7;5;0;5">
+				<Column margin="5;5;5;5" title="">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+						descriptioncols="NOMB" required="yes" csize="10" />
+				</Column>
+			</Column>
+		</Row>
+		<Row title="" expand="yes">
+			<Column expand="yes" width="300" expandlast="yes">
+				<Button key="bdownload" visible="no" />
+				<Table entity="FicherosSeleccionados" key="NOMB" cols="NOMBORIG;NOMB;IDORIGEN;F_DESCARGA;TIPO" visiblecols="NOMBORIG;NOMB;IDORIGEN;F_DESCARGA;TIPO"
+					rendertime="F_DESCARGA" />
+			</Column>
+		</Row>
+	</Column>
+</FormExt>

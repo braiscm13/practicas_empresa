@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="infraccionesAgente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b494571a-c5bd-4775-ab00-d90ac6cb6d41">
+	<property name="ireport.zoom" value="1.2078825000000035"/>
+	<property name="ireport.x" value="10"/>
+	<property name="ireport.y" value="240"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="datasetDni" uuid="d2dbb315-6e03-4ee8-8f26-0a226dae34cf">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="pDSCR_FILTER" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+--COUNT(NATURALEZA) AS COUNT_NATURALEZA ,
+TIPO,
+NATURALEZA,
+IDCONDUCTOR
+FROM CDVINFORM_INFRAC
+WHERE
+$P!{pDSCR_FILTER}
+CG_CONTRATO = $P{pnumreq}   AND IDCONDUCTOR = $P{pidconductor}  AND FECHORAINI >= $P{pf_inicio} AND FECHORAFIN <=$P{pf_fin}
+AND TIPO IS NOT NULL AND NATURALEZA IS NOT NULL
+--GROUP BY DNI,IDCONDUCTOR,TIPO,NATURALEZA]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="TIPO" class="java.lang.String"/>
+		<field name="NATURALEZA" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="datasettipo_infrac" uuid="8a602081-880d-4b33-a165-05c0ec0e8cf6">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="pDSCR_FILTER" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+NVL(COUNT(TIPO),0) AS COUNT_TIPO ,
+TIPO ,
+IDCONDUCTOR
+FROM CDVINFORM_INFRAC
+WHERE
+$P!{pDSCR_FILTER}
+CG_CONTRATO = $P{pnumreq}   AND IDCONDUCTOR = $P{pidconductor}  AND FECHORAINI >= $P{pf_inicio} AND FECHORAFIN <=$P{pf_fin} AND TIPO IS NOT NULL
+GROUP BY DNI,IDCONDUCTOR,TIPO]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="COUNT_TIPO" class="java.math.BigDecimal"/>
+		<field name="TIPO" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="datasetnatur_infrac" uuid="bcb1e08c-1064-411f-8cbe-c10b85458ba4">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pf_fin" class="java.util.Date"/>
+		<parameter name="pDSCR_FILTER" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DNI,
+NVL(COUNT(NATURALEZA),0) AS COUNT_NATURALEZA ,
+NATURALEZA ,
+IDCONDUCTOR
+FROM CDVINFORM_INFRAC
+WHERE
+$P!{pDSCR_FILTER}
+CG_CONTRATO = $P{pnumreq}   AND IDCONDUCTOR = $P{pidconductor}  AND FECHORAINI >= $P{pf_inicio} AND FECHORAFIN <=$P{pf_fin} and NATURALEZA IS NOT NULL
+GROUP BY DNI,IDCONDUCTOR,NATURALEZA]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="COUNT_NATURALEZA" class="java.math.BigDecimal"/>
+		<field name="NATURALEZA" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND IDCONDUCTOR = 'E10593470S0000'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pDSCR_FILTER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DNI , APELLIDOS , NOMBRE , TIPO , FECHORAINI , 
+FECHORAFIN , CIF ,
+  IDCONDUCTOR, F_DESCARGA_DATOS, DIAS 
+   FROM CDVINFORM_INFRAC
+WHERE
+$P!{pDSCR_FILTER}
+CG_CONTRATO = $P{numreq}  $P!{idconductor} AND FECHORAINI >= $P{f_inicio} AND FECHORAFIN <=$P{f_fin} AND TIPO IS NOT NULL AND NATURALEZA IS NOT NULL
+ORDER BY NUMREQ,CIF,IDCONDUCTOR,TIPO,FECHORAINI]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="TIPO" class="java.lang.String"/>
+	<field name="FECHORAINI" class="java.util.Date"/>
+	<field name="FECHORAFIN" class="java.util.Date"/>
+	<field name="DIAS" class="java.math.BigDecimal"/>
+	<field name="F_DESCARGA_DATOS" class="java.sql.Timestamp"/>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="3" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="6" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="183" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="283" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="134" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="193" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="360" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="433" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="31" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="105" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="59" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="59" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="59" y="49" width="91" height="14" uuid="f1b9e4a7-cf85-4af2-b801-77ccd76cca02"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="150" y="50" width="60" height="14" uuid="e1c43663-5aab-46e8-8421-55d945fba277"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="196" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" style="Back" positionType="Float" mode="Opaque" x="30" y="170" width="477" height="26" isRemoveLineWhenBlank="true" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="a3c4bddf-0036-4041-8579-b6da24d0d853">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="421" y="170" width="49" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="737d2ca2-4f94-4ca8-a834-d95f54ca71a5">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_DESCARGA_DATOS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="262" y="170" width="36" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="5d74655c-c1d6-4a4c-9068-2a7abbd45546">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{TIPO_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="471" y="170" width="35" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="3305307a-45c3-40b4-a048-43c37a987845">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{DIAS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-8" style="Value" positionType="Float" x="364" y="170" width="56" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="de49db1f-0240-4cd1-b9dc-571e1e2670db">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FECFIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-7" style="Value" positionType="Float" x="301" y="170" width="61" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="c1b5ceca-40f4-466e-abca-070368c4809f">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FECINI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="31" y="170" width="42" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="49358a57-74ec-4cf6-ba6b-1f93505b01c7">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{DNI_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="75" y="170" width="97" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="20ec13b7-0e1c-4f09-9301-22267c133df0">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NOMBRE_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" style="Value" positionType="Float" x="172" y="170" width="90" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="bea0c51d-5673-40e8-9175-2cdb73711373">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{APELLIDOS_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+			<rectangle>
+				<reportElement style="Zebra" positionType="Float" x="30" y="0" width="477" height="20" isRemoveLineWhenBlank="true" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="d3671660-7643-4791-a1a8-25f83041b1ea">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="262" y="0" width="39" height="19" isRemoveLineWhenBlank="true" uuid="bf7bf1ee-83d1-40e9-8fc6-c2ea349d6081">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="471" y="0" width="36" height="19" isRemoveLineWhenBlank="true" uuid="960b6404-8a69-46a0-a3e0-a00995e3ebd8">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="419" y="0" width="52" height="19" isRemoveLineWhenBlank="true" uuid="61abceb3-66e4-4b70-872d-0558ec6fe96a">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DESCARGA_DATOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="31" y="0" width="43" height="19" isRemoveLineWhenBlank="true" uuid="e2621a22-9e0f-472c-bb47-2a1f69b3e114">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="80" y="0" width="92" height="19" isRemoveLineWhenBlank="true" uuid="27bb604e-1138-4f91-904f-4d4b43436bce">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="172" y="0" width="90" height="19" isRemoveLineWhenBlank="true" uuid="1aaaa4c9-daa0-4354-a652-4608a0347dcb">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APELLIDOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="DD/MM/YYYY">
+				<reportElement x="301" y="0" width="62" height="19" uuid="92bfff7c-49a7-4241-b705-e5f9ae5df231">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0191fee6-913e-42e4-b1f9-e48fc54d51e8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHORAINI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="DD/MM/YYYY">
+				<reportElement x="363" y="0" width="56" height="19" uuid="28d6c498-7f5e-4c5c-9bb1-2112d8459ba8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9941664d-1c9c-4fde-9624-08f453d7873f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHORAFIN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="92" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="ojee.RemoteVehicleManagementService.companyResponsable"
+	keys="RDE_ID"
+	title="managerremotevehicleresponsable">
+	<FormHeader standardbuttons="iud" />
+	
+	<ObjectDataField attr="COM_ID" visible="no"/>
+	
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		<ReferenceComboDataField 
+			attr="RDP_ID" 
+			cod="RDP_ID" 
+			entity="ojee.RemoteVehicleManagementService.provider" 
+			cols="RDP_ID;RDP_NAME;RDP_COMPANY_SETUP_TEMPLATE" 
+			visiblecols="RDP_NAME"
+			align="left" 
+			labelsize="14" 
+			dim="no" 
+			size="25" 
+			required="yes" 
+			visible="yes"
+			onsetvalueset="RDP_COMPANY_SETUP_TEMPLATE:CCF_EXTRA_INFO"/>
+		
+		<MemoDataField attr="RDE_NOTES" dim="text" expand="yes" labelsize="14" labelposition="topleft"/>
+		
+	</Column>
+</FormExt>

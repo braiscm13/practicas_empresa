@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="FORM_INFORME_GESTOR" buttons="no">
+	<FormHeader>
+		<Button key="btnInformeSend" tip="TIP_INFORME_SEND" icon="com/opentach/client/rsc/gears_mail16.png" />
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/gears16.png" />
+		<!-- <Button key="bInformeMovil" tip="TIP_INFORME" icon="com/opentach/client/rsc/gears16.png" visible="no"/> -->
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO"  required="yes" visible="no" />
+	<Row expand="yes" maging="20;20;20;20" title="">
+		<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;LOCALE" visiblecols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+		<InfracEngineChooser attr="ENGINEANALYZER" size="30" align="left"/>
+		<TextDataField attr="COLUMN.2" align="left" visible="no" />
+		<Row height="10"/>
+		<CampoFechaNoEditable attr="F_INFORME" align="right" datevisible="no" dim="no" required="yes" />
+	</Row >
+</Form>

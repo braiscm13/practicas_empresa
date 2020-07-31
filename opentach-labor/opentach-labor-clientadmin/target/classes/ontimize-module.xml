@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<OntimizeModule id="opentach-labor-admin" >
+	<Client package="">
+	<!-- LABORAL -->
+		<TabbedFormManager id="manageragreement" showframe="yes" delayedload="yes" form="forms-admin/labor/formAgreementManagement.xml" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+			<InteractionManager form="formAgreement.xml" class="com.opentach.adminclient.labor.modules.IMAgreement"/>
+		</TabbedFormManager>
+	</Client>
+</OntimizeModule>

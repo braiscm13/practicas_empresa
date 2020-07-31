@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="$jnlpspec" codebase="*"  href="*" version="*">
+	<information>
+		#if($project.Name) 
+		<title>$project.Name downcenter</title>
+		#end 
+		#if($project.Organization.Name) 
+		<vendor>$project.Organization.Name</vendor>
+		#end 
+		#if($project.Url) 
+		<homepage href="$project.Url" />
+		#end 
+		#if($project.Description) 
+		<description>$project.Description</description>
+		#end
+		#if($offlineAllowed) 
+		<offline-allowed />
+		#end 
+		<icon kind="splash" href="logo.gif" />
+		<icon kind="shortcut" href="logo.ico" />
+		<shortcut online="true">
+			<desktop />
+			<menu submenu="Openservices/Opentach" />
+		</shortcut>
+	</information>
+	#if($allPermissions) 
+	<security>
+	  <all-permissions />
+	</security>
+	#end 
+	<resources>
+		<j2se version="1.8+" initial-heap-size="64m" max-heap-size="512m" />
+		$dependencies 
+	</resources>
+	<application-desc main-class="$mainClass">
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+		<argument>*</argument>
+	</application-desc>
+	<update check="always" policy="always"/>
+</jnlp>

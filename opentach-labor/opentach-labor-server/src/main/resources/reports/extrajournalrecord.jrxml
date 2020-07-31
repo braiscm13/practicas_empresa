@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ExtraDailyRecordReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="reports/extrajournalrecord_bundle" uuid="369881c8-c5d9-454f-af54-d75c2790e009">
+	<import value="com.opentach.server.labor.labor.agreement.*"/>
+	<import value="com.opentach.server.labor.report.*"/>
+	<import value="com.opentach.server.labor.labor.*"/>
+	<style name="FieldTitleBackground" mode="Opaque" forecolor="#FFFFFF" backcolor="#0277BD" fontName="SansSerif" isBold="true"/>
+	<style name="Zebra" mode="Transparent" vTextAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA["DAILY".equals($P{ReportType})?$V{REPORT_COUNT}%2==1:(
+	"WEEKLY".equals($P{ReportType})?$V{custom_week_count}%2==1:(
+		"BIWEEKLY".equals($P{ReportType})?$V{custom_biweek_count}%2==1:(
+			"MONTHLY".equals($P{ReportType})?$V{custom_month_count}%2==1:(
+				"ANNUAL".equals($P{ReportType})?$V{custom_year_count}%2==1:false
+			)
+		)
+	)
+)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<style name="GroupTitle" mode="Opaque" forecolor="#FFFFFF" backcolor="#01579B" hTextAlign="Left" vTextAlign="Middle" isBold="true">
+		<paragraph leftIndent="10"/>
+	</style>
+	<style name="GroupResumeTitleTop" forecolor="#000000" hTextAlign="Left" vTextAlign="Middle" isBold="true">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#333333"/>
+			<leftPen lineWidth="0.5" lineColor="#333333"/>
+			<bottomPen lineWidth="0.0" lineColor="#333333"/>
+			<rightPen lineWidth="0.5" lineColor="#333333"/>
+		</box>
+		<paragraph leftIndent="5"/>
+	</style>
+	<style name="GroupResumeTitleMiddle" style="GroupResumeTitleTop" pattern="">
+		<box>
+			<topPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="GroupResumeTitleBottom" style="GroupResumeTitleTop" mode="Opaque" forecolor="#FFFFFF" backcolor="#1579B0">
+		<box>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="GroupResumeValueTop" forecolor="#000000" hTextAlign="Right" vTextAlign="Middle">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#333333"/>
+			<leftPen lineWidth="0.0" lineColor="#333333"/>
+			<bottomPen lineWidth="0.0" lineColor="#333333"/>
+			<rightPen lineWidth="0.5" lineColor="#333333"/>
+		</box>
+		<paragraph rightIndent="10"/>
+	</style>
+	<style name="GroupResumeValueMiddle" style="GroupResumeValueTop">
+		<box>
+			<topPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="GroupResumeValueBottom" style="GroupResumeValueTop" isBold="true">
+		<box>
+			<topPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="TableTitle" forecolor="#000000" backcolor="#FFFFFF" vTextAlign="Bottom" isBold="true">
+		<box bottomPadding="2">
+			<bottomPen lineWidth="1.0" lineColor="#333333"/>
+		</box>
+		<paragraph leftIndent="5" rightIndent="5"/>
+	</style>
+	<parameter name="DriverSettings" class="com.opentach.server.labor.labor.DriverSettings" isForPrompting="false"/>
+	<parameter name="ReportType" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["WEEKLY"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Firma" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="year" class="java.lang.Integer">
+		<fieldDescription><![CDATA[year]]></fieldDescription>
+	</field>
+	<field name="month" class="java.lang.Integer">
+		<fieldDescription><![CDATA[month]]></fieldDescription>
+	</field>
+	<field name="weekOfYear" class="java.lang.Integer">
+		<fieldDescription><![CDATA[weekOfYear]]></fieldDescription>
+	</field>
+	<field name="day" class="java.lang.Integer">
+		<fieldDescription><![CDATA[day]]></fieldDescription>
+	</field>
+	<field name="dayString" class="java.lang.String">
+		<fieldDescription><![CDATA[dayString]]></fieldDescription>
+	</field>
+	<field name="from" class="java.util.Date">
+		<fieldDescription><![CDATA[from]]></fieldDescription>
+	</field>
+	<field name="to" class="java.util.Date">
+		<fieldDescription><![CDATA[to]]></fieldDescription>
+	</field>
+	<field name="workingMinutes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[workingMinutes]]></fieldDescription>
+	</field>
+	<field name="originStr" class="java.lang.String">
+		<fieldDescription><![CDATA[originStr]]></fieldDescription>
+	</field>
+	<variable name="workingMinutes4Month" class="java.lang.Integer" resetType="Group" resetGroup="fourmonth" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutesMonth" class="java.lang.Integer" resetType="Group" resetGroup="month" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutesDay" class="java.lang.Integer" resetType="Group" resetGroup="day" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutesWeek" class="java.lang.Integer" resetType="Group" resetGroup="week" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutesBiWeek" class="java.lang.Integer" resetType="Group" resetGroup="biweek" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutes4Week" class="java.lang.Integer" resetType="Group" resetGroup="fourweek" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="workingMinutesYear" class="java.lang.Integer" resetType="Group" resetGroup="year" calculation="Sum">
+		<variableExpression><![CDATA[$F{workingMinutes}]]></variableExpression>
+	</variable>
+	<variable name="debug" class="java.lang.String">
+		<variableExpression><![CDATA[$F{weekOfYear}+" - "+$F{day}+"/"+$F{month}+"/"+$F{year}+"    "+($F{weekOfYear}-1)/2]]></variableExpression>
+	</variable>
+	<variable name="custom_day_count" class="java.lang.Integer" incrementType="Group" incrementGroup="day" calculation="Sum">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_week_count" class="java.lang.Integer" incrementType="Group" incrementGroup="week" calculation="Count">
+		<variableExpression><![CDATA[$F{year}+"_"+$F{weekOfYear}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_biweek_count" class="java.lang.Integer" incrementType="Group" incrementGroup="biweek" calculation="Count">
+		<variableExpression><![CDATA[$F{year}+"_"+($F{weekOfYear}/2)]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_4week_count" class="java.lang.Integer" incrementType="Group" incrementGroup="fourweek" calculation="Count">
+		<variableExpression><![CDATA[$F{year}+"_"+($F{weekOfYear})+"-"+($F{weekOfYear}+3)]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_month_count" class="java.lang.Integer" incrementType="Group" incrementGroup="month" calculation="Count">
+		<variableExpression><![CDATA[$F{year}+"_"+$F{month}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_4month_count" class="java.lang.Integer" incrementType="Group" incrementGroup="fourmonth" calculation="Count">
+		<variableExpression><![CDATA[$F{year}+"_"+$F{month}+"-"+$F{month}+3]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="custom_year_count" class="java.lang.Integer" incrementType="Group" incrementGroup="year" calculation="Count">
+		<variableExpression><![CDATA[$F{year}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="driverContract" class="com.opentach.server.labor.labor.DriverContract" resetType="Column">
+		<variableExpression><![CDATA[$P{DriverSettings}.getLaborAgreeementForDay($F{from})]]></variableExpression>
+	</variable>
+	<variable name="firstDayWeekGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{week_COUNT}==1 ? $F{dayString} : $V{firstDayWeekGroup}]]></variableExpression>
+	</variable>
+	<variable name="firstDayBiweekGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{biweek_COUNT}==1 ? $F{dayString} : $V{firstDayBiweekGroup}]]></variableExpression>
+	</variable>
+	<variable name="firstDay4WeekGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{fourweek_COUNT}==1 ? $F{dayString} : $V{firstDay4WeekGroup}]]></variableExpression>
+	</variable>
+	<variable name="firstDayMonthGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{month_COUNT}==1 ? $F{dayString} : $V{firstDayMonthGroup}]]></variableExpression>
+	</variable>
+	<variable name="firstDay4MonthGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{fourmonth_COUNT}==1 ? $F{dayString} : $V{firstDay4MonthGroup}]]></variableExpression>
+	</variable>
+	<variable name="firstDayYearGroup" class="java.lang.String">
+		<variableExpression><![CDATA[$V{year_COUNT}==1 ? $F{dayString} : $V{firstDayYearGroup}]]></variableExpression>
+	</variable>
+	<variable name="dataList" class="java.util.List">
+		<variableExpression><![CDATA[( List<DailyWorkRecord>) ((net.sf.jasperreports.engine.data.JRBeanCollectionDataSource)$P{REPORT_DATA_SOURCE}).getData()]]></variableExpression>
+	</variable>
+	<group name="year">
+		<groupExpression><![CDATA["ANNUAL".equals($P{ReportType})?$F{year}:null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<printWhenExpression><![CDATA["ANNUAL".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="ec72ff96-ada8-4464-b530-3e1e0ab4247a"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutesYear})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="9f106f30-5372-405b-845d-1c3470a81b55"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.ANNUAL, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.ANNUAL))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="682528a4-4b32-42e3-84b9-ccd922a85a7d">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.ANNUAL, $V{firstDayYearGroup},$F{dayString}, $V{dataList}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="5da35260-82e3-4c1f-82b8-e3f787b5e497"/>
+					<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="fourmonth">
+		<groupExpression><![CDATA["FOUR_MONTHLY".equals($P{ReportType})?($F{year}+" "+($F{month}/4)+1):null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA["FOUR_MONTHLY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="91dfd95f-80ae-4635-b0a0-0485a10bd135"/>
+					<textFieldExpression><![CDATA[$F{year}+" - "+new DateFormatSymbols($P{REPORT_LOCALE}).getMonths()[$F{month}-1] +" - "+new DateFormatSymbols($P{REPORT_LOCALE}).getMonths()[$F{month}+2]]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="4f78f16d-22f5-4906-be38-98f38a25eebb"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutes4Month})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="ef739288-7b5d-4899-89d9-75589b1d2275"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.FOUR_MONTHLY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.FOUR_MONTHLY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="ab073538-f4ef-453e-b723-086fcaa56b6a">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.FOUR_MONTHLY, $V{firstDay4MonthGroup},$F{dayString},$V{dataList}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="month">
+		<groupExpression><![CDATA["MONTHLY".equals($P{ReportType})?($F{year}+" "+$F{month}):null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<printWhenExpression><![CDATA["MONTHLY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="118c2f97-89fd-4ad6-a9de-6f4200dfcf18">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.MONTHLY, $V{firstDayMonthGroup},$F{dayString},$V{dataList}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="1f2771c2-9160-4098-b76e-0e065a8cc40f"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.MONTHLY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.MONTHLY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="cfc25c82-5a25-43af-b633-db2fb7983e94"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutesMonth})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="ac0d8c21-e190-4f08-87fb-0049d8051f59"/>
+					<textFieldExpression><![CDATA[$F{year}+" - "+new DateFormatSymbols($P{REPORT_LOCALE}).getMonths()[$F{month}-1]]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="fourweek">
+		<groupExpression><![CDATA["FOUR_WEEKLY".equals($P{ReportType})?($F{year}+" "+($F{weekOfYear}-1)/4):null]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA["FOUR_WEEKLY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="23c1e378-a519-485e-bde2-ac2bc1146152">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{year}+" - "+$R{SEMANAS} +" "+
+($F{weekOfYear} %2==0?$F{weekOfYear}-1:$F{weekOfYear})
++" - "+(
+	($F{weekOfYear} %2==0?$F{weekOfYear}-1:$F{weekOfYear})+3
+)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="2cc12bc8-469f-48d9-9cd5-0435e5a9d331"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutes4Week})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="01d4841b-f86f-4d4f-9a63-d786e4977b91"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.FOUR_WEEKLY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.FOUR_WEEKLY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="54d9c1bd-7b46-44b0-ab4c-30375b6e23a3">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.FOUR_WEEKLY, $V{firstDay4WeekGroup},$F{dayString}, $V{dataList}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="biweek">
+		<groupExpression><![CDATA["BIWEEKLY".equals($P{ReportType})?($F{year}+" "+($F{weekOfYear}-1)/2):null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<printWhenExpression><![CDATA["BIWEEKLY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="e65a1380-960a-420f-9650-e415eec627e1"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.BIWEEKLY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.BIWEEKLY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="d83b260d-5f0c-4d04-a0c9-1cc6417a7633"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutesBiWeek})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="6cde3ba0-1760-40ef-ad30-4aba9caa1630">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.BIWEEKLY, $V{firstDayBiweekGroup},$F{dayString}, $V{dataList}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="d566abf2-fcd5-4328-a2fe-3ea11fa0aef9">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{year}+" - "+$R{SEMANAS} +" "+
+($F{weekOfYear} %2==0?$F{weekOfYear}-1:$F{weekOfYear})
++" "+$R{AND}+" "+(
+	($F{weekOfYear} %2==0?$F{weekOfYear}-1:$F{weekOfYear})+1
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="week">
+		<groupExpression><![CDATA["WEEKLY".equals($P{ReportType})?($F{year}+" "+$F{weekOfYear}):null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<printWhenExpression><![CDATA["WEEKLY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="38312d80-7785-47a7-8222-5db4471a4418">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.WEEKLY, $V{firstDayWeekGroup},$F{dayString}, $V{dataList}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="92a01930-a550-42f8-a1d3-d683fdebafda"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutesWeek})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="f8221aa2-833a-4d51-8027-5db32eabc110"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.WEEKLY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.WEEKLY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="8f2e8953-f4ca-4d9e-a61f-5c0956290410">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{year}+" - "+$R{SEMANA} +" "+$F{weekOfYear}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="day">
+		<groupExpression><![CDATA["DAILY".equals($P{ReportType})?$F{dayString}:null]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<printWhenExpression><![CDATA["DAILY".equals($P{ReportType})]]></printWhenExpression>
+				<textField>
+					<reportElement style="Zebra" x="309" y="0" width="130" height="20" uuid="d8718ba8-0856-43d0-9b4d-7a982b36f188">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{driverContract}.computeTimeLimit(ExtraTimeComputationPeriodMode.DAILY, $F{dayString},$F{dayString}, $V{dataList}))+""+($V{driverContract}.isPartialTime()?(" / "+JRTools.min2String($V{driverContract}.getComplementaryMinutesForPartialContract(ExtraTimeComputationPeriodMode.DAILY))):"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Zebra" x="179" y="0" width="130" height="20" uuid="575e6f4e-b8c7-41e7-af32-50c9db75eae7">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String($V{workingMinutesDay})]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement style="Zebra" x="439" y="0" width="79" height="20" uuid="77c03caf-8735-4e32-a754-2cc2a50e53ae">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[JRTools.min2String(
+$P{DriverSettings}.computeExtraTime(ExtraTimeComputationPeriodMode.DAILY, $F{dayString},$F{dayString}, $V{dataList}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement key="" style="Zebra" x="33" y="0" width="146" height="20" uuid="85272d2b-b236-46a4-935d-6c99830e7143"/>
+					<textFieldExpression><![CDATA[$F{dayString}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="0">
+				<reportElement key="rectangle" style="GroupTitle" x="11" y="757" width="518" height="38" uuid="6827ddea-13cc-4e24-b352-1b4339a4def4"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" mode="Transparent" x="419" y="140" width="101" height="18" uuid="b6b173b8-3eb3-4e6b-a1fd-7e9cd2abd6f8"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#333333"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#333333"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp(System.currentTimeMillis())]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement key="ellipse" style="GroupTitle" x="127" y="36" width="14" height="14" uuid="9266094d-03c3-4401-88ac-62c20e5d81f9"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" style="GroupTitle" x="146" y="36" width="14" height="14" uuid="001c14cc-418c-482d-840d-42d4f3455d9a"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<image>
+				<reportElement key="image-2" x="33" y="22" width="47" height="47" uuid="3a18d6e1-61cf-460a-af81-79d9636783b0"/>
+				<imageExpression><![CDATA["reports/ico.png"]]></imageExpression>
+			</image>
+			<rectangle radius="0">
+				<reportElement key="rectangle" x="17" y="678" width="511" height="79" forecolor="#FFFFFF" uuid="f26f49bf-c035-4c2c-bfa5-6b736dbe3fbb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement key="ellipse" style="GroupTitle" x="108" y="36" width="14" height="14" uuid="e38f62c1-0311-4332-8656-208f8fb27a45"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="168" y="33" width="336" height="22" uuid="b66b3936-11e8-43b6-953d-0d1841d6905e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{labor_report_title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="33" y="80" width="340" height="21" uuid="c45fc998-1144-446f-a4e8-75e83bb4ae7d"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getCompanyName()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-11" x="30" y="163" width="495" height="1" forecolor="#277BD0" uuid="b16e22fd-73d6-4755-8179-8e7330a86a06"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-1" mode="Opaque" x="44" y="737" width="146" height="50" uuid="d567f2b0-613c-4353-88b0-96706bccf48f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Firma conforme:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="770" width="100" height="14" forecolor="#CCCCCC" uuid="f3f61e30-05bb-4f9c-b5f5-b847ca7c49db"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="490" y="770" width="30" height="14" forecolor="#CCCCCC" uuid="5c8749d9-53fc-42fc-9967-43a1552b89bc"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="101" width="114" height="18" uuid="50db90b3-cd1b-4251-b072-c4ef57cd87e2"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getCompanyCif()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="101" width="103" height="18" uuid="797f4a03-6b1c-4b72-8543-7a22c4111817"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineWidth="0.5" lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getCompanyCcc()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="" style="FieldTitleBackground" x="419" y="122" width="101" height="18" uuid="e9e0a68a-8062-49b5-b435-4a50b5214f6c"/>
+				<box leftPadding="4" rightPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineWidth="0.5" lineColor="#333333"/>
+					<bottomPen lineWidth="0.0" lineColor="#333333"/>
+					<rightPen lineWidth="0.5" lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{reportDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="" style="FieldTitleBackground" x="210" y="101" width="60" height="18" uuid="e1925690-bb98-4458-8546-9727d0084e8e"/>
+				<box leftPadding="4" rightPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineWidth="0.0" lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{companyCCC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="" style="FieldTitleBackground" x="33" y="101" width="63" height="18" uuid="95f9e50b-c543-43b1-bb3b-b7297107d4b7"/>
+				<box leftPadding="4" rightPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineWidth="0.5" lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{companyCIF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="33" y="120" width="340" height="21" uuid="44ec70f6-c941-4cf3-af67-42329aff5387"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getDriverName()+" "+$P{DriverSettings}.getDriverSurname()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="" style="FieldTitleBackground" x="33" y="141" width="63" height="18" uuid="4963d517-a27b-45e1-b2ac-cb3aea1271f6"/>
+				<box leftPadding="4" rightPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineWidth="0.5" lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{driverNIF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="141" width="114" height="18" uuid="be703130-f23d-4568-8d91-3b2a15ad5543"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getDriverDni()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="" style="FieldTitleBackground" x="210" y="141" width="60" height="18" uuid="5e98d1f6-f277-4424-839b-a171c8dd8793"/>
+				<box leftPadding="4" rightPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineWidth="0.0" lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{driverNAF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="141" width="103" height="18" uuid="35a401a2-c01e-428f-965d-bb084882e68f"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineWidth="0.5" lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getDriverNaf()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="196" y="770" width="260" height="13" uuid="7c007e24-2cdb-4cfe-9e00-425a31096ad6">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="4">
+					<topPen lineWidth="0.5" lineColor="#333333"/>
+					<leftPen lineColor="#333333"/>
+					<bottomPen lineWidth="0.5" lineColor="#333333"/>
+					<rightPen lineWidth="0.5" lineColor="#333333"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Firma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="195" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="TableTitle" stretchType="ElementGroupBottom" x="179" y="175" width="130" height="20" uuid="03284204-1afc-49f4-b53a-993eb444f616">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$R{totalworkingminutes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="TableTitle" stretchType="ElementGroupBottom" x="309" y="175" width="130" height="20" uuid="30d951b5-8de1-45aa-8905-c053c8924e5d">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{DriverSettings}.getLaborAgreeementForDay($F{from}).isPartialTime()?$R{agreementMinutesPartial}:$R{agreementMinutes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="" style="TableTitle" stretchType="ElementGroupBottom" x="439" y="175" width="79" height="20" uuid="3f870840-0993-45ea-b869-53acb38b819f">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$R{extraMinutes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="TableTitle" stretchType="ElementGroupBottom" x="33" y="175" width="146" height="20" uuid="2509e690-82a2-46c0-8cd5-2b97993c6638">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$R{period}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="67" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageFooter>
+</jasperReport>

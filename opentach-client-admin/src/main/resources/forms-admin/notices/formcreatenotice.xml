@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="NoticeId" entity="EAvisos" title="Avisos" buttons="no">
+	<FormHeader standardbuttons="i" />
+	<TextDataField attr="USUARIO" visible="no" />
+	<Column expandlast="no">
+		<SplitPane attr="splitcreatenotice">
+			<Column expandlast="no">
+				<Row height="10" />
+				<IntegerDataField attr="NoticeId" visible="no" />
+				<TextDataField attr="SendUser" visible="no" />
+				<DateDataField attr="CreationDate" align="left" calendar="no" enabled="no" />
+				<TextDataField attr="Subject" dim="text" align="left" labelsize="12" required="yes" />
+				<Row expand="yes" title="Contenido">
+					<HTMLDataField attr="Content" dim="text" align="left" expand="yes" labelsize="12" labelvisible="no" required="yes"/>
+				</Row >
+				<Row align="left" expand="no">
+					<CheckDataField attr="ResponseRequest" labelposition="right" align="left" dim="no" />
+					<CheckDataField attr="MandatoryRead" labelposition="right" align="left" dim="no" />
+					<!--  <CampoCheck attr="SendMail" labelposition="right" align="left" dim="no" /> -->
+					<Row expand="yes" margin="0;25;0;0">
+						<TextComboDataField attr="NoticeType" translate="yes" dim="text" />
+					</Row >
+				</Row >
+			</Column >
+			<Column >
+<!-- 				<Row title="Filters" expand="yes">
+					<Column title="Profiles" >
+						<Table entity="EPerfil" cols="SELECTED;NIVEL_CD;DSCR;NIVEL_NUM;APP" editablecolumns="SELECTED" visiblecols="SELECTED;DSCR" key="NIVEL_CD" controls="yes" expand="yes" >
+						<TableColumnProperties attr="SELECTED" text="" minwidth="65" maxwidth="65" resizable="no" defaultwidth="65" preferredwidth="65"/>
+		                <com.opentach.client.comp.RolesBooleanEditor globalid="SELECTED" column="SELECTED" returnstring="yes" values="S;N"/>
+		                <RenderBoolean column="SELECTED"/>  
+                  </Table>
+					</Column>
+				</Row> -->
+				<Row title="Destinatarios" attr="InsertMode" expand="yes">
+					<Column title="Usuarios" width="645" expand="no">
+						<Row valign="top" height="30">
+							<Column width="120" expand="no"/>
+							<ReferenceComboDataField attr="NOMBRE_PERFIL" cod="DSCR" text="NOMBRE_PERFIL" entity="EPerfil" cols="DSCR" codsearch="DSCR" align="left"  size="17" dim="no" labelvisible="no" />
+							<Column width="5" expand="no"/>
+							<ReferenceComboDataField attr="PROVINCIA" cod="NOMB" text="NOMB" entity="EProvincias" cols="NOMB" codsearch="NOMB" align="left" size="17" dim="no" labelvisible="no" />
+							<Column width="5" expand="no"/>
+							<ReferenceComboDataField attr="NOMB_EMP" cod="NOMB" text="NOMB" entity="EDfEmp" cols="NOMB" codsearch="NOMB" align="left" size="17" dim="no" labelvisible="no" />
+							<Column width="5" expand="no"/>
+							<TextComboDataField attr="IDVEHICLETYPE"  translate="yes" values="MERCANCIA;PERSONAS" align="left" dim="no" size="17" labelvisible="no" />
+							<Row />
+						</Row>
+						<Table entity="ENoticeEmailDestinationUsers" cols="USUARIO;NAME;USER_;EMAIL" visiblecols="USER_;EMAIL" key="USER_" parentkeys="USUARIO"  controls="no"  expand="yes" />
+						<Table entity="ENoticeDestinationUsers" cols="NO_USER;NAME;USER_;NIVEL_CD;NOMBRE_PERFIL;PROVINCIA;CIF;NOMB_EMP;IDVEHICLETYPE" visiblecols="USER_;NOMBRE_PERFIL;PROVINCIA;NOMB_EMP;IDVEHICLETYPE" key="USER_" parentkeys="USUARIO:NO_USER;NOMBRE_PERFIL;PROVINCIA;NOMB_EMP;IDVEHICLETYPE" controls="no" expand="yes">
+							<TableColumnProperties attr="USER_" maxwidth="120" minwidth="120" preferredwidth="120" />
+							<TableColumnProperties attr="NOMBRE_PERFIL" maxwidth="120" minwidth="120" preferredwidth="120" />
+							<TableColumnProperties attr="PROVINCIA" maxwidth="120" minwidth="120" preferredwidth="120" />
+							<TableColumnProperties attr="NOMB_EMP" maxwidth="120" minwidth="120" preferredwidth="120" />
+							<TableColumnProperties attr="IDVEHICLETYPE" maxwidth="120" minwidth="120" preferredwidth="120" />
+						    <BundleCellRenderer column="IDVEHICLETYPE" globalid="IDVEHICLETYPE"/>
+						</Table>
+					</Column >
+					<Column attr="BotonesMoverEntreTablas" valign="center" expand="no">
+						<com.ontimize.gui.button.MoveAllBetweenTablesButton key="insertalluser" sourcetable="ENoticeDestinationUsers" destinationtable="DestinyUser" icon="com/opentach/client/rsc/navigate2_right16.png" labelsize="3" />
+						<MoveBetweenTablesButton key="insertuser" sourcetable="ENoticeDestinationUsers" destinationtable="DestinyUser" icon="com/opentach/client/rsc/navigate_right16.png" labelsize="3" />
+						<MoveBetweenTablesButton key="removeuser" sourcetable="DestinyUser" destinationtable="ENoticeDestinationUsers" icon="com/opentach/client/rsc/navigate_left16.png" labelsize="3" />
+						<com.ontimize.gui.button.MoveAllBetweenTablesButton key="removealluser" sourcetable="DestinyUser" destinationtable="ENoticeDestinationUsers" icon="com/opentach/client/rsc/navigate2_left16.png" labelsize="3" />
+						<MoveBetweenTablesButton key="insertmail" sourcetable="ENoticeEmailDestinationUsers" destinationtable="DestinyEMail" icon="com/ontimize/gui/images/next_help_ui.png" labelsize="3" />
+						<MoveBetweenTablesButton key="removemail" sourcetable="DestinyEMail" destinationtable="ENoticeEmailDestinationUsers" icon="com/ontimize/gui/images/prev_help_ui.png" labelsize="3" />
+					</Column >
+					<Column title="Destinos" expand="yes" width="550">
+						<Table entity="DestinyEMail" cols="NAME;USER_;EMAIL" key="USER_" visiblecols="USER_;EMAIL"  expand="yes" />
+						<Table entity="DestinyUser" cols="NAME;USER_;NIVEL_CD;NOMBRE_PERFIL;PROVINCIA;CIF;NOMB_EMP" key="USER_" visiblecols="USER_;NOMBRE_PERFIL;PROVINCIA;NOMB_EMP" controls="yes"  expand="yes" />
+					</Column >
+				</Row >
+			</Column >
+		</SplitPane>
+	</Column >
+</FormExt>

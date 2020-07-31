@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ce236001-7505-4725-88f1-650ef75b6827">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="3.4522712143931154"/>
+	<property name="ireport.x" value="382"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*900))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*30))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cif" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["ESB15296072"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["596930283"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["00000001050800"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dni" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT IDCONDUCTOR, FECHORAINI, FECHORAFIN, NATURALEZA, TIPO_DSCR FROM(
+SELECT
+CDVINFORM_INFRAC.IDCONDUCTOR,
+CDVINFORM_INFRAC.FECHORAINI,
+CDVINFORM_INFRAC.FECHORAFIN,
+CDVINFORM_INFRAC.NATURALEZA,
+CDVINFORM_INFRAC.TIPO_DSCR
+FROM CDVINFORM_INFRAC
+WHERE CDVINFORM_INFRAC.IDCONDUCTOR = $P{idconductor}
+and CDVINFORM_INFRAC.CG_CONTRATO = $P{cgcontrato}
+and CDVINFORM_INFRAC.CIF = $P{cif}
+and CDVINFORM_INFRAC.FECHORAINI >= $P{fdesde}
+and CDVINFORM_INFRAC.FECHORAINI <= $P{fhasta}
+and CDVINFORM_INFRAC.DNI = $P{dni}
+ORDER BY FECHORAINI
+)WHERE ROWNUM <= 10]]>
+	</queryString>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="FECHORAINI" class="java.sql.Timestamp"/>
+	<field name="FECHORAFIN" class="java.sql.Timestamp"/>
+	<field name="NATURALEZA" class="java.lang.String"/>
+	<field name="TIPO_DSCR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="13" y="62" width="478" height="16" forecolor="#E8F0FF" backcolor="#CCCCCC" uuid="32f1f181-cafa-4cc0-86e1-93ec2c93c853"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="13" y="16" width="224" height="20" forecolor="#000000" uuid="ea55ccb9-4798-43cd-b609-871f94d53892"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{RESUMEN_INFRACCIONES}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="17" y="64" width="101" height="12" uuid="41fb5abf-d7fd-437a-8184-39a8e8b6d01a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="127" y="64" width="95" height="12" uuid="59b40f18-8e8b-48f6-8104-c8926b2f1996"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_FIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="221" y="64" width="53" height="12" uuid="20b3f809-fdb7-449a-95c8-4237a789845c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NATURALEZA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="276" y="64" width="204" height="12" uuid="895f8ce0-8fcd-4a6d-a5b2-af6d939e6ef9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-6" x="337" y="3" width="152" height="55" uuid="a30879d1-821b-412d-95d6-45916f77c349"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.25" lineStyle="Solid"/>
+					<leftPen lineWidth="1.25"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{LEGEND_INFRAC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="0" width="480" height="18" forecolor="#FFFFFF" backcolor="#E8F0FF" uuid="419c8579-d1ca-4adc-918c-b13fac412d09">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="false">
+				<reportElement key="textField" x="13" y="0" width="110" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="df7e7461-6eae-4f16-b3d6-91eda35d539e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHORAINI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="false">
+				<reportElement key="textField" x="128" y="1" width="94" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="22794fbe-5738-4228-8dba-4df57031cd97"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHORAFIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="222" y="1" width="52" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="29e26e35-7c10-4f35-a4b9-6b7637b16e01"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NATURALEZA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="278" y="1" width="202" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="d850ef96-0fc1-49e4-b2d0-1b5e500d6097"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{TIPO_DSCR}+"_INFRAC")!=null ? $P{REPORT_RESOURCE_BUNDLE}.getString($F{TIPO_DSCR}+"_INFRAC") : $F{TIPO_DSCR}+"_INFRAC"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

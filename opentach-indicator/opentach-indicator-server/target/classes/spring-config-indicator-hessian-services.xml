@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Servicio de gestion de emails -->
+	<bean name="/indicator" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="IndicatorService" />
+		<property name="serviceInterface" value="com.opentach.common.indicator.services.IIndicatorService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>
+	
+</beans>

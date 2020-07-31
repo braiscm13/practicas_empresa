@@ -1,0 +1,10 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>SurveyService</Name>
+		<Class>com.opentach.server.checktrucker.services.SurveyService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>SurveyReportService</Name>
+		<Class>com.opentach.server.checktrucker.services.SurveyReportService</Class>
+	</RemoteReference>
+</RemoteReferences>

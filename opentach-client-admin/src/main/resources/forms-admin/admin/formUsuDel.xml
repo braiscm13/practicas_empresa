@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="USUARIO;CIF" entity="EUsuDfEmpUsuarios" columns="USUARIO;CIF" title="EUsuDel" setvalueorder="USUARIO;CIF">
+	<FormHeader standardbuttons="yes" />
+	<Row expand="yes" title="">
+		<TextDataField attr="USUARIO" visible="no" />
+		<TextDataField attr="CIF" visible="no" />			
+		<Column title="" expand="yes">
+			<InsertTable entity="EUsuDel"  key="USUARIO" keys="IDDELEGACION" parentkey="USUARIO" otherkeys="CIF" cols="USUARIO;CIF;IDDELEGACION" visiblecols="IDDELEGACION" editablecolumns="IDDELEGACION" updateentityeditablecolumns="IDDELEGACION" refreshbutton="yes" deletebutton="yes" requiredcols="IDDELEGACION">
+				<ComboCellRenderer 	column="IDDELEGACION" 	entity="EDelegacionDfEmp" align="left" cod="IDDELEGACION" cols="IDDELEGACION;NOMBRE_DEL" visiblecols="NOMBRE_DEL" />
+				<ComboCellEditor 	column="IDDELEGACION"   entity="EDelegacionDfEmp" align="left" cod="IDDELEGACION" parentkey="CIF" cols="IDDELEGACION;CIF;NOMBRE_DEL" visiblecols="NOMBRE_DEL" />
+			</InsertTable>		  
+		</Column >		
+	</Row >
+</FormExt>

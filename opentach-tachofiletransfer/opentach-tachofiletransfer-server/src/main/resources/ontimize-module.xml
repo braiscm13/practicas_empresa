@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-tachofiletransfer">
+	<Server package="com.opentach.server.tachofiletransfer.entities">
+		<EntityProperties archive="tachofiletransfer-conf/entities.properties"/>
+		<RemoteReferences archive="tachofiletransfer-conf/remote-references.xml"/>
+	</Server>
+</OntimizeModule>

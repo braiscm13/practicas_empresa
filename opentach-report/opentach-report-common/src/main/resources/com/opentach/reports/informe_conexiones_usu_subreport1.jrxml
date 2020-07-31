@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_conexiones_usu_subreport1" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47c52b86-4cd9-4b63-8abc-3cb7fba381ca">
+	<property name="ireport.zoom" value="2.1435888100000025"/>
+	<property name="ireport.x" value="90"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="f_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date("01/01/1970").getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select cdusu_dfemp.cif, NOMB, cdusu.usuario, count(*) as conexiones
+from cdlogsesion, cdusu, cdusu_dfemp, DFEMP
+where cdlogsesion.usuario = cdusu.usuario and
+cdusu.usuario= cdusu_dfemp.usuario AND
+DFEMP.CIF = cdusu_dfemp.CIF
+ and f_ini >=  $P{f_inicio} and f_ini <= $P{f_fin}
+group by cdusu_dfemp.cif, NOMB, cdusu.usuario]]>
+	</queryString>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="NOMB" class="java.lang.String"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="CONEXIONES" class="java.math.BigDecimal"/>
+	<group name="CIF">
+		<groupExpression><![CDATA[$F{CIF}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" style="Back" mode="Opaque" x="36" y="16" width="453" height="15" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="964d0ac1-034b-4885-820e-4fda961cbaf5"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="417" y="16" width="71" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="5b5adf7b-09d8-4e27-9911-c7918881802d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CONEXIONES_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="35" y="16" width="94" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="8c8ca03e-71c5-4d3c-9fd6-9a45e63e6288"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CIF_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="311" y="16" width="106" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="f2d416df-7b19-4610-8f17-aae126752d81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{USUARIO_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="130" y="16" width="181" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="3bedda9c-47b5-4353-a5ea-0bbbb44324c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NOMB_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<rectangle>
+				<reportElement style="Zebra" x="36" y="0" width="453" height="16" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="354dac38-003a-433e-a3a4-4d797ad2d578"/>
+			</rectangle>
+			<textField>
+				<reportElement style="Zebra" x="36" y="0" width="94" height="16" uuid="757f6cbe-f4ba-493c-90e9-9ae095010c16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIF}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="Zebra" x="422" y="0" width="67" height="16" uuid="ad16d053-ea65-4841-badc-ad03006c0e4c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONEXIONES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" x="311" y="0" width="111" height="16" uuid="cce8ee73-15fa-436d-94e0-90c5fc2e2ea5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" x="129" y="0" width="182" height="16" uuid="73a116ae-d900-4a57-aaea-2300da8352cb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMB}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

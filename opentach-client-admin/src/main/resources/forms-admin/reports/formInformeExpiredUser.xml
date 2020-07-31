@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformeexpireduser" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<Row expand="yes">
+		<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+			<Column >
+				<Table entity="UsuarioSinExpirar" keys="USUARIO" cols="USUARIO;NOMBRE_FIRMANTE;APELLIDOS_FIRMANTE;CARGO;DMAXLOGIN" 
+				visiblecols="USUARIO;NOMBRE_FIRMANTE;APELLIDOS_FIRMANTE;CARGO;DMAXLOGIN"/>
+			</Column >
+		</Column >
+	</Row >
+</Form>

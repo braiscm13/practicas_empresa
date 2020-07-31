@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form buttons="no" title="FICHEROS_PENDIENTES">
+	<FormHeader standardbuttons="no">
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png"/>
+	</FormHeader>
+	<Row expand="yes" align="left" margin="5;5;5;5">
+		<Column align="left" expand="yes">
+			<Column expand="yes" align="left">
+				<Row >
+					<Column valing="center">
+						<Row expand="no" title="Filtro" margin="10;10;10;10">
+							<TextDataField attr="IDORIGEN" visible="yes" required="no" dim="text" maxlength="14" align="left" />							
+							<Column expand="no"  >
+								<Row align="right" expand="no" margin="0;15;0;15">
+									<ObjectDataField attr="TIPO" visible="no" text="tipo" required="no" datevisible="no" dim="no" labelsize="12" />
+									<CheckDataField attr="VU" selected="no" labelposition="right" align="right" />
+									<CheckDataField attr="TC" selected="no" labelposition="right" align="right" />
+									<CheckDataField attr="DA" selected="no" labelposition="right" align="right" />
+								</Row>
+							</Column>
+						</Row>
+						<Row>
+							<Column title="Procesado" valign="center">
+								<Button key="btnProcesarPrio" text="btnProcesarPrio" icon="com/opentach/client/rsc/sort_ascending.png" labelsize="20" listener="com.opentach.adminclient.modules.files.IMListadoFicherosPriorityActionListener"/>
+								<Button key="btnProcesarNow" text="btnProcesarNow" icon="com/opentach/client/rsc/gear16.png" labelsize="20" listener="com.opentach.adminclient.modules.files.IMListadoFicherosNowActionListener"/>
+							</Column >
+							<Column title="Contratos" valign="center">
+								<Button key="btnViewTrace" text="btnViewTrace" icon="com/opentach/client/rsc/view16.png" labelsize="24" listener="com.opentach.adminclient.modules.files.IMListadoFicherosViewTraceActionListener"/>
+								<Button key="btnTryAssign" text="btnTryAssign" icon="com/opentach/client/rsc/lightbulb_on16.png" labelsize="24" listener="com.opentach.adminclient.modules.files.IMListadoFicherosAssignContractActionListener"/>
+							</Column >
+							<Column title="Ficheros" valign="center">
+								<Row>
+									<Column>
+										<Button key="btnDownload" text="DESCARGAR_FICHEROS_CSD" icon="com/opentach/client/rsc/server_to_client16.png" labelsize="18" />
+										<Button key="btnAbrirFichero" text="VER_FICHERO" tip="SELECCIONAR" icon="com/opentach/client/rsc/openfile.png" labelsize="18" listener="com.opentach.adminclient.modules.files.IMListadoFicherosViewFileActionListener"/>
+									</Column>
+									<Column>
+										<Button key="btnFileDetails" text="INFO_FICHERO" tip="INFO_FICHERO" icon="com/opentach/client/rsc/openfile.png" labelsize="18" listener="com.opentach.adminclient.modules.files.IMListadoFicherosDetailFileActionListener"/>
+									</Column>
+								</Row>
+							</Column >
+						</Row>
+					</Column>					
+					<Column layout="border" expand="no" align="center" title="Filtro_Fechas">
+						<TextComboDataField attr="FECHA_POR" translate="yes" values="F_DESCARGA_DATOS;F_ALTA" dim="text" size="20" required="yes" /><!--  values="Fecha Descarga Datos;Fecha Alta"-->
+						<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+							<RadioButtonDataField attr="ULTIMOS_DIAS" text="Ultimos_15_dias" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+							<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+							<Column expand="no">
+								<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+								<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+							</Column >
+						</ColumnRadioButtonGroup >
+					</Column >
+				</Row >
+			</Column >
+		</Column >
+	</Row >
+	<Row expand="yes" title="">
+		<Table entity="EFicherosPendientes" key="IDFICHERO" numrowscolumn="yes" otherkeys="TIPO;F_DESCARGA_DATOS;F_ALTA;IDORIGEN" rendertime="FECINI;FECFIN;F_DESCARGA_DATOS"
+			cols="IDFICHERO;NOMB_PROCESADO;IDORIGEN;NOMBRE;F_DESCARGA_DATOS;FECINI;FECFIN;F_PROCESADO;TIPO;ASOCIADO;PROCESADO;TOTALES;OBSR;USUARIO_ALTA;F_ALTA;SOURCE_TYPE"
+			visiblecols="NOMB_PROCESADO;IDORIGEN;NOMBRE;OBSR;F_DESCARGA_DATOS;FECINI;FECFIN;F_PROCESADO;TIPO;ASOCIADO;PROCESADO;TOTALES;USUARIO_ALTA;F_ALTA;SOURCE_TYPE" 
+			disableinsert="yes" form="formAsociarContrato.xml" 
+			fixattr="IDFICHERO"
+			deletebutton="yes">
+			<BundleCellRenderer column="SOURCE_TYPE" prefix="uploadType."/>
+		</Table>	
+	</Row >
+</Form>

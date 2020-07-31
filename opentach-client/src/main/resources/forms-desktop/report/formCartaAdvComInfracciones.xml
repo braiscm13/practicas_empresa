@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" title="ADV_COM_INFRACCIONES" setvalueorder="" preferredsizetodialog="800;350">
+<ObjectDataField
+		attr="CG_CONTRATO"
+		required="yes"
+		visible="no" />
+<Column margin="5;5;5;5" >		
+	<Row expand="no">
+		<Column margin="5;5;5;5">
+				<ReferenceExtDataField entity="EDfEmp"	text="EMPRESA"	labelsize="12"	attr="CIF" dim="text" cod="CIF" 
+					cols="CIF;NOMB;DIRECCION;CG_POSTAL;POBL;PROVINCIA"	visiblecols="CIF;NOMB"	descriptioncols="NOMB"	required="yes"	csize="10" />
+				<ReferenceExtDataField parentkeylistener="yes" populatetableonshowtablewindow="true" attr="IDCONDUCTOR" cod="IDCONDUCTOR" parentkeys="CIF;CG_CONTRATO" csize="10" entity="EConductorContFicticio"
+					cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE" visiblecols="DNI;APELLIDOS;NOMBRE" cleanonparentkeynull="true" descriptioncols="APELLIDOS;NOMBRE" align="left" labelsize="12" dim="text"
+					required="no" />
+		</Column>
+		<Column expand="no" margin="5;5;5;5">
+				<Row valign="center">
+					<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMININI" size="5" mask="00:00" text="DESDE" labelsize="7" visible="no"/>
+					<CampoFechaNoEditable attr="FILTERFECINI"  text="DESDE" align="left" required="yes" datevisible="no"  dim="no" labelsize="7"/>
+				</Row>
+				<Row>
+					<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMINFIN" size="5" mask="00:00" text="HASTA" labelsize="7" visible="no"/>
+					<CampoFechaNoEditable	attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="7"  />
+				</Row>
+		</Column>
+	</Row>
+	<Row margin="10;0;0;0" expand="no">
+		<Column/>
+		<Button key="btnGenerar" tip="GENERAR_ADV_COM_INFRACCIONES" text="GENERAR_ADV_COM_INFRACCIONES" icon="com/opentach/client/rsc/printer16.png" 
+		listener="com.opentach.client.modules.report.IMCartaAdvComInfraccionesGenerateReportListener"/>
+	</Row>
+	<Row/>
+	</Column>
+</Form>

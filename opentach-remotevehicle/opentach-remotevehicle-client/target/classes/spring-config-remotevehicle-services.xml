@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<bean id="RemoteVehicleManagementService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/remotevehiclemanagement" />
+		<property name="serviceInterface" value="com.opentach.common.remotevehicle.services.IRemoteVehicleManagementService" />
+	</bean>
+	<bean id="RemoteVehicleService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/remotevehicle" />
+		<property name="serviceInterface" value="com.opentach.common.remotevehicle.services.IRemoteVehicleService" />
+	</bean>
+</beans>

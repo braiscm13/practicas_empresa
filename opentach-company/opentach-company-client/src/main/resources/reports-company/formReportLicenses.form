@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FormExt keys="a" entity="a" columns="a" title="managerInformeLicencias" buttons="no" status="no" preferredsizetodialog="1350;852">
+
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no" />
+
+	<Row margin="5;5;5;5" expand="yes">
+		<Column expand="yes" expandlast="no">
+			<Row>
+				<Column>
+					<!-- FILTERS -->
+					<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" title="Filters">
+						<Row>
+							<Grid rows="1" columns="3" hgap="15" vgap="15">
+								<Column attr="mainData" title="COMPANY.MAINDATA">
+									<ReferenceExtDataField 		attr="CIF" 				align="left" labelsize="14" dim="text" entity="EDfEmp" text="EMPRESA"  cod="CIF" cols="CIF;NOMB;CG_CONTRATO" descriptioncols="NOMB" csize="8" required="yes"/>
+									<ReferenceExtDataField 
+											attr="CIF_COOPERATIVA" align="left" labelsize="12" dim="text"
+											entity="EDfEmpCoop" cod="CIF" cols="CIF;NOMB" visiblecols="CIF;NOMB" descriptioncols="NOMB" 
+											codvisible="yes" csize="8" codsearch="CIF;NOMB"
+										/>
+								</Column>
+								<Column/>
+								<Column/>
+							</Grid>
+						</Row>
+					</CollapsiblePanel>
+					<CollapsiblePanel orientation="vertical" startshowed="no" ignoreinitpreferences="yes" borderposition="top" title="COMPANY.LICENSE">
+						<Row>
+							<Grid rows="1" columns="3" hgap="15" vgap="15">
+								<Column attr="COMPANY.LICENSE.LIC_OPENTACH" title="COMPANY.LICENSE.LIC_OPENTACH">
+									<CheckDataField attr="LIC_OPENTACH" align="left" text="COMPANY.LICENSE.AVAILABLE_HEADER" labelposition="right" returnstring="yes"  />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_OPENTACH_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_OPENTACH_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_OPENTACH_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_OPENTACH_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<CheckDataField attr="LIC_OPENTACH_DEMO" align="left" text="COMPANY.LICENSE.LIC_OPENTACH.DEMO" labelposition="right" returnstring="yes" />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_OPENTACH_DEMO_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_OPENTACH_DEMO_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_OPENTACH_DEMO_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_OPENTACH_DEMO_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+								</Column>
+								<Column attr="COMPANY.LICENSE.LIC_TACHOLAB" title="COMPANY.LICENSE.LIC_TACHOLAB">
+									<CheckDataField attr="LIC_TACHOLAB" align="left" text="COMPANY.LICENSE.AVAILABLE_HEADER" labelposition="right" returnstring="yes"  />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLAB_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLAB_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLAB_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLAB_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<CheckDataField attr="LIC_TACHOLAB_DEMO" align="left" text="COMPANY.LICENSE.LIC_TACHOLAB.DEMO" labelposition="right" returnstring="yes"   />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLAB_DEMO_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLAB_DEMO_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLAB_DEMO_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLAB_DEMO_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									
+								</Column>
+								<Column attr="COMPANY.LICENSE.LIC_TACHOLABPLUS" title="COMPANY.LICENSE.LIC_TACHOLABPLUS">
+									<CheckDataField attr="LIC_TACHOLABPLUS" align="left" text="COMPANY.LICENSE.AVAILABLE_HEADER" labelposition="right" returnstring="yes" />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLABPLUS_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLABPLUS_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLABPLUS_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLABPLUS_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<CheckDataField attr="LIC_TACHOLABPLUS_DEMO" align="left" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.DEMO" labelposition="right" returnstring="yes" />
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLABPLUS_DEMO_FROM_FROM" text="COMPANY.LICENSE.SEARCH.INITIAL" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLABPLUS_DEMO_FROM_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+									<Row margin="0;15;0;0">
+										<DateDataField attr="LIC_TACHOLABPLUS_DEMO_TO_FROM" text="COMPANY.LICENSE.SEARCH.END" align="left" labelsize="9" size="7" />
+										<DateDataField attr="LIC_TACHOLABPLUS_DEMO_TO_TO" labelvisible="no" align="left" labelsize="12" size="7" />
+										<Row/>
+									</Row>
+								</Column>
+							</Grid>
+						</Row>
+					</CollapsiblePanel>
+					<CollapsiblePanelFiller/>
+				</Column>
+				
+				<Column expand="no">
+					<SearchPanel table="ojee.LicenseService.licensesReport"
+						search.filterfields="CIF;;CIF_COOPERATIVA;LIC_OPENTACH;LIC_OPENTACH_DEMO;LIC_TACHOLAB;LIC_TACHOLAB_DEMO;LIC_TACHOLABPLUS;LIC_TACHOLABPLUS_DEMO"
+						search.daterangefilterfields="LIC_OPENTACH_FROM_FROM:LIC_OPENTACH_FROM_TO:LIC_OPENTACH_FROM;LIC_OPENTACH_TO_FROM:LIC_OPENTACH_TO_TO:LIC_OPENTACH_TO;LIC_OPENTACH_DEMO_FROM_FROM:LIC_OPENTACH_DEMO_FROM_TO:LIC_OPENTACH_DEMO_FROM;LIC_OPENTACH_DEMO_TO_FROM:LIC_OPENTACH_DEMO_TO_TO:LIC_OPENTACH_DEMO_TO;LIC_TACHOLAB_FROM_FROM:LIC_TACHOLAB_FROM_TO:LIC_TACHOLAB_FROM;LIC_TACHOLAB_TO_FROM:LIC_TACHOLAB_TO_TO:LIC_TACHOLAB_TO;LIC_TACHOLAB_DEMO_FROM_FROM:LIC_TACHOLAB_DEMO_FROM_TO:LIC_TACHOLAB_DEMO_FROM;LIC_TACHOLAB_DEMO_TO_FROM:LIC_TACHOLAB_DEMO_TO_TO:LIC_TACHOLAB_DEMO_TO;LIC_TACHOLABPLUS_FROM_FROM:LIC_TACHOLABPLUS_FROM_TO:LIC_TACHOLABPLUS_FROM;LIC_TACHOLABPLUS_TO_FROM:LIC_TACHOLABPLUS_TO_TO:LIC_TACHOLABPLUS_TO;LIC_TACHOLABPLUS_DEMO_FROM_FROM:LIC_TACHOLABPLUS_DEMO_FROMTO:LIC_TACHOLABPLUS_DEMO_FROM;LIC_TACHOLABPLUS_DEMO_TO_FROM:LIC_TACHOLABPLUS_DEMO_TO_TO:LIC_TACHOLABPLUS_DEMO_TO" layout="2x1" />
+					<Column />
+				</Column>
+			</Row>
+			
+			<Row expand="yes" valign="center">
+				<Column expand="yes" margin="5;5;5;5">
+					<Table entity="ojee.LicenseService.licensesReport" 
+						key="CIF" parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+						cols="CIF;NOMB;CCC;IDGRUPO;TIPO;IS_COOPERATIVA;CIF_COOPERATIVA;CONTRATO_COOP;CG_NACI;CG_PROV;MUNI;POBL;DIRECCION;CG_POSTAL;PCONTACTO;EMAIL;TELF;FAX;MOVIL;MCONTACTO;LIC_OPENTACH;LIC_OPENTACH_FROM;LIC_OPENTACH_TO;LIC_OPENTACH_DEMO;LIC_OPENTACH_DEMO_FROM;LIC_OPENTACH_DEMO_TO;LIC_TACHOLAB;LIC_TACHOLAB_FROM;LIC_TACHOLAB_TO;LIC_TACHOLAB_DEMO;LIC_TACHOLAB_DEMO_FROM;LIC_TACHOLAB_DEMO_TO;LIC_TACHOLABPLUS;LIC_TACHOLABPLUS_FROM;LIC_TACHOLABPLUS_TO;LIC_TACHOLABPLUS_DEMO;LIC_TACHOLABPLUS_DEMO_FROM;LIC_TACHOLABPLUS_DEMO_TO;OBSR"
+						visiblecols="CIF;NOMB;IDGRUPO;TIPO;IS_COOPERATIVA;CIF_COOPERATIVA;CONTRATO_COOP;CG_NACI;CG_PROV;MUNI;POBL;DIRECCION;CG_POSTAL;PCONTACTO;EMAIL;TELF;FAX;MOVIL;MCONTACTO;LIC_OPENTACH;LIC_OPENTACH_FROM;LIC_OPENTACH_TO;LIC_OPENTACH_DEMO;LIC_OPENTACH_DEMO_FROM;LIC_OPENTACH_DEMO_TO;LIC_TACHOLAB;LIC_TACHOLAB_FROM;LIC_TACHOLAB_TO;LIC_TACHOLAB_DEMO;LIC_TACHOLAB_DEMO_FROM;LIC_TACHOLAB_DEMO_TO;LIC_TACHOLABPLUS;LIC_TACHOLABPLUS_FROM;LIC_TACHOLABPLUS_TO;LIC_TACHOLABPLUS_DEMO;LIC_TACHOLABPLUS_DEMO_FROM;LIC_TACHOLABPLUS_DEMO_TO;OBSR"
+						defaultvisiblecols="CIF;NOMB;IS_COOPERATIVA;CIF_COOPERATIVA;CONTRATO_COOP;LIC_OPENTACH;LIC_TACHOLAB;LIC_TACHOLAB_FROM;LIC_TACHOLAB_TO;LIC_TACHOLAB_DEMO;LIC_TACHOLAB_DEMO_FROM;LIC_TACHOLAB_DEMO_TO;LIC_TACHOLABPLUS;LIC_TACHOLABPLUS_FROM;LIC_TACHOLABPLUS_TO;LIC_TACHOLABPLUS_DEMO;LIC_TACHOLABPLUS_DEMO_FROM;LIC_TACHOLABPLUS_DEMO_TO"
+						headergroups="COMPANY.MAINDATA:CIF,NOMB,CCC,IDGRUPO,TIPO;COMPANY.COOPERATIVEDATA:IS_COOPERATIVA,CIF_COOPERATIVA,CONTRATO_COOP;COMPANY.ADDRESS:CG_NACI,CG_PROV,MUNI,POBL,DIRECCION,CG_POSTAL;COMPANY.CONTACT:PCONTACTO,EMAIL,TELF,FAX,MOVIL,MCONTACTO;COMPANY.LICENSE:LIC_OPENTACH,LIC_OPENTACH_FROM,LIC_OPENTACH_TO,LIC_OPENTACH_DEMO,LIC_OPENTACH_DEMO_FROM,LIC_OPENTACH_DEMO_TO,LIC_TACHOLAB,LIC_TACHOLAB_FROM,LIC_TACHOLAB_TO,LIC_TACHOLAB_DEMO,LIC_TACHOLAB_DEMO_FROM,LIC_TACHOLAB_DEMO_TO,LIC_TACHOLABPLUS,LIC_TACHOLABPLUS_FROM,LIC_TACHOLABPLUS_TO,LIC_TACHOLABPLUS_DEMO,LIC_TACHOLABPLUS_DEMO_FROM,LIC_TACHOLABPLUS_DEMO_TO;COMPANY.OTHER:OBSR"
+						cellrenderercolormanager="com.opentach.client.report.render.LicenseExpirationCellRendererColorManager"
+						detailformat="({0}){1};CIF;NOMB" form="formEmpresa.xml" 
+						deletebutton="yes" disableinsert="yes" insertcontrol="no"  scrollh="yes"
+					>
+						
+						<TableColumnProperties attr="CIF" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="NOMB" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="CCC" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="IDGRUPO" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="TIPO" defaultwidth="90" preferredwidth="90" />
+						
+						<TableColumnProperties attr="IS_COOPERATIVA" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="CIF_COOPERATIVA" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="CONTRATO_COOP" defaultwidth="90" preferredwidth="90" />
+
+						<TableColumnProperties attr="CG_NACI" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="CG_PROV" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="MUNI" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="POBL" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="CG_POSTAL" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="DIRECCION" defaultwidth="250" preferredwidth="250" />
+						
+						<TableColumnProperties attr="PCONTACTO" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="EMAIL" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="TELF" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="FAX" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="MOVIL" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="MCONTACTO" defaultwidth="250" preferredwidth="250" />
+						
+						<TableColumnProperties attr="LIC_OPENTACH" text="COMPANY.LICENSE.LIC_OPENTACH" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="LIC_OPENTACH_FROM" text="COMPANY.LICENSE.LIC_OPENTACH.FROM" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_OPENTACH_TO" text="COMPANY.LICENSE.LIC_OPENTACH.TO" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_OPENTACH_DEMO" text="COMPANY.LICENSE.LIC_OPENTACH.DEMO" defaultwidth="130" preferredwidth="130" />			
+						<TableColumnProperties attr="LIC_OPENTACH_DEMO_FROM" text="COMPANY.LICENSE.LIC_OPENTACH.DEMO.FROM" defaultwidth="140" preferredwidth="140" />
+						<TableColumnProperties attr="LIC_OPENTACH_DEMO_TO" text="COMPANY.LICENSE.LIC_OPENTACH.DEMO.TO" defaultwidth="140" preferredwidth="140" />
+						<RenderBoolean atrr="LIC_OPENTACH" column="LIC_OPENTACH" returnstring="yes" />
+						<RenderBoolean atrr="LIC_OPENTACH_DEMO" column="LIC_OPENTACH_DEMO" returnstring="yes" />
+						
+						<TableColumnProperties attr="LIC_TACHOLAB" text="COMPANY.LICENSE.LIC_TACHOLAB" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="LIC_TACHOLAB_FROM" text="COMPANY.LICENSE.LIC_TACHOLAB.FROM" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_TACHOLAB_TO" text="COMPANY.LICENSE.LIC_TACHOLAB.TO" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_TACHOLAB_DEMO" text="COMPANY.LICENSE.LIC_TACHOLAB.DEMO" defaultwidth="130" preferredwidth="130" />			
+						<TableColumnProperties attr="LIC_TACHOLAB_DEMO_FROM" text="COMPANY.LICENSE.LIC_TACHOLAB.DEMO.FROM" defaultwidth="140" preferredwidth="140" />
+						<TableColumnProperties attr="LIC_TACHOLAB_DEMO_TO" text="COMPANY.LICENSE.LIC_TACHOLAB.DEMO.TO" defaultwidth="140" preferredwidth="140" />
+						<RenderBoolean atrr="LIC_TACHOLAB" column="LIC_TACHOLAB" returnstring="yes" />
+						<RenderBoolean atrr="LIC_TACHOLAB_DEMO" column="LIC_TACHOLAB_DEMO" returnstring="yes" />
+						
+						<TableColumnProperties attr="LIC_TACHOLABPLUS" text="COMPANY.LICENSE.LIC_TACHOLABPLUS" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="LIC_TACHOLABPLUS_FROM" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.FROM" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_TACHOLABPLUS_TO" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.TO" defaultwidth="125" preferredwidth="125" />
+						<TableColumnProperties attr="LIC_TACHOLABPLUS_DEMO" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.DEMO" defaultwidth="130" preferredwidth="130" />			
+						<TableColumnProperties attr="LIC_TACHOLABPLUS_DEMO_FROM" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.DEMO.FROM" defaultwidth="140" preferredwidth="140" />
+						<TableColumnProperties attr="LIC_TACHOLABPLUS_DEMO_TO" text="COMPANY.LICENSE.LIC_TACHOLABPLUS.DEMO.TO" defaultwidth="140" preferredwidth="140" />
+						<RenderBoolean atrr="LIC_TACHOLABPLUS" column="LIC_TACHOLABPLUS" returnstring="yes" />
+						<RenderBoolean atrr="LIC_TACHOLABPLUS_DEMO" column="LIC_TACHOLABPLUS_DEMO" returnstring="yes" />
+						
+						<RenderBoolean atrr="CONTRATO_COOP" column="CONTRATO_COOP" returnstring="yes" />
+						<RenderBoolean atrr="SYNCH" column="SYNCH" returnstring="yes" />
+						<RenderBoolean atrr="COND_AUTOM" column="COND_AUTOM" returnstring="yes" />
+						<RenderBoolean atrr="VEH_AUTOM" column="VEH_AUTOM" returnstring="yes" />
+						<RenderBoolean atrr="IS_COOPERATIVA" column="IS_COOPERATIVA" returnstring="yes" />
+						
+						<BundleCellRenderer attr="LOCALE" column="LOCALE" />
+						<BundleCellRenderer attr="TIPO" column="TIPO" />
+						
+						<HideTableButton attr="changeviewbutton;calculedcolsbutton;htmlexportbutton;insertbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+					</Table>
+				</Column>
+			</Row>
+			<Row>
+				<Row />
+				<!-- TODO add massive license buttons -->
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

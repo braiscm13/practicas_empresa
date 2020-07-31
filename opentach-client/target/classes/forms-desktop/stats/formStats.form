@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity=""
+	keys="DUMMY"
+	title="sta.formStats"
+	buttons="no"
+	status="no"
+	preferredsizetodialog="1100;850"
+	focusorder=""
+	autocompletefocuslist="yes">
+
+	<ObjectDataField
+		attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+		visible="no" />
+
+	<Column
+		margin="5;5;5;5"
+		expand="yes">
+		<Column
+			expand="yes"
+			expandlast="no">
+			<!-- FILTERS -->
+			<CollapsiblePanel
+				orientation="vertical"
+				startshowed="yes"
+				ignoreinitpreferences="yes"
+				borderposition="top"
+				insets="21;0;0;0"
+				title="general.SEARCH_CRITERIAS">
+				<Row margin="5;5;5;5">
+					<Column
+						title=""
+						margin="0;5;0;15"
+						expand="0.3">
+						<ReferenceExtDataField
+							attr="CIF"
+							cod="CIF"
+							text="sta.CIF"
+							entity="EDfEmp"
+							cols="CIF;NOMB"
+							descriptioncols="CIF;NOMB"
+							labelsize="12"
+							dim="text"
+							codvisible="no" />
+
+<!-- 						<Column height="1" /> -->
+<!-- 						<ReferenceExtDataField -->
+<!-- 							attr="usu.USUARIO" -->
+<!-- 							cod="USUARIO" -->
+<!-- 							text="sta.USUARIO" -->
+<!-- 							entity="EUsuariosTodos" -->
+<!-- 							cols="USUARIO" -->
+<!-- 							descriptioncols="USUARIO" -->
+<!-- 							labelsize="12" -->
+<!-- 							dim="text" -->
+<!-- 							codvisible="no" /> -->
+						<Column height="1" />
+						<Row>
+							<DateDataField
+								attr="sta.DATE_FROM"
+								text="sta.DATE_FROM"
+								align="left"
+								labelsize="12"
+								dim="no"
+								size="7" 
+								required="yes"
+								/>
+							<DateDataField
+								attr="sta.DATE_TO"
+								text="UNTIL"
+								align="left"
+								dim="no"
+								size="7" 
+								required="yes"/>
+							<Row />
+						</Row>
+						<TextComboDataField allownull="no" attr="GROUPING_TIME" text="sta.GROUPING_TIME" values="MONTH;WEEK;DAY"  translate="yes"  align="left" labelsize="12" size="20" required="yes"/>
+					</Column>
+					<Column
+						expand="no"
+						expandlast="no">
+						<Column />
+						<SearchPanel
+							table="ETasks"
+							search.listener="com.opentach.client.modules.stats.SearchListener"
+							search.filterfields="CIF;usu.USUARIO"
+							search.daterangefilterfields="sta.DATE_FROM:sta.DATE_TO:F_INI" 
+							search.requiredfilterfields="sta.DATE_FROM;sta.DATE_TO;GROUPING_TIME" />
+						<Column />
+					</Column>
+				</Row>
+			</CollapsiblePanel>
+		</Column>
+		<Row expand="yes">
+			<Scroll expand="yes" unitincrement="30">
+				<CardBoard attr="CARD_BOARD" />
+			</Scroll>
+		</Row>
+	</Column>
+</FormExt>
+			

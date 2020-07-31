@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt 
+	entity="ojee.MailManagerService.mailAdmin" 
+	keys="MAI_ID" title="mmng.sendMailTitle" 
+	status="no" buttons="no"
+	notqueryfields="attachments"
+	focusorder="MAI_SUBJECT;MAI_BODY">
+	
+	
+	<Include file="forms-mailmanager/formMailSentInclude.form" />
+</FormExt>

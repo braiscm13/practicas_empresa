@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_CAP_INDEF_TITLE" buttons="no">
+	<FormHeader>
+		<Button key="btnInformeCAP" text="INFORME_CAP_" labelsize="20" bold="yes" icon="com/opentach/client/rsc/printer16.png"/>
+		
+		<DateDataField attr="FECHA" visible="no" />
+		
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Column expandlast="yes">
+		<ReferenceExtDataField entity="EDfEmpCertificado" text="EMPRESA" labelsize="15" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;LOCALE" descriptioncols="NOMB" required="no" csize="10" visible = "no"/>
+		<ReferenceExtDataField attr="IDCONDUCTOR" parentkeylistener="yes" populatetableonshowtablewindow="true" cod="IDCONDUCTOR" csize="10" entity="EConductorContFicticio" cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE;F_NAC;F_ALTA" visiblecols="DNI;APELLIDOS;NOMBRE" 
+		    descriptioncols=";APELLIDOS;NOMBRE" align="left" labelsize="20" dim="text" required="no"/>
+				
+		<ReferenceExtDataField entity="EFirmantesEmpresa" labelsize="15" attr="NIF" dim="text" cod="NIF" cols="CIF;NIF;NOMBRE;APELLIDOS;CARGO" descriptioncols="NOMBRE;APELLIDOS" 
+			visiblecols="NOMBRE;APELLIDOS" codintenger="no" required="no" csize="10"  visible="no" />
+			
+		<HTMLHelpField attr="ruta_info_informe_cap_indef" />
+						<Row expand="yes">
+			<Table entity="EInformeIndef" key="FECINI" keys="TIPO" 
+			 cols="SELECTED;PERIODO;DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;FECINI_INFO;FECFIN_INFO;FECINI;FECFIN;MINUTOS;ORIGEN;DSCR_ACT" 
+			 visiblecols="SELECTED;FECINI_INFO;FECFIN_INFO;MINUTOS" 
+			 editablecolumns="SELECTED"
+			 controls="no" rendertime="FECINI;FECFIN" >
+				<com.utilmize.client.gui.field.table.render.UXmlBooleanCellRenderer column="SELECTED"/>	
+				<com.utilmize.client.gui.field.table.editor.UXmlBooleanCellEditor column="SELECTED"/>			
+			</Table>
+		</Row >
+	</Column>
+</Form>

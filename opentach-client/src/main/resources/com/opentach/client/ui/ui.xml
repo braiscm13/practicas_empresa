@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DefaultConfiguration>
+	<Borders>
+	</Borders>
+	<XMLConfigurationParameters>
+		<Class
+			name="com.utilmize.client.gui.form.UFormExt;com.ontimize.gui.Form;com.ontimize.gui.container.FormHeader;com.utilmize.client.gui.UFormHeader">
+<!-- 			<Parameter key="statusborder" value="empty" /> -->
+<!-- 			<Parameter key="opaquebuttons" value="false" /> -->
+<!-- 			<Parameter key="highlightbuttons" value="true" /> -->
+<!-- 			<Parameter key="borderbuttons" value="false" /> -->
+		</Class>
+		<Class name="com.ontimize.gui.table.Table;com.utilmize.client.gui.field.table.UTable;com.opentach.client.comp.field.OpentachTable">
+			<Parameter key="numrowscolumn" value="no"/>
+		</Class>
+	</XMLConfigurationParameters>
+	
+	<StaticValues>
+		<Class name="com.ontimize.gui.preferences.BasicApplicationPreferences">
+			<StaticValue variable="remoteUserPreferences" value="true" />
+			<StaticValue variable="checkOldPreferences" value="false" />
+			<StaticValue variable="ADJUST_TREE_SPACE_VALUE" value="true" />
+		</Class>
+		<Class name="com.ontimize.gui.tree.Tree">
+			<StaticValue variable="enabledRowCount" value="true" />
+		</Class>
+
+		<Class name="com.ontimize.gui.ApplicationManager">
+			<StaticValue variable="CHECK_VISIBLE_PERMISSION_ON_TOOLBAR_COMPONENTS"
+				value="true" />
+		</Class>
+
+		<Class name="com.utilmize.client.tools.ClientAdministrationUtility">
+			<StaticValue variable="PANEL_ADMINISTRATION" value="false" />
+		</Class>
+
+		<Class name="com.ontimize.gui.BasicInteractionManager">
+			<StaticValue variable="CONFIRM_DELETE_DEFAULT_VALUE"
+				value="true" />
+			<StaticValue variable="AVANCED_QUERY_DEFAULT_VALUE"
+				value="true" />
+			<StaticValue variable="CLOSE_DETAIL_FORM_AFTER_INSERT_DEFAULT_VALUE"
+				value="false" />
+			<StaticValue variable="NEWMODE" value="true" />
+		</Class>
+
+		<Class name="com.ontimize.gui.DefaultInteractionManagerLoader">
+			<StaticValue variable="DEFAULT_INTERACTION_MANAGER"
+				value="com.utilmize.client.fim.UBasicFIM" />
+		</Class>
+
+		<Class name="com.ontimize.gui.container.Tab">
+			<StaticValue variable="QUERY_IF_VISIBLE_DEFAULT_VALUE"
+				value="false" />
+		</Class>
+
+		<Class name="com.utilmize.client.gui.UTabPanel">
+			<StaticValue variable="USE_IMPROVED_QUERIFVISIBLE" value="true" />
+		</Class>
+
+
+		<Class name="com.ontimize.gui.table.Table">
+			<StaticValue variable="ORDER_COLS_BY_VISIBLE_COLS" value="true" />
+			<StaticValue variable="DEFAULT_QUICK_FILTER" value="true" />
+			<StaticValue variable="defaultPivotTableVisibility"
+				value="false" />
+			<StaticValue variable="defaultQuickFilterVisible" value="true" />
+<!-- 			<StaticValue variable="MIN_ROW_HEIGHT" value="20" /> -->
+			<StaticValue variable="defaultShowGridValue" value="false" />
+		</Class>
+
+		<Class name="com.ontimize.gui.Form">
+			<StaticValue variable="DEFAULT_ATTACHMENT" value="false" />
+			<StaticValue variable="defaultTableViewMinRowHeight"
+				value="20" />
+		</Class>
+
+		<Class name="com.ontimize.gui.field.DataField">
+			<StaticValue variable="DEFAULT_TOP_MARGIN" value="1" />
+			<StaticValue variable="DEFAULT_BOTTOM_MARGIN" value="1" />
+			<StaticValue variable="DEFAULT_LABEL_LEFT_MARGIN" value="5" />
+			<StaticValue variable="DEFAULT_LABEL_RIGHT_MARGIN" value="5" />
+			<StaticValue variable="DEFAULT_FIELD_LEFT_MARGIN" value="1" />
+			<StaticValue variable="DEFAULT_FIELD_RIGHT_MARGIN" value="1" />
+			<StaticValue variable="DEFAULT_PARENT_MARGIN" value="1" />
+			<!-- <StaticValue variable="DEFAULT_PARENT_MARGIN_FOR_SCROLL" value="1" 
+				/> -->
+		</Class>
+
+		<!-- <Class name="com.ontimize.gui.container.FormHeader"> -->
+		<!-- <StaticValue variable="queryIcon" value="base-images/ic_16x16_buscar_campos.png" 
+			/> -->
+		<!-- <StaticValue variable="confirmQueryIcon" value="base-images/ic_16x16_buscar_campos_ok.png" 
+			/> -->
+		<!-- <StaticValue variable="insertIcon" value="base-images/ic_16x16_anadir_datos.png" 
+			/> -->
+		<!-- <StaticValue variable="confirmInsertIcon" value="base-images/ic_16x16_anadir_datos_ok.png" 
+			/> -->
+		<!-- <StaticValue variable="updateIcon" value="base-images/ic_16x16_actualizar_campos.png" 
+			/> -->
+		<!-- <StaticValue variable="deleteIcon" value="base-images/ic_16x16_basket.png" 
+			/> -->
+		<!-- <StaticValue variable="separatorIcon" value="base-images/verticalbar16.png" 
+			/> -->
+		<!-- </Class> -->
+
+		<!-- <Class name="com.ontimize.gui.images.ImageManager"> -->
+		<!-- <StaticValue variable="ARROW_LEFT_24" value="base-images/ic_31x31_arrow_left.png" 
+			/> -->
+		<!-- <StaticValue variable="ARROW_RIGHT_24" value="base-images/ic_31x31_arrow_right.png" 
+			/> -->
+		<!-- <StaticValue variable="HOME_24" value="base-images/ic_31x31_arrow_home.png" 
+			/> -->
+		<!-- </Class> -->
+
+<!-- 		<Class name="com.utilmize.client.listeners.MaximizeWindowActionListener"> -->
+<!-- 			<StaticValue variable="sMaximizeIcon" -->
+<!-- 				value="base-images/toolbar/ic_24x31_maximizar.png" /> -->
+<!-- 			<StaticValue variable="sRestoreIcon" -->
+<!-- 				value="base-images/toolbar/ic_24x31_restaurar.png" /> -->
+<!-- 		</Class> -->
+
+		<Class name="com.utilmize.client.gui.UApToolBarPopupButton">
+			<StaticValue variable="USE_BASIC_UI" value="false" />
+		</Class>
+	</StaticValues>
+
+</DefaultConfiguration>

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_laboral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="317"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="Table Dataset 1"/>
+	<subDataset name="RESUMEN2">
+		<parameter name="DNI" class="java.lang.String"/>
+		<parameter name="SEMANA" class="java.lang.String"/>
+		<parameter name="ANHO" class="java.lang.String"/>
+		<parameter name="MES" class="java.lang.String"/>
+		<parameter name="DIA" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+NULL AS DATERANGE,
+IDCONDUCTOR,
+NOMBRE,
+DNI,
+NULL AS DIA_SEM ,
+NULL AS DIA,
+NULL AS SEMANA,
+NULL AS MES2,
+NULL AS  MES,
+NULL AS INI_SEMANA,
+NULL AS FIN_SEMANA,
+NULL AS ANHO,
+NULL AS TIPO_T,
+NULL AS VALOR
+FROM
+CDVCONDUCTOR_CONT]]>
+		</queryString>
+		<field name="DATERANGE" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="INI_SEMANA" class="java.lang.String"/>
+		<field name="FIN_SEMANA" class="java.lang.String"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="TIPO_T" class="java.lang.String"/>
+		<field name="VALOR" class="java.lang.Number"/>
+		<group name="DNI">
+			<groupExpression><![CDATA[$F{DNI}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 15768000)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_MES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_SEMANA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATASOURCE_RESUMEN" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<queryString>
+		<![CDATA[SELECT DATERANGE, A.IDCONDUCTOR, A.NOMBRE, A.DNI,
+DTDIARIO * 60 * 24 AS DTDIARIO, DCDIARIO * 60 * 24 AS DCDIARIO,
+DDDIARIO * 60 * 24 AS DDDIARIO, DPDIARIO * 60 *24 AS DPDIARIO,
+(CASE WHEN (( 1 - DTDIARIO - DPDIARIO - DDDIARIO - DCDIARIO) * 60 * 24 ) < 0 THEN 0 ELSE (( 1 - DTDIARIO - DPDIARIO - DDDIARIO - DCDIARIO) * 60 * 24 ) END) AS DPINDEF,
+(DTDIARIO + DCDIARIO ) * 60 * 24 AS TDIARIO,
+TO_CHAR(DATERANGE,'Day') AS DIA_SEM ,
+TO_CHAR(DATERANGE,'DD') AS DIA,
+TO_CHAR(DATERANGE,'IW') AS SEMANA,
+TO_CHAR(DATERANGE,'Month') AS MES2,
+'MES' || TO_CHAR(DATERANGE,'MM') || '.' || TO_CHAR(DATERANGE,'Month') AS MES,
+TO_CHAR(trunc(DATERANGE, 'ww'),'DD/MM/YYYY') AS INI_SEMANA,
+TO_CHAR(trunc(DATERANGE, 'ww') + 6,'DD/MM/YYYY') AS FIN_SEMANA,
+TO_CHAR(DATERANGE,'YYYY') AS ANHO
+FROM(
+  SELECT TRUNC(COND.DATERANGE) AS DATERANGE, COND.IDCONDUCTOR, COND.NOMBRE, COND.DNI,
+  SUM(CASE WHEN TPACTIVIDAD IN (3) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DTDIARIO,
+  SUM(CASE WHEN TPACTIVIDAD IN (4) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DCDIARIO,
+  SUM(CASE WHEN TPACTIVIDAD IN (2) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DDDIARIO,
+  SUM(CASE WHEN TPACTIVIDAD IN (1) THEN FEC_FIN - FEC_COMIENZO ELSE 0 END)  AS DPDIARIO
+FROM
+   (SELECT TRUNC(FEC_COMIENZO) AS T, FEC_COMIENZO, FEC_FIN, TPACTIVIDAD, IDCONDUCTOR FROM CDACTIVIDADES
+     WHERE
+     	--IDCONDUCTOR  "+sbCond+ AND
+	NUMREQ='07001757'
+	-- AND FEC_COMIENZO > ?
+	-- AND FEC_FIN      < TRUNC(?) + 1
+        ) ACTIVIDADES,
+   (SELECT DATERANGE, IDCONDUCTOR, DNI, NOMBRE FROM(
+	SELECT (sysdate -300) + level AS DateRange
+           FROM    DUAL    WHERE   ( (sysdate -300)  + level) <=  (sysdate)
+		CONNECT BY LEVEL <= ( sysdate   -  (sysdate -300) )) ,
+		(SELECT IDCONDUCTOR, DNI, APELLIDOS||', '||NOMBRE AS NOMBRE FROM CDVCONDUCTOR_CONT
+                      WHERE CG_CONTRATO =  '07001757'
+                       --AND IDCONDUCTOR "+sbCond+"
+                         )   ) COND
+	WHERE T(+) = COND.DATERANGE  AND COND.IDCONDUCTOR =  ACTIVIDADES.IDCONDUCTOR(+)
+	GROUP BY TRUNC(COND.DATERANGE), COND.IDCONDUCTOR, COND.NOMBRE, COND.DNI
+	ORDER BY  TRUNC(COND.DATERANGE), COND.NOMBRE ) A]]>
+	</queryString>
+	<field name="DATERANGE" class="java.sql.Timestamp"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="DTDIARIO" class="java.math.BigDecimal"/>
+	<field name="DCDIARIO" class="java.math.BigDecimal"/>
+	<field name="DDDIARIO" class="java.math.BigDecimal"/>
+	<field name="DPDIARIO" class="java.math.BigDecimal"/>
+	<field name="DPINDEF" class="java.math.BigDecimal"/>
+	<field name="TDIARIO" class="java.math.BigDecimal"/>
+	<field name="DIA_SEM" class="java.lang.String"/>
+	<field name="DIA" class="java.lang.String"/>
+	<field name="SEMANA" class="java.lang.String"/>
+	<field name="MES2" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="INI_SEMANA" class="java.lang.String"/>
+	<field name="FIN_SEMANA" class="java.lang.String"/>
+	<field name="ANHO" class="java.lang.String"/>
+	<group name="dni" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{DNI}]]></groupExpression>
+		<groupHeader>
+			<band height="79">
+				<rectangle>
+					<reportElement x="20" y="22" width="493" height="56" forecolor="#34679A"/>
+				</rectangle>
+				<textField>
+					<reportElement x="28" y="32" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="360" y="30" width="63" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="42" y="10" width="86" height="20" forecolor="#34679A" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="360" y="54" width="63" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{IDCONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="25" y="52" width="324" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="425" y="30" width="82" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="427" y="54" width="80" height="16"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{IDCONDUCTOR}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="28"/>
+		</groupFooter>
+	</group>
+	<group name="mes">
+		<groupExpression><![CDATA[$F{MES2}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<rectangle>
+					<reportElement key="rectangle-2" mode="Opaque" x="22" y="10" width="491" height="18" printWhenGroupChanges="mes" forecolor="#CCCCCC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement x="90" y="12" width="100" height="16" printWhenGroupChanges="mes">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="27" y="12" width="53" height="14" printWhenGroupChanges="mes">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{MES}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="60">
+				<rectangle>
+					<reportElement key="rectangle-2" mode="Opaque" x="19" y="4" width="503" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="29" y="6" width="101" height="14" printWhenGroupChanges="semana">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{RESUMEN_MES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="129" y="6" width="100" height="16" printWhenGroupChanges="mes">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="semana">
+		<groupExpression><![CDATA[$F{SEMANA}]]></groupExpression>
+		<groupHeader>
+			<band height="56">
+				<rectangle>
+					<reportElement key="rectangle-1" mode="Opaque" x="19" y="29" width="494" height="26" forecolor="#CCCCCC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement key="rectangle-2" mode="Opaque" x="22" y="4" width="491" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}== true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="26" y="6" width="85" height="14" printWhenGroupChanges="semana">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}== true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" x="21" y="28" width="111" height="27" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{DATERANGE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" x="148" y="31" width="111" height="24" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{DCDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-9" x="282" y="28" width="103" height="25" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{DTDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" x="381" y="27" width="132" height="27" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$R{TDIARIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="229" y="7" width="100" height="20">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}== true]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{INI_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="349" y="7" width="100" height="20">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}== true]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{FIN_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="114" y="7" width="100" height="20">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA}== true]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="190">
+				<pie3DChart>
+					<chart evaluationTime="Group" evaluationGroup="semana">
+						<reportElement x="27" y="46" width="180" height="136">
+							<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+						</reportElement>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="RESUMEN2">
+								<datasetParameter name="REPORT_DATA_SOURCE">
+									<datasetParameterExpression><![CDATA[$P{DATASOURCE_RESUMEN}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="DNI">
+									<datasetParameterExpression><![CDATA[$F{DNI}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="SEMANA">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="ANHO">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{TIPO_T}]]></keyExpression>
+						<valueExpression><![CDATA[$F{VALOR}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					</pie3DPlot>
+				</pie3DChart>
+				<rectangle>
+					<reportElement key="rectangle-2" mode="Opaque" x="29" y="14" width="503" height="18" printWhenGroupChanges="semana" forecolor="#CCCCCC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="800" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="10" y="10" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="13" y="710" width="522" height="90" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="15" y="682" width="512" height="79"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement key="ellipse" x="149" y="56" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="130" y="56" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="111" y="56" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="171" y="50" width="336" height="78"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="465" y="100" width="60" height="18"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[new java.sql.Timestamp(System.currentTimeMillis())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="423" y="115" width="300" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-11" x="25" y="130" width="495" height="1" forecolor="#34679A"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="376" y="100" width="88" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="376" y="114" width="46" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="52" y="747" width="283" height="26"/>
+				<textElement/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="485" y="773" width="45" height="18" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="138" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="19" y="0" width="495" height="20" forecolor="#E8F0FF" backcolor="#E8F0FF">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="377" y="0" width="136" height="21">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{TDIARIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="144" y="1" width="111" height="20">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{DCDIARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="278" y="1" width="103" height="20">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{DTDIARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="19" y="0" width="113" height="20">
+					<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{DATERANGE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="130" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

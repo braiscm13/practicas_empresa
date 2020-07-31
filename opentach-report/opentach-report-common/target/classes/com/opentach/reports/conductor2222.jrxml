@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conductor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="e05d5bf0-aa22-40eb-a45b-a1742211136d">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.4641000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1275"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["00000001050800"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_hoy" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["596930283"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cif" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["ESB15296072"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Informe Express"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dni" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["1050800"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="conductor" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+CDCONDUCTORES_EMP.IDCONDUCTOR,
+CDCONDUCTORES_EMP.DNI,
+CDCONDUCTORES_EMP.NOMBRE || ' ' || CDCONDUCTORES_EMP.APELLIDOS AS NOMBRE,
+DFEMP.CIF,
+DFEMP.NOMB
+FROM DFEMP, CDCONDUCTORES_EMP, CDCONDUCTOR_CONT
+WHERE DFEMP.CIF = CDCONDUCTORES_EMP.CIF AND
+CDCONDUCTORES_EMP.IDCONDUCTOR = $P{idconductor} AND
+CDCONDUCTORES_EMP.CIF = $P{cif} AND
+CDCONDUCTOR_CONT.DNI = CDCONDUCTORES_EMP.DNI AND
+CDCONDUCTOR_CONT.CG_CONTRATO = $P{cgcontrato} AND
+CDCONDUCTOR_CONT.DNI = $P{dni}]]>
+	</queryString>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="NOMB" class="java.lang.String"/>
+	<variable name="a" class="java.lang.Integer">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="b" class="java.lang.Integer">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="c" class="java.lang.Integer">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="b">
+		<groupExpression><![CDATA[1==1]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="69">
+				<textField evaluationTime="Group" evaluationGroup="b">
+					<reportElement uuid="6eae95da-1299-4cbf-9bea-642348566489" positionType="Float" x="23" y="2" width="181" height="20" isRemoveLineWhenBlank="true" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$V{a} == null]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{No_se_han_encontrado_infracciones}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="b">
+					<reportElement uuid="f3e64946-9d49-4c80-bc17-92d097252379" positionType="Float" x="24" y="46" width="181" height="20" isRemoveLineWhenBlank="true" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$V{c} == null]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{No_se_han_encontrado_actividades}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="b">
+					<reportElement uuid="d89de5a7-8aa0-43c5-8416-0294eef9be14" positionType="Float" x="24" y="22" width="181" height="24" isRemoveLineWhenBlank="true" forecolor="#34679A">
+						<printWhenExpression><![CDATA[$V{b} == null]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{No_se_han_encontrado_vehiculos}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="FAKE">
+		<groupExpression><![CDATA[$V{REPORT_COUNT}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="67" splitType="Stretch">
+				<subreport isUsingCache="true">
+					<reportElement uuid="6c3bc59b-9276-4ebe-a8e4-fd1963cf71b3" key="subreport-2" positionType="Float" x="24" y="9" width="480" height="42" isRemoveLineWhenBlank="true"/>
+					<subreportParameter name="idconductor">
+						<subreportParameterExpression><![CDATA[$P{idconductor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="cgcontrato">
+						<subreportParameterExpression><![CDATA[$P{cgcontrato}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="fdesde">
+						<subreportParameterExpression><![CDATA[$P{fdesde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="fhasta">
+						<subreportParameterExpression><![CDATA[$P{fhasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="cif">
+						<subreportParameterExpression><![CDATA[$P{cif}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dni">
+						<subreportParameterExpression><![CDATA[$P{dni}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ReturnedValuesMap">
+						<subreportParameterExpression><![CDATA[$P{ReturnedValuesMap}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="PAGE_COUNT" toVariable="c"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "datostecnicosAvanzado_subreport1.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement uuid="c6eaf80d-4657-45f8-96b0-3cb2e1e45df0" key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="11" y="10" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="6fab244b-af57-4257-9547-f526ed4f907a" key="rectangle" x="10" y="709" width="522" height="90" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement uuid="a4ac60ca-c0d5-48ce-8502-109ed24c5b75" key="ellipse" x="127" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement uuid="a6ea3d4b-bcbb-4fee-8de1-74bfccfbc22b" key="ellipse" x="146" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="c03a1177-4648-4f20-addf-5bea04a88178" key="textField-1" x="168" y="30" width="336" height="48"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement uuid="332cb5ac-6465-425e-83ee-944c8c434374" key="ellipse" x="108" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<line>
+				<reportElement uuid="202870ef-f66a-4e64-83d9-6a0e15eb8bda" key="line-11" x="24" y="109" width="495" height="1" forecolor="#34679A"/>
+			</line>
+			<rectangle radius="30">
+				<reportElement uuid="ffd5d8d4-51db-4dc1-b315-5abd3750ceae" key="rectangle" x="16" y="678" width="511" height="79"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="d221cb10-6df1-4974-9794-9f4bc5a6b821" key="textField" x="477" y="769" width="45" height="18" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2dafa8c-22ba-4684-ab49-739421f908d5" key="staticText-1" x="44" y="743" width="283" height="26"/>
+				<textElement/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="3639c22b-f737-4a4c-a8ff-21542e394c31" key="textField-3" x="96" y="77" width="300" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="73047ba2-0674-47b7-a5db-ce625f7a0eb7" x="457" y="91" width="60" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{fhasta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="9e828428-3e07-438b-865e-0a514d3ef342" x="457" y="77" width="60" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{fdesde}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="dce5791c-11b5-411b-8903-bc3e36e3d809" key="textField-4" x="387" y="91" width="71" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_FIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="dce5791c-11b5-411b-8903-bc3e36e3d809" key="textField-4" x="387" y="77" width="71" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="21c124f9-8a5c-429d-bc9f-8309e0b55a6a" key="textField-5" x="30" y="77" width="66" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="21c124f9-8a5c-429d-bc9f-8309e0b55a6a" key="textField-5" x="30" y="91" width="66" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CONDUCTOR_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="3639c22b-f737-4a4c-a8ff-21542e394c31" key="textField-3" x="96" y="91" width="271" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{conductor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="103" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="114" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

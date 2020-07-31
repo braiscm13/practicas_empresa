@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="RDW_DFEMP"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>CCF_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>CCF_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>CCF_ID</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<AmbiguousColumns>
+				<AmbiguousColumn
+					name="RDP_ID"
+					prefix="ccf" />
+			</AmbiguousColumns>
+			<Sentence>
+			<![CDATA[
+				SELECT
+					#COLUMNS#
+				FROM
+					RDW_DFEMP ccf,
+					RDW_PROVIDER rdp,
+					DFEMP emp
+				WHERE
+					ccf.RDP_ID = rdp.RDP_ID
+					AND ccf.COM_ID = emp.CIF
+					#WHERE_CONCAT#
+				#ORDER#
+			]]>
+			</Sentence>
+		</Query>
+		<Query id="ftp">
+			<Sentence>
+			<![CDATA[
+				SELECT
+					#COLUMNS#
+				FROM					
+					DFEMP emp
+				#WHERE#
+				#ORDER#
+			]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

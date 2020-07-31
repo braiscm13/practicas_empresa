@@ -1,0 +1,35 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-extractor-directorywatcher</artifactId>
+	<dependencies>
+		<!-- <dependency> -->
+		<!-- <groupId>com.imatia.tacho</groupId> -->
+		<!-- <artifactId>tacholibrary</artifactId> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.55</version>
+		</dependency>
+	</dependencies>
+</project>

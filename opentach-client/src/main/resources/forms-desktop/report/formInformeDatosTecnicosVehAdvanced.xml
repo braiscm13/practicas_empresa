@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_DATOS_TECNICOS" buttons="no">
+	<FormHeader standarbuttons="no">
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" align="right"/>
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row margin="5;5;5;5">
+		<Column title="" valign="center">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="15" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB;LOCALE" visiblecols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />			
+			 <AssetSelectionDataField
+				assetType="VEHICLE" 
+				align="left" 
+				labelsize="15" 
+				dim="text"
+				required="yes" />
+		</Column >
+	</Row >
+	<Row expand="yes">
+		<Column expand="yes">
+			<TabPanel>
+			    <Tab title="TACOGRAFO">
+					<Table
+						entity="EDatosTecnicos"
+						keys="MATRICULA;VERSION_SOFTWARE;NUM_MODELO"
+						cols="MATRICULA;VERSION_SOFTWARE;NUM_MODELO;FABRICANTE;DIR_FABRICANTE;NUM_SERIE;F_INSTAL_SOFT;F_FABRICACION;NUM_APROBACION"
+						scrollh="yes"
+						refreshbutton="no"
+					/>
+				</Tab>
+				<Tab title="SENSORES">
+					<Table
+						entity="EDatosTecnicosSensor"
+						keys="MATRICULA;F_NEXT_CALIBRACION"
+						cols="MATRICULA;NUM_SERIE_SENSOR;NUM_APROBACION_SENSOR;F_PRIMER_ACOPLAM"
+						scrollh="yes"
+						refreshbutton="no"
+					/>
+				</Tab>
+				<Tab title="CALIBRATIONS">
+					<Table
+						entity="ECalibrationsDummy"
+						keys="F_NEXT_CALIBRACION"
+						cols="NOMBRE_ESTABLECIMIENTO;DIR_ESTABLECIMIENTO;NUM_TARJETA;F_EXPIRA_TARJETA;NUM_IDENT_VEHICULO;NACIONALIDAD_VEHICULO;COEFIC_VEHICULO;CONSTANTE_CONTROL;DIAMETRO_NEUMATICOS;DIM_NEUMATICOS;VELOCIDAD_AUTO;OLD_ODOMETRO;NEW_ODOMETRO;OLD_VALOR_HORA;NEW_VALOR_HORA;F_NEXT_CALIBRACION"
+						scrollh="yes"
+						refreshbutton="no"
+					/>
+				</Tab>
+				<Tab title="COMPANYLOCKS">
+					<Table 
+						entity="ECompanyLocksDummy"						 
+						keys="CG_CONTRATO" 						   
+						cols="F_ACTIVACION;F_DESACTIVACION;NOMBRE_EMPRESA;DIR_EMPRESA;TARJ_EMPRESA" />
+				</Tab >
+			</TabPanel>
+		</Column >
+	</Row >
+</Form>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-remotevehicle">
+	<Client package="">
+		<!-- REMOTEVEHICLE -->
+		<FormManager
+			id="managerremotevehicle"
+			showframe="yes"
+			delayedload="yes"
+			form="forms-remotevehicle/formRemoteVehicleCompanySetup.form"
+			imanager="com.opentach.client.remotevehicle.modules.remotevehicle.IMRemoteVehicleCompanySetup">
+		</FormManager>
+		
+		<FormManager
+			id="managerremotevehicleresponsable"
+			showframe="yes"
+			delayedload="yes"
+			form="forms-remotevehicle/formRemoteVehicleCompanyResponsable.form"
+			imanager="com.opentach.client.remotevehicle.modules.remotevehicle.IMRemoteVehicleCompanyResponsable">
+		</FormManager>
+		<!-- REMOTEDOWNLOAD -->
+		<FormManager
+			id="managerremotedownloadcfg"
+			showframe="yes"
+			delayedload="yes"
+			form="forms-remotevehicle/formRemoteDownloadCfg.form"
+			imanager="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfg">
+			<InteractionManager
+				form="formRemoteDownloadCfgDetail.form"
+				class="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgDetail" />
+		</FormManager>
+		<!-- FLEET MANAGEMENT -->
+		<FormManager
+			id="managerremotefleetmanagement"
+			showframe="yes"
+			delayedload="yes"
+			form="forms-remotevehicle/formRemoteFleetManagement.form"
+			imanager="com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagement">
+		</FormManager>
+		<ApplicationListener class="com.opentach.client.remotevehicle.RemoteVehicleApplicationListener"/>
+	</Client>
+</OntimizeModule>

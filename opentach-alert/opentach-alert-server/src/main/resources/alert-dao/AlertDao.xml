@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc https://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="ALR_ALERTS">
+	<DeleteKeys>
+		<Column>ALR_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>ALR_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>ALR_ID</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<FunctionColumns>
+				<FunctionColumn name="LAST_EXECUTION" value="(select max(ALE_EXEDATE) from ALR_EXECUTIONS ale where ale.ALR_ID = alr.ALR_ID)"/>
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							ALR_ALERTS alr
+						#WHERE#
+						ORDER BY ALR_CODE
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="scheduler">
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							ALR_ALERTS alr
+						WHERE
+							ALR_PROPERTIES not like '%CRON=NO%'
+							#WHERE_CONCAT#
+						ORDER BY ALR_CODE
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

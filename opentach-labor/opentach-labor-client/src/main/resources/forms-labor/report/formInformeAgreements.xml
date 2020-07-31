@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="AGREEMENTS_REPORT"
+	buttons="no">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="REFRESCAR"
+			icon="images-labor/refresh16.png" />
+	</FormHeader>
+	<Row expand="yes">
+		<Column
+			margin="7;5;5;5"
+			expandlast="yes"
+			expand="yes">
+			<Table
+				entity="ELaborAgreement"
+				keys="AGR_ID"
+				cols="AGR_ID;AGR_NAME;AGR_MODALITY;AGR_F_BAJA"
+				visiblecols="AGR_NAME;AGR_MODALITY;AGR_F_BAJA">
+				<BundleCellRenderer column="AGR_MODALITY"/>
+			</Table>
+		</Column>
+	</Row>
+</Form>

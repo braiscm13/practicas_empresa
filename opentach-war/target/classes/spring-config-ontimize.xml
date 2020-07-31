@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:security="http://www.springframework.org/schema/security" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:oss="http://www.ontimize.com/schema/beans" xmlns:dms="http://www.ontimize.com/schema/dms" xmlns:rep="http://www.ontimize.com/schema/report" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+					    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd 
+					    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+					    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+					    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+					    http://www.ontimize.com/schema/beans http://www.ontimize.com/schema/beans/ontimize-spring-server.xsd
+						http://www.ontimize.com/schema/dms http://www.ontimize.com/schema/dms/ontimize-spring-dms.xsd
+						http://www.ontimize.com/schema/report http://www.ontimize.com/schema/report/ontimize-spring-report.xsd">
+	<tx:annotation-driven />
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath://app.properties</value>
+		</property>
+	</bean>
+	
+	<!-- CORS -->
+	<bean id="corsSecurityFilterChain" class="com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter" />
+	<oss:cors>
+		<oss:mapping path="/services/rest/**" allowed-methods="GET, PUT, POST, DELETE" exposed-headers="X-Auth-Token" />
+	</oss:cors>
+	<!-- Hessian serialization factory -->
+	<bean id="hessianSerializerFactory" class="com.ontimize.jee.common.hessian.CustomSerializerFactory">
+	</bean>
+
+	<!-- Data source. -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	    <property name="poolName" value="springHikariCP" />
+	    <property name="connectionTestQuery" value="SELECT 1 FROM DUAL" />
+	    <property name="dataSourceClassName" value="oracle.jdbc.pool.OracleDataSource" />
+	    <property name="minimumIdle" value="5" />
+	    <property name="maximumPoolSize" value="50" />
+	    <property name="idleTimeout" value="10000" />
+	    <property name="dataSourceProperties">
+	        <props>
+	            <prop key="url">jdbc:oracle:thin:@oracle.imatiasl.lan:1521:imt</prop>
+	            <prop key="user">OPENTACH</prop>
+	            <prop key="password">OPENTACH1234</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	<!-- HikariCP configuration -->
+	<bean id="mainDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+	    <constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mainDataSource" />
+	</bean>
+
+	<!-- Spring application context -->
+	<bean id="springApplicationContext" class="com.ontimize.jee.server.spring.SpringApplicationContext">
+	</bean>
+
+	<!-- Statement handler -->
+	<bean id="extendedSQLConditionValuesProcessor" class="com.ontimize.db.SQLStatementBuilder$ExtendedSQLConditionValuesProcessor">
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+	</bean>
+	<!-- liquibase -->
+<!-- 	<bean id="systemPrereqs" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"> -->
+<!-- 		<property name="targetObject" value="#{@systemProperties}" /> -->
+<!-- 		<property name="targetMethod" value="putAll" /> -->
+<!-- 		<property name="arguments"> -->
+<!-- 			<util:properties> -->
+<!-- 				<prop key="liquibase.databaseChangeLogTableName">LIQ_CHANGE_LOG</prop> -->
+<!-- 				<prop key="liquibase.databaseChangeLogLockTableName">LIQ_LOCK</prop> -->
+<!-- 			</util:properties> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase"> -->
+<!-- 		<property name="dataSource" ref="mainDataSource" /> -->
+<!-- 		<property name="changeLog" value="${liquibase.changeLog}" /> -->
+<!-- 		<property name="shouldRun" value="${liquibase.shouldRun}" /> -->
+<!-- 	</bean> -->
+
+	<!-- <property name="contexts" value="dev" /> -->
+	<!-- <property name="dropFirst" value="${liquibase.dropFirst}" /> -->
+<!--<bean id="mainSQLStatementHandler" class="com.ontimize.jee.server.dao.dbhandler.PostgresSQLStatementHandler"> -->
+	<bean id="mainSQLStatementHandler" class="com.ontimize.jee.server.dao.dbhandler.OracleSQLStatementHandler">
+		<property name="SQLConditionValuesProcessor" ref="extendedSQLConditionValuesProcessor" />
+	</bean>
+
+	<bean id="defaultNameConverter" class="com.ontimize.jee.server.dao.jdbc.UnderscoreToCamelcaseNameConverter">
+		<property name="upperCase" value="true" />
+	</bean>
+
+	<bean id="nameConvention" class="com.ontimize.jee.server.dao.common.UpperCaseNameConvention" />
+
+	<!-- Enable usage of @Autowired. -->
+	<context:annotation-config />
+	<tx:annotation-driven />
+
+	<!-- Enable component scanning for defining beans with annotations. -->
+	<context:component-scan base-package="com.ontimize.jee.server.security.encrypt" />
+<!-- 	<context:component-scan base-package="com.ontimize.jee.server.services.preferences" /> -->
+	<context:component-scan base-package="com.ontimize.jee.server.services">
+		<context:exclude-filter type="regex" expression="com\.ontimize\.jee\.server\.services\.management\.SessionHelper" />
+<!-- 		<context:exclude-filter type="regex" expression="com\.ontimize\.jee\.server\.services\.management\.ServerManagementServiceImpl" /> -->
+		<context:exclude-filter type="regex" expression="com\.ontimize\.jee\.server\.services\.formprovider\..*" />
+		<context:exclude-filter type="regex" expression="com\.ontimize\.jee\.server\.services\.sharepreferences\..*" />
+		<context:exclude-filter type="regex" expression="com\.ontimize\.jee\.server\.services\.i18n\..*" />
+	</context:component-scan>
+	<context:component-scan base-package="com.ontimize.jee.server.dao">
+		<context:include-filter type="annotation" expression="com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper" />
+	</context:component-scan>
+	<!-- cometd callbacks -->
+	<!-- <context:component-scan base-package="com.ontimize.jee.server.websocket" /> -->
+<!-- 	<context:component-scan base-package="com.ontimize.jee.server.callback.cometd" /> -->
+
+	<!-- exception translator -->
+	<bean id="dbErrorMessagesTranslator" class="com.ontimize.jee.server.exceptiontranslator.DBErrorMessagesTranslator">
+		<constructor-arg>
+			<value>com/opentach/server/prop/dbmessages.properties</value>
+		</constructor-arg>
+	</bean>
+	<bean id="exceptionTranslator" class="com.ontimize.jee.server.exceptiontranslator.OntimizeExceptionTranslator">
+		<property name="dbErrorMessagesTranslator" ref="dbErrorMessagesTranslator"></property>
+	</bean>
+
+<!-- 	<bean id="deleteRequestStatisticsHistory" class="com.ontimize.jee.server.services.management.DeleteRequestStatisticsHistory"> -->
+<!-- 		<constructor-arg value="3600000" /> -->
+<!-- 		<constructor-arg value="1" /> -->
+<!-- 	</bean> -->
+
+	<!-- Ontimize -->
+	<oss:ontimize-configuration id="ontimizeConfiguration">
+		<oss:security>
+			<oss:user-information-service>
+				<oss:database-user-information-service 
+					ref-user-repository="OCLoginProfilesDao"
+					query-id="login"
+					user-login-column="USUARIO"
+					user-password-column="PASSWORD"
+					other-data="IS_LEGAL_STAFF;IS_TACHOLAB;IS_OPENTACH" />
+			</oss:user-information-service>
+			<oss:user-role-information-service>
+				<oss:database-user-role-information-service
+					ref-user-role-repository="OCLoginProfilesDao"
+					query-id="userRoles"
+					user-login-column="USUARIO"
+					role-name-column="NIVEL_CD" />
+			</oss:user-role-information-service>
+			<oss:role-information-service>
+				<oss:database-role-information-service
+					ref-role-repository="OCLoginProfilesDao"
+					role-name-column="NIVEL_CD"
+					server-permission-query-id="serverPermissions"
+					server-permission-name-column="SRP_NAME"
+					client-permission-query-id="clientPermissions"
+					client-permission-column="XML_CLIENTE" />
+			</oss:role-information-service>
+			<oss:authorization>
+				<oss:default-authorizator />
+			</oss:authorization>
+		</oss:security>
+		<oss:remote-operation max-parallel-threads="10" />
+<!-- 		<oss:remote-preferences> -->
+<!-- 			<oss:database-remote-preference-engine preference-value-column-name="PRF_VALUE" preference-name-column-name="PRF_NAME" user-column-name="USR_LOGIN" ref-repository="OCUserPreferenceDao" /> -->
+<!-- 		</oss:remote-preferences> -->
+<!-- 		<oss:remote-i18n> -->
+<!-- 			<oss:i18n-engine> -->
+<!-- 				<oss:database-i18n ref-bundle-repository="OCDatabaseBundleDao" bundle-key-column="I18_ID" bundle-class-name-column="I18_CLASS_NAME" bundle-description-column="I18_DESCRIPTION" ref-bundle-value-repository="OCDatabaseBundleValueDao" bundle-value-text-key-column="KEY" -->
+<!-- 					bundle-value-key-column="I1V_ID" /> -->
+<!-- 			</oss:i18n-engine> -->
+<!-- 		</oss:remote-i18n> -->
+		<oss:mail>
+			<oss:default-mail-engine>
+				<oss:default-mail-configurator filter-column-name="NOMBRE" value-column-name="VALOR" ref-repository="OCSettingsDao" filter-column-value-encoding="Mail.Encoding" filter-column-value-host="Mail.Server" filter-column-value-port="Mail.Port" filter-column-value-protocol="Mail.Protocol" filter-column-value-user="Mail.User" filter-column-value-password="Mail.Password" filter-column-value-javamail-properties="Mail.Properties" />
+			</oss:default-mail-engine>
+		</oss:mail>
+	</oss:ontimize-configuration>
+	
+
+<!-- 	<bean id="DMSColumnHelper" class="com.imatia.autgestamp.server.core.tools.AutGestampDMSColumnHelper" /> -->
+<!-- 	<dms:ontimize-dms-configuration id="ontimizeDMSConfiguration"> -->
+<!-- 		<dms:dms> -->
+<!-- 			<dms:ontimize-dms-engine> -->
+<!-- 				<dms:document-base-path> -->
+<!-- 					<oss:database-property filter-column-value="DMS_FOLDER" filter-column-name="SET_KEY" value-column-name="SET_VALUE" ref-repository="OCSettingsDao" /> -->
+<!-- 				</dms:document-base-path> -->
+<!-- 			</dms:ontimize-dms-engine> -->
+<!-- 		</dms:dms> -->
+<!-- 	</dms:ontimize-dms-configuration> -->
+</beans>

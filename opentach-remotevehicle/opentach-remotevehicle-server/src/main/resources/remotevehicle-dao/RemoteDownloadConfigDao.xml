@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="RDW_CFG"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>RDW_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>RDW_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>RDW_ID</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<Sentence>
+			<![CDATA[
+				SELECT
+					#COLUMNS#
+				FROM
+					(SELECT
+						veh.MATRICULA AS SRC_ID,
+						veh.DSCR AS SRC_NAME,
+						veh.CIF,
+						rdv.COM_ID,
+					    rdv.RDV_UNIT_SN,
+						rdw.RDW_ID,
+						rdw.RDW_ACTIVE,
+						rdw.RDP_ID,
+						rdw.RDW_PERIOD,
+						rdw.RDW_HOUR,
+						rdw.RDW_CREATE_USER,
+						rdw.RDW_CREATE_DATE,
+						rdw.RDW_UPDATE_USER,
+						rdw.RDW_UPDATE_DATE,
+						'V' AS SRCTYPE,
+						rdp.RDP_NAME
+					FROM
+						RDW_VEH_CFG rdv,
+						RDW_CFG rdw,
+						CDVEHICULOS_EMP veh,
+						RDW_PROVIDER rdp
+					WHERE	
+						veh.MATRICULA = rdv.VEH_ID (+)
+						AND veh.CIF = rdv.COM_ID (+)
+						AND rdv.RDV_ID = rdw.RDW_ID (+)
+						AND rdw.RDP_ID = rdp.RDP_ID (+)
+					UNION ALL
+					SELECT
+						drv.IDCONDUCTOR AS SRC_ID,
+						drv.NOMBRE ||' '||drv.APELLIDOS AS SRC_NAME,
+						drv.CIF,
+						rdd.COM_ID,
+					    NULL AS UNIT_SN,
+						rdw.RDW_ID,
+						rdw.RDW_ACTIVE,
+						rdw.RDP_ID,
+						rdw.RDW_PERIOD,
+						rdw.RDW_HOUR,
+						rdw.RDW_CREATE_USER,
+						rdw.RDW_CREATE_DATE,
+						rdw.RDW_UPDATE_USER,
+						rdw.RDW_UPDATE_DATE,
+						'D' AS SRCTYPE,
+						rdp.RDP_NAME
+					FROM
+						RDW_DRV_CFG rdd,
+						RDW_CFG rdw,
+						CDCONDUCTORES_EMP drv,
+						RDW_PROVIDER rdp
+					WHERE	
+						drv.IDCONDUCTOR = rdd.DRV_ID (+)
+						AND drv.CIF = rdd.COM_ID (+)
+						AND rdd.RDD_ID = rdw.RDW_ID (+)
+						AND rdw.RDP_ID = rdp.RDP_ID (+)
+					) vtmp
+				#WHERE#
+				#ORDER#
+			]]>
+			</Sentence>
+		</Query>
+	</Queries>
+	
+
+	
+</JdbcEntitySetup>

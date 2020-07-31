@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<Form 
+	buttons="no" customfocus="yes" status="no" margin="0;0;0;0"
+	preferredsizetodialog="1150;850"	
+>
+	<Column attr="backpanel" expandlast="no">
+		<Row expand="no" height="60" valign="top" opaque="yes">
+			<LocaleImageColumn expand="no" imagepath="images-admin/i18n/" imagename="logoarriba.png" width="210" attr="INFO1" />
+			<Column expand="yes" attr="INFO2" />
+
+			<com.opentach.client.comp.HyperlinkComponent link="www.opentach.com" />
+
+			<Column expand="yes" attr="INFO3" />
+			<LocaleImageColumn expand="no" imagepath="images-admin/i18n/" imagename="contactoB.png" width="350" opaque="no" attr="INFO3" />
+		</Row>
+		
+		<Row expand="yes">
+			<Column expandlast="yes">
+				<Row margin="5;0;4;0">
+					<Label text="LabelHomeAdminMenu" align="center" uiname="homeTitleLabels"/>
+				</Row>
+				<LaunchPad attr="launchpadAdmin" menufile="menu-admin/launchpad1.xml"/>
+			</Column>
+			<Column width="2" uiname="homeLaunchpadSeparator" expand="no"/>
+			
+			<Column expandlast="yes">
+				<Row margin="5;0;;0">
+					<Label text="LabelHomeAdminMenu" align="center" uiname="homeTitleLabels"/>
+				</Row>
+				<LaunchPad attr="launchpadAdmin" menufile="menu-admin/launchpad2.xml"/>
+			</Column>
+			<Column width="2" uiname="homeLaunchpadSeparator" expand="no"/>
+			
+			<Column expandlast="yes">
+				<Row margin="5;0;4;0">
+					<Label text="LabelHomeAppMenu" align="center"  uiname="homeTitleLabels"/>
+				</Row>
+				<LaunchPad attr="launchpadClient" menufile="menu-desktop/launchpad.xml"/>
+			</Column>
+		</Row>
+		
+		<Row expand="no" uiname="homeLaunchpadSeparator" height="2"/>
+		
+		<Row attr="footer" uiname="launchpadmenubar" margin="2;2;2;2">
+			<Column expand="yes"/>
+			<Column expand="no" valign="center" >
+				<Row valign="center">
+					<Button key="bpref" tip="Preferences" icon="com/opentach/client/rsc/preferences.png" name="PreferencesButton" listener="com.opentach.client.modules.admin.listeners.PreferenceActionSelectionListener" menu="PREFERENCIAS" />
+				</Row>
+			</Column>					
+		</Row>
+		
+	</Column>
+</Form>

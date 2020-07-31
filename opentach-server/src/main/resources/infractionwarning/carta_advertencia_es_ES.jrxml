@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carta_advertencia_es" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="455" leftMargin="70" rightMargin="70" topMargin="70" bottomMargin="70" uuid="f6e34541-6c72-4ba6-9288-e57a54f67dc3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="TableLabel" vTextAlign="Middle" fontName="SansSerif" fontSize="9" isBold="true">
+		<box topPadding="0" leftPadding="3" bottomPadding="0" rightPadding="0"/>
+	</style>
+	<style name="TableValue" vTextAlign="Middle" isBlankWhenNull="true" fontName="SansSerif" fontSize="9">
+		<box topPadding="0" leftPadding="3" bottomPadding="0" rightPadding="0"/>
+	</style>
+	<style name="CurrentDate" hTextAlign="Right" vTextAlign="Middle" fontSize="9"/>
+	<style name="LongText" hTextAlign="Justified" markup="styled" fontName="SansSerif" fontSize="9"/>
+	<style name="SectionTitle" hTextAlign="Left" vTextAlign="Middle" fontName="SansSerif" fontSize="10" isBold="true"/>
+	<style name="DateLabel" hTextAlign="Right" vTextAlign="Middle" fontName="SansSerif" fontSize="9"/>
+	<parameter name="CATEGORIA_COND" class="java.lang.String"/>
+	<parameter name="NIF_COND" class="java.lang.String"/>
+	<parameter name="NOMBRE_COND" class="java.lang.String"/>
+	<parameter name="DOMICILIO_COND" class="java.lang.String"/>
+	<parameter name="COD_POSTAL_LOC_COND" class="java.lang.String"/>
+	<parameter name="PROVINCIA_COND" class="java.lang.String"/>
+	<parameter name="CIF" class="java.lang.String"/>
+	<parameter name="NOMBRE_EMPRESA" class="java.lang.String"/>
+	<parameter name="COD_POSTAL_LOCALIDAD_EMP" class="java.lang.String"/>
+	<parameter name="DOMICILIO_EMPRESA" class="java.lang.String"/>
+	<parameter name="PROVINCIA_EMP" class="java.lang.String"/>
+	<parameter name="LOCALIDAD_EMP" class="java.lang.String"/>
+	<parameter name="F_DESDE" class="java.lang.String"/>
+	<parameter name="F_HASTA" class="java.lang.String"/>
+	<parameter name="DIA_HOY" class="java.lang.String"/>
+	<parameter name="MES_HOY" class="java.lang.String"/>
+	<parameter name="ANYO_HOY" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="F_INICIO" class="java.lang.String"/>
+	<field name="F_FIN" class="java.lang.String"/>
+	<field name="INFRACCION" class="java.lang.String"/>
+	<field name="SANCION" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="282" splitType="Stretch">
+			<staticText>
+				<reportElement style="SectionTitle" x="0" y="0" width="204" height="18" uuid="6073d553-10e5-4ca6-87b5-c2c61c973120"/>
+				<text><![CDATA[DATOS DE LA EMPRESA]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="0" y="18" width="455" height="54" uuid="9ba44ad9-6b47-41e0-b25b-dca6a5e276e0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="0" width="70" height="18" uuid="e3b305a7-4c88-4c26-bad3-0bbdb81aa4ee"/>
+					<text><![CDATA[EMPRESA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="18" width="70" height="18" uuid="dea54b03-2795-4ae4-a082-4851468c453a"/>
+					<text><![CDATA[DOMICILIO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="240" y="0" width="100" height="18" uuid="5cf2f8a2-fe0a-416e-9574-bb2265ef699a"/>
+					<text><![CDATA[C.I.F.:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="240" y="18" width="100" height="18" uuid="a60873d6-90bf-4177-bc77-49e52c375107"/>
+					<text><![CDATA[C.P. y LOCALIDAD:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="18" width="455" height="1" uuid="6f28f5be-2c6c-4d93-8f70-bab51aa563b4"/>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="36" width="70" height="18" uuid="7679042b-8d80-4161-aee6-67cfd0b3736d"/>
+					<text><![CDATA[PROVINCIA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="70" y="0" width="170" height="18" uuid="313dc5eb-bcef-43d8-80e0-135b3a65e45c"/>
+					<textFieldExpression><![CDATA[$P{NOMBRE_EMPRESA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="70" y="18" width="170" height="18" uuid="a03338ff-4a2f-4419-9efc-e7d5bffa69e6"/>
+					<textFieldExpression><![CDATA[$P{DOMICILIO_EMPRESA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="70" y="36" width="170" height="18" uuid="aaa726ed-2e26-4faf-ad59-d31e4f2e6292"/>
+					<textFieldExpression><![CDATA[$P{PROVINCIA_EMP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="340" y="0" width="115" height="18" uuid="57373118-ade5-43a9-a906-19a9e139b175"/>
+					<textFieldExpression><![CDATA[$P{CIF}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="340" y="18" width="115" height="18" uuid="1aa63c60-1f21-417f-a7bd-201f3d292564"/>
+					<textFieldExpression><![CDATA[$P{COD_POSTAL_LOCALIDAD_EMP}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="36" width="455" height="1" uuid="c277e65d-fd51-47d7-a992-46dc5a961abe"/>
+				</line>
+				<line>
+					<reportElement x="240" y="0" width="1" height="54" uuid="134d70af-c414-4d73-b543-3a703796add3">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+				</line>
+			</frame>
+			<frame>
+				<reportElement x="0" y="98" width="455" height="54" uuid="52c21373-c98e-4189-88a5-884a5fc8d505"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="0" width="110" height="18" uuid="f0c87472-435e-4e1b-9f28-9e5a319fa084"/>
+					<text><![CDATA[APELLIDOS Y NOMBRE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="18" width="110" height="18" uuid="e06b5a24-c004-47b5-8979-ecbb26c05cf0"/>
+					<text><![CDATA[DOMICILIO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="250" y="0" width="90" height="18" uuid="f74f30a3-c151-4d18-82bb-64a87b519937"/>
+					<text><![CDATA[N.I.E.:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="TableLabel" x="250" y="18" width="90" height="18" uuid="38ecfedd-4d46-441d-95fb-40f826dd4429"/>
+					<text><![CDATA[C.P. y LOCALIDAD:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="18" width="455" height="1" uuid="0d64f86f-e910-4a1d-8ac5-c3720246d5f5"/>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" x="0" y="36" width="110" height="18" uuid="91bd9da8-d0b8-4ff2-8bf9-4949e3218f0c"/>
+					<text><![CDATA[PROVINCIA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="110" y="0" width="140" height="18" uuid="4308a9e4-f876-4f5c-bc16-a8974ff68cfe"/>
+					<textFieldExpression><![CDATA[$P{NOMBRE_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="110" y="18" width="140" height="18" uuid="ebfc7ddf-f90e-4df0-9b53-070d371f298f"/>
+					<textFieldExpression><![CDATA[$P{DOMICILIO_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="110" y="36" width="140" height="18" uuid="86be78bc-828d-4c8e-bbc6-6a0f5a35d4ac"/>
+					<textFieldExpression><![CDATA[$P{PROVINCIA_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="340" y="0" width="115" height="18" uuid="a2b63f71-4670-4f09-b548-87ab4df26fa9"/>
+					<textFieldExpression><![CDATA[$P{NIF_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="TableValue" x="340" y="18" width="115" height="18" uuid="3dae4d1a-aa88-410a-a399-fed198c4f3d1"/>
+					<textFieldExpression><![CDATA[$P{COD_POSTAL_LOC_COND}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="36" width="455" height="1" uuid="ca939d46-c33b-4b94-9a24-73b97e6a1b24"/>
+				</line>
+				<line>
+					<reportElement x="250" y="0" width="1" height="54" uuid="5b4434ec-3214-4acc-93e7-c8387b94b026">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement style="TableLabel" x="250" y="36" width="90" height="18" uuid="f0790409-bc8d-4550-b2a6-2d9fc31248c1">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[CATEGORÍA]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="TableValue" x="340" y="36" width="115" height="18" uuid="d39b7797-a5bd-4a50-a470-6e6ecd185e4b">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$P{CATEGORIA_COND}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="SectionTitle" x="0" y="80" width="204" height="18" uuid="8f1f9e37-f7d7-46dc-9771-ef2da977e69e"/>
+				<text><![CDATA[DATOS DEL TRABAJADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="LongText" x="0" y="198" width="454" height="82" uuid="8c899572-7b1a-4177-a3b5-d4ecf65940d0"/>
+				<text><![CDATA[Muy Sr. nuestro:
+
+Por medio de la presente comunicación se le informa que, tras analizar los registros de actividad almacenados en su tarjeta de conductor, referentes al periodo de tiempo comprendido entre  y , hemos constatado que ha venido infringiendo las disposiciones vigentes en materia de transportes.
+
+Más concretamente, las infracciones en que ha incurrido son las siguientes:
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="DateLabel" x="0" y="171" width="454" height="18" uuid="d0c1dc19-32dd-465a-b599-deebe52076bc"/>
+				<textFieldExpression><![CDATA["En "+$P{LOCALIDAD_EMP}+" a "+$P{DIA_HOY}+" de "+$P{MES_HOY}+" de "+$P{ANYO_HOY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement style="TableLabel" x="0" y="0" width="100" height="19" uuid="28309c02-ca3e-4b54-ace3-51719988254d">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[FECHA INICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableLabel" x="100" y="0" width="100" height="19" uuid="10522803-cebe-4bc3-b499-ad4eef0697d5"/>
+				<text><![CDATA[FECHA FIN ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableLabel" x="200" y="0" width="154" height="19" uuid="8f13e89e-e84f-427c-a22e-a71a606806a1"/>
+				<text><![CDATA[INFRACCION COMETIDA   ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableLabel" x="354" y="0" width="100" height="19" uuid="eac6ddc6-203d-4f1d-b3db-76f47130435a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SANCION PREVISTA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="455" height="1" uuid="f6c2ba4d-117a-4e1e-ba75-d964004686d5"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="455" height="1" uuid="208dce88-0694-4eea-9972-6aa8f3db975f"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="455" height="19" forecolor="#FFFFFF" backcolor="#F0F0F2" uuid="1f3c3a43-3cbb-411c-9f66-fcab3c933cc2">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement style="TableValue" x="0" y="0" width="100" height="19" uuid="da721354-5108-4442-a4fd-ab595bef2a6c"/>
+				<textFieldExpression><![CDATA[$F{F_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="TableValue" x="100" y="0" width="100" height="19" uuid="33fc3b5e-a069-4b5f-95e0-3a72ef9943ce"/>
+				<textFieldExpression><![CDATA[$F{F_FIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="TableValue" x="200" y="0" width="154" height="19" uuid="66c436d8-b621-4c7c-a39e-ad3a9d7708a1"/>
+				<textFieldExpression><![CDATA[$F{INFRACCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="TableValue" x="354" y="0" width="100" height="19" uuid="8529ad21-5b94-4219-b671-e3be647ac169"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{SANCION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="161" splitType="Immediate">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="LongText" x="0" y="10" width="454" height="30" uuid="e7675195-91ab-415c-9a1a-7d51701282e1"/>
+				<textElement markup="styled"/>
+				<textFieldExpression><![CDATA["Aprovechando la presente, le recordamos que en su condición de <style isBold='true'>CONDUCTOR PROFESIONAL</style> ha de dar cumplimiento a la normativa específica reguladora de los <style isBold='true'>TIEMPOS DE CONDUCCIÓN Y DESCANSO</style>, más concretamente a lo dispuesto en el Reglamento (CE) Nº 561/2006, del Parlamento Europeo y del Consejo, de 15 de marzo de 2006, relativo a la armonización de determinadas disposiciones en materia social en el sector de los transportes por carretera, por el que se modifican los Reglamentos (CEE) Nº 3821/85 y (CE) Nº 2135/98, del Consejo, y se deroga el Reglamento (CEE) Nº 3820/85, del Consejo; así como con la Directiva 2002/15/CE, sobre Tiempos de Trabajo; con la Ley 16/87, de 30 de julio, de Ordenación de los Transportes Terrestres y con el Real Decreto 1211/1990, de 28 de septiembre, por el que se aprueba el Reglamento de Ordenación de los Transportes Terrestres."
++"\nSu actuación injustificada y de la que es exclusivo responsable, constituye un incumplimiento de los deberes laborales básicos que como trabajador se establecen en el <style isBold='true'>Artículo 5 del Real Decreto Legislativo 2/2015, de 3 de octubre, por el que se aprueba el Texto Refundido de la Ley del Estatuto de los Trabajadores, en lo que se refiere a la obligación de cumplir con las tareas propias de su puesto de trabajo con diligencia y buena fe y al cumplimiento de las órdenes e instrucciones del empresario; supone un quebranto de la disciplina a la que está obligado con la empresa en virtud del contrato que le une a ella; y puede derivar a futuro en la incoación de expedientes sancionadores por parte de las Autoridades competentes en materia de transportes, que llevan aparejada la imposición de sanciones de diversa índole para esta entidad.</style>"
+
++"\n\nRogándole firme el duplicado del presente documento, a efectos de constancia, archivo y recibí."
+
++"\n\nReciba un cordial saludo."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="TableValue" positionType="Float" x="0" y="110" width="156" height="30" uuid="c13b5631-3cc7-4a67-a84f-771cd6dec3fe"/>
+				<text><![CDATA[Fdo.: ******************************]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableValue" positionType="Float" x="290" y="110" width="156" height="30" uuid="ce3d9c67-5a19-48b8-a735-2ff3c566917f"/>
+				<text><![CDATA[Fdo.: ******************************]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableValue" positionType="Float" x="0" y="130" width="156" height="30" uuid="bc4b2238-2a3e-4618-92bc-5c4af0d9e6cd">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(La empresa)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableValue" positionType="Float" x="290" y="130" width="156" height="30" uuid="de7636fd-e0d7-4676-b51c-8239d5e4dd3b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(El trabajador)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="455" height="1" uuid="37565294-ed57-4a6a-97a1-3f19d1dda18e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

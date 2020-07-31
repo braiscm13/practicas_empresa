@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Información del usuario -->
+	<bean id="userInformationService" class="com.ontimize.jee.server.security.services.UserInformationServiceImpl" />
+	<bean name="/userinformationservice" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="userInformationService" />
+		<property name="serviceInterface" value="com.ontimize.jee.common.services.user.IUserInformationService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+	</bean>
+
+	<!-- cerrar sesiones -->
+	<!-- <bean name="/sessionService" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true"> -->
+	<!-- <property name="service" ref="SessionService" /> -->
+	<!-- <property name="serviceInterface" value="com.ontimize.jee.common.services.session.ISessionService" /> -->
+	<!-- <property name="serializerFactory" ref="hessianSerializerFactory" /> -->
+	<!-- <property name="exceptionTranslator" ref="exceptionTranslator" /> -->
+	<!-- </bean> -->
+
+	<!-- Servicio de adjuntos -->
+<!-- 	<bean name="/dmsService" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true"> -->
+<!-- 		<property name="service" ref="DMSService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.dms.IDMSService" /> -->
+<!-- 		<property name="serializerFactory" ref="hessianSerializerFactory" /> -->
+<!-- 		<property name="exceptionTranslator" ref="exceptionTranslator" /> -->
+<!-- 	</bean> -->
+
+	<!-- Servicio de preferencias remotas -->
+<!-- 	<bean name="/remotePreferences" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true"> -->
+<!-- 		<property name="service" ref="RemotePreferencesService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.preferences.IRemoteApplicationPreferencesService" /> -->
+<!-- 		<property name="serializerFactory" ref="hessianSerializerFactory" /> -->
+<!-- 		<property name="exceptionTranslator" ref="exceptionTranslator" /> -->
+<!-- 	</bean> -->
+
+	<!-- Servicio de administracion del servidor -->
+	<bean name="/serverManagement" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="ServerManagementService" />
+		<property name="serviceInterface" value="com.ontimize.jee.common.services.servermanagement.IServerManagementService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+	</bean>
+
+	<!-- Servicio de i18n -->
+<!-- 	<bean name="/i18nService" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true"> -->
+<!-- 		<property name="service" ref="I18nService" /> -->
+<!-- 		<property name="serviceInterface" value="com.ontimize.jee.common.services.i18n.II18nService" /> -->
+<!-- 		<property name="serializerFactory" ref="hessianSerializerFactory" /> -->
+<!-- 		<property name="exceptionTranslator" ref="exceptionTranslator" /> -->
+<!-- 	</bean> -->
+
+	<!-- Servicio de mail -->
+	<!-- <bean name="/mailService" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true"> -->
+	<!-- <property name="service" ref="MailService" /> -->
+	<!-- <property name="serviceInterface" value="com.ontimize.jee.common.services.mail.IMailService" /> -->
+	<!-- <property name="serializerFactory" ref="hessianSerializerFactory" /> -->
+	<!-- <property name="exceptionTranslator" ref="exceptionTranslator" /> -->
+	<!-- </bean> -->
+
+</beans>

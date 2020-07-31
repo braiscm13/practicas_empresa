@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EContratoEmp" title="DATOS_CONTRATO" keys="NUMREQ" parentkey="CIF" columns="NUMREQ;FECINI;FECFIN;CIF;NOMB_EMP"
+	buttons="no" preferredsizetodialog="1350;750" >
+	<FormHeader standardbuttons="no" />
+	
+	<Column margin="5;5;2;5" expandlast="no">
+		<Row expand="no">
+			<Column title="contract.MainData" expandlast="yes" align="left">
+				<TextDataField attr="NUMREQ" visible="no" />
+				<TextDataField attr="CG_CONTRATO" align="left" labelsize="12" dim="no" bold="yes" size="9" enabled="no" />
+				<ReferenceExtDataField attr="CIF" align="left" labelsize="12" text="EMPRESA" cod="CIF" csize="9" entity="EDfEmp" 
+					cols="CIF;NOMB" descriptioncols="NOMB" codsearch="CIF" dim="no"  size="35" required="yes" />
+				<MemoDataField attr="REMARKS2" uppercase="no" expand="yes" dim="text" maxlength="2048" labelvisible="yes" labelposition="topleft" rows="3" />
+			</Column>
+			<Column margin="0;15;0;15" expand="no">
+				<Column title="contract.DatesData" expandlast="no" align="left">
+					<DateDataField attr="F_CONTRATO" 				 labelsize="16" align="left" dim="no" required="yes" />
+					<DateDataField attr="FECINI" text="FECINI_DATOS" labelsize="16" align="left" dim="no" required="yes" />
+					<DateDataField attr="FECFIN" text="FECFIN_DATOS" labelsize="16" align="left" dim="no" required="yes" />
+					<DateDataField attr="F_BAJA" 					 labelsize="16" align="left" dim="no" enabled="no" />
+					<Column/>
+				</Column>
+			</Column>
+			<!-- Datos de SAP ?!? -->
+			<!-- 
+			<Column title="contract.FacturationData" expandlast="yes" align="left">
+				<Row>
+					<Column>
+						<ReferenceExtDataField attr="ITEMCODE" labelsize="16" text="ARTICULO" cod="ITEMCODE" csize="9" entity="EIntArticulo" cols="ITEMCODE;ITEMNAME"
+								visiblecols="ITEMNAME" descriptioncols="ITEMNAME" dim="text" />
+						<ReferenceExtDataField attr="U_CODE_CARGADOR" labelsize="16" text="CARGADOR" cod="U_CODE_CARGADOR" csize="9" entity="EIntCargador"
+							cols="U_CODE_CARGADOR;U_NAME_CARGADOR" visiblecols="U_NAME_CARGADOR" descriptioncols="U_NAME_CARGADOR" dim="text" />
+						<ReferenceExtDataField attr="U_CODE_COMERCIAL" labelsize="16" text="ZONA_COMERCIAL" cod="U_CODE_COMERCIAL" csize="9"
+							entity="EIntZonaComercial" cols="U_CODE_COMERCIAL;ZONA_COMERCIAL" visiblecols="ZONA_COMERCIAL" descriptioncols="ZONA_COMERCIAL" dim="text" align="left" />
+						<Row height="5" />
+						<ReferenceExtDataField attr="U_CODE_AGENTE" labelsize="16" text="AGENTE" cod="U_CODE_AGENTE" csize="9" entity="EIntAgente"
+							cols="U_CODE_AGENTE;AGENTE" visiblecols="AGENTE" descriptioncols="AGENTE" dim="text" align="left" codnumber="yes" codnumberclass="BigDecimal"/>
+						<Row height="5" />
+						<ReferenceExtDataField attr="U_CODE_PAGO" labelsize="16" text="TIPO_PAGO" cod="U_CODE_PAGO" csize="9" entity="EIntFormaPago"
+							cols="U_CODE_PAGO;TIPO_PAGO" visiblecols="TIPO_PAGO" descriptioncols="TIPO_PAGO" dim="text" align="left" codnumber="yes" codnumberclass="BigDecimal"/>
+						<Row height="5" />
+						<ReferenceExtDataField attr="ENTREPRISE_CODE" labelsize="16" text="ENTREPRISE" cod="ENTREPRISE_CODE" csize="9" entity="EIntEntreprise"
+							cols="ENTREPRISE_CODE;ENTREPRISE" visiblecols="ENTREPRISE" descriptioncols="ENTREPRISE" dim="text" />
+						<Row height="5" />
+						<TextComboDataField attr="SITCONTRACT" translate="yes" values="REN;PRO;BAJ" dim="text" size="15" labelsize="16" />
+						<Row height="5" />
+						<TextComboDataField attr="STATUS" translate="yes" values="ACT;CAN;DEM" dim="text" size="15" labelsize="16" />
+					</Column>
+					<Row/>
+					<Column expandlast="yes">
+						<TextComboDataField attr="U_CODE_FACTURACION" labelsize="18" translate="yes" values="EFE;TAR" dim="text" size="15" required="no" />
+						<IntegerDataField attr="U_NUM_MAXIMO" labelsize="18" size="15" align="left"></IntegerDataField>
+						<Column/>
+						<IntegerDataField attr="U_CUOTA" labelsize="18" size="10" align="left" />
+						<IntegerDataField attr="IVA" labelsize="18" size="10" align="left" />
+						<IntegerDataField attr="U_TOTAL_CUOTA" labelsize="18" size="10" align="left"/>
+						<Column valign="center">
+							<Button key="CHACTIVO" text="Contrato_en_uso" icon="images-general/scroll_run16.png" labelsize="22" />
+						</Column>
+					</Column>
+				</Row>
+			</Column>
+			 -->
+		</Row>
+		<TabPanel>
+			<Tab title="CONDUCTORES_CONT">
+				<Table expand="yes" entity="EConductorCont" title="CONDUCTOR_CONT" key="IDCONDUCTOR" keys="CG_CONTRATO" parentkeys="CG_CONTRATO;CIF" fixattr="CIF"
+					cols="CG_CONTRATO;CIF;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;TIPO;F_ALTA;F_BAJA" 
+					visiblecols="EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;F_ALTA;F_BAJA" 
+					refreshbutton="yes" deletebutton="yes" insertbutton="no">
+	
+						<HideTableButton attr="insertbutton" onlyhide="true" />
+						<TableButton key="btnAnadir" tip="ANADIR_REGISTRO" text="" table="EConductorCont" 
+							icon="com/ontimize/plaf/images/table/insert.png" 
+							listener="com.opentach.client.contract.listeners.AddEmployeeToContractListener"/>
+					
+						<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="140" preferredwidth="140" />
+						<TableColumnProperties attr="NOMBRE" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+					</Table>
+			</Tab>
+		</TabPanel>
+		
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<Button key="delete" text="delete" icon="images-general/garbage16.png"/>
+			<CancelButton/>
+			<SaveButton />
+		</Row>
+	</Column>
+		
+</FormExt>

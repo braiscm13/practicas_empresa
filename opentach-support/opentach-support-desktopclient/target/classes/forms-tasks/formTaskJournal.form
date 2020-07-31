@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form 
+	keys="TKJ_ID" entity="ETaskJournal" columns="TKJ_ID" title="tsk.ETaskJournal.title" 
+	status="no" buttons="no"
+	preferredsizetodialog="800;400"
+>
+
+	<ObjectDataField attr="TSK_ID" visible="no"/>
+	<ObjectDataField attr="TKJ_ID" visible="no"/>
+
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Column expandlast="yes" expand="yes">
+			<MemoDataField 
+				attr="TKJ_ENTRY" text="tsk.TKJ_ENTRY" 
+				align="left" dim="text" expand="yes"  required="yes"
+				/>
+		</Column>
+		<Row expand="no">
+			<Column />
+			<CancelButton cleanonclose="yes"/>
+			<SaveButton />
+		</Row>
+	</Column>
+</Form>

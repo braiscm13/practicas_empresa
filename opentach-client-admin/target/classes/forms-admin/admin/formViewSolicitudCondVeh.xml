@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="VIEW_SOLICITUDES_ALTA" entity="" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />		
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row >
+		<Column margin="5;5;5;5" title="">
+			<Column />
+			<Column valign="top">
+				<Row height="20"/>
+				<Row >
+					<Column title="" margin="0;5;5;5" valign="center">
+						<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" codintenger="yes" required="no" csize="10" />
+					</Column>	
+				</Row >
+				<Row height="20"/>				
+			</Column >
+		</Column >
+		<Column align="right" expand="no" title="" valign="center">
+			<ColumnRadioButtonGroup selected ="SOLPEND">
+				<RadioButtonDataField attr="SOLTODAS" align="left"/>
+				<RadioButtonDataField attr="SOLPEND"  align="left"/>
+			</ColumnRadioButtonGroup>	
+		</Column >
+	</Row >
+	<Row expand="yes">	
+	    <Button key="mSuperado"  tip="mSuperado" text="mSuperado" />
+	    <Button key="mNoSuperado"  tip="mNoSuperado" text="mNoSuperado" />
+		<Table entity="ESolicitudesCondVeh" key="IDSOLICITUD" parentkey="CG_CONTRATO" cols="IDSOLICITUD;CG_CONTRATO;CIF;NOMB;SOLICITUD;TIPOSOLICITUD;OBSR;F_RESOLUCION;RESUELTO;USUARIO_ALTA;F_ALTA" visiblecols="CIF;NOMB;SOLICITUD;TIPOSOLICITUD;OBSR;F_RESOLUCION;RESUELTO" rendermemo="SOLICITUD;OBSR" editablecolumns="OBSR" updateentityeditablecolumns="OBSR"/>
+	</Row>	
+</Form>

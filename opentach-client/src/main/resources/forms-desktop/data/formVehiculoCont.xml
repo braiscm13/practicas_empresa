@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EVehiculoCont" keys="CG_CONTRATO;MATRICULA;CIF" title="VEHICULO_CONT" cols="CIF;MATRICULA;DSCR;TIPO" buttons="no">
+	<FormHeader standardbuttons="iud" />
+	<Column margin="5;5;5;5">
+		<TextDataField attr="CG_CONTRATO" visible="no" />
+		<TextDataField attr="TIPO" visible="no" />
+		<TextDataField attr="CIF" visible="no" />
+		<ReferenceExtDataField entity="EVehiculoNoCont" text="VEHICULO" csize="10" labelposition="top" size="20" parentkey="CIF" otherkeys="CG_CONTRATO" labelsize="12" attr="MATRICULA" dim="text" cod="MATRICULA" cols="MATRICULA;DSCR" descriptioncols="DSCR" required="yes" />
+	</Column >
+</FormExt>

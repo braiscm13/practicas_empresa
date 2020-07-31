@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="Contratos" buttons="no" status="no" preferredsizetodialog="1350;852">
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no" />
+
+	<Row margin="5;5;5;5" expand="yes">
+		<Column expand="yes" expandlast="no">
+			<!-- FILTERS -->
+			<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" title="Filters">
+				<Row expand="no" margin="5;5;5;5">
+					<Column title="contract.MainData" expand="no" expandlast="yes">
+						<com.utilmize.client.gui.field.reference.UReferenceExtDataField attr="CIF" text="EMPRESA" cod="CIF" csize="9" entity="EDfEmp" 
+							cols="CIF;NOMB" descriptioncols="NOMB" codsearch="CIF"  
+							labelsize="16" dim="no" required="yes"
+							/>
+						<TextDataField attr="CG_CONTRATO" labelsize="16" align="left" dim="text" bold="yes" size="9" enable="no" />
+						<TextDataField attr="REMARKS2" labelsize="16" uppercase="no" dim="text" />
+					</Column>
+					<Column title="contract.DatesData" expand="no" expandlast="yes">
+						<DateDataField attr="F_CONTRATO" labelsize="16" align="left" dim="no" />
+						<DateDataField attr="FECINI" text="FECINI_DATOS"  labelsize="16" align="left" dim="no" />
+						<DateDataField attr="FECFIN" text="FECFIN_DATOS"  labelsize="16" align="left" dim="no" />
+						<DateDataField attr="F_BAJA" labelsize="16" align="left" dim="no" />
+							
+					</Column>
+					<!-- Datos SAP?!? -->
+					<!-- 
+					<Column title="contract.FacturationData" expand="no" margin="0;20;0;0">
+                        <Column >	
+							<ReferenceExtDataField attr="ITEMCODE" labelsize="16" text="ARTICULO" cod="CIF" csize="9" entity="EIntArticulo" cols="ITEMCODE;ITEMNAME"
+								visiblecols="ITEMNAME" descriptioncols="ITEMNAME" dim="text" />
+							<ReferenceExtDataField attr="U_CODE_CARGADOR" labelsize="16" text="CARGADOR" cod="U_CODE_CARGADOR" csize="9" entity="EIntCargador"
+								cols="U_CODE_CARGADOR;U_NAME_CARGADOR" visiblecols="U_NAME_CARGADOR" descriptioncols="U_NAME_CARGADOR" dim="text" />
+							<ReferenceExtDataField attr="U_CODE_COMERCIAL" labelsize="16" text="ZONA_COMERCIAL" cod="U_CODE_COMERCIAL" csize="9"
+								entity="EIntZonaComercial" cols="U_CODE_COMERCIAL;ZONA_COMERCIAL" visiblecols="ZONA_COMERCIAL" descriptioncols="ZONA_COMERCIAL" dim="text" align="left" />
+							<ReferenceExtDataField attr="U_CODE_AGENTE" labelsize="16" text="AGENTE" cod="U_CODE_AGENTE" csize="9" entity="EIntAgente"
+								cols="U_CODE_AGENTE;AGENTE" visiblecols="AGENTE" descriptioncols="AGENTE" dim="text" align="left" />
+							<ReferenceExtDataField attr="U_CODE_PAGO" labelsize="16" text="TIPO_PAGO" cod="U_CODE_PAGO" csize="9" entity="EIntFormaPago"
+								cols="U_CODE_PAGO;TIPO_PAGO" visiblecols="TIPO_PAGO" descriptioncols="TIPO_PAGO" dim="text" align="left" />
+							<ReferenceExtDataField attr="ENTREPRISE_CODE" labelsize="16" text="ENTREPRISE" cod="ENTREPRISE_CODE" csize="9" entity="EIntEntreprise"
+								cols="ENTREPRISE_CODE;ENTREPRISE" visiblecols="ENTREPRISE" descriptioncols="ENTREPRISE" dim="text" />
+							<TextComboDataField attr="SITCONTRACT" translate="yes" values="REN;PRO;BAJ" dim="text" size="15" labelsize="16" />
+							<TextComboDataField attr="STATUS" translate="yes" values="ACT;CAN;DEM" dim="text" size="15" labelsize="16" />
+						</Column>
+					</Column>
+					<Column title=" " expand="no" margin="0;20;0;0">
+                        <Column >
+							<TextComboDataField attr="U_CODE_FACTURACION" labelsize="16" translate="yes" values="EFE;TAR" dim="text" size="15"  />
+							<IntegerDataField attr="U_NUM_MAXIMO" labelsize="16" size="15" align="left" />
+							
+							<IntegerDataField attr="U_CUOTA" labelsize="16" size="10" align="left" />
+							<IntegerDataField attr="IVA" labelsize="16" size="10" align="left" />
+							<IntegerDataField attr="U_TOTAL_CUOTA" labelsize="16" size="10" align="left" />
+					    </Column>
+                    </Column>
+                     -->
+                    <Row />
+					<SearchPanel table="EContratoEmp"
+						search.filterfields="CIF;CG_CONTRATO;F_CONTRATO;FECINI;FECFIN;F_BAJA"
+						search.daterangefilterfields="" layout="2x1" />
+				</Row>
+			</CollapsiblePanel>
+			<Row expand="yes" valign="center">
+				<Column expand="yes" margin="5;5;5;5">
+					<Table entity="EContratoEmp" key="NUMREQ" parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+						cols="NUMREQ;CG_CONTRATO;CIF;F_CONTRATO;FECINI;FECFIN;F_BAJA;REMARKS2"
+						visiblecols="CG_CONTRATO;CIF;F_CONTRATO;FECINI;FECFIN;F_BAJA;REMARKS2"
+						detailformat="{0};NUMREQ" form="formContratoEmp.xml" 
+						deletebutton="yes" disableinsert="yes" insertcontrol="no"  scrollh="yes"
+					>
+						<TableColumnProperties attr="CG_CONTRATO" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="F_CONTRATO" defaultwidth="110" preferredwidth="110" />
+						<TableColumnProperties attr="FECINI" defaultwidth="110" preferredwidth="110" />
+						<TableColumnProperties attr="FECFIN" defaultwidth="110" preferredwidth="110" />
+						<TableColumnProperties attr="F_BAJA" defaultwidth="110" preferredwidth="110" />
+
+						<TableColumnProperties attr="REMARKS2" defaultwidth="250" preferredwidth="250" />
+						<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+					</Table>
+				</Column>
+			</Row>
+			<Row>
+				<Row />
+				<!-- <DeleteButton/> --><!-- No se puede borrar tan a la ligera, ver listener dentro -->
+				<OpenTableInsertFormButton table="EContratoEmp" />
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

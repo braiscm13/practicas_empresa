@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="CONSULTA_MATRICULAS"
+	buttons="no"
+	setvalueorder="">
+<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+</FormHeader>
+<Row>
+		<Column 	expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column	title="" margin="0;5;5;5"	valign="center">
+					<TextDataField	align="left" attr="MATRICULA" dim="text"	labelsize="11"	maxlength="150" />
+					</Column>
+				</Column>
+			</Column>
+</Row>
+<Row expand="yes">
+		<Table entity="EVehiculosEmp" keys="MATRICULA;CG_CONTRATO;CIF" parentkeys="MATRICULA" 
+					cols="MATRICULA;NOMB;CG_CONTRATO;CIF;DSCR;F_ALTA;F_BAJA" 
+					visiblecols="CIF;NOMB;F_ALTA;F_BAJA" >
+		</Table>
+</Row>
+</Form>

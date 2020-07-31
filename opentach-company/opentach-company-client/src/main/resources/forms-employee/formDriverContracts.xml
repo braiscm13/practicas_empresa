@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="EDriverContracts"
+	title="EDriverContracts"
+	keys="DRC_ID"
+	buttons="no"
+	columns="DRC_TYPE;AGR_NAME;DRC_DATE_FROM;DRC_DATE_TO"
+	setvalueorder="DRC_HOURS_PER_DAY;DRC_HOURS_PER_WEEK;DRC_HOURS_PER_YEAR;DRC_REST_HOURS_PER_DAY;DRC_REST_HOURS_PER_WEEK;DRC_PARTIAL_DAILY_HOURS;DRC_PARTIAL_WEEKLY_HOURS;;DRC_PARTIAL_BIWEEKLY_HOURS;DRC_PARTIAL_MONTHLY_HOURS;DRC_PARTIAL_ANNUAL_HOURS;DRC_COMPL_DAILY_HOURS;DRC_COMPL_WEEKLY_HOURS;DRC_COMPL_BIWEEKLY_HOURS;DRC_COMPL_MONTHLY_HOURS;;DRC_COMPL_ANNUAL_HOURS;DRC_HOURS_OVERTIME_WEEK_THLD"
+	preferredsizetodialog="1000;750">
+	<FormHeader standardbuttons="no" />
+
+	<Column margin="5;5;5;5" expandlast="no" >
+			<ObjectDataField attr="CIF" required="yes" visible="no" />
+			<ObjectDataField attr="IDCONDUCTOR" required="yes" visible="no" />
+			<ObjectDataField attr="DRC_ID" visible="no" />
+			<IntegerDataField attr="TYPE" visible="no" />
+			
+			<Row >
+				<Column width="350" expand="no">
+					<TextComboDataField
+						attr="DRC_TYPE"
+						values="TIEMPO_PARCIAL;TIEMPO_COMPLETO"
+						labelsize="14"
+						dim="text"
+						translate="yes"
+						size="14"
+						listener="com.opentach.client.employee.fim.IMDriverContracts$IMDriverContractsTypeValueChangeListener" />
+					<ReferenceExtDataField
+						attr="AGR_ID"
+						codvisible="no"
+						codnumber="yes"
+						codnumberclass="BigDecimal"
+						entity="ELaborAgreement"
+						parentkeys="CIF:COM_ID"
+						text="EAgreements"
+						cod="AGR_ID"
+						dim="text"
+						labelsize="14"
+						align="left"
+						cols="AGR_NAME;AGR_F_BAJA"
+						visiblecols="AGR_NAME"
+						descriptioncols="AGR_NAME" 
+						deprecatedcolumn="AGR_F_BAJA"
+						cachetime="0"
+						populatetableonshowtablewindow="yes"/>
+					<Column/>
+				</Column>
+				<Row/>
+				<Column expand="no" margin="0;15;0;15">
+					<DateDataField
+						attr="DRC_DATE_FROM"
+						dim="no"
+						required="yes"
+						labelsize="19"
+						align="left" />
+					<Row>
+						<CheckDataField
+							attr="MARK_CURRENT_CONTRACT"
+							text="MARK_CURRENT_CONTRACT_DRC_DATE_TO"
+							returnboolean="yes"
+							align="left"
+							labelsize="16" 
+							listener="com.opentach.client.employee.fim.IMDriverContracts$IMDriverContractsCheckCurrentContractValueChangeListener" />
+						<DateDataField
+							attr="DRC_DATE_TO"
+							dim="no"
+							required="no"
+							labelvisible="no"
+							align="left" 
+							listener="com.opentach.client.employee.fim.IMDriverContracts$IMDriverContractsDateToValueChangeListener" />	
+					</Row>
+					<CheckDataField
+						attr="DRC_IRREGULAR_JOURNAL"
+						returnstring="yes"
+						align="left"
+						labelsize="16" />
+					
+				</Column>
+				<Row/>
+			</Row>
+			
+			<Row>
+				<TabPanel>
+					<Include file="forms-employee/formDriverContractsIncludeSchedule.xml" />
+					
+					<Tab attr="TIEMPO_PARCIAL" title="TIEMPO_PARCIAL">
+						<Row>
+							<Column expand="no">
+								<Label bold="yes" text="WORKING_TIME_LIMIT" align="center" attr="LABEL_WORKING"/>
+								<IntegerDataField
+									attr="DRC_PARTIAL_DAILY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelsize="9"
+									text="DAILY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_WEEKLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelsize="9"
+									text="WEEKLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_BIWEEKLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelsize="9"
+									text="BIWEEKLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_MONTHLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelsize="9"
+									text="MONTHLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_ANNUAL_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelsize="9"
+									text="ANNUAL"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_DAILY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelsize="9"
+									text="DAILY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_WEEKLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelsize="9"
+									text="WEEKLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_BIWEEKLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelsize="9"
+									text="BIWEEKLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_MONTHLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelsize="9"
+									text="MONTHLY"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_PARTIAL_ANNUAL_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelsize="9"
+									text="ANNUAL"
+									dim="no"
+									size="8"
+									align="left" />
+							</Column>
+							<Column expand="no">
+								<Label bold="yes" text="COMPLEMENTARY_TIME_LIMIT" align="center" attr="LABEL_COMPL"/>
+								<IntegerDataField
+									attr="DRC_COMPL_DAILY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_WEEKLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_BIWEEKLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_MONTHLY_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_ANNUAL_HOURS"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_DAILY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_WEEKLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_BIWEEKLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_MONTHLY_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+								<IntegerDataField
+									attr="DRC_COMPL_ANNUAL_MINUTES"
+									listener="com.opentach.client.employee.listeners.HoursToMinutesValueChangeListener"
+									visible="no"
+									labelvisible="no"
+									dim="no"
+									size="8"
+									align="left" />
+							</Column>
+						</Row>
+					</Tab>
+				</TabPanel>
+			</Row>
+		<Row expand="yes" />
+		<Row expand="no" >
+			<NavigationToolbar />
+			<Row />
+			<CancelButton />
+			<SaveButton stayinrecordafterupdate="yes" />
+		</Row>			
+	</Column>		
+</FormExt>

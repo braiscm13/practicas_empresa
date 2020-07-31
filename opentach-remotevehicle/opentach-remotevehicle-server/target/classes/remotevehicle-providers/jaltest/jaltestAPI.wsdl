@@ -1,0 +1,4242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+	name="WsJaltestTelematicsAPI"
+	targetNamespace="http://tempuri.org/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+	xmlns:tns="http://tempuri.org/"
+	xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://tempuri.org/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto" />
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+			<xs:element name="getAccess">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="login"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="password"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="mobileKey"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="mobile_uuid"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getAccessResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getAccessResult"
+							nillable="true"
+							type="q1:WebResultOfUsuarioWebDto1YD7O3EO"
+							xmlns:q1="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setMessageKey">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="login"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="password"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="idUsuarioWeb"
+							type="xs:int" />
+						<xs:element
+							minOccurs="0"
+							name="key"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setMessageKeyResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="setMessageKeyResult"
+							nillable="true"
+							type="q2:WebResult"
+							xmlns:q2="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setGPSPosition">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="webUserId"
+							type="xs:int" />
+						<xs:element
+							minOccurs="0"
+							name="mobileKey"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="gpsPosition"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setGPSPositionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="setGPSPositionResult"
+							nillable="true"
+							type="q3:WebResult"
+							xmlns:q3="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getGeneralInfo">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getGeneralInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getGeneralInfoResult"
+							nillable="true"
+							type="q4:InfoELD"
+							xmlns:q4="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVehicles">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVehiclesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getVehiclesResult"
+							nillable="true"
+							type="q5:InfoELD"
+							xmlns:q5="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getCicles">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getCiclesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getCiclesResult"
+							nillable="true"
+							type="q6:InfoELD"
+							xmlns:q6="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getInfoDay">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="dateInfo"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getInfoDayResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getInfoDayResult"
+							nillable="true"
+							type="q7:InfoELD"
+							xmlns:q7="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveInfoDay">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="recordToSave"
+							nillable="true"
+							type="q8:RegistroELDDto"
+							xmlns:q8="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveInfoDayResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="saveInfoDayResult"
+							nillable="true"
+							type="q9:InfoELD"
+							xmlns:q9="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="confirmCandidate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="idCandidate"
+							type="xs:int" />
+						<xs:element
+							minOccurs="0"
+							name="confirm"
+							type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="confirmCandidateResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="confirmCandidateResult"
+							nillable="true"
+							type="q10:InfoELD"
+							xmlns:q10="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getCandidates">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getCandidatesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getCandidatesResult"
+							nillable="true"
+							type="q11:InfoELD"
+							xmlns:q11="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveEvents">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="eventsToSave"
+							nillable="true"
+							type="q12:ArrayOfEventoELDDto"
+							xmlns:q12="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveEventsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="saveEventsResult"
+							nillable="true"
+							type="q13:InfoELD"
+							xmlns:q13="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveUnidentifiedDriving">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="unidentifiedDrivingToSave"
+							nillable="true"
+							type="q14:ConduccionNoIdentificadaELDDto"
+							xmlns:q14="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveUnidentifiedDrivingResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="saveUnidentifiedDrivingResult"
+							nillable="true"
+							type="q15:InfoELD"
+							xmlns:q15="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSignature">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="id"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getSignatureResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getSignatureResult"
+							nillable="true"
+							type="q16:InfoELD"
+							xmlns:q16="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveSignature">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="signatureToSave"
+							nillable="true"
+							type="q17:FirmaELDDto"
+							xmlns:q17="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saveSignatureResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="saveSignatureResult"
+							nillable="true"
+							type="q18:InfoELD"
+							xmlns:q18="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="updateSettings">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="newSettings"
+							nillable="true"
+							type="q19:ConductorELDDto"
+							xmlns:q19="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="updateSettingsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="updateSettingsResult"
+							nillable="true"
+							type="q20:InfoELD"
+							xmlns:q20="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getAccessELD">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="login"
+							nillable="true"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							name="password"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getAccessELDResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getAccessELDResult"
+							nillable="true"
+							type="q21:InfoELD"
+							xmlns:q21="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDriver">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getDriverResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="getDriverResult"
+							nillable="true"
+							type="q22:InfoELD"
+							xmlns:q22="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sendMailDOT">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="recipientEmail"
+							nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sendMailDOTResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							name="sendMailDOTResult"
+							nillable="true"
+							type="q23:InfoELD"
+							xmlns:q23="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="createNewFleet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="name"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="address"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="phone"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="email"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="distributorId"
+							type="xs:int" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="contractInfo"
+							type="tns:ContractInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ContractInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ContractCode"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ContractHolder"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ContractCreationDate"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ContractExpirationDate"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="ContractPermanence"
+						type="xs:int" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="ContractNumberOfVehicles"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="createNewFleetResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="createNewFleetResult"
+							type="tns:WebResult" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResult">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ErrorCode"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="Message"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="createWebUser">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="webUserType"
+							type="tns:WebUserType" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="name"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="surnames"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="login"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="email"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="country"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="language"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="mobilePhone"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="DNI"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:simpleType name="WebUserType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="FleetManager" />
+					<xs:enumeration value="Administrator" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="createWebUserResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="createWebUserResult"
+							type="tns:WebResult" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="generateCompanyTachographCard">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="generateCompanyTachographCardResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="generateCompanyTachographCardResult"
+							type="tns:WebResultOfString" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResultOfString">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								maxOccurs="1"
+								name="Result"
+								type="xs:string" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="createVehicle">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="vehicleType"
+							type="tns:VehicleType" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:simpleType name="VehicleType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Truck" />
+					<xs:enumeration value="Bus" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="createVehicleResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="createVehicleResult"
+							type="tns:WebResult" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTelematicsUnitToVehicle">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="telematicsUnitNumber"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTelematicsUnitToVehicleResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="setTelematicsUnitToVehicleResult"
+							type="tns:WebResult" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="createDriver">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="name"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="surnames"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="DNI"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="notificationsPhone"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="homePhone"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="address"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="email"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="tachographCardCountry"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="tachographCardNumber"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="tachographCardExpirationDate"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="createDriverResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="createDriverResult"
+							type="tns:WebResult" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getTachoFilesList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="driverCardNumber"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="downloadStartDate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="downloadEndDate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="activityBlock"
+							type="xs:boolean" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="eventBlock"
+							type="xs:boolean" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="detailedSpeedBlock"
+							type="xs:boolean" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="technicalDataBlock"
+							type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getTachoFilesListResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="getTachoFilesListResult"
+							type="tns:WebResultOfListOfTachoFileInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResultOfListOfTachoFileInfo">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								maxOccurs="1"
+								name="Result"
+								type="tns:ArrayOfTachoFileInfo" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfTachoFileInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="TachoFileInfo"
+						nillable="true"
+						type="tns:TachoFileInfo" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TachoFileInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ExtensionData"
+						type="tns:ExtensionDataObject" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="ActivityBlock"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="DetailedSpeedBlock"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="Driver1CardNumber"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="Driver2CardNumber"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="EventBlock"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="FileContent"
+						type="xs:base64Binary" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="FileDownloadDate"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="FileEndDate"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="FileName"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="FileStartDate"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="FileType"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Id"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="NumberPlate"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="OverviewBlock"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="TechnicalDataBlock"
+						type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ExtensionDataObject" />
+			<xs:element name="downloadTachoFiles">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="fileIds"
+							type="tns:ArrayOfInt" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="extensionFile"
+							type="tns:TachoFileExtension" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfInt">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="int"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="TachoFileExtension">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="TGD" />
+					<xs:enumeration value="V1BC1B" />
+					<xs:enumeration value="DDD" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="downloadTachoFilesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="downloadTachoFilesResult"
+							type="tns:WebResultOfListOfTachoFileInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTachoScheduleForVehicle">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="firstDayOfMonth"
+							type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTachoScheduleForVehicleResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="setTachoScheduleForVehicleResult"
+							type="tns:WebResultOfTachoScheduleInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResultOfTachoScheduleInfo">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								maxOccurs="1"
+								name="Result"
+								type="tns:TachoScheduleInfo" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="TachoScheduleInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ExtensionData"
+						type="tns:ExtensionDataObject" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="DriverCardNumber"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Id"
+						type="xs:int" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="NextExecutionDate"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="NumberPlate"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="setTachoScheduleForDriver">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="driverCardNumber"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="weekDay"
+							type="xs:int" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="hour"
+							type="xs:int" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTachoScheduleForDriverResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="setTachoScheduleForDriverResult"
+							type="tns:WebResultOfTachoScheduleInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="startTachoDownload">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="1"
+							maxOccurs="1"
+							name="activityBlockDownloadType"
+							type="tns:ActivityBlockDownloadType" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="startDate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="endDate"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:simpleType name="ActivityBlockDownloadType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Complete" />
+					<xs:enumeration value="LastODFDownload" />
+					<xs:enumeration value="DatesSelection" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="startTachoDownloadResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="startTachoDownloadResult"
+							type="tns:WebResultOfTachoDownloadInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResultOfTachoDownloadInfo">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								maxOccurs="1"
+								name="Result"
+								type="tns:TachoDownloadInfo" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="TachoDownloadInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ExtensionData"
+						type="tns:ExtensionDataObject" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="TachoDownloadId"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="startCardDriverDownload">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="driverCardNumber"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="startCardDriverDownloadResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="startCardDriverDownloadResult"
+							type="tns:WebResultOfTachoDownloadInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVehicleLocations">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="CIF"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="numberPlate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="startDate"
+							type="xs:string" />
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="endDate"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getVehicleLocationsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							minOccurs="0"
+							maxOccurs="1"
+							name="getVehicleLocationsResult"
+							type="tns:WebResultOfListOfGPSPositionInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="WebResultOfListOfGPSPositionInfo">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								maxOccurs="1"
+								name="Result"
+								type="tns:ArrayOfGPSPositionInfo" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfGPSPositionInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="GPSPositionInfo"
+						nillable="true"
+						type="tns:GPSPositionInfo" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="GPSPositionInfo">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ExtensionData"
+						type="tns:ExtensionDataObject" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Altitude"
+						nillable="true"
+						type="xs:double" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Date"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="ECUSerialNumber"
+						type="xs:string" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="KL15State"
+						type="xs:int" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Latitude"
+						nillable="true"
+						type="xs:double" />
+					<xs:element
+						minOccurs="1"
+						maxOccurs="1"
+						name="Longitude"
+						nillable="true"
+						type="xs:double" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="NumberPlate"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						maxOccurs="1"
+						name="TripId"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema
+			attributeFormDefault="qualified"
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element
+				name="anyType"
+				nillable="true"
+				type="xs:anyType" />
+			<xs:element
+				name="anyURI"
+				nillable="true"
+				type="xs:anyURI" />
+			<xs:element
+				name="base64Binary"
+				nillable="true"
+				type="xs:base64Binary" />
+			<xs:element
+				name="boolean"
+				nillable="true"
+				type="xs:boolean" />
+			<xs:element
+				name="byte"
+				nillable="true"
+				type="xs:byte" />
+			<xs:element
+				name="dateTime"
+				nillable="true"
+				type="xs:dateTime" />
+			<xs:element
+				name="decimal"
+				nillable="true"
+				type="xs:decimal" />
+			<xs:element
+				name="double"
+				nillable="true"
+				type="xs:double" />
+			<xs:element
+				name="float"
+				nillable="true"
+				type="xs:float" />
+			<xs:element
+				name="int"
+				nillable="true"
+				type="xs:int" />
+			<xs:element
+				name="long"
+				nillable="true"
+				type="xs:long" />
+			<xs:element
+				name="QName"
+				nillable="true"
+				type="xs:QName" />
+			<xs:element
+				name="short"
+				nillable="true"
+				type="xs:short" />
+			<xs:element
+				name="string"
+				nillable="true"
+				type="xs:string" />
+			<xs:element
+				name="unsignedByte"
+				nillable="true"
+				type="xs:unsignedByte" />
+			<xs:element
+				name="unsignedInt"
+				nillable="true"
+				type="xs:unsignedInt" />
+			<xs:element
+				name="unsignedLong"
+				nillable="true"
+				type="xs:unsignedLong" />
+			<xs:element
+				name="unsignedShort"
+				nillable="true"
+				type="xs:unsignedShort" />
+			<xs:element
+				name="char"
+				nillable="true"
+				type="tns:char" />
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int" />
+			</xs:simpleType>
+			<xs:element
+				name="duration"
+				nillable="true"
+				type="tns:duration" />
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="guid"
+				nillable="true"
+				type="tns:guid" />
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute
+				name="FactoryType"
+				type="xs:QName" />
+			<xs:attribute
+				name="Id"
+				type="xs:ID" />
+			<xs:attribute
+				name="Ref"
+				type="xs:IDREF" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb" />
+			<xs:complexType name="WebResultOfUsuarioWebDto1YD7O3EO">
+				<xs:annotation>
+					<xs:appinfo>
+						<GenericType
+							Name="WebResultOf{0}{#}"
+							Namespace="http://schemas.datacontract.org/2004/07/Ws_JaltestTelematicsAPI.Dto"
+							xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+							<GenericParameter
+								Name="UsuarioWebDto"
+								Namespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb" />
+						</GenericType>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:WebResult">
+						<xs:sequence>
+							<xs:element
+								minOccurs="0"
+								name="Result"
+								nillable="true"
+								type="q1:UsuarioWebDto"
+								xmlns:q1="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element
+				name="WebResultOfUsuarioWebDto1YD7O3EO"
+				nillable="true"
+				type="tns:WebResultOfUsuarioWebDto1YD7O3EO" />
+			<xs:complexType name="WebResult">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="ErrorCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Message"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="WebResult"
+				nillable="true"
+				type="tns:WebResult" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Dto.GestionTelematica.UsuarioWeb">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Constantes" />
+			<xs:complexType name="UsuarioWebDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="Activado"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Alta"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="Apellidos"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="ClaveMensajeria"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CodigoIdioma"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CodigoTaller"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DNI"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Desarrollador"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Email"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EmailRegistroEnviado"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="Entorno"
+						nillable="true"
+						type="tns:EntornoDto" />
+					<xs:element
+						minOccurs="0"
+						name="ErrorPersistirGestion"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="FechaActivacionPassword"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						name="FechaCreacion"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						name="FechaEnvioEmail"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						name="FechaExpiracionRegistro"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						name="FechaSolicitudNuevaPassword"
+						nillable="true"
+						type="xs:dateTime" />
+					<xs:element
+						minOccurs="0"
+						name="FechaSolicitudPasswordCaducada"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="Id"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="IdCliente"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="IdConductor"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="IdPais"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="IdPerfil"
+						nillable="true"
+						type="q1:UsuarioWebConstantes.Perfil"
+						xmlns:q1="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Constantes" />
+					<xs:element
+						minOccurs="0"
+						name="IdTaller"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Idioma"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Login"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Menus"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MobileKey"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Nombre"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="NombrePais"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Password"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Perfil"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="PerfilMostrar"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="PermisosMenus"
+						nillable="true"
+						type="tns:ArrayOfMenuDto" />
+					<xs:element
+						minOccurs="0"
+						name="Rol"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Salt"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TelefonoMovil"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TipoUsuarioMostrar"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TokenConfirmacion"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="UrlAcceso"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="UsuarioWebDto"
+				nillable="true"
+				type="tns:UsuarioWebDto" />
+			<xs:complexType name="EntornoDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="IPEntorno"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="IdEntorno"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="NombreEntorno"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="PasswordEntorno"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="UsuarioEntorno"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="EntornoDto"
+				nillable="true"
+				type="tns:EntornoDto" />
+			<xs:complexType name="ArrayOfMenuDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="MenuDto"
+						nillable="true"
+						type="tns:MenuDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfMenuDto"
+				nillable="true"
+				type="tns:ArrayOfMenuDto" />
+			<xs:complexType name="MenuDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="Descripcion"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Id"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="IdPerfil"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="ListaSubMenus"
+						nillable="true"
+						type="tns:ArrayOfMenuDto" />
+					<xs:element
+						minOccurs="0"
+						name="MenuPadre"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Nombre"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="NombreImagen"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="NombreMenuPadre"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Orden"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Pagina"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="PaginaInicial"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="Permiso"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="TextoMI"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TextoMIMenuPadre"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="menuPadreFiltrado"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="MenuDto"
+				nillable="true"
+				type="tns:MenuDto" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Constantes"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/JaltestTelematicsManageComun.Constantes">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+			<xs:simpleType name="UsuarioWebConstantes.Perfil">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="JefeDeFlota">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Taller">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Conductor">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Administrador">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="UsuarioWebConstantes.Perfil"
+				nillable="true"
+				type="tns:UsuarioWebConstantes.Perfil" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Dto.ELD">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+			<xs:complexType name="InfoELD">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="ActivePrimaryCicle"
+						nillable="true"
+						type="tns:CicloELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="ActiveSecondaryCicle"
+						nillable="true"
+						type="tns:CicloELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="CardNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Cicles"
+						nillable="true"
+						type="tns:ArrayOfCicloELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Client"
+						nillable="true"
+						type="tns:ClienteELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Driver"
+						nillable="true"
+						type="tns:ConductorELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Message"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Records"
+						nillable="true"
+						type="tns:ArrayOfRegistroELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Signatures"
+						nillable="true"
+						type="tns:ArrayOfFirmaELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Vehicles"
+						nillable="true"
+						type="tns:ArrayOfVehiculoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="WebUserId"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="WsErrorsFMCSA"
+						nillable="true"
+						type="q1:ArrayOfTupleOfstringstring"
+						xmlns:q1="http://schemas.datacontract.org/2004/07/System" />
+					<xs:element
+						name="ErrorCode"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="InfoELD"
+				nillable="true"
+				type="tns:InfoELD" />
+			<xs:complexType name="CicloELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="CanadaSur"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="CargoType"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DaysOfCicle"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Description"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LimitCycleWorkingHours"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="LimitDrivingWindow"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="LimitWorkingWindow"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="MaxContinuedWorking"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="MinimumBreak"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="ResetTimeCycle"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbEight"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbMin"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbMinCombo"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbTotal"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbTwo"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SbType"
+						nillable="true"
+						type="q2:SbTypes"
+						xmlns:q2="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="ShortHaulException"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="ShortHaulWindowAmpliation"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="TotalOff"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="WindowResetTime"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="WindowSize"
+						nillable="true"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="CicloELDDto"
+				nillable="true"
+				type="tns:CicloELDDto" />
+			<xs:complexType name="ArrayOfCicloELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="CicloELDDto"
+						nillable="true"
+						type="tns:CicloELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfCicloELDDto"
+				nillable="true"
+				type="tns:ArrayOfCicloELDDto" />
+			<xs:complexType name="ClienteELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="EldManufacturer"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="PerStart24H"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="UsdotNumber"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ClienteELDDto"
+				nillable="true"
+				type="tns:ClienteELDDto" />
+			<xs:complexType name="ConductorELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="AllowPC"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="AllowYM"
+						type="xs:boolean" />
+					<xs:element
+						minOccurs="0"
+						name="CarrierName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DriverFirstName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DriverLastName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EldId"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalAddress"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalCity"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalState"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalZipCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LicenseNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LicenseState"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LogIncrement"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="OfficeAddress"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="OfficeCity"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="OfficeState"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="OfficeZip"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="ShiftStartTime"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="TimeZone"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="idDriver"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ConductorELDDto"
+				nillable="true"
+				type="tns:ConductorELDDto" />
+			<xs:complexType name="ArrayOfRegistroELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="RegistroELDDto"
+						nillable="true"
+						type="tns:RegistroELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfRegistroELDDto"
+				nillable="true"
+				type="tns:ArrayOfRegistroELDDto" />
+			<xs:complexType name="RegistroELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="Date"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DriverEvents"
+						nillable="true"
+						type="tns:ArrayOfEventoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="Log"
+						nillable="true"
+						type="tns:LogELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="LogModificationRequests"
+						nillable="true"
+						type="tns:ArrayOfCandidatoLogELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="UnidentifiedDrivingRequests"
+						nillable="true"
+						type="tns:ArrayOfConduccionNoIdentificadaELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="RegistroELDDto"
+				nillable="true"
+				type="tns:RegistroELDDto" />
+			<xs:complexType name="ArrayOfEventoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="EventoELDDto"
+						nillable="true"
+						type="tns:EventoELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfEventoELDDto"
+				nillable="true"
+				type="tns:ArrayOfEventoELDDto" />
+			<xs:complexType name="EventoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="AccumulatedMiles"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CmvPowerUnitNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CmvVin"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Comment"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DiagnosticCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DistanceLastValidCo"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="DriverId"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="ElapsedEngineHours"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EventCode"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="EventDateTime"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EventOrigin"
+						type="q3:ELDEventOrigin"
+						xmlns:q3="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="EventSequenceIdApp"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EventSequenceJTCU"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EventStatus"
+						type="q4:ELDEventStatus"
+						xmlns:q4="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="EventType"
+						type="q5:ELDEventType"
+						xmlns:q5="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="JtcuSerialNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="KeyApp"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Latitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LocationDescription"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Longitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MalfunctionCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MalfunctionDiagnosticCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="SpecialMode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TimeZoneOffset"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TotalEngineHours"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="TotalMiles"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="EventoELDDto"
+				nillable="true"
+				type="tns:EventoELDDto" />
+			<xs:complexType name="LogELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="ChangeTimeZone"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CicleActive"
+						nillable="true"
+						type="tns:CicloELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="CoDriver"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Date"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Distance"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DriverId"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="DriverName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="DriverSurnames"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="From"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalAddress"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalCity"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalState"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="HomeTerminalZipCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="MainOffice"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MainOfficeAddress"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MainOfficeCity"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MainOfficeState"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="MainOfficeZipCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Notes"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="ShiftStartTime"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Shipping"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="SignatureId"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="States"
+						nillable="true"
+						type="tns:ArrayOfEstadoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="TimeZone"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="To"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Trailers"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="LogELDDto"
+				nillable="true"
+				type="tns:LogELDDto" />
+			<xs:complexType name="ArrayOfEstadoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="EstadoELDDto"
+						nillable="true"
+						type="tns:EstadoELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfEstadoELDDto"
+				nillable="true"
+				type="tns:ArrayOfEstadoELDDto" />
+			<xs:complexType name="EstadoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="DriverState"
+						type="q6:ELDDrivingState"
+						xmlns:q6="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="EndDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="JtcuSerialNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Latitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Location"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Longitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Notes"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Origin"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SpecialMode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartDate"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="EstadoELDDto"
+				nillable="true"
+				type="tns:EstadoELDDto" />
+			<xs:complexType name="ArrayOfCandidatoLogELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="CandidatoLogELDDto"
+						nillable="true"
+						type="tns:CandidatoLogELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfCandidatoLogELDDto"
+				nillable="true"
+				type="tns:ArrayOfCandidatoLogELDDto" />
+			<xs:complexType name="CandidatoLogELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="CandidatesState"
+						nillable="true"
+						type="tns:ArrayOfCandidatoEstadoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="LogDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LogId"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="RequestDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="RequestState"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="RequestUserName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="ResolutionDate"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="CandidatoLogELDDto"
+				nillable="true"
+				type="tns:CandidatoLogELDDto" />
+			<xs:complexType name="ArrayOfCandidatoEstadoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="CandidatoEstadoELDDto"
+						nillable="true"
+						type="tns:CandidatoEstadoELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfCandidatoEstadoELDDto"
+				nillable="true"
+				type="tns:ArrayOfCandidatoEstadoELDDto" />
+			<xs:complexType name="CandidatoEstadoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="DrivingState"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="EndDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Latitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Location"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LogIdCandidate"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Longitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Notes"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Origin"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="SpecialMode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="UnidentifiedDrivingEvents"
+						nillable="true"
+						type="tns:ArrayOfEventoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="UnidentifiedDrivingId"
+						nillable="true"
+						type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="CandidatoEstadoELDDto"
+				nillable="true"
+				type="tns:CandidatoEstadoELDDto" />
+			<xs:complexType name="ArrayOfConduccionNoIdentificadaELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="ConduccionNoIdentificadaELDDto"
+						nillable="true"
+						type="tns:ConduccionNoIdentificadaELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfConduccionNoIdentificadaELDDto"
+				nillable="true"
+				type="tns:ArrayOfConduccionNoIdentificadaELDDto" />
+			<xs:complexType name="ConduccionNoIdentificadaELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="CandidateDriverId"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="CandidateDriverName"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="CandidateDriverSurnames"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndAccumulatedMiles"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndComment"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndDiagnosticCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndDistanceLastValidCo"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndElapsedEngineHours"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndInterval"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="EndLatitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndLocationDescription"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndLongitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="EndMalfunctionCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="Events"
+						nillable="true"
+						type="tns:ArrayOfEventoELDDto" />
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="JtcuSerialNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="LastModificationDriverId"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="StartAccumulatedMiles"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartComment"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartDate"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartDiagnosticCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartDistanceLastValidCo"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartElapsedEngineHours"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartInterval"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="StartLatitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartLocationDescription"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartLongitude"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="StartMalfunctionCode"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="State"
+						type="q7:UnidentifiedDrivingState"
+						xmlns:q7="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD" />
+					<xs:element
+						minOccurs="0"
+						name="VehicleCode"
+						nillable="true"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="VehicleNumberPlate"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ConduccionNoIdentificadaELDDto"
+				nillable="true"
+				type="tns:ConduccionNoIdentificadaELDDto" />
+			<xs:complexType name="ArrayOfFirmaELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="FirmaELDDto"
+						nillable="true"
+						type="tns:FirmaELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfFirmaELDDto"
+				nillable="true"
+				type="tns:ArrayOfFirmaELDDto" />
+			<xs:complexType name="FirmaELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="Date"
+						nillable="true"
+						type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue
+									EmitDefaultValue="false"
+									xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element
+						minOccurs="0"
+						name="IdWs"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="Sign"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="FirmaELDDto"
+				nillable="true"
+				type="tns:FirmaELDDto" />
+			<xs:complexType name="ArrayOfVehiculoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="VehiculoELDDto"
+						nillable="true"
+						type="tns:VehiculoELDDto" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfVehiculoELDDto"
+				nillable="true"
+				type="tns:ArrayOfVehiculoELDDto" />
+			<xs:complexType name="VehiculoELDDto">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="Code"
+						type="xs:int" />
+					<xs:element
+						minOccurs="0"
+						name="JtcuMAC"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="JtcuSerialNumber"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						minOccurs="0"
+						name="NumberPlate"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="VehiculoELDDto"
+				nillable="true"
+				type="tns:VehiculoELDDto" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/JaltestTelematicsClient.Comun.Constantes.ELD">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+			<xs:simpleType name="SbTypes">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Error">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="SB_EIGHT_TWO" />
+					<xs:enumeration value="SB_MIN_TOTAL" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="SbTypes"
+				nillable="true"
+				type="tns:SbTypes" />
+			<xs:simpleType name="ELDEventOrigin">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None" />
+					<xs:enumeration value="ELDAutomatically" />
+					<xs:enumeration value="EditedEnteredDriver" />
+					<xs:enumeration value="EditRequestedAuthenticatedUser" />
+					<xs:enumeration value="AssumedUnidentifiedDriver" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="ELDEventOrigin"
+				nillable="true"
+				type="tns:ELDEventOrigin" />
+			<xs:simpleType name="ELDEventStatus">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None" />
+					<xs:enumeration value="Active" />
+					<xs:enumeration value="InactiveChanged" />
+					<xs:enumeration value="InactiveChangeRequested" />
+					<xs:enumeration value="InactiveChangeRejected" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="ELDEventStatus"
+				nillable="true"
+				type="tns:ELDEventStatus" />
+			<xs:simpleType name="ELDEventType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="DriverMark">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="ChangeDriverStatus">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="IntermediateLog">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="ChangeDriverIndication">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="DriverCertification">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="LoginLogout">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Engine">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Malfunction">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="ELDEventType"
+				nillable="true"
+				type="tns:ELDEventType" />
+			<xs:simpleType name="ELDDrivingState">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Error">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="None">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="OFF">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="SB">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="D">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="ON">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="ELDDrivingState"
+				nillable="true"
+				type="tns:ELDDrivingState" />
+			<xs:simpleType name="UnidentifiedDrivingState">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Error">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Unassigned">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Assigned">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Approved">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Rejected">
+						<xs:annotation>
+							<xs:appinfo>
+								<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element
+				name="UnidentifiedDrivingState"
+				nillable="true"
+				type="tns:UnidentifiedDrivingState" />
+		</xs:schema>
+		<xs:schema
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.datacontract.org/2004/07/System"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.datacontract.org/2004/07/System">
+			<xs:complexType name="ArrayOfTupleOfstringstring">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						maxOccurs="unbounded"
+						name="TupleOfstringstring"
+						nillable="true"
+						type="tns:TupleOfstringstring" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="ArrayOfTupleOfstringstring"
+				nillable="true"
+				type="tns:ArrayOfTupleOfstringstring" />
+			<xs:complexType name="TupleOfstringstring">
+				<xs:annotation>
+					<xs:appinfo>
+						<GenericType
+							Name="TupleOf{0}{1}{#}"
+							Namespace="http://schemas.datacontract.org/2004/07/System"
+							xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+							<GenericParameter
+								Name="string"
+								Namespace="http://www.w3.org/2001/XMLSchema" />
+							<GenericParameter
+								Name="string"
+								Namespace="http://www.w3.org/2001/XMLSchema" />
+						</GenericType>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element
+						name="m_Item1"
+						nillable="true"
+						type="xs:string" />
+					<xs:element
+						name="m_Item2"
+						nillable="true"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element
+				name="TupleOfstringstring"
+				nillable="true"
+				type="tns:TupleOfstringstring" />
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getAccess_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getAccess" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getAccess_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getAccessResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setMessageKey_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setMessageKey" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setMessageKey_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setMessageKeyResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setGPSPosition_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setGPSPosition" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setGPSPosition_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setGPSPositionResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getGeneralInfo_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getGeneralInfo" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getGeneralInfo_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getGeneralInfoResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getVehicles_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getVehicles" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getVehicles_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getVehiclesResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getCicles_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getCicles" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getCicles_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getCiclesResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getInfoDay_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getInfoDay" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getInfoDay_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getInfoDayResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveInfoDay_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveInfoDay" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveInfoDay_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveInfoDayResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_confirmCandidate_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:confirmCandidate" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_confirmCandidate_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:confirmCandidateResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getCandidates_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getCandidates" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getCandidates_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getCandidatesResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveEvents_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveEvents" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveEvents_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveEventsResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveUnidentifiedDriving_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveUnidentifiedDriving" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveUnidentifiedDriving_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveUnidentifiedDrivingResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getSignature_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getSignature" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getSignature_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getSignatureResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveSignature_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveSignature" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_saveSignature_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:saveSignatureResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_updateSettings_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:updateSettings" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_updateSettings_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:updateSettingsResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getAccessELD_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getAccessELD" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getAccessELD_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getAccessELDResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getDriver_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getDriver" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getDriver_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getDriverResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_sendMailDOT_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:sendMailDOT" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_sendMailDOT_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:sendMailDOTResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createNewFleet_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createNewFleet" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createNewFleet_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createNewFleetResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createWebUser_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createWebUser" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createWebUser_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createWebUserResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_generateCompanyTachographCard_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:generateCompanyTachographCard" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_generateCompanyTachographCard_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:generateCompanyTachographCardResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createVehicle_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createVehicle" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createVehicle_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createVehicleResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTelematicsUnitToVehicle_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTelematicsUnitToVehicle" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTelematicsUnitToVehicle_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTelematicsUnitToVehicleResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createDriver_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createDriver" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_createDriver_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:createDriverResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getTachoFilesList_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getTachoFilesList" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getTachoFilesList_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getTachoFilesListResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_downloadTachoFiles_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:downloadTachoFiles" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_downloadTachoFiles_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:downloadTachoFilesResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTachoScheduleForVehicle_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTachoScheduleForVehicle" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTachoScheduleForVehicle_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTachoScheduleForVehicleResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTachoScheduleForDriver_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTachoScheduleForDriver" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_setTachoScheduleForDriver_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:setTachoScheduleForDriverResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_startTachoDownload_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:startTachoDownload" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_startTachoDownload_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:startTachoDownloadResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_startCardDriverDownload_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:startCardDriverDownload" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_startCardDriverDownload_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:startCardDriverDownloadResponse" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getVehicleLocations_InputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getVehicleLocations" />
+	</wsdl:message>
+	<wsdl:message name="IWsJaltestTelematicsAPI_getVehicleLocations_OutputMessage">
+		<wsdl:part
+			name="parameters"
+			element="tns:getVehicleLocationsResponse" />
+	</wsdl:message>
+	<wsdl:portType name="IWsJaltestTelematicsAPI">
+		<wsdl:operation name="getAccess">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getAccess"
+				message="tns:IWsJaltestTelematicsAPI_getAccess_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getAccessResponse"
+				message="tns:IWsJaltestTelematicsAPI_getAccess_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="setMessageKey">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setMessageKey"
+				message="tns:IWsJaltestTelematicsAPI_setMessageKey_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setMessageKeyResponse"
+				message="tns:IWsJaltestTelematicsAPI_setMessageKey_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="setGPSPosition">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setGPSPosition"
+				message="tns:IWsJaltestTelematicsAPI_setGPSPosition_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setGPSPositionResponse"
+				message="tns:IWsJaltestTelematicsAPI_setGPSPosition_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getGeneralInfo">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getGeneralInfo"
+				message="tns:IWsJaltestTelematicsAPI_getGeneralInfo_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getGeneralInfoResponse"
+				message="tns:IWsJaltestTelematicsAPI_getGeneralInfo_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getVehicles">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getVehicles"
+				message="tns:IWsJaltestTelematicsAPI_getVehicles_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getVehiclesResponse"
+				message="tns:IWsJaltestTelematicsAPI_getVehicles_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getCicles">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getCicles"
+				message="tns:IWsJaltestTelematicsAPI_getCicles_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getCiclesResponse"
+				message="tns:IWsJaltestTelematicsAPI_getCicles_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDay">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getInfoDay"
+				message="tns:IWsJaltestTelematicsAPI_getInfoDay_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getInfoDayResponse"
+				message="tns:IWsJaltestTelematicsAPI_getInfoDay_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="saveInfoDay">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveInfoDay"
+				message="tns:IWsJaltestTelematicsAPI_saveInfoDay_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveInfoDayResponse"
+				message="tns:IWsJaltestTelematicsAPI_saveInfoDay_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="confirmCandidate">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/confirmCandidate"
+				message="tns:IWsJaltestTelematicsAPI_confirmCandidate_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/confirmCandidateResponse"
+				message="tns:IWsJaltestTelematicsAPI_confirmCandidate_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getCandidates">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getCandidates"
+				message="tns:IWsJaltestTelematicsAPI_getCandidates_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getCandidatesResponse"
+				message="tns:IWsJaltestTelematicsAPI_getCandidates_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="saveEvents">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveEvents"
+				message="tns:IWsJaltestTelematicsAPI_saveEvents_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveEventsResponse"
+				message="tns:IWsJaltestTelematicsAPI_saveEvents_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="saveUnidentifiedDriving">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveUnidentifiedDriving"
+				message="tns:IWsJaltestTelematicsAPI_saveUnidentifiedDriving_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveUnidentifiedDrivingResponse"
+				message="tns:IWsJaltestTelematicsAPI_saveUnidentifiedDriving_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getSignature">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getSignature"
+				message="tns:IWsJaltestTelematicsAPI_getSignature_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getSignatureResponse"
+				message="tns:IWsJaltestTelematicsAPI_getSignature_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="saveSignature">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveSignature"
+				message="tns:IWsJaltestTelematicsAPI_saveSignature_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/saveSignatureResponse"
+				message="tns:IWsJaltestTelematicsAPI_saveSignature_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="updateSettings">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/updateSettings"
+				message="tns:IWsJaltestTelematicsAPI_updateSettings_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/updateSettingsResponse"
+				message="tns:IWsJaltestTelematicsAPI_updateSettings_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getAccessELD">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getAccessELD"
+				message="tns:IWsJaltestTelematicsAPI_getAccessELD_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getAccessELDResponse"
+				message="tns:IWsJaltestTelematicsAPI_getAccessELD_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getDriver">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getDriver"
+				message="tns:IWsJaltestTelematicsAPI_getDriver_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getDriverResponse"
+				message="tns:IWsJaltestTelematicsAPI_getDriver_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="sendMailDOT">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/sendMailDOT"
+				message="tns:IWsJaltestTelematicsAPI_sendMailDOT_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/sendMailDOTResponse"
+				message="tns:IWsJaltestTelematicsAPI_sendMailDOT_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="createNewFleet">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createNewFleet"
+				message="tns:IWsJaltestTelematicsAPI_createNewFleet_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createNewFleetResponse"
+				message="tns:IWsJaltestTelematicsAPI_createNewFleet_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="createWebUser">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createWebUser"
+				message="tns:IWsJaltestTelematicsAPI_createWebUser_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createWebUserResponse"
+				message="tns:IWsJaltestTelematicsAPI_createWebUser_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="generateCompanyTachographCard">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/generateCompanyTachographCard"
+				message="tns:IWsJaltestTelematicsAPI_generateCompanyTachographCard_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/generateCompanyTachographCardResponse"
+				message="tns:IWsJaltestTelematicsAPI_generateCompanyTachographCard_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="createVehicle">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createVehicle"
+				message="tns:IWsJaltestTelematicsAPI_createVehicle_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createVehicleResponse"
+				message="tns:IWsJaltestTelematicsAPI_createVehicle_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="setTelematicsUnitToVehicle">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTelematicsUnitToVehicle"
+				message="tns:IWsJaltestTelematicsAPI_setTelematicsUnitToVehicle_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTelematicsUnitToVehicleResponse"
+				message="tns:IWsJaltestTelematicsAPI_setTelematicsUnitToVehicle_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="createDriver">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createDriver"
+				message="tns:IWsJaltestTelematicsAPI_createDriver_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/createDriverResponse"
+				message="tns:IWsJaltestTelematicsAPI_createDriver_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getTachoFilesList">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getTachoFilesList"
+				message="tns:IWsJaltestTelematicsAPI_getTachoFilesList_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getTachoFilesListResponse"
+				message="tns:IWsJaltestTelematicsAPI_getTachoFilesList_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="downloadTachoFiles">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/downloadTachoFiles"
+				message="tns:IWsJaltestTelematicsAPI_downloadTachoFiles_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/downloadTachoFilesResponse"
+				message="tns:IWsJaltestTelematicsAPI_downloadTachoFiles_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="setTachoScheduleForVehicle">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForVehicle"
+				message="tns:IWsJaltestTelematicsAPI_setTachoScheduleForVehicle_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForVehicleResponse"
+				message="tns:IWsJaltestTelematicsAPI_setTachoScheduleForVehicle_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="setTachoScheduleForDriver">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForDriver"
+				message="tns:IWsJaltestTelematicsAPI_setTachoScheduleForDriver_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForDriverResponse"
+				message="tns:IWsJaltestTelematicsAPI_setTachoScheduleForDriver_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="startTachoDownload">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/startTachoDownload"
+				message="tns:IWsJaltestTelematicsAPI_startTachoDownload_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/startTachoDownloadResponse"
+				message="tns:IWsJaltestTelematicsAPI_startTachoDownload_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="startCardDriverDownload">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/startCardDriverDownload"
+				message="tns:IWsJaltestTelematicsAPI_startCardDriverDownload_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/startCardDriverDownloadResponse"
+				message="tns:IWsJaltestTelematicsAPI_startCardDriverDownload_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getVehicleLocations">
+			<wsdl:input
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getVehicleLocations"
+				message="tns:IWsJaltestTelematicsAPI_getVehicleLocations_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://tempuri.org/IWsJaltestTelematicsAPI/getVehicleLocationsResponse"
+				message="tns:IWsJaltestTelematicsAPI_getVehicleLocations_OutputMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding
+		name="BasicHttpBinding_IWsJaltestTelematicsAPI"
+		type="tns:IWsJaltestTelematicsAPI">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getAccess">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getAccess"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setMessageKey">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/setMessageKey"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setGPSPosition">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/setGPSPosition"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getGeneralInfo">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getGeneralInfo"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getVehicles">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getVehicles"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCicles">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getCicles"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDay">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getInfoDay"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveInfoDay">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/saveInfoDay"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="confirmCandidate">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/confirmCandidate"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCandidates">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getCandidates"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveEvents">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/saveEvents"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveUnidentifiedDriving">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/saveUnidentifiedDriving"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getSignature">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getSignature"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveSignature">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/saveSignature"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateSettings">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/updateSettings"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAccessELD">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getAccessELD"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDriver">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getDriver"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sendMailDOT">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/sendMailDOT"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createNewFleet">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/createNewFleet"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createWebUser">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/createWebUser"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="generateCompanyTachographCard">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/generateCompanyTachographCard"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createVehicle">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/createVehicle"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setTelematicsUnitToVehicle">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/setTelematicsUnitToVehicle"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createDriver">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/createDriver"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTachoFilesList">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getTachoFilesList"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="downloadTachoFiles">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/downloadTachoFiles"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setTachoScheduleForVehicle">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForVehicle"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setTachoScheduleForDriver">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/setTachoScheduleForDriver"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="startTachoDownload">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/startTachoDownload"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="startCardDriverDownload">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/startCardDriverDownload"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getVehicleLocations">
+			<soap:operation
+				soapAction="http://tempuri.org/IWsJaltestTelematicsAPI/getVehicleLocations"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WsJaltestTelematicsAPI">
+		<wsdl:port
+			name="BasicHttpBinding_IWsJaltestTelematicsAPI"
+			binding="tns:BasicHttpBinding_IWsJaltestTelematicsAPI">
+			<soap:address location="http://localhost:59959/WsJaltestTelematicsAPI.svc/soapHttp" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

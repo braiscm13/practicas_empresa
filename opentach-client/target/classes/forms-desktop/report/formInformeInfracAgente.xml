@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformeinfracagente" buttons="no">
+	<FormHeader>
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<InfracEngineChooser labelsize="12" attr="ENGINEANALYZER" size="30" align="left"/>
+				</Column >
+			</Column >
+			<Column >
+				<Table entity="EInformeInfrac" key="FECINI" keys="TIPO" parentkey="IDCONDUCTOR" otherkeys="DNI;CIF;CG_CONTRATO;FILTERFECINI;FILTERFECFIN" 
+				cols="CG_CONTRATO;DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;CIF;TIPO;FECHORAINI;FECHORAFIN;NATURALEZA;IMPORTE;F_DESCARGA_DATOS;DIAS" 
+				visiblecols="CIF;DNI;APELLIDOS;NOMBRE;TIPO;FECHORAINI;FECHORAFIN;F_DESCARGA_DATOS;DIAS" />
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no">
+			<Column >
+				<Column valign="top" margin="10;10;10;10">
+					<Button key="ANALIZAR" text="ANALIZAR" labelsize="16" fontsize="12" bold="yes" icon="com/opentach/client/rsc/gear.png" />
+				</Column >
+				<Column title="Filtro_Fecha_Inicio_Infrac">					
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />					
+				</Column >
+				<Column />
+			</Column >
+		</Column >
+	</Row >
+</Form>

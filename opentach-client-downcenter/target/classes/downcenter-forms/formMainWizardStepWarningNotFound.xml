@@ -1,0 +1,16 @@
+<Row attr="StepWarning" expand="yes">
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row expand="yes">
+			<RoundPanel attr="WarningRoundPanel" expand="yes">
+				<Row expand="no" height="8" />
+				<Label icon="images/warning.png" />
+				<Label text="SourceNotFound" uiname="MainRoundSmall" />
+				<Row expand="no" height="8" />
+				<Label text="ClientContact" uiname="StandardRound" />
+				<Row expand="no" height="8" />
+				<Label text="NoClientContact" uiname="StandardRound" />
+			</RoundPanel>
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+</Row>

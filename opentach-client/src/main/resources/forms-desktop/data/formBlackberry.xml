@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<FormExt entity="EBlackberry" keys="IDBLACKBERRY" title="Smartphone" buttons="no" columns="DNI;TELEFONO" >
+	<FormHeader standardbuttons="yes" />
+	<Column margin="5;5;5;5" expandlast="no">
+		<Include file="forms-desktop/data/formBlackberryIncludeMain.xml" />
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+		</Row>
+	</Column>
+</FormExt>

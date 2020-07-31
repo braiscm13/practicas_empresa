@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.RemoteVehicleManagementService.downloadConfigAll"
+	keys="CIF;SRC_ID;SRCTYPE"
+	title="remotedownload.ERemoteDownloadCfgAll"
+	buttons="no"
+	preferredsizetodialog="500;400">
+	
+	<ObjectDataField attr="RDW_ID" visible="no"/>
+	<ObjectDataField attr="CIF" visible="no"/>
+	<ObjectDataField attr="SRC_ID" visible="no"/>
+	<ObjectDataField attr="SRCTYPE" visible="no" listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgDetailTypeValueChangeListener"/>
+
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		
+		<Column>
+			<CheckDataField attr="RDW_ACTIVE" returnstring="yes" align="left" labelsize="10" />
+			<ReferenceComboDataField 
+				attr="RDP_ID" 
+				cod="RDP_ID" 
+				entity="ojee.RemoteVehicleManagementService.provider" 
+				cols="RDP_ID;RDP_NAME" 
+				visiblecols="RDP_NAME"
+				align="left" 
+				labelsize="10" 
+				dim="no" 
+				size="25" 
+				required="no" 
+				visible="yes"/>
+			<TextDataField attr="RDV_UNIT_SN" dim="no" size="20" labelsize="10" align="left"/>
+			<TextComboDataField 
+				attr="RDW_PERIOD" 
+				values="DAILY;WEEKLY;BIWEEKLY;MONTHLY"
+				labelsize="10" 
+				size="25"
+				dim="no" 
+				translate="yes"
+				align="left" />
+			<TimeDataField attr="RDW_HOUR"
+				labelsize="10"
+				align="left"/>
+		</Column>
+		
+		<Row expand="no">
+			<Column/>
+			<CancelButton />
+			<SaveButton listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgDetailSaveListener"/>
+		</Row>
+	</Column>
+</FormExt>

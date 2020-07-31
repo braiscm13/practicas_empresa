@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0465f73f-acbd-4e59-99f2-28912b56aec1">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.7715610000000044"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["0597FWV"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*30))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+NVL(MIN(CDVINFORM_KMREC.KM),0) AS KM_INI,
+NVL(MAX(CDVINFORM_KMREC.KM),0) AS KM_FIN,
+NVL((MAX(CDVINFORM_KMREC.KM) - MIN(CDVINFORM_KMREC.KM)),0) AS KM_TOTAL
+FROM CDVINFORM_KMREC
+WHERE $P{matricula}= CDVINFORM_KMREC.MATRICULA AND
+$P{cgcontrato} = CDVINFORM_KMREC.CG_CONTRATO AND
+$P{fdesde} <= CDVINFORM_KMREC.FECHA + 1 AND
+$P{fhasta} >= CDVINFORM_KMREC.FECHA]]>
+	</queryString>
+	<field name="KM_INI" class="java.math.BigDecimal"/>
+	<field name="KM_FIN" class="java.math.BigDecimal"/>
+	<field name="KM_TOTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" mode="Opaque" x="6" y="23" width="365" height="17" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="5d0d751d-6900-4255-b7c3-8a09f5f481e2"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="19" y="24" width="87" height="13" forecolor="#000000" uuid="1be577fa-3318-415d-99e4-ba8a47dddacb"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_INI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="138" y="24" width="96" height="13" forecolor="#000000" uuid="3e7fae5e-3dc2-41be-ba75-699b7e6711a8"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_FIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="260" y="24" width="94" height="13" forecolor="#000000" uuid="5fe77105-96c4-4a03-8e93-e31d6a5829ff"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="6" y="0" width="501" height="22" forecolor="#000000" uuid="fd0ba883-bacb-4170-a906-e70721f58e3e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KMRECPERIODO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<rectangle>
+				<reportElement x="6" y="1" width="364" height="17" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="25c377df-91e2-4db5-8c66-87dfe4d84024">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement key="textField" x="32" y="1" width="79" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ea3dfdc4-87dc-4323-94a2-cb0bb36785ba"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_INI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement key="textField" x="138" y="2" width="108" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ec40cda8-c4ca-4d72-9b74-53665228023f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_FIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement key="textField" x="265" y="1" width="101" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="920048a6-dbd0-404a-b72b-6fd2ff49de10"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<line>
+				<reportElement key="line-13" x="0" y="-1" width="1" height="1" uuid="454e329a-7a26-4e3c-a9f6-4298627e2a91">
+					<printWhenExpression><![CDATA[($P{ReturnedValuesMap}.put(
+        "COUNT0", $V{REPORT_COUNT}) == null
+        )?Boolean.FALSE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="user.UserManagementCDO" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	focusorder="NAME;USUARIO;NIVEL_CD;CG_NACI;CG_PROV;POBL;F_ALTA_FROM;F_ALTA_TO;DMAXLOGIN_FROM;DMAXLOGIN_TO;clean;search">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;10;0;0">
+				<Column expand="yes">
+					<Row margin="0;0;0;44">
+						<TextDataField attr="NAME" text="cdo.NAME" align="left" dim="text" labelsize="15" />
+					</Row>
+					<Row margin="0;0;0;44">
+						<TextDataField attr="USUARIO" align="left" dim="text" labelsize="15" />
+					</Row>
+					<ReferenceExtDataField entity="EPerfil" attr="NIVEL_CD" text="PERFIL" dim="text" cod="NIVEL_CD" cols="NIVEL_CD;DSCR"
+						descriptioncols="DSCR" csize="5" labelsize="15" align="left"/>
+				</Column>
+				<Column expand="yes" margin="0;20;0;20">
+					<ReferenceComboDataField align="left" attr="CG_NACI" labelsize="8" cod="CG_NACI" cols="DSCR" dim="text" entity="EPaises" />
+					<ReferenceComboDataField align="left" attr="CG_PROV" labelsize="8" cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias" parentkey="CG_NACI" />
+					<TextDataField align="left" attr="POBL" labelsize="8" dim="text" maxlength="255" />
+				</Column>
+				<Column expand="no">
+					<Row uiname="RowGroup">
+						<DateDataField attr="F_ALTA_FROM"  align="left" labelsize="17" dim="no" size="7"	/>
+						<DateDataField attr="F_ALTA_TO" text="general.UNTIL" align="left" dim="no" size="7" />
+						<Row/>
+					</Row>
+					<Row uiname="RowGroup">
+						<DateDataField attr="DMAXLOGIN_FROM"  align="left" labelsize="17" dim="no" size="7"	/>
+						<DateDataField attr="DMAXLOGIN_TO" text="general.UNTIL" align="left" dim="no" size="7" />
+						<Row/>
+					</Row>
+				</Column>
+				<Column expand="yes" />
+				<SearchPanel 
+					table="EUsuariosCDO"
+					search.filterfields="NAME;USUARIO;NIVEL_CD;CG_NACI;CG_PROV;POBL" 
+					search.daterangefilterfields="F_ALTA_DATE_FROM:F_ALTA_TO:F_ALTA;DMAXLOGIN_FROM:DMAXLOGIN_DATE_TO:DMAXLOGIN"
+					
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" title="result">
+			<Table 
+				entity="EUsuariosCDO" 
+				key="USUARIO" 
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="NAME;USUARIO;TELEFONO;NIVEL_CD;NOMBRE_PERFIL;TELEFONO;EMAIL;DMAXLOGIN;NOMBRE_FIRMANTE;APELLIDOS_FIRMANTE;CARGO;F_ALTA;PAIS;PROVINCIA;POBL;PRIVATE"
+				visiblecols="NAME;USUARIO;TELEFONO;NOMBRE_PERFIL;F_ALTA;DMAXLOGIN;PAIS;PROVINCIA;POBL;PRIVATE"
+				form="formUsuariosCDO.xml"
+				deletebutton="yes" insertbutton="yes" 
+				detailformat="{0};USUARIO">
+				<RenderBoolean attr="PRIVATE" column="PRIVATE" returnstring="yes" />
+
+					
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton;printingbutton"
+					onlyhide="true" />
+			</Table>
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<!-- 
+			<Button key="testremoteoperation" text="testremoteoperation" listener="com.imatia.autobascula.desktopclient.plant.users.listeners.GeneratePermissionsListener" />
+			 -->
+			 
+			<DeleteFromTableButton table="EUsuariosCDO" icon="images-general/garbage16.png" />
+			<OpenTableInsertFormButton table="EUsuariosCDO" icon="images-admin/user16.png" />
+		</Row>
+	</Column>
+</FormExt>

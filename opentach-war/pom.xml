@@ -1,0 +1,171 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-war</artifactId>
+	<packaging>war</packaging>
+	<name>Opentach war</name>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<profiles>
+		<profile>
+			<id>generate-jnlp</id>
+			<activation>
+			</activation>
+			<build>
+				<finalName>${contextRootServer}</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<!-- Copy the webstart bundle in as a resource before packaging starts. -->
+								<phase>process-resources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.imatia.opentach</groupId>
+									<artifactId>opentach-jws</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+							<!-- In version 2.1-alpha-1, this was incorrectly named warSourceExcludes -->
+							<!-- <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes> -->
+							<!-- Use this to include a selection of jars that will be included in the WAR -->
+							<!-- <packagingIncludes>**/*.xml,**/*.properties,**/*.png,**/*.css,**/*.js,**/*.jsp</packagingIncludes> -->
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<classpathPrefix>lib/</classpathPrefix>
+								</manifest>
+							</archive>
+						</configuration>
+					</plugin>
+					<!-- Evitar el despliegue de los WAR en el repositorio corporativo -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>1.0.0</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+										<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>org.codehaus.mojo</groupId>
+												<artifactId>dependency-maven-plugin</artifactId>
+												<versionRange>[1.0,)</versionRange>
+												<goals>
+													<goal>unpack</goal>
+												</goals>
+											</pluginExecutionFilter>
+											<action>
+												<ignore></ignore>
+											</action>
+										</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-common</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-rsa</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-mailmanager-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-checktrucker-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-company-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-report-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-messagequeue-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-alert-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>jnlpdownloadservlet</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>net.bull.javamelody</groupId> -->
+		<!-- <artifactId>javamelody-core</artifactId> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

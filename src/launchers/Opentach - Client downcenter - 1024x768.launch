@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/opentach-client-downcenter/src/main/java/com/opentach/downclient/DownCenterLauncher.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+        <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+        <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+    </listAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.opentach.downclient.DownCenterLauncher"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="opentach-client-downcenter"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="downcenter_labels.xml&#13;&#10;clientapplication-downcenter.xml"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="opentach-client-downcenter"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dopentach.proxy.url=http://localhost:8081&#13;&#10;-Dcom.ontimize.services.baseUrl=http://localhost:8080/openservices&#13;&#10;-Dcom.ontimize.gui.lafclassname=com.opentach.downclient.DownCenterLAF&#13;&#10;-Dcom.ontimize.gui.lafstyle=downcenter.css&#13;&#10;-Dscreen-width=1035&#13;&#10;-Dscreen-height=800&#13;&#10;-DCustomScreen=4"/>
+</launchConfiguration>

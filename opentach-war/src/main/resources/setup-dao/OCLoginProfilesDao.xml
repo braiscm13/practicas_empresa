@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="CDUSU" datasource="mainDataSource" sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>USER_</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>USER_</Column>
+	</UpdateKeys>
+	<!-- <GeneratedKey>USER_</GeneratedKey> -->
+	<Queries>
+		<Query id="login">
+		<FunctionColumns>
+				<FunctionColumn name="IS_LEGAL_STAFF" value="(case when NIVEL_CD in ('98','99')  then 'S' else 'N' end)"/>
+				<FunctionColumn name="IS_TACHOLAB" value="('N')"/>
+				<FunctionColumn name="IS_OPENTACH" value="('S')"/>			
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM 
+							CDUSU,
+							ORA_ASPNET_MEMBERSHIP, 
+							ORA_ASPNET_USERS,
+							ORA_ASPNET_APPLICATIONS
+						WHERE 
+							CDUSU.USERID =  ORA_ASPNET_MEMBERSHIP.USERID
+							AND ORA_ASPNET_MEMBERSHIP.USERID         = ORA_ASPNET_USERS.USERID
+							AND ORA_ASPNET_MEMBERSHIP.APPLICATIONID  = ORA_ASPNET_USERS.APPLICATIONID
+							AND ORA_ASPNET_USERS.APPLICATIONID       = ORA_ASPNET_APPLICATIONS.APPLICATIONID
+							AND ORA_ASPNET_APPLICATIONS.APPLICATIONNAME = 'OPENTACH'
+							AND (CDUSU.DMAXLOGIN IS NULL OR CDUSU.DMAXLOGIN > SYSDATE)
+						#WHERE_CONCAT#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="userRoles">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="NIVEL_CD" prefix="CDUSU"/>
+			</AmbiguousColumns>
+			<Sentence>
+					<![CDATA[
+					SELECT
+						#COLUMNS#
+					FROM
+						CDUSU,
+						CDNIVELES
+					WHERE
+						CDUSU.NIVEL_CD = CDNIVELES.NIVEL_CD
+					#WHERE_CONCAT#
+					#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="serverPermissions">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="NIVEL_CD" prefix="CDUSU" />
+			</AmbiguousColumns>
+			<Sentence>
+ 					<![CDATA[
+					SELECT
+						#COLUMNS#
+					FROM
+						CDUSU,
+						CDNIVELES,
+						USR_ROL_SERVER_PERMISSION rsp,
+						USR_SERVER_PERMISSION srp
+					WHERE
+						CDUSU.NIVEL_CD = CDNIVELES.NIVEL_CD
+						AND CDNIVELES.NIVEL_CD = rsp.NIVEL_CD
+						AND rsp.SRP_ID = srp.SRP_ID						
+						#WHERE_CONCAT#
+					#ORDER#
+					]]>
+		</Sentence>
+		</Query>
+		<Query id="clientPermissions">
+			<Sentence>
+					<![CDATA[
+					SELECT
+						#COLUMNS#
+					FROM
+						CDNIVELES tr
+					#WHERE#
+					#ORDER#
+					]]>
+		</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

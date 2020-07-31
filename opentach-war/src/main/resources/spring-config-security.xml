@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:oss="http://www.ontimize.com/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.ontimize.com/schema/beans http://www.ontimize.com/schema/beans/ontimize-spring-server.xsd">
+
+	<!-- Enable usage of @Autowired. -->
+	<context:annotation-config />
+	<tx:annotation-driven />
+
+	<!-- Cadena de filtros de spring security. -->
+	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map request-matcher="ant">
+			<security:filter-chain pattern="/**"
+				filters="httpSessionContextIntegrationFilter,preAuthFilterOntimize,exceptionTranslationFilter,securityContextHolderAwareRequestFilter,filterInvocationInterceptor" />
+		</security:filter-chain-map>
+	</bean>
+
+	<!-- Bean encargado de integrar los datos de autenticacion y autorizacion en la sesion. -->
+	<bean id="httpSessionContextIntegrationFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<constructor-arg>
+			<bean class="org.springframework.security.web.context.HttpSessionSecurityContextRepository">
+				<property name="allowSessionCreation" value="false" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- Autenticacion filter -->
+	<bean id="preAuthFilterOntimize" class="com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter">
+		<property name="userDetailsService" ref="databaseUserInformationService" />
+		<property name="userCache" ref="userCache" />
+		<property name="tokenGenerator" ref="tokenGenerator" />
+		<property name="generateJwtHeader" value="true" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationEntryPoint" ref="basicEntryPoint" />
+		<property name="authenticationMechanismList">
+			<list>
+				<ref bean="jwtAuthenticator" />
+				<ref bean="basicAuthenticator" />
+			</list>
+		</property>
+
+	</bean>
+	<!-- Basic Authentication -->
+	<bean id="basicAuthenticator" class="com.ontimize.jee.server.security.authentication.basic.BasicAuthenticationMechanism" />
+	<bean id="basicEntryPoint" class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+		<property name="realmName" value="ONTIMIZE REALM" />
+	</bean>
+	<!-- Autenticacion JWT -->
+	<bean id="jwtAuthenticator" class="com.ontimize.jee.server.security.authentication.jwt.JwtAuthenticationMechanism">
+		<property name="jwtService" ref="jwtService" />
+		<property name="tokenExpirationTime" value="-1" /><!-- 10 minutes -->
+	</bean>
+	<bean id="jwtService" class="com.ontimize.jee.server.security.authentication.jwt.DefaultJwtService">
+		<constructor-arg value="jd.A,#82xyZz" />
+	</bean>
+	<bean id="tokenGenerator" class="com.ontimize.jee.server.security.authentication.DefaultSecurityJWTTokenGenerator">
+		<property name="jwtService" ref="jwtService" />
+	</bean>
+
+	<!-- Captura la excepcion producida por la no autenticacion por parte de FilterSecurityInterceptor, para enviarnos al punto de entrada de la autenticacion y autorizacion. No es necesario tocar. -->
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<constructor-arg>
+			<ref bean="basicEntryPoint" />
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="org.springframework.security.web.savedrequest.NullRequestCache"></bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- Wrapper de la request original, para poder pedir los datos de autenticacion y autorizacion directamente a la request. No es necesario tocar. -->
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
+
+	<!-- Bean encargado de lanzar la excepcion de no autenticacion en caso de que no se este autenticado. Se encarga tambien de definir que roles pueden acceder a los recursos. En este bean habra que configurar 
+		los roles que podran acceder a las distintas urls. Se pueden usar patrones tipo apache ant, como los mostrados por defecto. -->
+	<bean id="filterInvocationInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<!-- Permite aplicar el filtro en caso de forward -->
+		<property name="observeOncePerRequest" value="true" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source>
+				<security:intercept-url pattern="/**/*" access="NONE_ENTER_WITHOUT_AUTH" />
+				<!-- Aqui se definen todos los roles validos -->
+			</security:filter-security-metadata-source>
+		</property>
+	</bean>
+
+
+	<!-- Definicion del autenticationManager. -->
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="applicationAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<!-- Proveedor de autenticacion en base de datos -->
+	<bean id="applicationAuthenticationProvider" class="com.ontimize.jee.server.security.authentication.OntimizeAuthenticationProvider">
+		<property name="userCache">
+			<ref bean="userCache" />
+		</property>
+	</bean>
+
+	<!-- Gestor de decisiones de acceso. -->
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg>
+			<list>
+				<bean class="com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter">
+					<property name="defaultVoter" ref="defaultVoter"></property>
+				</bean>
+			</list>
+		</constructor-arg>
+		<property name="allowIfAllAbstainDecisions" value="false" />
+	</bean>
+	<bean id="defaultVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value="" />
+	</bean>
+
+	<!-- bean de cache de usuarios -->
+	<bean id="userCache" class="com.ontimize.jee.server.security.MemoryUserCache"></bean>
+
+	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" jsr250-annotations="disabled"
+		access-decision-manager-ref="accessDecisionManager" />
+
+	<!-- CORS -->
+	<bean id="corsSecurityFilterChain" class="com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter" />
+	<oss:cors>
+		<oss:mapping path="/services/rest/**" allowed-methods="GET, PUT, POST, DELETE" exposed-headers="X-Auth-Token" />
+	</oss:cors>
+</beans>

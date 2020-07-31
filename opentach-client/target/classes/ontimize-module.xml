@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="mainApp" >
+	
+	<Client package="">
+		<!--
+			MODULO DE ADMINISTRACION
+		-->
+			<!--  para el resto -->
+		<FormManager id="managergestor" form="forms-desktop/admin/formAcercaDeGestor.xml"  		imanager="com.opentach.client.modules.admin.IMAcercaDeGestor" />
+		<!--  para admin, empresa y operador -->
+		<FormManager id="manageracercade2" form="forms-desktop/admin/formAcercaDe.xml" 			imanager="com.opentach.client.modules.admin.IMAcercaDe" />
+	
+		<FormManager id="manageracercade" delayedload="yes" form="forms-desktop/admin/formAbout.xml" 	imanager="com.opentach.client.modules.admin.IMAbout"/>
+		<FormManager id="managerpassword" delayedload="no" showframe="yes" form="forms-desktop/admin/formCambiarpassword.xml" 		imanager="com.utilmize.client.fim.UBasicFIM" />
+		<FormManager id="managercfgservicios" showframe="yes" delayedload="yes" form="forms-desktop/admin/formCfgServicios.xml" 		imanager="com.opentach.client.modules.admin.IMCfgServicios" />
+		<FormManager id="managersolicitudes" showframe="yes"		delayedload="yes" form="forms-desktop/data/formSolicitudCondVeh.xml" 	imanager="com.opentach.client.modules.data.IMSolicitudCondVeh" />
+		<FormManager id="managerqueryrestricciones" showframe="yes"		delayedload="yes" form="forms-desktop/data/formQueryRestricciones.xml" 	imanager="com.opentach.client.modules.data.IMQueryRestricciones" />
+		<FormManager id="managerinformeTiemposCondDesc" showframe="yes"	delayedload="yes" form="forms-desktop/report/formInformeConduDescCond.xml" imanager="com.opentach.client.modules.report.IMInformeConduDescCond" >
+			<InteractionManager form="formInfoDriveReport" class="com.utilmize.client.fim.UBasicFIM"/>
+			<FManager fmid="managergraficacond" showframe="yes" delayedload="yes" form="formGraficaCond.xml" />
+		</FormManager>
+		
+		
+		<FormManager id="managerqueryvehiculos" showframe="yes"	delayedload="yes" form="forms-desktop/data/formConsultaVehiculo.xml" 
+		imanager="com.opentach.client.modules.data.IMConsultaVehiculo" />
+		
+		<FormManager id="managerqueryconductores" showframe="yes"	delayedload="yes" form="forms-desktop/data/formConsultaConductor.xml" 
+		imanager="com.opentach.client.modules.data.IMConsultaConductor" />
+		
+		<FormManager id="managerempresaagente" showframe="yes" delayedload="yes" form="forms-desktop/data/formEmpresaAgenteNoDemo.xml" 
+		imanager="com.opentach.client.modules.data.IMEmpresaAgente" tree="forms-desktop/data/arbolempresasagente.xml">
+			<InteractionManager form="formEmpresaAgenteDemo.xml" class="com.opentach.client.modules.data.IMEmpresaAgente"/>
+			
+			<InteractionManager form="formDatosVehiculo.xml" 				   class="com.opentach.client.modules.data.IMDatosVehiculo" />
+			<InteractionManager form="formDatosConductor.xml" 			class="com.opentach.client.modules.data.IMDatosConductor" />
+			<InteractionManager form="formContratoEmp.xml" 				class="com.opentach.client.modules.data.IMContratoEmp" />
+			<InteractionManager form="formBlackberry.xml" 						class="com.opentach.client.modules.IMRoot" />
+			<InteractionManager form="formDelegacionEmp.xml" 						class="com.opentach.client.modules.data.IMDelegacion" />
+			<InteractionManager form="formDriverContracts.xml" class="com.opentach.client.modules.data.IMDriverContracts" />
+			
+			<InteractionManager form="formDatosVehiculoDemo.xml" 				   class="com.opentach.client.modules.data.IMDatosVehiculo" />
+			<InteractionManager form="formDatosConductorDemo.xml" 			class="com.opentach.client.modules.data.IMDatosConductor" />
+			<InteractionManager form="formContratoEmpDemo.xml" 				class="com.opentach.client.modules.data.IMContratoEmp" />
+			<InteractionManager form="formBlackberryDemo.xml" 						class="com.opentach.client.modules.IMRoot" />
+			<InteractionManager form="formDelegacionEmpDemo.xml" 						class="com.opentach.client.modules.data.IMDelegacion" />
+			
+			<InteractionManager form="formInformeInfracCond.xml" 			class="com.opentach.client.modules.report.IMInformeInfracCond" />
+			<InteractionManager form="formInformeActivCond.xml" 			class="com.opentach.client.modules.report.IMInformeActivCond" />
+			<InteractionManager form="forms-desktop/chart/formGraficaCond.xml" 	class="com.opentach.client.modules.chart.IMGraficaCond" />
+			<InteractionManager form="formEliminarContrato.xml" 			class="com.opentach.client.modules.data.IMEliminarContrato" />
+			<InteractionManager form="formConductorEmp.xml" 				class="com.opentach.client.modules.data.IMConductorEmp" />
+			<InteractionManager form="formPersonalEmp.xml" 						class="com.opentach.client.modules.data.IMPersonalEmp" />
+			<InteractionManager form="formConductorCont.xml" 				class="com.opentach.client.modules.data.IMCondVehContrato" />
+			<InteractionManager form="formEliminarConductor.xml" 			class="com.opentach.client.modules.data.IMEliminarConductor" />
+			<InteractionManager form="formEliminarVehiculo.xml" 			class="com.opentach.client.modules.data.IMEliminarVehiculo" />
+			<InteractionManager form="formEliminarEmpresa.xml" 			class="com.opentach.client.modules.data.IMEliminarEmpresa" />
+			<InteractionManager form="formUsuariosEmp.xml" 				class="com.opentach.client.modules.data.IMUsuarioEmp" />
+			<InteractionManager form="formFirmanteEmp.xml" 				class="com.opentach.client.modules.data.IMFirmanteEmp" />
+			<FManager fmid="managerremotevehicle" form="formRemoteVehicleCompanySetup.form" />
+			<FManager fmid="managerremotevehicleresponsable" form="formRemoteVehicleCompanyResponsable.form" />
+			
+			<InteractionManager form="formAssetGroup.form"	class="com.opentach.client.modules.data.IMAssetGroup" />
+			<InteractionManager form="formAssetGroupAddAsset.form"	class="com.utilmize.client.fim.UBasicFIM" />
+		</FormManager >
+		<FormManager id="managercondveh" showframe="yes" delayedload="yes" form="forms-desktop/data/formEmpresa.xml" imanager="com.opentach.client.modules.data.IMEmpresa" 
+		tree="forms-desktop/data/arbolempresas.xml" >
+			<InteractionManager form="formDelegacionEmp.xml" 						class="com.opentach.client.modules.data.IMDelegacion" />
+			<InteractionManager form="formDatosVehiculo.xml" 						class="com.opentach.client.modules.data.IMDatosVehiculo" />
+			<InteractionManager form="formDatosConductor.xml" 					class="com.opentach.client.modules.data.IMDatosConductor" />
+			<InteractionManager form="formContratoEmp.xml" 						class="com.opentach.client.modules.data.IMContratoEmp" />
+			<InteractionManager form="formDriverContracts.xml" class="com.opentach.client.modules.data.IMDriverContracts" />
+			<InteractionManager form="forms-desktop/report/formInformeInfracCond.xml" 	class="com.opentach.client.modules.report.IMInformeInfracCond" />
+			<InteractionManager form="forms-desktop/report/formInformeActivCond.xml" 	class="com.opentach.client.modules.report.IMInformeActivCond" />
+			<InteractionManager form="forms-desktop/chart/formGraficaCond.xml" 			class="com.opentach.client.modules.chart.IMGraficaCond" />
+			<InteractionManager form="forms-desktop/chart/formGraficaFicheros.xml" 		class="com.opentach.client.modules.chart.IMGraficaFicheros" />
+			<InteractionManager form="formEliminarContrato.xml" 					class="com.opentach.client.modules.data.IMEliminarContrato" />
+			<InteractionManager form="formConductorEmp.xml" 						class="com.opentach.client.modules.data.IMConductorEmp" />
+			<InteractionManager form="formPersonalEmp.xml" 						class="com.opentach.client.modules.data.IMPersonalEmp" />
+			<InteractionManager form="formConductorCont.xml" 						class="com.opentach.client.modules.data.IMCondVehContrato" />
+			<InteractionManager form="formVehiculoCont.xml" 						class="com.opentach.client.modules.data.IMCondVehContrato" />
+			<InteractionManager form="formEliminarConductor.xml" 					class="com.opentach.client.modules.data.IMEliminarConductor" />
+			<InteractionManager form="formEliminarVehiculo.xml" 					class="com.opentach.client.modules.data.IMEliminarVehiculo" />
+			<InteractionManager form="formEliminarEmpresa.xml" 					class="com.opentach.client.modules.data.IMEliminarEmpresa" />
+			<InteractionManager form="formUsuariosEmp.xml" 						class="com.opentach.client.modules.data.IMUsuarioEmp" />
+			<InteractionManager form="formBlackberry.xml" 						class="com.opentach.client.modules.IMRoot" />
+			<InteractionManager form="formFirmanteEmp.xml" 				class="com.opentach.client.modules.data.IMFirmanteEmp"/>
+			<InteractionManager form="formConductorCAP.xml" 				class="com.opentach.client.modules.data.IMConductorCAP" />
+			<FManager fmid="managerremotevehicle" form="formRemoteVehicleCompanySetup.form" />
+			<FManager fmid="managerremotevehicleresponsable" form="formRemoteVehicleCompanyResponsable.form" />
+							
+			<InteractionManager form="formAssetGroup.form"	class="com.opentach.client.modules.data.IMAssetGroup" />
+			<InteractionManager form="formAssetGroupAddAsset.form"	class="com.utilmize.client.fim.UBasicFIM" />
+		</FormManager >
+		
+		<FormManager id="managerconductor" showframe="yes" delayedload="yes"  form="forms-desktop/data/formConductorEmpAlta.xml" imanager="com.opentach.client.modules.data.IMConductorEmpAlta" />
+		
+		
+		<FormManager id="managercontratoemp" showframe="yes" delayedload="yes" form="forms-desktop/data/formContratoEmp.xml" imanager="com.opentach.client.modules.data.IMContratoEmp">
+			<InteractionManager form="formEliminarContrato.xml" 	class="com.opentach.client.modules.data.IMEliminarContrato" />
+			<InteractionManager form="formConductorCont.xml" 		class="com.opentach.client.modules.data.IMCondVehContrato" />
+			<InteractionManager form="formVehiculoCont.xml"	 	class="com.opentach.client.modules.data.IMCondVehContrato" />
+			<InteractionManager form="formEliminarConductor.xml"  class="com.opentach.client.modules.data.IMEliminarConductor" />
+			<InteractionManager form="formEliminarVehiculo.xml" 	class="com.opentach.client.modules.data.IMEliminarVehiculo" />
+			<InteractionManager form="formEliminarEmpresa.xml" 	class="com.opentach.client.modules.data.IMEliminarEmpresa" />
+			<InteractionManager form="formFirmanteEmp.xml" 				class="com.opentach.client.modules.data.IMFirmanteEmp" />
+		</FormManager >
+		
+		<!-- 
+		MODULO DE GRAFICOS  
+		-->
+		<FormManager id="managergraficacond" showframe="yes" delayedload="yes" form="forms-desktop/chart/formGraficaCond.xml" imanager="com.opentach.client.modules.chart.IMGraficaCond" />
+		<FormManager id="managergraficaficheros" showframe="yes" delayedload="yes" form="forms-desktop/chart/formGraficaFicheros.xml" imanager="com.opentach.client.modules.chart.IMGraficaFicheros" />
+	
+		<!-- 
+		MODULO DE INFORMES  
+		-->
+		<FormManager id="managerinformeactivcond" showframe="yes"	delayedload="yes" form="forms-desktop/report/formInformeActivCond.xml" 		imanager="com.opentach.client.modules.report.IMInformeActivCond"/>
+		<FormManager id="managerinformeactivcondmacron" showframe="yes"	delayedload="yes" form="forms-desktop/report/formInformeActivCond.xml" 		imanager="com.opentach.client.modules.report.IMInformeActivCondMacron"/>
+		
+		<FormManager id="managerinformeactivcondmensual" showframe="yes"	delayedload="yes" form="forms-desktop/report/formInformeActivCondMensual.xml" 		imanager="com.opentach.client.modules.report.IMInformeActivCondMensual"/>
+		
+		<FormManager id="managerinformetiemposdistancia" showframe="yes"	delayedload="yes" form="forms-desktop/report/formInformeTiemposDistancia.xml" 		imanager="com.opentach.client.modules.report.IMInformeTiemposDistancia"/>
+		
+		<FormManager id="managerinformelaboralcond" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeLaboralCond.xml" 		imanager="com.opentach.client.modules.report.IMInformeLaboralCond"/>
+		<FormManager id="managerinformeusosvehcond" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeUsoVehiculoCond.xml" 	imanager="com.opentach.client.modules.report.IMInformeUsoVehiculoCond"/>
+		<FormManager id="managerinformeusovehiculo" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeUsoVehiculo.xml"		imanager="com.opentach.client.modules.report.IMInformeUsoVehiculo"/>
+		<FormManager id="managerkmrecorridos" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeKMRecorridos.xml"		imanager="com.opentach.client.modules.report.IMInformeKMRecorridos"/>
+		<FormManager id="managerkmrecorridosconductor" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeKMRecorridosCond.xml"		imanager="com.opentach.client.modules.report.IMInformeKMRecorridosCond"/>
+		<FormManager id="managerkmrecorridosconductorusos" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeKMRecorridosUsosCond.xml"		imanager="com.opentach.client.modules.report.IMInformeKMRecorridosUsosCond"/>
+		
+		<FormManager id="managerinformeincidentes" 	showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeIncidentes.xml" 		imanager="com.opentach.client.modules.report.IMInformeIncidentes"/>
+		<FormManager id="managerinformefallos" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeFallos.xml" 			imanager="com.opentach.client.modules.report.IMInformeFallos"/>
+		<FormManager id="managervelcontinua" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeVelocidadContinua.xml" imanager="com.opentach.client.modules.report.IMInformeVelocidadContinua"/>
+		<FormManager id="managerdatostecnicos" 		showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeDatosTecnicosVeh.xml" imanager="com.opentach.client.modules.report.IMInformeDatosTecnicosVeh"/>
+		<FormManager id="managerdatostecnicosadvanced" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeDatosTecnicosVehAdvanced.xml" imanager="com.opentach.client.modules.report.IMInformeDatosTecnicosVehAdvanced"/>
+		
+		<FormManager id="managermincondnocturnidad" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeMinCondNocturnidad.xml" imanager="com.opentach.client.modules.report.IMInformeMinCondNocturnidad"/>
+		
+		<FormManager id="managerinformeficherostgd" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeFicherosTGD.xml" 		imanager="com.opentach.client.modules.report.IMInformeFicherosTGD"/>
+		<FormManager id="managerinformedescargas" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeDescargas.xml" 		imanager="com.opentach.client.modules.report.IMInformeDescargas"/>
+		
+		<FormManager id="managerinformeexpireddatetarj" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeExpiredDateTarj.xml" 		imanager="com.opentach.client.modules.report.IMInformeExpiredDateTarj"/>
+		
+		<FormManager id="managerinformeproxcalibrado" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeProxCalibrado.xml" 		imanager="com.opentach.client.modules.report.IMInformeProxCalibrado"/>
+		<FormManager id="managerinformekms" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeKMs.xml" 		imanager="com.opentach.client.modules.report.IMInformeKMs"/>
+		
+		
+		<FormManager id="managerinformeinfraccond" 	showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeInfracCond.xml" 		imanager="com.opentach.client.modules.report.IMInformeInfracCond">
+			<FManager fmid="managergraficacond" 	delayedload="yes" form="formGraficaCond.xml" />
+		</FormManager >
+		<FormManager id="macroinf_activ" 			showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeActivResumen.xml" imanager="com.opentach.client.modules.report.IMInformeActivResumen"/>
+		<FormManager id="macroinf_selec" 			showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeSelec.xml" imanager="com.opentach.client.modules.report.IMInformeSelec"/>
+		<FormManager id="macroinf_gestor" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeGestor.xml" imanager="com.opentach.client.modules.report.IMInformeGestor"/>
+		<FormManager id="managerviewinformegestor" showframe="yes" delayedload="yes" form="forms-desktop/report/formViewInformeGestor.xml" imanager="com.opentach.client.modules.report.IMViewInformeGestor">
+			<FManager fmid="macroinf_gestor" form="formInformeGestor.xml" />
+		</FormManager >
+		<FormManager id="macroinf_incidencias" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeIncidResumen.xml" imanager="com.opentach.client.modules.report.IMInformeIncidResumen"/>	
+		<FormManager id="express_cond" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeExpressCond.xml" imanager="com.opentach.client.modules.report.IMInformeExpressCond"/>
+		<FormManager id="express_veh" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeExpressVeh.xml" imanager="com.opentach.client.modules.report.IMInformeExpressVeh"/>
+		
+		
+		<!--INFORMES CENTRAL ALARMAS -->
+		<FormManager id="managerinformependdescarga" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformePendDescarga.xml" imanager="com.opentach.client.modules.report.IMInformePendDescarga"/>
+		<FormManager id="managerinformeeventostaco" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeEventosTaco.xml" imanager="com.opentach.client.modules.report.IMInformeEventosTaco"/>
+		<FormManager id="managerinformealertas" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeAlertas.xml" imanager="com.opentach.client.modules.report.IMInformeAlertas"/>
+	
+	
+		<FormManager id="managerinformeinfracagente" 	showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeInfracAgente.xml" 	
+					imanager="com.opentach.client.modules.report.IMInformeInfracAgente">
+		</FormManager>
+		<!-- 
+		MODULO DE GESTION DE FICHEROS	  
+		-->
+		<FormManager id="managervertgd" delayedload="yes" 	showframe="yes" form="forms-desktop/files/formDescargaTGDTaco.xml" imanager="com.opentach.client.modules.files.IMDescargaTGD"/>
+		<FormManager id="managercargaficheros" delayedload="yes" 	showframe="yes" form="forms-desktop/files/formCargaFicheros.xml" 	 imanager="com.opentach.client.modules.files.IMCargaFicheros"/>
+		<FormManager id="managerdescargaficheros" delayedload="yes" showframe="yes" 	form="forms-desktop/files/formFicherosTGD.xml" 	 imanager="com.opentach.client.modules.files.IMFicherosTGD" />
+		<FormManager id="managerdownloadficheros" delayedload="yes" showframe="yes" 	form="forms-desktop/files/formDownloadFicherosTGD.xml" 	 imanager="com.opentach.client.modules.files.IMDownloadFicherosTGD" />
+		<FormManager id="manageralmacenficheros" delayedload="yes" 	showframe="yes" form="forms-desktop/files/formAlmacenFicheros.xml" imanager="com.opentach.client.modules.files.IMAlmacenFicheros" />
+		
+		<!-- AVISOS -->	
+		<FormManager id="managercreatenotice" showframe="yes" delayedload="yes" form="forms-desktop/notices/formcreatenotice.xml" imanager="com.opentach.client.modules.notices.IMCreateNotices"/>
+
+
+	<!--	<FormManager id="manageravisosfull" showframe="yes" delayedload="yes" form="forms-desktop/notices/formnoticesreceived.xml" imanager="com.opentach.client.modules.notices.IMNoticesReceived">
+		</FormManager>
+		
+		<FormManager id="manageravisos" showframe="yes" delayedload="yes" form="forms-desktop/notices/formnotices.xml" imanager="com.opentach.client.modules.notices.IMNotices">
+			<FManager fmid="managercreatenotice" form="formcreatenotice.xml" />
+			<FManager fmid="managernoticessend" form="formnoticesend.xml" />
+		</FormManager >
+	-->	
+		<FormManager id="manageravisos" showframe="yes" delayedload="yes" form="forms-desktop/notices/formnoticesreceived.xml" imanager="com.opentach.client.modules.notices.IMNoticesReceived">
+		</FormManager>
+		<FormManager id="manageravisosfull" showframe="yes" delayedload="yes" form="forms-desktop/notices/formnotices.xml" imanager="com.opentach.client.modules.notices.IMNotices">
+			<FManager fmid="managercreatenotice" form="formcreatenotice.xml" />
+			<FManager fmid="managernoticessend" form="formnoticesend.xml" />
+		</FormManager >
+		<FormManager id="managernoticessend" showframe="yes" delayedload="yes" form="forms-desktop/notices/formnoticesend.xml" imanager="com.opentach.client.modules.notices.IMNoticesSend"/>
+	
+		<!--MODULO DE INSPECCIONES-->
+		<FormManager id="managerinspecciones" showframe="yes" delayedload="yes" form="forms-desktop/inspec/formGestionInspec.xml" imanager="com.opentach.client.modules.inspec.IMGestionInspec">
+			<FManager fmid="managergraficacond" showframe="yes" delayedload="yes" form="formGraficaCond.xml" />
+		</FormManager>	
+		
+		<!-- GENERACION INFORME GESTOR -->
+		<FormManager id="managerconsultacertifactiv" 	  showframe="yes" delayedload="yes" form="forms-desktop/report/formConsultaCertifActiv.xml" imanager="com.opentach.client.modules.report.IMConsultaCertifActiv"/>
+	
+		<!-- CAP y Actividades -->
+		<FormManager id="managergraficaactivcertifind"  showframe="yes" delayedload="yes" form="forms-desktop/chart/formGraficaCondIndef.xml" imanager="com.opentach.client.modules.chart.IMGraficaCondIndef"/>
+		<FormManager id="managergraficaactivcertifactiv28"  showframe="yes" delayedload="yes" form="forms-desktop/chart/formGraficaCondCertifAct28.xml" imanager="com.opentach.client.modules.chart.IMGraficaCondCertifAct28">
+			<FManager fmid="managergraficaactivcertifind" form="formGraficaCondIndef.xml" />
+		</FormManager>
+		<FormManager id="managergraficaactivcertifactiv"  showframe="yes" delayedload="yes" form="forms-desktop/chart/formGraficaCondCertifAct28.xml" imanager="com.opentach.client.modules.chart.IMGraficaCondCertifAct"/>
+		<FormManager id="managercertifactiv"  showframe="yes" delayedload="yes" form="forms-desktop/report/formCertifActiv.xml" imanager="com.opentach.client.modules.report.IMCertifActiv"/>
+		<FormManager id="managercartasporte"  showframe="yes" delayedload="yes" form="forms-desktop/report/formCartasPorte.xml" imanager="com.opentach.client.modules.report.IMCartasPorte"/>
+		<FormManager id="managerADR"  showframe="yes" delayedload="yes" form="forms-desktop/report/formCartasPorteADR.xml" imanager="com.opentach.client.modules.report.IMCartasPorteADR"/>
+		<FormManager id="managerADRConsulta"  showframe="yes" delayedload="yes" form="forms-desktop/report/formCartasPorteADRConsulta.xml" imanager="com.opentach.client.modules.report.IMCartasPorteADRConsulta"/>
+		<FormManager id="managerreportcap" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeCAP.xml" imanager="com.opentach.client.modules.report.IMInformeCAP"/>
+	
+		<FormManager id="managercartaadvcominfracciones"  showframe="yes" delayedload="yes" form="forms-desktop/report/formCartaAdvComInfracciones.xml" imanager="com.opentach.client.modules.report.IMCartaAdvComInfracciones"/>
+		
+		<FormManager id="managercalendaruso"  showframe="yes" delayedload="yes" form="forms-desktop/data/formCalendarioUsos.xml" imanager="com.opentach.client.modules.data.IMCalendarioUsos"/>
+	
+		<!-- EXTRA RESOURCES -->
+		<FormManager id="managerextraresourcesviewer" showframe="yes" delayedload="yes" form="forms-desktop/extraresources/formExtraResourcesViewer.xml" imanager="com.opentach.client.modules.extraresources.IMExtraResourcesViewer"/>
+		<!-- ESTADISTICAS -->
+		<FormManager id="managerstats" showframe="yes" delayedload="yes" form="forms-desktop/stats/formStats.form" imanager="com.opentach.client.modules.stats.IMStats"/>
+		<FormManager id="managerinformeresumentiposinfracciones" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeResumenTiposInfracciones.xml" imanager="com.opentach.client.modules.report.IMInformeResumenTiposInfracciones"/>
+		<FormManager id="managerinformevehiclesnotdownloadingagents" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeVehiclesNotDownloadingAgents.xml" imanager="com.opentach.client.modules.report.IMInformeVehiclesNotDownloadingAgents"/>
+		<FormManager id="managerinformedriversnotdownloadingagents" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeDriversNotDownloadingAgents.xml" imanager="com.opentach.client.modules.report.IMInformeDriversNotDownloadingAgents"/>
+	
+		<FormManager id="managerinformependdescargaagente" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformePendDescargaAgente.xml" imanager="com.opentach.client.modules.report.IMInformePendDescargaAgente"/>
+		<FormManager id="managerinformenumempresavehactivos" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeNumEmpresaVehActivos.xml" imanager="com.opentach.client.modules.report.IMInformeNumEmpresaVehActivos"/>
+		<FormManager id="managerinformevehdescargaremota" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeVehDescargaRemota.xml" imanager="com.opentach.client.modules.report.IMInformeVehDescargaRemota"/>
+		<FormManager id="managerinformeusovehsintarjeta" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeUsoVehiculoSinTarjeta.xml" imanager="com.opentach.client.modules.report.IMInformeUsoVehiculoSinTarjeta"/>
+		<FormManager id="managerinformeficherostamano" showframe="yes" delayedload="yes" form="forms-desktop/report/formInformeFicherosTamano.xml" imanager="com.opentach.client.modules.report.IMInformeFicherosTamano"/>
+		
+		<!-- LAF -->
+		<FormManager id="lafChooser" showframe="yes" delayedload="yes" form="forms-desktop/admin/formLafChooser.xml" imanager="com.opentach.client.modules.admin.IMLafChooser"/>
+		<!-- Sync folder -->
+		<FormManager id="managerWatchFolder" showframe="yes" delayedload="yes" form="forms-desktop/admin/formWatchFolder.xml" imanager="com.opentach.client.modules.admin.IMWatchFolder"/>
+		<!-- tacho codes -->
+		<FormManager id="managerTachoCodes" showframe="yes" delayedload="yes" form="forms-desktop/tachoinfo/formTachoCodes.xml" imanager="com.opentach.client.modules.tachoinfo.IMTachoCodes"/>
+		<FormManager id="managerCDOViewer" showframe="yes" delayedload="yes" form="forms-desktop/tachoinfo/formCDOViewer.xml" imanager="com.opentach.client.modules.tachoinfo.IMCDOViewer"/>
+
+	
+	</Client>
+</OntimizeModule>

@@ -1,0 +1,67 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>BlackberryService</Name>
+		<Class>com.opentach.server.blackberry.BlackberryService</Class>
+	</RemoteReference>
+	<RemoteReference init="yes">
+		<Name>SmartphoneLocationService</Name>
+		<Class>com.opentach.server.smartphonelocation.SmartphoneLocationService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>DownCenterReportService</Name>
+		<Class>com.opentach.server.downcenterreport.DownCenterReportService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>ReportService</Name>
+		<Class>com.opentach.server.report.ReportService</Class>
+	</RemoteReference>
+	<RemoteReference init="yes">
+		<Name>CloudFilesService</Name>
+		<Class>com.opentach.server.cloudfiles.CloudFilesService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>UserService</Name>
+		<Class>com.opentach.server.user.UserService</Class>
+	</RemoteReference>
+	
+	<RemoteReference>
+		<Name>CompanyService</Name>
+		<Class>com.opentach.server.companies.CompanyService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>VehicleService</Name>
+		<Class>com.opentach.server.companies.VehicleService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>MaintenanceService</Name>
+		<Class>com.opentach.server.maintenance.MaintenanceService</Class>
+	</RemoteReference>
+	<RemoteReference >
+		<Name>InfractionWarningService</Name>
+		<Class>com.opentach.server.infractionwarning.InfractionWarningService</Class>
+	</RemoteReference>
+	
+	
+	<RemoteReference>
+		<Name>InfractionService</Name>
+		<Class>com.opentach.server.activities.InfractionService</Class>
+	</RemoteReference>
+	
+	<RemoteReference>
+		<Name>TachoFileProcessService</Name>
+		<Class>com.opentach.server.process.TachoFileProcessService</Class>
+		<Param>
+			<Name>finishprocessimpl</Name>
+			<Value>com.opentach.server.process.FileProcessTaskPostOperationDelegate</Value>
+		</Param>
+	</RemoteReference>
+	
+	<RemoteReference>
+		<Name>WaybillService</Name>
+		<Class>com.opentach.server.waybill.WaybillService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>CertificadoActividadesService</Name>
+		<Class>com.opentach.server.certificadoActividades.CertificadoActividadesService</Class>
+	</RemoteReference>
+</RemoteReferences>

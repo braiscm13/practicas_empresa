@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.DistributorService.distributor"
+	keys="DIS_ID"
+	title="ojee.DistributorService.distributor"
+	buttons="no"
+	columns="DIS_NAME"
+	notqueryfields="ojee.DistributorService.distributor"
+	>
+	
+	<ObjectDataField attr="DIS_ID" visible="no" />
+	
+	
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row margin="5;4;5;0">
+		<TextDataField attr="DIS_NAME" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+		</Row>
+		<Row expand="0.5" >
+			<Column expand="0.3" expandlast="yes" title="CONTACT_INFORMATION">
+					<TextDataField attr="NOMBRE_FIRMANTE" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+					<TextDataField attr="APELLIDOS_FIRMANTE" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+					<MaskDataField mask="000000000000000" attr="TELEFONO" dim="no" maxlength="15" align="left" labelsize="15" required="no" size="15" />
+					<WWWDataField attr="EMAIL" dim="no" maxlength="100" align="left" required="no" labelsize="15" uppercase="no" expand="no" size="15" />
+			</Column>
+			<Column expand="0.3" expandlast="yes" margin="0;10;0;0">
+				<Column title="DIS_LOGIN_INFORMATION" expand="yes" expandlast="yes">
+					<TextDataField attr="USUARIO" align="left" dim="no" labelsize="15" size="15" required="yes" maxlength="15" />
+					<PasswordDataField attr="PASSWORD" text="PASSWORD" dim="no" maxlength="15" labelsize="15" required="yes" align="left" size="15" />
+					<!--<ReferenceExtDataField entity="EPerfil" attr="NIVEL_CD" text="PERFIL" labelsize="15" align="left" dim="no" cod="NIVEL_CD" cols="NIVEL_CD;DSCR"
+							descriptioncols="DSCR" required="yes" csize="2" size="19" />  -->
+				</Column>
+			</Column>
+			<Column expand="0.3" expandlast="yes" margin="0;10;0;0">
+				<Column title="DIS_GENERAL_INFORMATION" expand="yes" expandlast="yes">
+					<DateDataField attr="F_ALTA" align="left" labelsize="15" required="no" visible="yes" size="15" />
+					<MemoDataField attr="DIS_NOTES" dim="text" expand="yes" labelvisible="yes" align="left" labelsize="15" size="15" />
+				</Column>
+			</Column>
+		</Row>
+		<Row attr="EMPRESAS" expand="yes" title="EMPRESAS">
+			<InsertTable entity="EUsuDfEmpUsuarios" key="USUARIO" keys="CIF" parentkey="USUARIO" cols="CIF;USUARIO;CDELEG;CDELEGASIG;PROVINCIA" visiblecols="CIF;CDELEG;CDELEGASIG;PROVINCIA"
+				editablecolumns="CIF" updateentityeditablecolumns="CIF" refreshbutton="yes" deletebutton="yes" form="formUsuDel.xml" requiredcols="CIF"
+				disableinsert="yes">
+				<ComboCellRenderer column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+				<ComboCellEditor column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+			</InsertTable>
+		</Row>
+		<Row expand="no">
+			<Column />
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67651c3d-9464-44bd-9db0-b813e11ac2e8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="4.594972986357225"/>
+	<property name="ireport.x" value="844"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["2883DXJ"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600*30))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DSCR as TPPROPOSITO_DSCR, (CASE WHEN C = 0 THEN 'NO' ELSE 'SI' END) AS SI_NO FROM(
+  SELECT A.DSCR, SUM(DECODE (A.TPFALLO, CDVFALLOS.TPFALLO,1,0)) as c FROM
+    (SELECT TPFALLO, DSCR FROM CDTIPO_FALLO
+      WHERE TPFALLO IN ('4','7','501','8','48')) A
+    , CDVFALLOS
+    WHERE $P{matricula} = CDVFALLOS.MATRICULA  AND
+    CDVFALLOS.FECINI >=  ($P{fdesde}) AND
+    CDVFALLOS.FECFIN <=($P{fhasta}) AND
+    $P{cgcontrato} = CDVFALLOS.CG_CONTRATO
+    GROUP BY A.DSCR)]]>
+	</queryString>
+	<field name="TPPROPOSITO_DSCR" class="java.lang.String"/>
+	<field name="SI_NO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="11" y="4" width="293" height="23" forecolor="#000000" uuid="6900ae04-2acb-4574-80d5-93eb706109c7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{RINCFALLOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="0" width="439" height="23" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="cc3d1057-daa5-49e2-b36f-df5f0ee1d931">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="17" y="4" width="318" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="42e6cc36-834f-4b3a-a0ea-da62563662e4"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str($F{TPPROPOSITO_DSCR})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="348" y="4" width="94" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="0f6ea270-c24a-4b04-81da-fd92ad28f816"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SI_NO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="11" y="-1" width="438" height="1" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="4a8fe368-5f48-4cf5-b720-13cb04676307"/>
+			</line>
+			<line>
+				<reportElement key="line-3" x="11" y="-2" width="1" height="25" forecolor="#E8F0FF" uuid="f98e8235-bd78-40fa-a84b-31317201c96e"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="342" y="-1" width="1" height="24" forecolor="#E8F0FF" uuid="54a676f7-2e5b-4bad-8d1a-d8a80a02982b"/>
+			</line>
+			<line>
+				<reportElement key="line-5" x="449" y="-2" width="1" height="25" forecolor="#E8F0FF" uuid="95d7cd52-5823-4212-9c0b-a99e592ed2f2"/>
+			</line>
+			<line>
+				<reportElement key="line-6" x="0" y="20" width="1" height="1" uuid="96ecbf15-1982-4984-a34a-c2021912b73e">
+					<printWhenExpression><![CDATA[($P{ReturnedValuesMap}.put(
+        "COUNT2", $V{REPORT_COUNT}) == null
+        )?Boolean.FALSE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<line>
+				<reportElement key="line-2" x="11" y="-2" width="438" height="2" forecolor="#E8F0FF" uuid="4f01365f-f179-4a70-94fc-18a92d60504d"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

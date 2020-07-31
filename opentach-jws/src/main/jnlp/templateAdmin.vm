@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="$jnlpspec" codebase="$jnlpCodebase"  href="launchadmin.jnlp" version="$project.Version">
+	<information>
+		#if($project.Name) 
+		<title>$project.Name admin</title>
+		#end 
+		#if($project.Organization.Name) 
+		<vendor>$project.Organization.Name</vendor>
+		#end 
+		#if($project.Url) 
+		<homepage href="$project.Url" />
+		#end 
+		#if($project.Description) 
+		<description>$project.Description</description>
+		#end
+		#if($offlineAllowed) 
+		<offline-allowed />
+		#end 
+		<icon kind="splash" href="logo.gif" />
+		<icon kind="shortcut" href="logo.ico" />
+		<shortcut online="true">
+			<desktop />
+			<menu submenu="Openservices/Opentach" />
+		</shortcut>
+	</information>
+	#if($allPermissions) 
+	<security>
+	  <all-permissions />
+	</security>
+	#end 
+	<resources>
+		<j2se version="1.8+" initial-heap-size="64m" max-heap-size="512m" />
+		$dependencies 
+	</resources>
+	<application-desc main-class="$mainClass">
+		 <argument>labels-admin.xml</argument>
+		 <argument>clientapplication-admin.xml</argument>
+		 <argument>-Dcom.ontimize.gui.lafclassname=com.opentach.client.laf.OpentachLAF</argument>
+		 <argument>-Dcom.ontimize.gui.lafstyle=com/opentach/client/laf/blue.css</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.cgipath=$jnlpcgipath</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.port=$jnlptunnelingport</argument>
+		 <argument>-Dcom.ontimize.util.rmitunneling.debug=false</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Port=$serverPort</argument>
+		 <argument>-Dcom.ontimize.locator.ReferenceLocator.Hostname=$$hostname</argument>
+		 <argument>-Dremotedownload.base.url=ws://$$hostname:$jnlptunnelingport/$remoteDownloadPath</argument>
+		 <argument>-Dtachoredurl=http://www.opentach.com/descargas</argument>
+		 <argument>-DlafName=lafOpentach</argument>
+		 <argument>-Djnlp.packEnabled=true</argument>
+		 <argument>-DwebDocPath=$docpath</argument>
+		 <argument>-DNUMMAX_FILES_TOSEND=1000</argument>
+		 <argument>-DBASE_JNLP_URI=$jnlpCodebase</argument>
+		 <argument>-http</argument>
+		 <argument>-Dcom.ontimize.services.baseUrl=http://$$hostname:$jnlptunnelingport/$contexPath</argument>
+		 <argument>-Dopentach.proxy.url=${proxyUrl}</argument>
+	     <argument>ignore</argument>
+	     <argument>ignore</argument>
+	</application-desc>
+	<update check="always" policy="always"/>
+</jnlp>

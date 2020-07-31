@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="DFEMP">
+	<DeleteKeys>
+		<Column>CIF</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>CIF</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							DFEMP com
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="licenses">
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							DFEMP com
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="expiredDemos">
+			<Sentence>
+					<![CDATA[
+						select 
+							CIF, LICENSE, TARGETDATE
+						FROM (
+						    SELECT CIF, 'LIC_OPENTACH' as LICENSE, LIC_OPENTACH_DEMO_TO as TARGETDATE FROM DFEMP WHERE LIC_OPENTACH_DEMO='S' and LIC_OPENTACH_DEMO_TO < sysdate
+						    UNION ALL
+						    SELECT CIF, 'LIC_TACHOLAB' as LICENSE, LIC_TACHOLAB_DEMO_TO as TARGETDATE FROM DFEMP WHERE LIC_TACHOLAB_DEMO='S' and LIC_TACHOLAB_DEMO_TO < sysdate
+						    UNION ALL
+						    SELECT CIF, 'LIC_TACHOLABPLUS' as LICENSE, LIC_TACHOLABPLUS_DEMO_TO as TARGETDATE FROM DFEMP WHERE LIC_TACHOLABPLUS_DEMO='S' and LIC_TACHOLABPLUS_DEMO_TO < sysdate
+						)
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="expiredLicenses">
+			<Sentence>
+					<![CDATA[
+						select 
+							CIF, LICENSE, TARGETDATE
+						FROM (
+						    SELECT CIF, 'LIC_OPENTACH' as LICENSE, LIC_OPENTACH_TO as TARGETDATE FROM DFEMP WHERE LIC_OPENTACH='S' and LIC_OPENTACH_TO < sysdate
+						    UNION ALL
+						    SELECT CIF, 'LIC_TACHOLAB' as LICENSE, LIC_TACHOLAB_TO as TARGETDATE FROM DFEMP WHERE LIC_TACHOLAB='S' and LIC_TACHOLAB_TO < sysdate
+						    UNION ALL
+						    SELECT CIF, 'LIC_TACHOLABPLUS' as LICENSE, LIC_TACHOLABPLUS_TO as TARGETDATE FROM DFEMP WHERE LIC_TACHOLABPLUS='S' and LIC_TACHOLABPLUS_TO < sysdate
+						)
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="currentContract">
+			<!-- TODO change DB view CDVEMPRE_REQ_REALES by select here  -->
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							CDVEMPRE_REQ_REALES cont
+						WHERE
+							(F_BAJA is null or F_BAJA > sysdate)
+							AND (F_ANULACION is null or F_ANULACION > sysdate)
+						#WHERE_CONCAT#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+		<Query id="licensesReport">
+			<FunctionColumns>
+				<FunctionColumn name="LIC_OPENTACH_D2E" value="null"/>
+				<FunctionColumn name="LIC_OPENTACH_DEMO_D2E" value="null"/>
+				<FunctionColumn name="LIC_TACHOLAB_D2E" value="null"/>
+				<FunctionColumn name="LIC_TACHOLAB_DEMO_D2E" value="null"/>
+				<FunctionColumn name="LIC_TACHOLABPLUS_D2E" value="null"/>
+				<FunctionColumn name="LIC_TACHOLABPLUS_DEMO_D2E" value="null"/>
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						select 
+							#COLUMNS#
+						FROM 
+							CDVDFEMP
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog=""
+	schema="${mainschema}"
+	table="COM_ASSET_GROUP_DRIVER"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler"
+	nameconverter="defaultNameConverter">
+	<DeleteKeys>
+		<Column>AGD_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>AGD_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>AGD_ID</GeneratedKey>
+	
+	<Queries>
+		<Query id="available">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CAG_ID" prefix="fj"/>
+				<AmbiguousColumn name="COM_ID" prefix="fj"/>
+				<AmbiguousColumn name="DRV_ID" prefix="fj"/>
+			</AmbiguousColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM
+						(
+							SELECT
+								cvh.CIF as COM_ID,
+								cvh.IDCONDUCTOR as DRV_ID,
+								cag.CAG_ID,
+								cvh.NOMBRE,
+								cvh.APELLIDOS
+							FROM 
+								CDCONDUCTORES_EMP cvh,
+								COM_ASSET_GROUP cag
+							WHERE
+								cvh.CIF  = cag.COM_ID
+						) fj,
+						COM_ASSET_GROUP_DRIVER agd
+					WHERE 
+						fj.COM_ID  = agd.COM_ID  (+)
+						AND fj.DRV_ID  = agd.DRV_ID (+)
+						AND fj.CAG_ID = agd.CAG_ID (+)
+						AND agd.CAG_ID  IS null
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+		<Query id="detail">
+			<Sentence>
+				<![CDATA[
+					SELECT
+						#COLUMNS#
+					FROM 
+						CDCONDUCTORES_EMP cvh,
+						COM_ASSET_GROUP_DRIVER agd
+					WHERE
+						cvh.CIF = agd.COM_ID
+						and cvh.IDCONDUCTOR = agd.DRV_ID
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

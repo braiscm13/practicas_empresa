@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="EConductoresEmp" buttons="no" title="ELIMINAR_CONDUCTOR" keys="CIF" parentkey="a" columns="a" preferredsizetodialog="400;250" > 
+	<FormHeader standardbuttons="no" />
+	
+	<ReferenceExtDataField attr="CIF" cod="CIF" entity="EDfEmp" cols="CIF;NOMB" codsearch="CIF" visible="no"/>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+   	<TextDataField attr="IDCONDUCTOR" visible="no"/> 
+	
+	<Column margin="10;10;10;10" expandlast="no">
+		<Column align="left" expand="yes">
+			<Column expand="no"  align="left">
+				<Row >
+					<Column expand="yes" align="center" margin="20;0;20;0">
+						<ColumnRadioButtonGroup attr="contrato" selected="BAJA_CONDUCTOR_CONTRATO" >
+							<RadioButtonDataField attr="BAJA_CONDUCTOR_CONTRATO" labelsize="35" align="left" labelposition="right" returnboolean="yes" />
+							<Row height="10" expand="no"/>
+							<RadioButtonDataField attr="BORRAR_TODO_CONDUCTOR" labelsize="35" align="left" labelposition="right" returnboolean="yes" />
+						</ColumnRadioButtonGroup >
+					</Column >
+				</Row >
+			</Column >
+		</Column >
+		<Row align="right">
+			<CancelButton />
+			<Button key="aceptar" icon="com/ontimize/gui/images/ok.png"     text="ACEPTAR" tip="ACEPTAR" name="MainButton"
+					listener="com.opentach.client.employee.listeners.IMEmpleadoDeleteConfirmActionListener"
+			/>
+		</Row >
+	</Column>
+</Form>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FormExt keys="a" entity="a" columns="a" title="EConductoresEmp" buttons="no" status="no" preferredsizetodialog="1150;800">
+
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no" />
+
+	<Row margin="5;5;5;5" expand="yes">
+		<Column expand="yes" expandlast="no">
+			<Row>
+				<!-- FILTERS -->
+				<Column>
+					<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" title="Filters">
+						<Row>
+							 <Column expand="0.3">
+								<Column title="DATOS_COND" >;
+									<TextDataField 			attr="NOMBRE" 				align="left" labelsize="15" dim="text" maxlength="40"   />
+									<TextDataField 			attr="APELLIDOS" 			align="left" labelsize="15" dim="text" maxlength="100"  />
+									<TextDataField 			attr="DNI" 					align="left" labelsize="15" dim="no" text="DNI/NIF" maxlength="9"  size="9" />
+									<TextDataField 			attr="IDCONDUCTOR" 			align="left" labelsize="15" dim="text" text="5B" maxlength="14"   />
+									<TextDataField 			attr="EXTERNAL_EMPLOYEE_ID" align="left" labelsize="15" dim="text" maxlength="14"   />
+									
+									<TextDataField 			attr="NAF" 					align="left" labelsize="15" dim="text" maxlength="70" />
+									<Row>
+										<Label attr="F_NAC.label" text="F_NAC" valign="center" size="16"/>
+										<DateDataField attr="F_NAC_FROM" align="left" labelvisible="no" dim="no" size="7" />
+										<DateDataField attr="F_NAC_TO" text="UNTIL" align="left" dim="no" size="7" />
+										<Row />
+									</Row>
+									<Row>
+										<Label attr="F_ALTA.label" text="F_ALTA" valign="center" size="16"/>
+										<DateDataField attr="F_ALTA_FROM" align="left" labelvisible="no" dim="no" size="7" />
+										<DateDataField attr="F_ALTA_TO" text="UNTIL" align="left" dim="no" size="7" />
+										<Row />
+									</Row>
+									<CheckDataField attr="CONT_VIGENTE" 	align="left" labelsize="15" dim="text" text="CONT_VIGENTE" tip="CONT_VIGENTE.tip" returnstring="yes"  />
+									<CheckDataField attr="DURMIENTE" 		align="left" labelsize="15" dim="text" text="DURMIENTE_COND" tip="TIP_DURMIENTE" returnstring="yes"  />
+								</Column>
+								<Column title="DATOS_OUTROS" >
+									<ReferenceComboDataField 	attr="TYPE" 			align="left" labelsize="15" dim="text" text="EMPLOYEEDATA.TYPE" cod="TYPE" entity="EEmployeeTypes" cols="DESCRIP" translate="yes" />
+									<ReferenceComboDataField 	attr="PARENT_CALENDAR" align="left" labelsize="15" dim="text" text="EMPLOYEEDATA.CALENDAR" cod="CALENDAR" entity="ERootCalendar" cols="DESCRIP" parentkey="CIF" translate="yes" nullselection="no"/>
+									<Column/>
+								</Column>
+							 </Column>
+							 <Column expand="0.4" expandlast="yes" >
+							 		<Row>
+							 			<Column>
+								 			<Column title="DATOS_EMPRESA" expand="0.75">
+												<ReferenceExtDataField 		attr="CIF" 				align="left" labelsize="14" dim="text" entity="EDfEmp" text="EMPRESA"  cod="CIF" cols="CIF;NOMB;CG_CONTRATO" descriptioncols="NOMB" csize="8" required="yes"/>
+												<ReferenceComboDataField 	attr="IDDELEGACION" 	align="left" labelsize="14" dim="text" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" visiblecols="NOMBRE_DEL" parentkey="CIF" entity="EDelegacionDfEmp" />
+											</Column>
+											<Row height="17"/>
+											<Column title="CONTACTO" >
+												<MaskDataField	attr="MOVIL" 		align="left" labelsize="14" dim="no" mask="000000000000000"  size="12" />
+												<TextDataField 	attr="EMAIL" 		align="left" labelsize="14" dim="text" text="EMAIL" maxlength="50" uppercase="no" />
+											</Column>
+							 			</Column>
+								 		
+							 		</Row>
+							 		<Row height="24"/>
+									<Column title="EMPLOYEEDATA.EMPLOYEE_PORTAL" expand="0.25" >
+											<TextDataField 		attr="WEB_USER" 	align="left" labelsize="14" dim="text" text="EMPLOYEEDATA.WEB_USER" size="15" valign="center" uppercase="false" />
+											<CheckDataField 	attr="WEB_INACTIVE" align="left" labelsize="14" dim="text" text="EMPLOYEEDATA.WEB_INACTIVE" tip="EMPLOYEEDATA.WEB_INACTIVE.tip" labelposition="left" returnstring="no" />
+									</Column>
+							</Column>
+							<Row expand="0.3"/>
+						</Row>
+					</CollapsiblePanel>
+					<CollapsiblePanelFiller/>
+				</Column>
+				<Column expand="no">
+					<SearchPanel table="EConductoresEmp"
+						search.filterfields="NOMBRE;APELLIDOS;DNI;IDCONDUCTOR;EXTERNAL_EMPLOYEE_ID;NAF;DURMIENTE;CONT_VIGENTE;TYPE;PARENT_CALENDAR;CIF;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+						search.daterangefilterfields="F_NAC_FROM:F_NAC:TO:F_NAC;F_ALTA_FROM:F_ALTA_TO:F_ALTA"
+						search.requiredfilterfields="CIF"
+						layout="2x1" />
+					<Column />
+				</Column>
+			</Row>
+			
+			<Row expand="yes" valign="center">
+				<Column expand="yes" margin="5;5;5;5">
+					<Table entity="EConductoresEmp" keys="IDCONDUCTOR;CIF" parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+						cols="TYPE;DESCRIP;CONT_VIGENTE;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;NAF;DURMIENTE;PARENT_CALENDAR;CAL_PARENT_DESCRIP;CIF;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+						visiblecols="TYPE;CONT_VIGENTE;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;NAF;DURMIENTE;DESCRIP;CAL_PARENT_DESCRIP;CIF;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+						defaultvisiblecols="TYPE;CONT_VIGENTE;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;NAF;DURMIENTE;DESCRIP;CAL_PARENT_DESCRIP;IDDELEGACION;MOVIL;EMAIL;WEB_USER;WEB_INACTIVE"
+						detailformat="({0}) {1} {2};DNI;NOMBRE;APELLIDOS" form="formEmpleado.form" 
+						deletebutton="yes" disableinsert="yes" insertcontrol="no"  scrollh="yes"
+						cellrenderercolormanager="com.opentach.client.employee.render.EmployeeCellRendererColorManager"
+					>
+					
+						<com.opentach.client.employee.render.EmployeeTypeCellRenderer attr="TYPE" column="TYPE" />
+						<TableColumnProperties attr="TYPE" text=" " defaultwidth="30" preferredwidth="30" minimumwidth="30" maximunwidth="30" resizable="no" />
+					
+						<TableColumnProperties attr="NOMBRE" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+						
+						<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+						<TableColumnProperties attr="NAF" defaultwidth="150" preferredwidth="150" />
+
+						<TableColumnProperties attr="CONT_VIGENTE" text="CONT_VIGENTE" defaultwidth="90" preferredwidth="90" />
+						<RenderBoolean atrr="CONT_VIGENTE" column="CONT_VIGENTE" returnstring="yes" />
+
+						<TableColumnProperties attr="DURMIENTE" text="DURMIENTE_COND" defaultwidth="90" preferredwidth="90" />
+						<RenderBoolean atrr="DURMIENTE" column="DURMIENTE" returnstring="yes" />
+						
+						<TableColumnProperties attr="DESCRIP" text="EMPLOYEEDATA.TYPE" defaultwidth="200" preferredwidth="200" />
+						<BundleCellRenderer attr="DESCRIP" column="DESCRIP" />
+						<TableColumnProperties attr="CAL_PARENT_DESCRIP" text="EMPLOYEEDATA.CALENDAR" defaultwidth="200" preferredwidth="200" />
+						
+						<TableColumnProperties attr="CIF" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="IDDELEGACION" defaultwidth="100" preferredwidth="100" />
+						
+						<TableColumnProperties attr="MOVIL" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="EMAIL" defaultwidth="200" preferredwidth="200" />
+						
+						<TableColumnProperties attr="WEB_USER" text="EMPLOYEEDATA.WEB_USER" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="WEB_INACTIVE" text="EMPLOYEEDATA.WEB_INACTIVE" defaultwidth="90" preferredwidth="90" />
+						<RenderBoolean atrr="WEB_INACTIVE" column="WEB_INACTIVE" returnstring="yes" />
+						
+						<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+					</Table>
+				</Column>
+			</Row>
+			<Row>
+				<Row />
+				<OpenTableInsertFormButton table="EConductoresEmp" />
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

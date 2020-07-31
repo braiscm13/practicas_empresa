@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="IDSOLICITUD" entity="ESolicitudesCondVeh" columns="" title="ESolicitudes" buttons="no">
+	<FormHeader standardbuttons="i" />
+	<IntegerDataField attr="IDSOLICITUD" visible="no"/>
+	<Row title="">
+		<TextComboDataField attr="TIPOSOLICITUD"  translate="yes" values="A;B;S" equivalences="forms-desktop/data/solicitudconfig.properties" align="left" labelsize="15" dim="no" size="25" required="yes"/>
+	</Row>
+	<Label text="SOLICITUD_TXT" labelsize="25" fontsize="10" bold="no" />
+	<Label text="SOLICITUD_TXT2" labelsize="25" fontsize="10" bold="no" />
+	<Row expand="yes" title="" height="200">
+	<MemoDataField attr="SOLICITUD" expand="yes" dim="text" labelvisible="no" required="yes"/>
+	</Row>			
+</FormExt>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EConductorCont" keys="CG_CONTRATO;IDCODUCTOR;CIF"  title="CONDUCTOR_CONT" cols="CIF;DNI;APELLIDOS;NOMBRE" buttons="no">
+	<FormHeader standardbuttons="no" />
+	<Column margin="15;15;15;15" expandlast="no">
+		<TextDataField attr="CG_CONTRATO" visible="no" />
+		<TextDataField attr ="TIPO" visible="no" />
+		<TextDataField attr="CIF" visible="no" />
+		<TextDataField attr="DNI" visible="no" />
+		<TextDataField visible="no" attr="USUARIO_ALTA"/>
+		<TextDataField visible="no" attr="F_ALTA"/>
+		<ReferenceExtDataField entity="EConductorNoCont" parentkeylistener="yes" populatetableonshowtablewindow="true" csize="10" size="25" parentkey="CIF" otherkeys="CG_CONTRATO" 
+				attr="IDCONDUCTOR" dim="text" 
+		     	cod="IDCONDUCTOR" 
+		     	cols="EXTERNAL_EMPLOYEE_ID;IDCONDUCTOR;DNI;CIF;NOMBRE;APELLIDOS" 
+		     	descriptioncols="APELLIDOS;NOMBRE" required="yes" onsetvalueset="DNI" text="EMPLEADOS"/>
+		
+		<Column/>
+		
+		<Row expand="no">
+			<Row />
+			<CancelButton />
+			<SaveButton stayinrecordafterinsert="no" />
+		</Row>
+	</Column >
+</FormExt>

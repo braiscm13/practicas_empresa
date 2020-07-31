@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="EDfEmp"
+	buttons="no"
+	title="ELIMINAR_EMPRESA"
+	keys="CIF">
+	<FormHeader standardbuttons="no" />
+
+	<ObjectDataField
+		attr="CIF"
+		visible="no" />
+	<Column margin="5;5;5;5">
+	
+		<Row>
+			<Column
+				align="left"
+				expand="yes">
+				<Column
+					expand="no"
+					
+					align="left">
+					<Row height="20" />
+					<Row>
+						<Label
+							text="BAJA_EMPRESA"
+							expand="yes"></Label>
+					</Row>
+					<Row height="20" />
+					<Row>
+						<CheckDataField
+							attr="BORRAR_EMPRESA"
+							selected="no"
+							labelposition="right" />
+					</Row>
+					<Row height="20" />
+				</Column>
+			</Column>
+		</Row>
+		<Row align="center">
+			<Button
+				icon="com/ontimize/gui/images/cancel.png"
+				key="cancelar"
+				text="CANCELAR"
+				tip="CANCELAR" />
+			<Button
+				icon="com/ontimize/gui/images/ok.png"
+				key="aceptar"
+				name="MainButton"
+				text="ACEPTAR"
+				tip="ACEPTAR" />
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<bean id="CompanyService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/company" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyService" />
+	</bean>
+	<bean id="CompanyUserService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/companyUser" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyUserService" />
+	</bean>
+	<bean id="CompanyDelegationService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/companyDelegation" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyDelegationService" />
+	</bean>
+	<bean id="CompanyContactService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/companyContact" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyContactService" />
+	</bean>
+	<bean id="LicenseService" class="com.ontimize.jee.common.hessian.OntimizeHessianProxyFactoryBean" lazy-init="true">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serviceRelativeUrl" value="/mainservices/hessian/license" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ILicenseService" />
+	</bean>
+
+</beans>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="descargas" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" resourceBundle="reports/downloads_bundle" uuid="be290f97-9112-42a6-9fff-b953830deeef">
+	<property name="ireport.zoom" value="1.3310000000000064"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="company" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="cif" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Firma" class="java.lang.String"/>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.reports.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.reports.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.reports.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.reports.ReportSessionUtils.isDemo($P{cif})]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+		IDORIGEN,
+		DSCR AS NOMBRE,	
+		MININI,
+		MAXFIN,		
+		(case when maxfin is null then max_f_descarga_datos when max_f_descarga_datos is null then maxfin else GREATEST (MAXFIN,MAX_F_DESCARGA_DATOS) end) as MAX_F_DESCARGA,
+		TRUNC(SYSDATE - (case when maxfin is null then max_f_descarga_datos when max_f_descarga_datos is null then maxfin else GREATEST (MAXFIN,MAX_F_DESCARGA_DATOS) end)) AS DIAS,		 
+		(case when maxfin is null then max_f_descarga_datos when max_f_descarga_datos is null then maxfin else GREATEST (MAXFIN,MAX_F_DESCARGA_DATOS) end) +(CASE WHEN (TIPO=1)	THEN 28	ELSE 90  END) AS NEXTDES		 
+	FROM
+		(		
+		SELECT 
+			CDCONDUCTORES_EMP.IDCONDUCTOR AS IDORIGEN,
+			CDCONDUCTORES_EMP.APELLIDOS || ', ' || CDCONDUCTORES_EMP.NOMBRE AS DSCR,
+			1 AS TIPO,
+			(SELECT 
+				MAX(CDFICHEROS.FECFIN) 
+			FROM 
+				CDFICHEROS,CDFICHEROS_CONTRATO 
+			WHERE 
+				CDFICHEROS.IDFICHERO   = CDFICHEROS_CONTRATO.IDFICHERO
+				AND CDCONDUCTOR_CONT.CG_CONTRATO = CDFICHEROS_CONTRATO.CG_CONTRATO
+				AND CDCONDUCTORES_EMP.IDCONDUCTOR = CDFICHEROS.IDORIGEN
+				AND CDFICHEROS.TIPO = 'TC') as MAXFIN,
+			(SELECT 
+				MIN(CDFICHEROS.FECINI) 
+			FROM 
+				CDFICHEROS,CDFICHEROS_CONTRATO 
+			WHERE 
+				CDFICHEROS.IDFICHERO   = CDFICHEROS_CONTRATO.IDFICHERO
+				AND CDCONDUCTOR_CONT.CG_CONTRATO = CDFICHEROS_CONTRATO.CG_CONTRATO
+				AND CDCONDUCTORES_EMP.IDCONDUCTOR = CDFICHEROS.IDORIGEN
+				AND CDFICHEROS.TIPO = 'TC') as MININI,
+			(SELECT 
+				MAX(CDFICHEROS.F_DESCARGA_DATOS) 
+			FROM 
+				CDFICHEROS,CDFICHEROS_CONTRATO 
+			WHERE 
+				CDFICHEROS.IDFICHERO   = CDFICHEROS_CONTRATO.IDFICHERO
+				AND CDCONDUCTOR_CONT.CG_CONTRATO = CDFICHEROS_CONTRATO.CG_CONTRATO
+				AND CDCONDUCTORES_EMP.IDCONDUCTOR = CDFICHEROS.IDORIGEN
+				AND CDFICHEROS.TIPO = 'TC') as MAX_F_DESCARGA_DATOS					
+		FROM 
+			CDCONDUCTOR_CONT,
+			CDCONDUCTORES_EMP,
+			CDVEMPRE_REQ_REALES
+		WHERE 
+			CDCONDUCTOR_CONT.F_BAJA  IS NULL
+			AND CDCONDUCTOR_CONT.IDCONDUCTOR        =CDCONDUCTORES_EMP.IDCONDUCTOR
+			AND CDCONDUCTOR_CONT.CG_CONTRATO		=CDVEMPRE_REQ_REALES.NUMREQ
+			AND CDVEMPRE_REQ_REALES.CIF             = CDCONDUCTORES_EMP.CIF
+			AND CDCONDUCTOR_CONT.CG_CONTRATO=$P{numreq}
+			AND CDCONDUCTORES_EMP.DURMIENTE = 'N'
+			AND CDVEMPRE_REQ_REALES.F_BAJA         IS NULL	
+			--Only drivers
+			AND	(CDCONDUCTORES_EMP.type is NULL OR CDCONDUCTORES_EMP.type = 1)		
+			AND CDVEMPRE_REQ_REALES.CIF = $P{cif}					
+		) VDATOS_DESCARGAS
+order by TIPO DESC, NOMBRE,IDORIGEN]]>
+	</queryString>
+	<field name="IDORIGEN" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="MININI" class="java.sql.Timestamp"/>
+	<field name="MAXFIN" class="java.sql.Timestamp"/>
+	<field name="DIAS" class="java.math.BigDecimal"/>
+	<field name="NEXTDES" class="java.sql.Timestamp"/>
+	<variable name="MY_PAGE_COUNT" class="java.lang.Integer" incrementType="Page" calculation="Sum">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="-10" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="-7" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="170" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="270" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{footer}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="121" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-À_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="180" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="347" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="420" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="320" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="320" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="25" y="123" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField>
+				<reportElement x="39" y="102" width="61" height="21" uuid="9149f39c-134e-4417-90eb-cc3925e838c3"/>
+				<textFieldExpression><![CDATA[$R{company}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-3" style="Value" isPrintRepeatedValues="false" x="100" y="102" width="166" height="21" uuid="e62daf86-4beb-4bbd-8693-f491ec481b9f"/>
+				<textFieldExpression><![CDATA[$P{company}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-3" x="266" y="102" width="28" height="21" uuid="7b3a4165-2353-4c1f-9190-bea6a934c219"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{companyCIF} + ":"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-3" style="Value" x="294" y="102" width="196" height="21" uuid="e7efb788-37f6-4592-940a-99b59747b338"/>
+				<textFieldExpression><![CDATA[$P{cif}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField-2" mode="Transparent" x="140" y="47" width="101" height="18" uuid="acf0ad8b-be9c-4607-ab24-8d2394d137bd"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp(System.currentTimeMillis())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-1" style="Title" x="39" y="77" width="451" height="20" uuid="31830764-dbd6-42e4-8e55-5192519b77eb">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$R{labor_report_title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-3" style="Value" x="40" y="47" width="100" height="18" uuid="5763a900-2113-4d9b-a0b9-161b4ecf2d67">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{reportDate} + ":"]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="126">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-7" style="TableTitle" mode="Transparent" x="28" y="4" width="70" height="35" uuid="a16bde16-89ce-4bf8-9545-bba33b39a522"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Origen}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-9" style="TableTitle" mode="Transparent" x="250" y="4" width="65" height="35" uuid="f13c6f2c-8d56-4633-9467-57db53098cae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_inicio_datos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-13" style="TableTitle" mode="Transparent" x="378" y="4" width="69" height="35" uuid="685df55d-7872-456f-84b4-e0a46306943d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_next_des}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-8" style="TableTitle" mode="Transparent" x="98" y="4" width="152" height="35" uuid="d41e385f-e487-4ca5-86a0-a2737a0bcc12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Apellidos_y_nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-10" style="TableTitle" mode="Transparent" x="315" y="4" width="63" height="35" uuid="cb3a5aa4-61c8-48eb-8086-43f50d6fcc2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_fin_datos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-11" style="TableTitle" mode="Transparent" x="447" y="4" width="65" height="35" uuid="7f9ef419-b1d5-4ca6-80e0-c4aab548dcf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Dias_desde_ultima_descarga}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="98" y="0" width="152" height="18" uuid="388e62cc-04c4-4375-9513-ddd209ab7bcb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="447" y="0" width="65" height="18" uuid="18bb4c72-bb70-40cc-90a9-9ed482d96e13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="250" y="0" width="65" height="18" uuid="c2ac8878-4c90-4692-be38-b2424b802b97"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MININI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="315" y="0" width="63" height="18" uuid="a60eae76-749e-437a-ae0a-03f9c72d450e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAXFIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="28" y="0" width="70" height="18" uuid="75f7a520-91ff-47fe-93f9-9cc5077cbef1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDORIGEN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" x="378" y="0" width="69" height="18" uuid="28524892-990a-4dcf-9057-d0dc3fc9bf53"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NEXTDES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="65" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement key="staticText-1" mode="Opaque" x="28" y="-88" width="146" height="50" uuid="e2eda37c-ba6c-4374-994d-4b097448bf8e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[ Firma conforme:]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- <Form entity="EConductoresEmp" buttons="no" title="ELIMINAR_CONDUCTOR" keys="CIF" parentkey="DNI" columns="CIF;NOMB;CG_CONTRATO;FECINI;FECFIN"> -->
+
+    <!-- TODO: IDCONDUCTOR-DNI -->
+  <Form entity="EConductoresEmp" buttons="no" title="ELIMINAR_CONDUCTOR" keys="CIF" parentkey="IDCONDUCTOR" columns="IDCONDUCTOR;CIF;NOMB;CG_CONTRATO;FECINI;FECFIN"> 
+    	<FormHeader standardbuttons="no" />
+	
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row >
+		<Column align="left" expand="yes">
+			<Column expand="no"  align="left">
+			<Row height="20"/>
+				<Row >
+			    	 
+			    	 <!-- TODO: IDCONDUCTOR-DNI -->
+			    	  <TextDataField attr="IDCONDUCTOR" visible="no"/> 
+			    <!-- 	 <TextDataField attr="DNI" visible="no"/> -->
+					<ReferenceExtDataField attr="CIF" labelsize="12" text="EMPRESA" cod="CIF" csize="9" entity="EDfEmp" cols="CIF;NOMB" descriptioncols="NOMB" codsearch="CIF" dim="text" visible="no"/>
+				</Row >
+				<Row >
+					<Column expand="yes" align="center">
+						<ColumnRadioButtonGroup selected="BAJA_CONDUCTOR_CONTRATO" attr="contrato">
+							<RadioButtonDataField attr="BAJA_CONDUCTOR_CONTRATO" labelsize="35" align="left" labelposition="right" returnboolean="yes" />
+							<RadioButtonDataField attr="BORRAR_TODO_CONDUCTOR" labelsize="35" align="left" labelposition="right" returnboolean="yes" />
+							</ColumnRadioButtonGroup >
+					</Column >
+				</Row >
+				<Row height="20"/>
+			</Column >
+		</Column >
+	</Row >
+	<Row align="center">
+			<Button icon="com/ontimize/gui/images/ok.png"     key="aceptar" text="ACEPTAR" tip="ACEPTAR" />
+			<Button icon="com/ontimize/gui/images/cancel.png" key="cancelar" text="CANCELAR" tip="CANCELAR" />
+	</Row >
+</Form>

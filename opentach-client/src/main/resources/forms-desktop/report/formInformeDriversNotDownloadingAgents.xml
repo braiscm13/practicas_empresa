@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformedriversnotdownloading" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO"  required="no" visible="no" />
+	<Row expand="yes">
+		<Column margin="5;5;5;5" expandlast="yes" expand="yes">
+			<Column title="" margin="0;5;5;5" valign="center">
+				<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+			</Column>
+		</Column>
+	</Row>
+	<Row expand="yes">
+	    <Column>
+				<Row expand="yes">
+					<Table entity="EInformeDriversNotDownloading" keys="NOMB;IDCONDUCTOR;NOMBRE;APELLIDOS"  
+					    cols="NOMB;IDCONDUCTOR;NOMBRE;APELLIDOS" 
+						visiblecols="NOMB;IDCONDUCTOR;NOMBRE;APELLIDOS"
+						parentkeys="CIF"/>
+				</Row>
+		</Column>
+	</Row>
+</Form>

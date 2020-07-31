@@ -1,0 +1,20 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>TachoFileRecordService</Name>
+		<Class>com.opentach.server.tachofiles.TachoFileRecordService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>TachoFileContractService</Name>
+		<Class>com.opentach.server.contract.TachoFileContractService</Class>
+	</RemoteReference>
+
+	<RemoteReference>
+		<Name>TGDFileReceptionService</Name>
+		<Class>com.opentach.server.filereception.TGDFileReceptionService</Class>
+		<Param>
+			<Name>finishreceivingimpl</Name>
+			<Value>com.opentach.server.filereception.TGDFileReceptionPostFinishReceivingDelegate</Value>
+		</Param>
+	</RemoteReference>
+	
+</RemoteReferences>

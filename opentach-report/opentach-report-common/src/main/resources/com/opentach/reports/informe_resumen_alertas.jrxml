@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_resumen_actividades" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Key" uuid="1f249c01-4671-4f41-8b06-fb7b0707319a">
+	<property name="ireport.zoom" value="0.7513148009015794"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="86"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false">
+		
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE USOS DE LOS TACÓGRAFOS"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqldeleg" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_hasta" class="java.sql.Timestamp"/>
+	<parameter name="f_desde" class="java.sql.Timestamp"/>
+	<group name="FAKE">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupFooter>
+			<band height="369">
+				<subreport>
+					<reportElement uuid="711ec8bb-0a13-4473-b2b5-275bb80e2272" positionType="Float" x="0" y="0" width="595" height="51"/>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_desde">
+						<subreportParameterExpression><![CDATA[$P{f_desde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="title">
+						<subreportParameterExpression><![CDATA[$P{title}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sqldeleg">
+						<subreportParameterExpression><![CDATA[$P{sqldeleg}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_hasta">
+						<subreportParameterExpression><![CDATA[$P{f_hasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="empresa">
+						<subreportParameterExpression><![CDATA[$P{empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_informe">
+						<subreportParameterExpression><![CDATA[$P{f_informe}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="numreq">
+						<subreportParameterExpression><![CDATA[$P{numreq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "portada.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement uuid="711ec8bb-0a13-4473-b2b5-275bb80e2273" positionType="Float" x="0" y="51" width="595" height="51" isRemoveLineWhenBlank="true"/>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_desde">
+						<subreportParameterExpression><![CDATA[$P{f_desde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="title">
+						<subreportParameterExpression><![CDATA[$P{title}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sqldeleg">
+						<subreportParameterExpression><![CDATA[$P{sqldeleg}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_hasta">
+						<subreportParameterExpression><![CDATA[$P{f_hasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ppagenumber">
+						<subreportParameterExpression><![CDATA[false]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="empresa">
+						<subreportParameterExpression><![CDATA[$P{empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_informe">
+						<subreportParameterExpression><![CDATA[$P{f_informe}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="numreq">
+						<subreportParameterExpression><![CDATA[$P{numreq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pend_descarga.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement uuid="711ec8bb-0a13-4473-b2b5-275bb80e2274" positionType="Float" x="0" y="150" width="595" height="51" isRemoveLineWhenBlank="true"/>
+					<subreportParameter name="f_desde">
+						<subreportParameterExpression><![CDATA[$P{f_desde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="title">
+						<subreportParameterExpression><![CDATA[$P{title}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_hasta">
+						<subreportParameterExpression><![CDATA[$P{f_hasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sqldeleg">
+						<subreportParameterExpression><![CDATA[$P{sqldeleg}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ppagenumber">
+						<subreportParameterExpression><![CDATA[false]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="empresa">
+						<subreportParameterExpression><![CDATA[$P{empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_informe">
+						<subreportParameterExpression><![CDATA[$P{f_informe}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="numreq">
+						<subreportParameterExpression><![CDATA[$P{numreq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "incidentes.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement uuid="711ec8bb-0a13-4473-b2b5-275bb80e2275" positionType="Float" x="0" y="201" width="595" height="51" isRemoveLineWhenBlank="true"/>
+					<subreportParameter name="f_desde">
+						<subreportParameterExpression><![CDATA[$P{f_desde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="title">
+						<subreportParameterExpression><![CDATA[$P{title}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_hasta">
+						<subreportParameterExpression><![CDATA[$P{f_hasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sqldeleg">
+						<subreportParameterExpression><![CDATA[$P{sqldeleg}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ppagenumber">
+						<subreportParameterExpression><![CDATA[false]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="empresa">
+						<subreportParameterExpression><![CDATA[$P{empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_informe">
+						<subreportParameterExpression><![CDATA[$P{f_informe}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="numreq">
+						<subreportParameterExpression><![CDATA[$P{numreq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "infracciones.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement uuid="711ec8bb-0a13-4473-b2b5-275bb80e2275" positionType="Float" x="0" y="252" width="595" height="51" isRemoveLineWhenBlank="true"/>
+					<subreportParameter name="f_desde">
+						<subreportParameterExpression><![CDATA[$P{f_desde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="title">
+						<subreportParameterExpression><![CDATA[$P{title}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_hasta">
+						<subreportParameterExpression><![CDATA[$P{f_hasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sqldeleg">
+						<subreportParameterExpression><![CDATA[$P{sqldeleg}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ppagenumber">
+						<subreportParameterExpression><![CDATA[false]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="empresa">
+						<subreportParameterExpression><![CDATA[$P{empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="f_informe">
+						<subreportParameterExpression><![CDATA[$P{f_informe}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+						<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="numreq">
+						<subreportParameterExpression><![CDATA[$P{numreq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "prox_calibrado.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="810">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}!=1]]></printWhenExpression>
+			<rectangle radius="21">
+				<reportElement uuid="0c7eaf8c-ee03-4e3d-a635-e64a1ea93d2d" key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="40" y="20" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="abc31bce-15a6-4a4c-a8c4-c038926486d5" key="rectangle" x="39" y="719" width="522" height="90" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="27cebfce-55b8-4b2c-99cd-36fa5969e965" key="rectangle" x="46" y="688" width="511" height="79"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement uuid="22851b78-cfc4-47d6-81cf-5f190534b0e3" key="ellipse" x="135" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<line>
+				<reportElement uuid="8a526b01-5c6f-41dc-9c26-2d6b49e239ed" key="line-11" x="53" y="119" width="495" height="1" forecolor="#34679A"/>
+			</line>
+			<ellipse>
+				<reportElement uuid="c129b802-619f-4f6f-9e4b-28af85d12cbb" key="ellipse" x="173" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<staticText>
+				<reportElement uuid="aa2adbfd-18c7-468e-bf57-6b243f5be802" key="staticText-1" x="58" y="748" width="283" height="26"/>
+				<textElement/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement uuid="ba6499e7-4f42-49e0-af80-3a8d0191f7fd" key="ellipse" x="154" y="46" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="31ec9506-85cb-4359-994e-ec4e6977ac9c" key="textField-1" x="195" y="40" width="336" height="48"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="5465c143-87ce-4a4d-8a3c-dcdc25307d26" key="textField" x="491" y="774" width="45" height="18" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="c6334383-2d80-44f4-abf1-5637b545d8e1" key="image-3" x="406" y="751" width="63" height="22"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="7744acd5-e462-430e-818e-b6a9b4830bf8" key="image-2" x="60" y="32" width="63" height="55"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="cf6cfe16-6908-4480-992f-e016f9e6b8fa" key="textField-5" x="378" y="102" width="48" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="ac236914-f23a-40df-8273-fd0c2552f1a4" key="textField-4" x="378" y="88" width="90" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="7343700d-11ac-43b2-9ea0-86c7a5550fca" key="textField-2" x="466" y="88" width="62" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="38052a97-e719-4739-a892-38db2006846f" key="textField-3" x="424" y="102" width="300" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+</jasperReport>

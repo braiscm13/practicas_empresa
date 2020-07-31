@@ -1,0 +1,6 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>TaskAttachmentService</Name>
+		<Class>com.opentach.server.tasks.services.TaskAtachmentFilesService</Class>
+	</RemoteReference>
+</RemoteReferences>

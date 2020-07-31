@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<Form buttons="no" customfocus="yes" status="no" margin="0;0;0;0" scroll="no">
+	<Column attr="backpanel">
+		<CardPanel attr="AppMode.cardPanel" >
+			<!-- This panel is shown in APP_MODE "LAUNCHPAD"  and  "COMBINED" -->
+			<Column attr="AppMode.Launchpad" expand="yes" >
+				<Column expandlast="no" >
+					<Row attr="launchpadHeader" height="60" valign="center" >
+						<Column expand="yes"/>
+						<Label expand="yes" icon="com/opentach/client/rsc/OpentachLaunchPad.png" valign="center"/>
+						<Column expand="yes"/>
+					</Row>
+					<!-- <Label expand="yes" icon="com/opentach/client/rsc/opentach.png" /> -->
+	
+					<LaunchPad attr="launchpad" menufile="menu-desktop/launchpad.xml" listener="com.opentach.client.LauchpadMouseListener"/>
+					
+					<Row attr="launchpadFooter" uiname="launchpadmenubar">
+						<Column expand="no" valign="center">
+							<Row valign="center">
+								<Label icon="com/opentach/client/rsc/assistant.png"/>
+								<Column>
+									<Label align="center" fontcolor="#ffffff" font="Arial-BOLD-12" text="TECH_SUPPORT" margin="-1;0;-3;0"/>
+									<Label align="center" fontcolor="#ffffff" font="Arial-PLAIN-11" text="SEVEN_DAYS" margin="-3;0;-2;0" />
+								</Column>
+								<Label uiname="PhoneNumber" valign="center" font="Arial-BOLD-18" text="672 049 022" />
+							</Row>
+						</Column>
+						<Column expand="yes"/>
+						<Column expand="no" valign="center" >
+							<Row valign="center">
+								<Button key="bpref" tip="Preferences" icon="com/opentach/client/rsc/preferences.png" name="PreferencesButton" listener="com.opentach.client.modules.admin.listeners.PreferenceActionSelectionListener" menu="PREFERENCIAS" />
+								<Column expand="no" width="2"/>
+								<Button key="binfo" tip="Information"  icon="com/opentach/client/rsc/information.png" name="PreferencesButton" listener="com.opentach.client.modules.admin.listeners.PreferenceActionSelectionListener" menu="Ayuda" />
+							</Row>
+						</Column>					
+					</Row>
+				</Column>	
+			</Column>
+			<!-- This panel is shown in APP_MODE "NAVIGATOR" -->
+			<Column attr="AppMode.Navigator" expand="yes" >
+				<!-- VERSIÓN PRIMAFRIO -->
+				<Column> 
+				    <Row margin="10;0;10;0">
+				   	 	<Column/>
+				   	 <!-- 	<Label expand="no" icon="com/opentach/client/rsc/pf.png" width="210" height="40" attr="INFO4"/>  -->
+					</Row> 
+				</Column> 
+				<!-- FIN VERSIÓN PRIMAFRIO -->
+				<Scroll >
+					<com.opentach.client.comp.OpentachNavigatorMenuGUI opaque="no" attr="menu" src="menu-desktop/NavigationMenu.xml" /> 
+				</Scroll>
+		 	</Column> 
+	 	</CardPanel>
+	</Column>
+</Form>

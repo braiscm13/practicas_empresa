@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="datostecnicosAvanzado_subreport1" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ae8537d3-3a65-4326-b3c5-bb28de0bd0ad">
+	<property name="ireport.zoom" value="0.8264462809917359"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select
+'1' as NOMBRE_ESTABLECIMIENTO,
+'1' as DIR_ESTABLECIMIENTO,
+'1' as NUM_TARJETA,
+'1' as F_EXPIRA_TARJETA,
+'1' as NUM_IDENT_VEHICULO,
+'1' as NACIONALIDAD_VEHICULO,
+'1' as VEHICLEREGISTRATIONUMBER,
+'1' as COEFIC_VEHICULO,
+'1' as CONSTANTE_CONTROL,
+'1' as DIAMETRO_NEUMATICOS,
+'1' as DIM_NEUMATICOS,
+'1' as VELOCIDAD_AUTO,
+'1' as OLD_ODOMETRO,
+'1' as NEW_ODOMETRO,
+'1' as OLD_VALOR_HORA,
+'1' as NEW_VALOR_HORA,
+'1' as F_NEXT_CALIBRACION
+from cduso_tarjeta where fec_ins > '21/04/2013']]>
+	</queryString>
+	<field name="NOMBRE_ESTABLECIMIENTO" class="java.lang.String"/>
+	<field name="DIR_ESTABLECIMIENTO" class="java.lang.String"/>
+	<field name="NUM_TARJETA" class="java.lang.String"/>
+	<field name="F_EXPIRA_TARJETA" class="java.lang.String"/>
+	<field name="NUM_IDENT_VEHICULO" class="java.lang.String"/>
+	<field name="NACIONALIDAD_VEHICULO" class="java.lang.String"/>
+	<field name="VEHICLEREGISTRATIONUMBER" class="java.lang.String"/>
+	<field name="COEFIC_VEHICULO" class="java.lang.String"/>
+	<field name="CONSTANTE_CONTROL" class="java.lang.String"/>
+	<field name="DIAMETRO_NEUMATICOS" class="java.lang.String"/>
+	<field name="DIM_NEUMATICOS" class="java.lang.String"/>
+	<field name="VELOCIDAD_AUTO" class="java.lang.String"/>
+	<field name="OLD_ODOMETRO" class="java.lang.String"/>
+	<field name="NEW_ODOMETRO" class="java.lang.String"/>
+	<field name="OLD_VALOR_HORA" class="java.lang.String"/>
+	<field name="NEW_VALOR_HORA" class="java.lang.String"/>
+	<field name="F_NEXT_CALIBRACION" class="java.lang.String"/>
+	<group name="numreq">
+		<groupExpression><![CDATA[$F{DIM_NEUMATICOS}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b22fe55b-f44e-4b13-86cc-b6ae724b1570" x="296" y="20" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[holaaaa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b22fe55b-f44e-4b13-86cc-b6ae724b1570" x="286" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[holaaaa]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="64" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

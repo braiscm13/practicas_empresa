@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-mailmanager-admin" >
+	
+	<Client package="">
+		<!-- MAIL MANAGER -->  
+		<TabbedFormManager id="managerMailOutboxAdmin" showframe="yes" delayedload="yes" form="forms-mailmanageradmin/formMailOutboxAdmin.form" imanager="com.opentach.client.mailmanageradmin.im.IMMailOutbox">
+			<InteractionManager form="formMailSentAdmin.form" class="com.utilmize.client.fim.UBasicFIM" />
+		</TabbedFormManager>
+	</Client>
+</OntimizeModule>

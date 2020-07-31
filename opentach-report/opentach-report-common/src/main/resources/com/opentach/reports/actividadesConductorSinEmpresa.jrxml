@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="actividadesporconductor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="784ef363-a614-450a-a4bc-2c24a3ed7eb2">
+	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2016"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Percent_por_dia" uuid="08507ce9-5737-4d8f-9cbd-b0cd03aa4f1f">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="pf_inicio" class="java.util.Date"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+CDVINFORM_ACTIV_PERIOD_TEMP.DNI,
+DSCR_ACT,
+SUM (MINUTOS) AS TIEMPO_TOTAL,
+SUM (MINUTOS) / A.T_TOTAL AS PORC_TIEMPO,
+AVG (MINUTOS) AS TIEMPO_MEDIO,
+MAX (MINUTOS) AS TIEMPO_MÁXIMO
+FROM CDVINFORM_ACTIV_PERIOD_TEMP,
+(SELECT DNI, SUM (MINUTOS) AS T_TOTAL FROM CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+to_char(trunc(FEC_COMIENZO),'dd/mm/yyyy hh24:mi:ss') = to_char(trunc($P{pf_inicio}),'dd/mm/yyyy hh24:mi:ss')   AND CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor}
+GROUP BY DNI) A
+WHERE
+ $P!{pDSCR_ACT}
+to_char(trunc(FEC_COMIENZO),'dd/mm/yyyy hh24:mi:ss') = to_char(trunc($P{pf_inicio}),'dd/mm/yyyy hh24:mi:ss') AND CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor}
+GROUP BY CDVINFORM_ACTIV_PERIOD_TEMP.DNI, DSCR_ACT,A.T_TOTAL]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="TIEMPO_TOTAL" class="java.math.BigDecimal"/>
+		<field name="PORC_TIEMPO" class="java.math.BigDecimal"/>
+		<field name="TIEMPO_MEDIO" class="java.math.BigDecimal"/>
+		<field name="TIEMPO_MÁXIMO" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="datasetDiarios" uuid="f6143c11-314b-4d92-9759-e7c67e5fc8a1">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="dia" class="java.util.Date"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DSCR_ACT ,
+SUM(NVL(MINUTOS,0)) AS MINUTOS
+FROM
+CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+DSCR_ACT IS NOT NULL AND
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} AND
+to_char(trunc(FEC_COMIENZO),'dd/mm/yyyy hh24:mi:ss') = to_char(trunc($P{dia}),'dd/mm/yyyy hh24:mi:ss')
+group by(DSCR_ACT)
+ORDER BY DSCR_ACT]]>
+		</queryString>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="datasetSemana" uuid="6a3b3c1a-b1d0-4094-b033-54636bbedb30">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+ DSCR_ACT ,
+ SUM(NVL(MINUTOS,0)) AS MINUTOS
+FROM
+CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+DSCR_ACT IS NOT NULL AND
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} AND
+SEMANA = $P{semana} AND ANHO = $P{anyo}
+group by DSCR_ACT
+ORDER BY DSCR_ACT]]>
+		</queryString>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="datasetMes" uuid="bb4b5ac3-0edb-4d92-bfba-7a14abbbca5a">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+DSCR_ACT ,
+SUM(NVL(MINUTOS,0)) AS MINUTOS
+FROM
+CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+DSCR_ACT IS NOT NULL AND
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} AND
+mes = $P{mes} AND ANHO = $P{anyo}
+GROUP BY DSCR_ACT
+ORDER BY DSCR_ACT]]>
+		</queryString>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="datasetAnyo" uuid="fe6cb6aa-19f1-4b35-be7b-b3f6bfa02ffa">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+ DSCR_ACT ,
+ SUM(NVL(MINUTOS,0)) AS MINUTOS
+FROM
+CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+DSCR_ACT IS NOT NULL AND
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} AND ANHO = $P{anyo}
+GROUP BY DSCR_ACT
+ORDER BY DSCR_ACT]]>
+		</queryString>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Percent_por_semana" uuid="e1cc0a9f-0621-4055-9f5f-bfd32577571a">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+CDVINFORM_ACTIV_PERIOD_TEMP.DNI,
+DSCR_ACT,
+SUM (MINUTOS) AS TIEMPO_TOTAL,
+SUM (MINUTOS) / A.T_TOTAL AS PORC_TIEMPO,
+AVG (MINUTOS) AS TIEMPO_MEDIO,
+MAX (MINUTOS) AS TIEMPO_MÁXIMO
+FROM CDVINFORM_ACTIV_PERIOD_TEMP,
+(SELECT DNI, SUM (MINUTOS) AS T_TOTAL FROM CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and semana =  $P{semana} and anho = $P{anyo}
+GROUP BY DNI) A
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and semana =  $P{semana} and anho = $P{anyo}
+GROUP BY CDVINFORM_ACTIV_PERIOD_TEMP.DNI, DSCR_ACT,A.T_TOTAL]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="TIEMPO_TOTAL" class="java.lang.Number"/>
+		<field name="PORC_TIEMPO" class="java.lang.Number"/>
+		<field name="TIEMPO_MEDIO" class="java.lang.Number"/>
+		<field name="TIEMPO_MÁXIMO" class="java.lang.Number"/>
+	</subDataset>
+	<subDataset name="Percent_por_mes" uuid="21c9110c-620a-47b7-8cf2-bbb2877969dc">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+CDVINFORM_ACTIV_PERIOD_TEMP.DNI,
+DSCR_ACT,
+SUM (MINUTOS) AS TIEMPO_TOTAL,
+SUM (MINUTOS) / A.T_TOTAL AS PORC_TIEMPO,
+AVG (MINUTOS) AS TIEMPO_MEDIO,
+MAX (MINUTOS) AS TIEMPO_MÁXIMO
+FROM CDVINFORM_ACTIV_PERIOD_TEMP,
+(SELECT DNI, SUM (MINUTOS) AS T_TOTAL FROM CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and mes =  $P{mes} and anho = $P{anyo}
+GROUP BY DNI) A
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and mes =  $P{mes} and anho = $P{anyo}
+GROUP BY CDVINFORM_ACTIV_PERIOD_TEMP.DNI, DSCR_ACT,A.T_TOTAL]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="TIEMPO_TOTAL" class="java.lang.Number"/>
+		<field name="PORC_TIEMPO" class="java.lang.Number"/>
+		<field name="TIEMPO_MEDIO" class="java.lang.Number"/>
+		<field name="TIEMPO_MÁXIMO" class="java.lang.Number"/>
+	</subDataset>
+	<subDataset name="Percent_por_anyo" uuid="296d13d6-228e-4f72-9f48-d97ee38214b6">
+		<parameter name="pnumreq" class="java.lang.String"/>
+		<parameter name="pidconductor" class="java.lang.String"/>
+		<parameter name="anyo" class="java.lang.String"/>
+		<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+CDVINFORM_ACTIV_PERIOD_TEMP.DNI,
+DSCR_ACT,
+SUM (MINUTOS) AS TIEMPO_TOTAL,
+SUM (MINUTOS) / A.T_TOTAL AS PORC_TIEMPO,
+AVG (MINUTOS) AS TIEMPO_MEDIO,
+MAX (MINUTOS) AS TIEMPO_MÁXIMO
+FROM CDVINFORM_ACTIV_PERIOD_TEMP,
+(SELECT DNI, SUM (MINUTOS) AS T_TOTAL FROM CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and anho = $P{anyo}
+GROUP BY DNI) A
+WHERE
+ $P!{pDSCR_ACT}
+CG_CONTRATO = $P{pnumreq}  AND IDCONDUCTOR = $P{pidconductor} and anho = $P{anyo}
+GROUP BY CDVINFORM_ACTIV_PERIOD_TEMP.DNI, DSCR_ACT,A.T_TOTAL]]>
+		</queryString>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="DSCR_ACT" class="java.lang.String"/>
+		<field name="TIEMPO_TOTAL" class="java.lang.Number"/>
+		<field name="PORC_TIEMPO" class="java.lang.Number"/>
+		<field name="TIEMPO_MEDIO" class="java.lang.Number"/>
+		<field name="TIEMPO_MÁXIMO" class="java.lang.Number"/>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000  - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 - 1576800000 )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" and idconductor = 'E10593470S0000'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DIA" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_MES" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_SEMANA" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pDSCR_ACT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pDSCR_FILTER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numtarj" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" and NUM_TARJETA = 'E10593470S0000'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_GRAFICOS" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_RESUME" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DAYDATE,TIPO_ORDEN,NUMREQ , IDCONDUCTOR , DNI , NOMBRE , APELLIDOS , TPACTIVIDAD , FEC_COMIENZO ,
+FEC_FIN , ESTADO_TRJ_RANURA_DSCR , FUERA_AMBITO , TRANS_TREN , ORIGEN_DSCR , REGIMEN_DSCR ,
+USUARIO_ALTA , F_ALTA , USUARIO_MODIF , F_MODIF , MATRICULA , DIA , RANURA_DSCR , DSCR_ACT ,
+NVL(MINUTOS,0) AS MINUTOS , CIF , NOMB , IDINSPECCION , INSP_FECINI , INSP_FECFIN , PROCEDENCIA , SEMANA , MES ,
+MES2 , DIA_SEM , HORA , ANHO , HORAS_COND , INI_SEMANA , FIN_SEMANA , DSCRTIPO_COMIENZO , DSCRTIPO_FIN ,
+RANURA, DIA_ANUAL
+FROM
+CDVINFORM_ACTIV_PERIOD_TEMP
+WHERE
+$P!{pDSCR_FILTER}
+DSCR_ACT IS NOT NULL AND
+FEC_COMIENZO >= $P{f_inicio}  AND FEC_COMIENZO <= $P{f_fin} AND
+CG_CONTRATO = $P{numreq} $P!{idconductor} $P!{numtarj}
+ORDER BY idconductor,anho,mes,dia,tipo_orden,fec_comienzo]]>
+	</queryString>
+	<field name="DAYDATE" class="java.sql.Timestamp"/>
+	<field name="TIPO_ORDEN" class="java.math.BigDecimal"/>
+	<field name="NUMREQ" class="java.lang.String"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<field name="TPACTIVIDAD" class="java.math.BigDecimal"/>
+	<field name="FEC_COMIENZO" class="java.sql.Timestamp"/>
+	<field name="FEC_FIN" class="java.sql.Timestamp"/>
+	<field name="ESTADO_TRJ_RANURA_DSCR" class="java.lang.String"/>
+	<field name="FUERA_AMBITO" class="java.lang.String"/>
+	<field name="TRANS_TREN" class="java.lang.String"/>
+	<field name="ORIGEN_DSCR" class="java.lang.String"/>
+	<field name="REGIMEN_DSCR" class="java.lang.String"/>
+	<field name="USUARIO_ALTA" class="java.lang.String"/>
+	<field name="F_ALTA" class="java.sql.Timestamp"/>
+	<field name="USUARIO_MODIF" class="java.lang.String"/>
+	<field name="F_MODIF" class="java.sql.Timestamp"/>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="DIA" class="java.lang.String"/>
+	<field name="RANURA_DSCR" class="java.lang.String"/>
+	<field name="DSCR_ACT" class="java.lang.String"/>
+	<field name="MINUTOS" class="java.math.BigDecimal"/>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="NOMB" class="java.lang.String"/>
+	<field name="IDINSPECCION" class="java.lang.String"/>
+	<field name="INSP_FECINI" class="java.sql.Timestamp"/>
+	<field name="INSP_FECFIN" class="java.sql.Timestamp"/>
+	<field name="PROCEDENCIA" class="java.lang.String"/>
+	<field name="SEMANA" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="MES2" class="java.lang.String"/>
+	<field name="DIA_SEM" class="java.lang.String"/>
+	<field name="HORA" class="java.lang.String"/>
+	<field name="ANHO" class="java.lang.String"/>
+	<field name="HORAS_COND" class="java.math.BigDecimal"/>
+	<field name="INI_SEMANA" class="java.lang.String"/>
+	<field name="FIN_SEMANA" class="java.lang.String"/>
+	<field name="DSCRTIPO_COMIENZO" class="java.lang.String"/>
+	<field name="DSCRTIPO_FIN" class="java.lang.String"/>
+	<field name="RANURA" class="java.lang.String"/>
+	<field name="DIA_ANUAL" class="java.lang.String"/>
+	<group name="dni" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{IDCONDUCTOR}]]></groupExpression>
+		<groupHeader>
+			<band height="79">
+				<rectangle>
+					<reportElement positionType="Float" x="20" y="14" width="493" height="56" forecolor="#34679A" uuid="e689712b-dfd6-4e96-b3cf-329ca56d95ee"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="323" y="48" width="99" height="20" uuid="35c2db22-56ce-4225-89fa-4befe87bc972"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{NUM_TARJ_COND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" mode="Opaque" x="28" y="2" width="99" height="20" forecolor="#34679A" backcolor="#FFFFFF" uuid="9554144e-3988-45ee-95c2-c905c05c131a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="323" y="24" width="67" height="20" uuid="f888e5e4-86a9-409a-8e7f-29c70a021b0c"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{DNI}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="24" y="24" width="87" height="20" uuid="1c5be634-3516-4a8f-b695-edc4613c4349"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="24" y="48" width="87" height="20" uuid="21c89928-680e-4848-92f4-eccefffed89d"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{APELLIDOS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="114" y="48" width="192" height="20" uuid="9deb24f9-ef98-4b5d-9036-55b90775d5ab"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{APELLIDOS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="115" y="24" width="192" height="20" uuid="5133d106-ddb6-4836-83fe-f98087dd7aac"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="427" y="24" width="82" height="20" uuid="6b087213-2fab-4ee9-b314-f2ac0bcfe789"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="428" y="48" width="79" height="20" uuid="788ba8ae-ef45-4204-b06d-7ca681c53c67"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{ESTADO_TRJ_RANURA_DSCR}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="561">
+				<printWhenExpression><![CDATA[$P{SHOW_RESUME}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="10" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="1d15fe4e-fb07-42a5-b7d2-e8e2445ea0b3"/>
+				</rectangle>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="31" y="10" width="191" height="20" forecolor="#000000" uuid="bce90035-949c-4bf4-8190-20122042d925"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{RESUMEN_DATOS_CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="234" y="10" width="82" height="20" uuid="d53c66d5-f425-460a-9a12-970ef0c856a4"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<bar3DChart>
+					<chart>
+						<reportElement positionType="Float" x="19" y="380" width="494" height="177" isRemoveLineWhenBlank="true" uuid="3250f1f7-7a52-4439-85ce-4569bc29fbca"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DESGLOSE_MES}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{DSCR_ACT}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{MES}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS_COND}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font size="8"/>
+								</labelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<bar3DChart>
+					<chart>
+						<reportElement positionType="Float" x="22" y="206" width="489" height="160" isRemoveLineWhenBlank="true" uuid="4610b2b5-058c-4929-b4bc-59bae323e109"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{PERIODO_SEMANA}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{DSCR_ACT}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{SEMANA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{HORAS_COND}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot>
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font size="8"/>
+								</labelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+				<pie3DChart>
+					<chart>
+						<reportElement positionType="Float" x="163" y="39" width="200" height="159" isRemoveLineWhenBlank="true" uuid="fab5d745-9624-4db5-b0da-b3b1d1c26800"/>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DURACION_TIPO_ACTIV}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset resetType="Group" resetGroup="dni"/>
+						<keyExpression><![CDATA[$F{DSCR_ACT}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					</pie3DPlot>
+				</pie3DChart>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumenanual" minHeightToStartNewPage="285">
+		<groupExpression><![CDATA[$F{ANHO}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="3" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="f2ada71a-bb34-4974-b25b-47a4f71cf3dc">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="30" y="4" width="43" height="18" forecolor="#000000" uuid="034a7045-b815-478e-b666-d7f305387e6e">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{ANYO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="78" y="4" width="100" height="18" uuid="589e9901-81f1-449b-803f-1ce3b5b074c0">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{ANHO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="285">
+				<printWhenExpression><![CDATA[$P{SHOW_RESUME}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="6" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="8db5064f-fbc9-435a-aa87-e7fb1e1cf3e0"/>
+				</rectangle>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="30" y="6" width="135" height="20" forecolor="#000000" uuid="97627d2d-4eab-4e9c-adf0-0772d838254e"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{RESUMEN_ANYO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="179" y="6" width="100" height="20" uuid="21000c04-b843-4a27-9d25-4981ecfb1ca5"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{ANHO}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="true">
+						<reportElement positionType="Float" x="163" y="109" width="200" height="171" isRemoveLineWhenBlank="true" uuid="a8a027a6-a1ad-458e-8682-d7a768f4fd81">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DURACION_TIPO_ACTIV}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="datasetAnyo" uuid="19a18ffc-6508-443b-9d50-df3e4cb0a0c6">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pnumreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pidconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anyo">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pDSCR_ACT">
+									<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{DSCR_ACT}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					</pie3DPlot>
+				</pie3DChart>
+				<componentElement>
+					<reportElement key="table 8" style="table 8" positionType="Float" x="31" y="30" width="487" height="73" isRemoveLineWhenBlank="true" uuid="a59312fe-70f3-4b5a-a73d-201cc7db3873"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_anyo" uuid="487e0463-6c1f-4cd4-a0d5-d43b94425aa4">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anyo">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pDSCR_ACT">
+								<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="151" uuid="1d177655-441e-4792-b233-ad46b6ebe572">
+							<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="11" y="0" width="140" height="30" uuid="f4e52b2e-4d81-442a-b569-e07a0490d2bf"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="11" y="0" width="140" height="20" uuid="a4cf272a-8549-4362-989f-09439168e5de"/>
+									<textElement verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{DSCR_ACT})!=null ? $P{REPORT_RESOURCE_BUNDLE}.getString($F{DSCR_ACT}) : $F{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="62" uuid="c8d6f364-f3ea-4e89-899e-ce2c88dc4f9f">
+							<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="62" height="30" uuid="63bd05bf-b56d-4c7b-bc16-8e66ba1e6ef4"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_TOTAL}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
+								<textField pattern="###0">
+									<reportElement x="0" y="0" width="61" height="20" uuid="17597cd0-c841-484d-a519-6a0d5e461f7e"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_TOTAL}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="61" uuid="8f5c2915-0bae-4f89-99f7-ce55cae94a03">
+							<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="61" height="30" uuid="ec6f4d8e-331d-4a03-94d1-b191eb6113c5"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="61" height="20" uuid="e5758c50-1455-4c7b-948c-6395289eb700"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="61" uuid="08443fd5-460d-4089-b506-068447c99bf8">
+							<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="61" height="30" uuid="3ca143d7-0459-493e-8f2a-e3c6f8f06fb0"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MEDIO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="61" height="20" uuid="afc104a3-70ad-4e8a-b441-85e7f62ff0e8"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MEDIO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="63" uuid="c7256446-d4c4-4ebe-b2e1-462def967c39">
+							<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="63" height="30" uuid="9d35b004-e6d7-4eb0-99d8-11e407b6b8e3"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MAX}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="61" height="20" uuid="f1c66550-80b3-4f0e-85b0-ee1a6ca95000"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MÁXIMO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumenmensual" minHeightToStartNewPage="272">
+		<groupExpression><![CDATA[$F{MES}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<printWhenExpression><![CDATA[$P{SHOW_MES}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="3" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="23b76da9-2376-4fef-abd5-df72caa432da">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="30" y="4" width="43" height="18" forecolor="#000000" uuid="a2f615fc-5e4a-498f-b21b-974cfc268788">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{MES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="78" y="4" width="100" height="18" uuid="c8c640ba-f57f-4f20-a642-a984806673e9">
+						<printWhenExpression><![CDATA[$P{SHOW_MES} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="272">
+				<printWhenExpression><![CDATA[$P{SHOW_MES}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="0" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="81311251-e57d-4484-a1b6-2cc4f57f9ebb"/>
+				</rectangle>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="31" y="0" width="152" height="20" forecolor="#000000" uuid="510e735f-05e4-40f7-9d03-bdc8cafcd677"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{RESUMEN_MES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="183" y="0" width="100" height="20" uuid="4d379124-a82c-4fe0-8cbd-e60972e76cd8"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{MES2}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="true">
+						<reportElement positionType="Float" x="165" y="110" width="200" height="155" isRemoveLineWhenBlank="true" uuid="359fdcd1-6bba-431b-893a-eabd19b0c1c0">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DURACION_TIPO_ACTIV}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="datasetMes" uuid="0f83add1-c42d-4bdd-86e0-1bbc7e216bff">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pnumreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pidconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anyo">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="mes">
+									<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pDSCR_ACT">
+									<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{DSCR_ACT}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					</pie3DPlot>
+				</pie3DChart>
+				<componentElement>
+					<reportElement key="table 7" style="table 7" positionType="Float" x="31" y="32" width="476" height="71" isRemoveLineWhenBlank="true" uuid="1fbd7ee0-0295-4c43-b8fd-0c98c8baf271"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_mes" uuid="ea1598e9-735f-48a6-81f2-f2870b4c91bc">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="mes">
+								<datasetParameterExpression><![CDATA[$F{MES}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anyo">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pDSCR_ACT">
+								<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="136" uuid="eec8347f-854f-4f71-b15b-4fddecfd18d5">
+							<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="13" y="0" width="123" height="30" uuid="f0474bce-f024-42b1-8fef-8225a605771f"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 7_TD" height="21" rowSpan="1">
+								<textField>
+									<reportElement x="13" y="0" width="123" height="20" uuid="698e07fa-1302-40c2-abe8-146de4815a3a"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67" uuid="5a31a202-c288-4b20-8c62-6302974812ea">
+							<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="67" height="30" uuid="b9deda8c-e9ea-411a-974e-36a2c7c445f2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_TOTAL}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 7_TD" height="21" rowSpan="1">
+								<textField pattern="###0">
+									<reportElement x="0" y="0" width="67" height="20" uuid="191b4285-d994-44d9-9086-db2881bc1ecb"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font isBold="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_TOTAL}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="66" uuid="b8972076-478d-4405-bdc6-6612e259ed0c">
+							<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="66" height="30" uuid="f2d30783-b7ce-4963-88c6-22a275ece8f1"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 7_TD" height="21" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="66" height="20" uuid="01e06663-6020-4b33-a3b8-618216cdb260"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font isBold="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67" uuid="9585f2bc-265b-4d59-9d91-7e7fdbb8fd34">
+							<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="67" height="30" uuid="af4efb13-3448-480c-bab4-8d4f7c03b3e7"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MEDIO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 7_TD" height="21" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="67" height="20" uuid="6861cca3-5765-4d0d-8e37-96a786aff112"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font isBold="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MÁXIMO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="68" uuid="b43dba84-46e4-4d9e-b764-869333b78aa3">
+							<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="68" height="30" uuid="c88825a3-b61a-4b47-af29-32e76f40ed1f"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MAX}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 7_TD" height="21" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="68" height="20" uuid="d01d76a7-5a3d-4d47-babb-9df725d96174"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font isBold="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MEDIO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumensemanal" minHeightToStartNewPage="265">
+		<groupExpression><![CDATA[$F{SEMANA}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<printWhenExpression><![CDATA[$P{SHOW_SEMANA}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="3" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="7875f882-5e9c-43b6-af34-392bba765067">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="30" y="4" width="61" height="18" forecolor="#000000" uuid="1e918550-cbc1-404e-a7b7-d7476e4e2c17">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="127" y="4" width="66" height="18" forecolor="#000000" uuid="23689f65-8248-4326-b3b1-301e506d2a6a">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{DESDE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="276" y="4" width="65" height="18" forecolor="#000000" uuid="49b3333d-7002-4cad-9a1d-98b6f5c5e0c3">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{HASTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="96" y="4" width="26" height="18" uuid="5bfc0b04-6903-4a64-882d-1c9319a66739"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Value" positionType="Float" x="194" y="4" width="100" height="18" uuid="8f5b6d98-b429-4b64-b321-1dcf9a541bd5">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{INI_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Value" positionType="Float" x="347" y="4" width="100" height="18" uuid="4b69e823-a0f5-4fa9-9a8d-ffc83c615452">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{FIN_SEMANA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="265" splitType="Prevent">
+				<printWhenExpression><![CDATA[$P{SHOW_SEMANA}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="1" width="486" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="56d15e8f-e51d-4945-a68c-9a62fc20ba6b">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="22" y="1" width="172" height="20" forecolor="#000000" uuid="bd81392c-7e23-4ff3-8b2a-569f4cdb3a01">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font isStrikeThrough="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RES_SEMANA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="203" y="1" width="92" height="20" uuid="aba62ac7-cbd1-4c07-aa8d-c8b80009d60e">
+						<printWhenExpression><![CDATA[$P{SHOW_SEMANA} == true]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{SEMANA}]]></textFieldExpression>
+				</textField>
+				<pie3DChart>
+					<chart isShowLegend="true">
+						<reportElement positionType="Float" x="168" y="111" width="200" height="149" isRemoveLineWhenBlank="true" uuid="075e0bad-9b13-4263-817b-244d93f8091f">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DURACION_TIPO_ACTIV}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="datasetSemana" uuid="594f4352-1a64-4276-8920-3bf1c3cc15ce">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pnumreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pidconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="anyo">
+									<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="semana">
+									<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pDSCR_ACT">
+									<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{DSCR_ACT}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF">
+							<font size="8"/>
+						</itemLabel>
+					</pie3DPlot>
+				</pie3DChart>
+				<componentElement>
+					<reportElement key="table 6" style="table 6" positionType="Float" x="28" y="24" width="479" height="83" isRemoveLineWhenBlank="true" uuid="6b94e5cd-23f7-4d52-b3c4-4e2ef76a8b66"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_semana" uuid="5ab3f1e6-3939-48ba-8710-da079b0c4cfb">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="semana">
+								<datasetParameterExpression><![CDATA[$F{SEMANA}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="anyo">
+								<datasetParameterExpression><![CDATA[$F{ANHO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pDSCR_ACT">
+								<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="118" uuid="603b32c2-5677-489b-ade5-baed8575057e">
+							<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="10" y="0" width="108" height="30" uuid="ad13e73f-20cb-4512-baa4-f1fca591c76c"/>
+									<textElement verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="21" rowSpan="1">
+								<textField>
+									<reportElement x="10" y="0" width="108" height="21" uuid="ae16f23d-c539-4854-87f4-c92603b57fde"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="58" uuid="8ed1fa59-523e-4131-b07a-6e8f76a068bb">
+							<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" uuid="3ad12f52-19e8-4045-9eff-c3b0c4d6953f"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_TOTAL}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="21" rowSpan="1">
+								<textField pattern="###0">
+									<reportElement x="0" y="0" width="58" height="20" uuid="5c742c5d-41db-4668-95dd-6ef8baf347af"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_TOTAL}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="58" uuid="04b35178-9f00-4d06-b7d9-6e37621af02d">
+							<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" uuid="5587b51d-a080-4fee-82af-b4fe916fa998"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="21" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="58" height="20" uuid="728a0018-75d3-433f-9954-58ff8e85f8ed"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="58" uuid="c1ba8a80-ec36-44f8-96b9-76fb45959ad9">
+							<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="58" height="30" uuid="e9ffbbeb-6875-40c0-a7c1-f6f2bed1f1a9"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MEDIO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="21" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="58" height="20" uuid="087a1462-3abc-461e-9cad-1c65a3e8b71a"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MEDIO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="59" uuid="ac85b7e5-04f2-424c-8bc2-f539f87453f8">
+							<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" uuid="aab529eb-252e-4400-b85e-3b1a15548c01"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MAX}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 6_TD" height="21" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="58" height="20" uuid="055e04ed-1ded-4edb-9234-d3e932d37a59"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MÁXIMO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="resumendiario" minHeightToStartNewPage="88">
+		<groupExpression><![CDATA[$F{ANHO}+"_"+$F{MES2}+"_"+$F{DIA}]]></groupExpression>
+		<groupHeader>
+			<band height="67">
+				<printWhenExpression><![CDATA[$P{SHOW_DETALLES}]]></printWhenExpression>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="22" y="3" width="487" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="63994e52-f307-4cf8-a8f8-a2126f322b6b"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="28" y="4" width="121" height="18" forecolor="#000000" uuid="2cc3ed4d-4bf0-46e9-a7aa-a2bd3f5fbbb3"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{DATOS_CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement key="rectangle-1" style="Back" positionType="Float" mode="Opaque" x="22" y="40" width="486" height="26" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="0854b280-9d8e-4647-9a6b-94f598cebc6e"/>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="170" y="40" width="73" height="27" forecolor="#000000" uuid="3ac44666-a702-41d8-923c-49c9f55defb8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{DESCRIPCION}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="130" y="40" width="40" height="27" forecolor="#000000" uuid="0c058a66-fc93-4993-b8a1-1814bdd94269"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{MINUTOS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="243" y="40" width="50" height="27" forecolor="#000000" uuid="19a6d450-a462-4c0e-9546-90b657bc3353"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{RANURA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" style="Value" positionType="Float" x="78" y="40" width="52" height="27" forecolor="#000000" uuid="36d27a7e-8358-4acb-9f0a-33aa8868672d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{FEC_FIN}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" style="Value" positionType="Float" x="23" y="40" width="55" height="27" forecolor="#000000" uuid="5f745f65-c9cd-420d-87df-46fbcbf2302e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{FEC_COMIENZO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="357" y="40" width="50" height="27" forecolor="#000000" uuid="9ec865cf-deba-455f-8e87-793064b5e14b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{ORIGEN}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="293" y="40" width="64" height="27" forecolor="#000000" uuid="a2064680-c38f-4061-9c78-74e771fc8697"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{REGIMEN}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="154" y="4" width="353" height="18" uuid="4470be8b-8341-4b7d-8e46-272c218edc59"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DIA_SEM}.trim() +", "+ $F{DIA} +" de "+ $F{MES2}.trim() +" de "+ $F{ANHO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="407" y="40" width="50" height="27" forecolor="#000000" uuid="cebb63aa-2bfb-44e2-a1b2-f7e40058a689"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{PROCEDENCIA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" style="Value" positionType="Float" x="457" y="40" width="51" height="27" forecolor="#000000" uuid="4ffc556b-4979-4657-bb67-b3f090cfbc76"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="23" y="23" width="486" height="20" uuid="4cfd7567-7550-4b5c-9a93-08735e95259d"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{DSCRTIPO_COMIENZO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="257" splitType="Immediate">
+				<printWhenExpression><![CDATA[$P{SHOW_DIA}]]></printWhenExpression>
+				<pie3DChart>
+					<chart isShowLegend="true">
+						<reportElement positionType="Float" x="171" y="101" width="200" height="150" isRemoveLineWhenBlank="true" uuid="e426cf6a-74db-413d-a338-29695097df99">
+							<printWhenExpression><![CDATA[$P{SHOW_GRAFICOS}]]></printWhenExpression>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$R{DURACION_TIPO_ACTIV}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset>
+							<datasetRun subDataset="datasetDiarios" uuid="a39c1794-221e-45f0-97f1-77e1fd99a6e9">
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pnumreq">
+									<datasetParameterExpression><![CDATA[$P{numreq}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pidconductor">
+									<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="pDSCR_ACT">
+									<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="dia">
+									<datasetParameterExpression><![CDATA[$F{DAYDATE}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<keyExpression><![CDATA[$F{DSCR_ACT}]]></keyExpression>
+						<valueExpression><![CDATA[$F{MINUTOS}]]></valueExpression>
+					</pieDataset>
+					<pie3DPlot labelFormat="{2}">
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					</pie3DPlot>
+				</pie3DChart>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="25" y="5" width="482" height="20" uuid="082429e9-3407-4ea8-868d-2cc53842fa28">
+						<printWhenExpression><![CDATA[$P{SHOW_DIA} == true]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{DSCRTIPO_FIN}]]></textFieldExpression>
+				</textField>
+				<componentElement>
+					<reportElement key="table 5" style="table 5" positionType="Float" x="25" y="26" width="482" height="70" isRemoveLineWhenBlank="true" uuid="fd7de35b-4d37-4359-8100-a1fd73708cce"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Percent_por_dia" uuid="1988c02f-a528-44ed-8657-974d58c65d61">
+							<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+								<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pnumreq">
+								<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pidconductor">
+								<datasetParameterExpression><![CDATA[$F{IDCONDUCTOR}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pf_inicio">
+								<datasetParameterExpression><![CDATA[$F{DAYDATE}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pDSCR_ACT">
+								<datasetParameterExpression><![CDATA[$P{pDSCR_ACT}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+						<jr:column width="133" uuid="5509c70a-fd74-4685-ba7c-556fd56704ee">
+							<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="11" y="0" width="122" height="30" uuid="cc772a0d-4005-4ea2-8241-d4fe90340b0e"/>
+									<textElement verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="19" rowSpan="1">
+								<textField>
+									<reportElement x="11" y="0" width="122" height="18" uuid="bcabef40-ecf5-44cb-a655-94a5cfa483ee"/>
+									<textElement verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{DSCR_ACT}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="54" uuid="06370605-4655-4a95-a27e-4bc35b11b47a">
+							<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="54" height="30" uuid="14d71f0c-034c-450d-9992-2dda6fabb657"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_TOTAL}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="19" rowSpan="1">
+								<textField pattern="###0;-###0">
+									<reportElement x="0" y="0" width="54" height="18" uuid="d7b86bde-7cf0-4775-8045-d9cd1adc2648"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_TOTAL}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="54" uuid="e12fe0e5-dc36-41ae-b096-3ed8a2becdef">
+							<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="54" height="30" uuid="a8f9af83-0e51-4c7e-9215-2fff8a7cd5bc"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="19" rowSpan="1">
+								<textField pattern="#,##0.00 %">
+									<reportElement x="0" y="0" width="54" height="18" uuid="badbae96-ac9f-4b4a-b6ee-6f04a1a64479"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PORC_TIEMPO}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="55" uuid="c69bdd9b-034c-44fb-b6d1-7f97020fc60d">
+							<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="55" height="30" uuid="f1c61974-f015-40f4-9317-405d554057c2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MEDIO}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="19" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="54" height="18" uuid="1e790348-aff6-4bdc-b272-9b272cf90c05"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MEDIO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="54" uuid="e9712c31-95a7-4ecc-b763-072fa590ebdf">
+							<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="54" height="30" uuid="d25146e0-8c75-4f39-bd65-fb911a3d3714"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{TIEMPO_MAX}]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:detailCell style="table 5_TD" height="19" rowSpan="1">
+								<textField pattern="###0.00;-###0.00">
+									<reportElement x="0" y="0" width="54" height="18" uuid="8e05ba2c-ebf3-46b2-a079-953304a3ab8c"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{TIEMPO_MÁXIMO}.intValue(),false)]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="3" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="6" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="183" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="283" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="134" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="193" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="360" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="433" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="31" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="105" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="59" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="59" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="59" y="49" width="91" height="14" uuid="f1b9e4a7-cf85-4af2-b801-77ccd76cca02"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="150" y="50" width="60" height="14" uuid="e1c43663-5aab-46e8-8421-55d945fba277"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="135" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{SHOW_DETALLES}]]></printWhenExpression>
+			<rectangle>
+				<reportElement style="Zebra" positionType="Float" x="22" y="0" width="486" height="20" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="cca1c7d4-6312-4352-a63a-b58b8d6e7765"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="22" y="1" width="56" height="19" uuid="3fa9f387-f14e-4c6b-a0eb-928a3aa5d825"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FEC_COMIENZO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="457" y="1" width="51" height="19" uuid="4ca2e053-745d-4713-9eb0-f62a5be1c9c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="407" y="1" width="50" height="19" uuid="efd319f6-f2a2-4759-8ffd-57efa53e6cc6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROCEDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="130" y="1" width="40" height="19" uuid="984981c3-9fd7-4934-9338-1bdfb72b489b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{MINUTOS}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" style="Zebra" positionType="Float" x="78" y="1" width="52" height="19" uuid="526d1713-1c33-420b-adad-8dff85110629"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FEC_FIN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Zebra" positionType="Float" x="243" y="1" width="50" height="19" uuid="35cb4292-30d7-4d32-bfa3-dacceea7fce5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RANURA_DSCR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Zebra" positionType="Float" x="293" y="1" width="64" height="19" uuid="b01a58da-56da-4340-91e6-044936bae3d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REGIMEN_DSCR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Zebra" positionType="Float" x="357" y="1" width="50" height="19" uuid="fcdb7f97-934b-4bda-96f6-31103413c53c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ORIGEN_DSCR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Zebra" positionType="Float" x="170" y="1" width="73" height="19" uuid="93d30a3c-66f6-4b93-9be0-06d90d5a1bff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{DSCR_ACT})!=null ? $P{REPORT_RESOURCE_BUNDLE}.getString($F{DSCR_ACT}) : $F{DSCR_ACT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="58" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

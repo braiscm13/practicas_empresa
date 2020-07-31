@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-labor" >
+	
+	<Client package="">
+		
+		<!-- MODULO DE INFORMES -->
+		<FormManager id="managerlaborrecord" showframe="yes" delayedload="yes" form="forms-labor/report/formInformeLaboral.xml" imanager="com.opentach.client.labor.modules.report.IMInformeLaboral">
+			<InteractionManager form="formInformeLaboralContracts.xml" class="com.utilmize.client.fim.UBasicFIM"/>
+		</FormManager>
+		<FormManager id="managerlaborrecordwarehouse" showframe="yes" delayedload="yes" form="forms-labor/report/formInformeLaboralGenerado.xml" imanager="com.opentach.client.labor.modules.report.IMInformeLaboralGenerado"/>
+		<FormManager id="managerdriverjournalrecord" showframe="yes" delayedload="yes" form="forms-labor/report/formInformeDriverJournal.xml" imanager="com.opentach.client.labor.modules.report.IMInformeDriverJournal"/>
+		<FormManager id="managerdriverstatustimerecord" showframe="yes" delayedload="yes" form="forms-labor/report/formInformeDriverStatusTime.xml" imanager="com.opentach.client.labor.modules.report.IMInformeDriverStatusTime"/>
+
+		<!-- INFORMES -->
+		<FormManager id="managerinformeagreements" showframe="yes" delayedload="yes" form="forms-labor/report/formInformeAgreements.xml" imanager="com.opentach.client.labor.modules.report.IMInformeAgreements"/>
+	</Client>
+</OntimizeModule>

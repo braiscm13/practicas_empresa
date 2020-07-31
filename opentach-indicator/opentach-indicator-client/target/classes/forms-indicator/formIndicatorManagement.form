@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="managerIndicators" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	 autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;0;0">
+				<Column margin="0;10;0;0" expand="0.3">
+					<TextDataField
+						attr="IND_NAME"
+						labelsize="8"
+						dim="text"
+						align="left" />
+					<ReferenceExtDataField
+						attr="IND_ACTION" key="IND_ACTION" cod="IND_ACTION"
+						entity="ojee.IndicatorService.indicatorImplementation"
+						cols="IND_ACTION" visiblecols="IND_ACTION" descriptioncols="IND_ACTION"
+						labelsize="8" codvisible="no"
+						translate="yes"
+						align="left"
+						size="46" />
+				</Column>
+				<Column expand="0.7" />
+				<SearchPanel 
+					table="ojee.IndicatorService.indicator"
+					search.filterfields="IND_NAME;IND_ACTION"
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" >
+				
+			<Table 
+				entity="ojee.IndicatorService.indicator" 
+				key="IND_ID" 
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="IND_ID;IND_CODE;IND_NAME;IND_ACTION;IND_DESC;IND_PROPERTIES;LAST_EXECUTION"
+				visiblecols="IND_CODE;IND_NAME;IND_ACTION;IND_DESC;IND_PROPERTIES;LAST_EXECUTION"
+				defaultvisiblecols="IND_CODE;IND_NAME;IND_ACTION;IND_DESC;LAST_EXECUTION"
+				backgroundcols="IND_PROPERTIES;LAST_EXECUTION" 
+				form="formIndicator.form"
+				deletebutton="yes" insertbutton="yes" 
+				detailformat="{0};IND_NAME">
+
+				<TableColumnProperties attr="IND_CODE" defaultwidth="150" preferredwidth="150" />
+				<TableColumnProperties attr="IND_NAME" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="IND_ACTION" defaultwidth="200" preferredwidth="200" />
+				<TableColumnProperties attr="IND_DESC" defaultwidth="300" preferredwidth="300" />
+				<TableColumnProperties attr="IND_PROPERTIES" defaultwidth="110" preferredwidth="110" />
+				<TableColumnProperties attr="LAST_EXECUTION" text="execution.LAST_EXECUTION" defaultwidth="110" preferredwidth="110" />
+				
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+			</Table>
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<DeleteFromTableButton table="ojee.IndicatorService.indicator" icon="images-general/garbage16.png" />
+			<OpenTableInsertFormButton table="ojee.IndicatorService.indicator"  />
+		</Row>
+	</Column>
+</FormExt>

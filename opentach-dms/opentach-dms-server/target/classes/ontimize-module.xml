@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-dms" >
+	<Server package="com.opentach.server.dms.entities">
+		<EntityProperties archive="dms-server-conf/entities.properties"/>
+		<RemoteReferences archive="dms-server-conf/remotereferences.xml"/>
+	</Server>
+</OntimizeModule>

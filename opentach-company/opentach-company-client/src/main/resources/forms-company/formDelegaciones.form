@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FormExt keys="a" entity="a" columns="a" title="EDelegacionDfEmp" buttons="no" status="no" preferredsizetodialog="1350;852">
+
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no" />
+
+	<Row margin="5;5;5;5" expand="yes">
+		<Column expand="yes" expandlast="no">
+			<Row>
+				<!-- FILTERS -->
+				<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" title="Filters">
+					<Row>
+						<Grid rows="1" columns="2" hgap="15" vgap="15">
+							<Column attr="mainData" title="MAINDATA">
+								<IntegerDataField 		attr="IDDELEGACION" visible="no" />
+								<ReferenceExtDataField 	attr="CIF" entity="EDfEmp" text="EMPRESA" labelsize="11" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="no" csize="10" />
+								<TextDataField 			attr="NOMBRE_DEL" align="left" dim="text" labelsize="11"   />
+								<TextDataField 			attr="TELF_DEL"  align="left"  dim="no" labelsize="11" size="14"  />
+							</Column>
+							<Column attr="addressData" title="DIRECCION">
+								<ReferenceComboDataField attr="CG_NACI_DEL" align="left" labelsize="11" dim="text" cod="CG_NACI" cols="DSCR" entity="EPaises" size="20" />
+								<ReferenceComboDataField attr="CG_PROV_DEL" align="left" labelsize="11" dim="text" cod="CG_PROV" cols="NOMB" entity="EProvincias" parentkey="CG_NACI" size="20" />
+								<TextDataField 			attr="MUNI_DEL" align="left" labelsize="11" dim="text"  />
+								<TextDataField 			attr="POBL_DEL" align="left" labelsize="11" dim="text"  />
+								<TextDataField 			attr="DIRECCION_DEL" align="left" labelsize="11" dim="text"  />
+								<TextDataField 			attr="CG_POSTAL" align="left" labelsize="11" dim="no"   />
+							</Column>
+						</Grid>
+					</Row>
+				</CollapsiblePanel>
+				<Column expand="no">
+					<SearchPanel table="EDelegacionDfEmp"
+						search.filterfields="CIF;NOMBRE_DEL;TELF_DEL;CG_NACI_DEL;CG_PROV_DEL;MUNI_DEL;POBL_DEL;DIRECCION_DEL;CG_POSTAL"
+						layout="2x1" />
+					<Column />
+				</Column>
+			</Row>
+			
+			<Row expand="yes" valign="center">
+				<Column expand="yes" margin="5;5;5;5">
+					<Table entity="EDelegacionDfEmp" keys="CIF;IDDELEGACION" parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+						cols="CIF;NOMB;IDDELEGACION;NOMBRE_DEL;TELF_DEL;CG_NACI_DEL;CG_PROV_DEL;MUNI_DEL;POBL_DEL;DIRECCION_DEL;CG_POSTAL"
+						visiblecols="CIF;NOMB;NOMBRE_DEL;TELF_DEL;CG_NACI_DEL;CG_PROV_DEL;MUNI_DEL;POBL_DEL;DIRECCION_DEL;CG_POSTAL"
+						detailformat="{0};NOMBRE_DEL" form="formDelegacion.form" 
+						deletebutton="yes" disableinsert="yes" insertcontrol="no"  scrollh="yes"
+					>
+					
+						<TableColumnProperties attr="CIF" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="NOMB" text="EMPRESA" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="NOMBRE_DEL" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="TELF_DEL" defaultwidth="150" preferredwidth="150" />
+
+						<TableColumnProperties attr="CG_NACI_DEL" defaultwidth="90" preferredwidth="90" />
+						<TableColumnProperties attr="CG_PROV_DEL" defaultwidth="100" preferredwidth="100" />
+						<TableColumnProperties attr="MUNI_DEL" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="POBL_DEL" defaultwidth="200" preferredwidth="200" />
+						<TableColumnProperties attr="DIRECCION_DEL" defaultwidth="250" preferredwidth="250" />
+						<TableColumnProperties attr="CG_POSTAL" defaultwidth="100" preferredwidth="100" />
+						
+						<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+					</Table>
+				</Column>
+			</Row>
+			<Row>
+				<Row />
+				<OpenTableInsertFormButton table="EDelegacionDfEmp" />
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

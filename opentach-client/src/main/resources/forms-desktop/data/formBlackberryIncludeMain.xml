@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column>
+	<ObjectDataField attr="IDBLACKBERRY" visible="no" />
+	<ObjectDataField attr="CIF" visible="no" />
+
+	<Column >
+		<Row title="" layout="flow" align="center">
+			<TextDataField attr="TELEFONO" size="25" />
+			<!-- TODO: IDCONDUCTOR-DNI -->
+			<ReferenceComboDataField attr="IDCONDUCTOR" parentkeylistener="yes" populatetableonshowtablewindow="true" entity="EConductoresEmp" cod="IDCONDUCTOR" parentkey="CIF"
+				cols="IDCONDUCTOR;DNI;CIF;NOMBRE;APELLIDOS" visiblecols="DNI;NOMBRE;APELLIDOS" text="CONDUCTOR" size="50" />
+
+			<!-- <ReferenceComboDataField attr="DNI" entity="EConductoresEmp" cod="DNI" parentkey="CIF" cols="DNI;CIF;NOMBRE;APELLIDOS" visiblecols="DNI;NOMBRE;APELLIDOS" 
+				text="CONDUCTOR" size="50"/> -->
+		</Row>
+		<Row>
+			<Column title="DatosBlackberry">
+				<ReferenceComboDataField attr="IDSMARTPHONE" entity="ESmartphone" cod="IDSMARTPHONE" cols="IDSMARTPHONE;NOMB" visiblecols="NOMB"
+					dim="text" align="left" labelsize="14" />
+
+				<TextDataField attr="PIN" labelsize="14" dim="text" align="left" required="yes" uppercase="no" />
+				<TextDataField attr="MODELO" labelsize="14" dim="text" align="left" />
+				<WWWDataField attr="EMAIL" maxlength="600" labelsize="14" dim="text" align="left" />
+				<Row>
+					<Column expand="no">
+						<CheckDataField attr="LECTORTARJETAS" labelsize="14" dim="text" align="left" returnstring="yes" />
+						<CheckDataField attr="CABLETACOGRAFO" labelsize="14" dim="text" align="left" returnstring="yes" />
+					</Column>
+					<Row />
+					<Column>
+						<!-- <ObjectDataField attr="GCMTOKENID" visible="no"/> <ObjectDataField attr="GCMDATE" visible="no"/> <ObjectDataField attr="LOCLATITUDE" visible="no"/> 
+							<ObjectDataField attr="LOCLONGITUDE" visible="no"/> -->
+						<Column expand="no" expandlast="no" />
+						<Row>
+							<Row />
+							<Label attr="showLoc.Label" text="showLoc.Label" />
+							<Button attr="showLoc" key="showLoc" text="" tip="showLoc.tip" icon="com/ontimize/gui/images/internet.png" name="NoMarginsButton"
+								listener="com.opentach.client.modules.data.listeners.ListenerLocalizeSmarphone" />
+						</Row>
+						<Column />
+					</Column>
+				</Row>
+			</Column>
+			<Column title="DatosOperador">
+				<TextComboDataField attr="PROVEEDOR" labelsize="13" dim="text"
+					values="Movistar;Vodafone;Orange;Yoigo;40 móvil;Bankinter Móvil;Blau;BT Móvil;Cable Móvil;Carrefour Móvil;MovilDIA;DigiMobil;Eroski Móvil;Euphony;Euskaltel;FonYou;HablaFácil;Happy móvil;Hits Mobile;Hong da mobile;Jazztel Móvil;Lebara Mobile;Lycamobile;LlamayA Móvil;MÁSmovil;Midas mobile;Movi Data;MundiMóvil;ONO;Orbitel;Pepephone;R móvil;RACC OMV;Sarenet;Simyo;Sweno;Talkout;TeleCable;Tuenti;Vectone Móvil;Viva Mobile;Vueling Móvil;WPR Mobile;XL MOVIL"
+					align="left" />
+				<TextDataField attr="SIMPIN" labelsize="13" dim="text" align="left" />
+				<TextDataField attr="PUK" labelsize="13" dim="text" align="left" />
+				<TextComboDataField attr="RED" labelsize="13" dim="text" values="GSM;GPRS" align="left" />
+			</Column>
+			<!--<Column title="EnvioMensajes"> <CheckDataField attr="MENSAJEDESCARGA" labelsize="17" align="left" returnstring="yes"/> <CheckDataField attr="EMAILCONINFORME" 
+				labelsize="17" align="left" returnstring="yes"/> </Column> -->
+		</Row>
+
+		<Row expand="yes">
+			<Table entity="EFicherosBlackberry" keys="IDFICHERO;NUM"
+				cols="IDBLACKBERRY;IDFICHERO;NUM;NOMB;OBSR;ANALIZAR;F_ALTA;LATITUDE;LONGITUDE;USUARIO_ALTA;FECINI;FECFIN;BUTTON" visiblecols="NOMB;OBSR;ANALIZAR;F_ALTA;USUARIO_ALTA;BUTTON"
+				parentkey="IDBLACKBERRY" editablecolumns="BUTTON">
+				<com.utilmize.client.gui.field.table.render.UXmlButtonCellRenderer column="BUTTON"
+					icon="com/ontimize/gui/images/internet.png" tip="tip_showmap" />
+				<com.opentach.client.util.AddressButtonCellEditor column="BUTTON" icon="com/ontimize/gui/images/internet.png" />
+				<com.utilmize.client.gui.field.table.UTableColumnProperties attr="BUTTON" minwidth="24"
+					maxwidth="24" defaultwidth="24" preferredwidth="24" resizable="false" hidename="true" />
+				<com.utilmize.client.gui.field.table.render.UXmlDateCellRenderer column="F_ALTA"
+					format="dd/MM/yyyy HH:mm" />
+				<com.utilmize.client.gui.field.table.render.UXmlBooleanCellRenderer column="ANALIZAR" />
+			</Table>
+		</Row>
+	</Column>
+</Column>

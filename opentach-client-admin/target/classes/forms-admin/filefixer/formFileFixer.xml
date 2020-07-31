@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" title="filefixer.FILEFIXER" buttons="no">
+
+	<Column>
+		<Row  title="filefixer.step1">
+			<Column expand="no">
+				<FileDataField attr="step1Folder" text="filefixer.step1Folder" acceptdirectories="yes" labelsize="35" align="left" size="35" openbutton="no" savebutton="no"/>
+				<CampoFechaNoEditable attr="step1DateFrom" text="filefixer.step1DateFrom"  labelsize="35"  align="left" />
+			</Column>
+			<Column expand="yes" margin="0;5;0;0">
+				<Row attr="step1ProgresContainer"/>
+				<Row>
+					<Button key="step1Go" text="filefixer.step1Action" listener="com.opentach.adminclient.modules.filefixer.IMFileFixerDetectGen2TCErrorActionListener"/>
+					<Column/>
+				</Row>
+			</Column>
+		</Row>
+		<Row  title="filefixer.step2">
+			<Column expand="no">
+				<FileDataField attr="step2FolderIn" text="filefixer.step2FolderIn" acceptdirectories="yes" labelsize="35" align="left" size="35" openbutton="no" savebutton="no"/>
+				<FileDataField attr="step2FolderOut" text="filefixer.step2FolderOut" acceptdirectories="yes" labelsize="35" align="left" size="35" openbutton="no" savebutton="no"/>
+			</Column>
+			<Column expand="yes" margin="0;5;0;0">
+				<Row attr="step2ProgresContainer"/>
+				<Row>
+					<Button key="step2Go" text="filefixer.step2Action" listener="com.opentach.adminclient.modules.filefixer.IMFileFixerFixGen2TCErrorActionListener"/>
+					<Column/>
+				</Row>
+			</Column>
+		</Row>
+		<Row  title="filefixer.step3">
+			<Column expand="no">
+				<FileDataField attr="step3Folder" text="filefixer.step3Folder" acceptdirectories="yes" labelsize="35" align="left" size="35" openbutton="no" savebutton="no"/>
+			</Column>
+			<Column expand="yes" margin="0;5;0;=">
+				<Row attr="step3ProgresContainer"/>
+				<Row>
+					<Button key="step3Go" text="filefixer.step3Action" listener="com.opentach.adminclient.modules.filefixer.IMFileFixerUploadGen2TCFixedActionListener"/>
+					<Column/>
+				</Row>
+			</Column>
+		</Row>
+	</Column>		
+</Form>

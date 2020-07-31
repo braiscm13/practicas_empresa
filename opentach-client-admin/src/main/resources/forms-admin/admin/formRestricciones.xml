@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="IDRESTRICCION" entity="ERestricciones" columns="CARRETERA;PK_INICIAL;POBL_INICIAL;PK_FINAL;POBL_FINAL" title="managerrestricciones"  focusorder="" autocompletefocuslist="yes">
+<FormHeader standardbuttons="yes"></FormHeader>
+<Column margin="5;5;2;5">
+	<Row expand="no">
+		<Column margin="5;5;10;5">
+			<TextDataField attr="IDRESTRICCION" visible="no"/>
+			<Row>
+				<ReferenceComboDataField align="left" attr="IDTIPO_RESTRICCION" labelsize="16" cod="IDTIPO_RESTRICCION" cols="IDTIPO_RESTRICCION;DSCR" visiblecols="DSCR" dim="text" entity="ETipoRestricciones" />
+				<TextDataField align="left" attr="MMA" dim="no" size="10"  />
+				
+			</Row>
+			<Row>				
+				<TextDataField align="left" attr="CARRETERA" text="VIA" dim="text"	labelsize="16" required="yes" maxlength="100" />
+				<TextDataField align="left" attr="SENTIDO" dim="text"	required="yes" maxlength="100" />
+				<ReferenceComboDataField  align="left" 	attr="IDTIPO_AMBITO"	cod="IDTIPO_AMBITO" cols="IDTIPO_AMBITO;NOMBRE_AMBITO" dim="text" entity="ETipoAmbito"  size="20" />
+			
+			</Row>
+			<Row title="INICIO_FINAL_CARRETERA">
+				<Column>
+					<TextDataField align="left" attr="PK_INICIAL" dim="text"	labelsize="16" required="yes" maxlength="100" />
+					<TextDataField align="left" attr="POBL_INICIAL" labelsize="16" dim="text" maxlength="255" />
+					<!-- <TextDataField	align="left" attr="MUNI_INICIAL"	labelsize="16"   dim="text"   maxlength="255" />
+					<ReferenceComboDataField  align="left" 	attr="CG_PROV_INICIAL" labelsize="16"	cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias" parentkey="CG_NACI" size="20" />
+				 --></Column>
+				<Column>
+					<TextDataField align="left" attr="PK_FINAL" dim="text"	labelsize="16" required="yes" maxlength="100" />
+					<TextDataField align="left" attr="POBL_FINAL" labelsize="16" dim="text" maxlength="255" />
+					<!-- <TextDataField	align="left" attr="MUNI_FINAL"	labelsize="16"   dim="text"   maxlength="255" />
+					<ReferenceComboDataField  align="left" 	attr="CG_PROV_FINAL" labelsize="16"	cod="CG_PROV" cols="NOMB" dim="text" entity="EProvincias" parentkey="CG_NACI" size="20" />
+			 -->	</Column>
+			</Row>
+			<Row title="FECHA_RESTRICCION">
+			    <CheckDataField attr="TODOS_LOS_DIAS" returnstring ="yes"/>
+				<com.opentach.client.comp.render.HourDateDataFieldExtended attr="F_INICIAL" text="F_INICIAL" align="left" required="yes" labelsize="16"  dim="no" datevisible="yes"/>
+				<com.opentach.client.comp.render.HourDateDataFieldExtended attr="F_FINAL" text="F_FINAL" align="left" required="yes" labelsize="16" dim="no" datevisible="yes"/>
+			</Row>
+		</Column>
+		</Row>
+		</Column>
+</FormExt>

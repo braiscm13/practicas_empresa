@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="user.UserManagement" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	focusorder="USUARIO;NIVEL_CD;PROVINCIA;NOMB_EMP;F_ALTA_FROM;F_ALTA_TO;DMAXLOGIN_FROM;DMAXLOGIN_TO" autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;0;0">
+				<Column valign="center" margin="0;10;0;0">
+					<TextDataField attr="USUARIO" align="left" dim="no" labelsize="14" size="15" required="yes" maxlength="15" />
+					<Row height="2"/>
+					<ReferenceExtDataField entity="EPerfil" attr="NIVEL_CD" text="PERFIL" dim="no" cod="NIVEL_CD" cols="NIVEL_CD;DSCR"
+						descriptioncols="DSCR" required="yes" csize="5" size="20" labelsize="14" align="left"/>
+					<ReferenceComboDataField attr="PROVINCIA" cod="NOMB" text="PROVINCIA" labelsize="14" entity="EProvincias" cols="NOMB" codsearch="NOMB" align="left" size="25" maxlength="25" dim="no" />
+					<ReferenceComboDataField attr="NOMB_EMP" cod="NOMB" text="NOMB_EMP" labelsize="14" entity="EDfEmp" cols="NOMB" codsearch="NOMB" align="left" size="25" maxlength="25" dim="no"  />
+				</Column>
+				<Column valign="center">
+					<Row uiname="RowGroup">
+						<DateDataField attr="F_ALTA_FROM"  align="left" labelsize="17" dim="no" size="7"	/>
+						<DateDataField attr="F_ALTA_TO" text="general.UNTIL" align="left" dim="no" size="7" />
+						<Row/>
+					</Row>
+					<Row height="2"/>
+					<Row uiname="RowGroup">
+						<DateDataField attr="DMAXLOGIN_FROM"  align="left" labelsize="17" dim="no" size="7"	/>
+						<DateDataField attr="DMAXLOGIN_TO" text="general.UNTIL" align="left" dim="no" size="7" />
+						<Row/>
+					</Row>
+				</Column>
+				<Column expand="yes" />
+				<SearchPanel 
+					table="EUsuariosManagement"
+					search.filterfields="USUARIO;NIVEL_CD;PROVINCIA;NOMB_EMP" 
+					search.daterangefilterfields="F_ALTA_DATE_FROM:F_ALTA_TO:F_ALTA;DMAXLOGIN_FROM:DMAXLOGIN_DATE_TO:DMAXLOGIN"
+					
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" title="result">
+			<Table 
+				entity="EUsuariosManagement" 
+				key="USUARIO" 
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="USUARIO;NIVEL_CD;NOMBRE_PERFIL;CONTRACT_COMPANY;TELEFONO;EMAIL;DMAXLOGIN;NOMBRE_FIRMANTE;APELLIDOS_FIRMANTE;CARGO;F_ALTA;CIF;PROVINCIA;NOMB_EMP"
+				visiblecols="USUARIO;NOMBRE_PERFIL;CONTRACT_COMPANY;F_ALTA;DMAXLOGIN;TELEFONO;EMAIL;NOMBRE_FIRMANTE;APELLIDOS_FIRMANTE;CARGO;CIF;PROVINCIA;NOMB_EMP" 
+				form="formUsuarios.xml"
+				editablecolumns="CONTRACT_COMPANY"
+				updateentityeditablecolumns="CONTRACT_COMPANY"
+				deletebutton="yes" insertbutton="yes" 
+				detailformat="{0};USUARIO">
+				
+				<TextComboEditor column="CONTRACT_COMPANY" values="OPENSERVICES;LEXTRANSPORT"/>
+					
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton;printingbutton"
+					onlyhide="true" />
+			</Table>
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<!-- 
+			<Button key="testremoteoperation" text="testremoteoperation" listener="com.imatia.autobascula.desktopclient.plant.users.listeners.GeneratePermissionsListener" />
+			 -->
+			<DeleteFromTableButton table="EUsuariosManagement" icon="images-general/garbage16.png" />
+			<OpenTableInsertFormButton table="EUsuariosManagement" icon="images-admin/user16.png" />
+		</Row>
+	</Column>
+</FormExt>

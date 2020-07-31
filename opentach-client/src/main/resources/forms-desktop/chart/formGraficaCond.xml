@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="GRAFICA_COND" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button listener="com.opentach.client.modules.chart.IMGraficaCondReportBuilderActionListener" key="reportGraficaCond" tip="TIP_INFORME"
+			icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row>
+		<Column margin="5;5;5;5">
+			<Column valign="center" title="">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="14" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="no" csize="10" />
+				<ReferenceExtDataField parentkeylistener="yes" populatetableonshowtablewindow="true" attr="IDCONDUCTOR" cod="IDCONDUCTOR" parentkeys="CIF;CG_CONTRATO" csize="10" entity="EConductorContFicticio"
+					cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE" visiblecols="DNI;APELLIDOS;NOMBRE" cleanonparentkeynull="true" descriptioncols="APELLIDOS;NOMBRE" align="left" labelsize="14" dim="text"
+					required="no" />
+
+				<Row expand="no" margin="0;0;0;0">
+
+					<ReferenceComboDataField attr="NUM_TARJ" cod="IDTARJETAS_COND" entity="ETarjetasCond" parentkey="IDCONDUCTOR"
+						cols="IDTARJETAS_COND;NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST;IDCONDUCTOR" visiblecols="NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST"
+						align="left" labelsize="14" dim="no" size="25" required="no" visible="yes" />
+					<InfracEngineChooser attr="ENGINEANALYZER" labelsize="14" size="30" align="left" />
+					<Column />
+				</Row>
+
+			</Column>
+		</Column>
+		<Column expand="no" margin="5;5;5;5">
+			<Column expand="no" title="">
+				<DateDataField attr="FILTERFECINI" text="DESDE" align="left" labelsize="10" required="yes" visible="yes" />
+				<DateDataField attr="FILTERFECFIN" text="HASTA" align="left" labelsize="10" required="yes" visible="yes" />
+			</Column>
+		</Column>
+	</Row>
+	<Row expand="yes">
+		<Column expand="yes" margin="0;10;0;10">
+			<ActivityChartControlPanel title="l_grafica_activ" attr="chartControl">
+				<Button key="ANALIZAR" text="ANALIZAR" labelsize="14" bold="yes" icon="com/opentach/client/rsc/gear_run18.png" name="activitygraphbutton" />
+			</ActivityChartControlPanel>
+
+			<Row expand="no" height="3"></Row>
+			<ChartDataField attr="chart" xfontsize="10" yfontsize="10" legendimagename="chart_legend.gif" legendimagepath="com/opentach/client/rsc/i18n/"
+				entities="EActividadesIndefinidas;EActividades;EResumenActividades;EResumenActividades;EInfracciones;EPeriodosTrabajo"
+				tasks="com.opentach.client.comp.activitychart.taskwrapper.IndefinidaTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.ActividadesTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.RulerTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.ResumenActividadesTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.InfraccionTaskWrapper;com.opentach.client.comp.activitychart.taskwrapper.PaisesTaskWrapper"
+				ylabelformat="EE dd/MM/yy" summaryclass="com.opentach.client.modules.chart.ActividadesSummaryComputer" summaryentity="EResumenActividades"
+				legendbg="white" sublegend1="FERRY/OUT_TRAIN" sublegend2="INFRACCIONES" />
+			<Row expand="yes" />
+		</Column>
+	</Row>
+</Form>

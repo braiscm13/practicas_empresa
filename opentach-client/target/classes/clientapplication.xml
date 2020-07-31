@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<com.opentach.client.OpentachClientDesktopApplication title="OPENTACH_TITLE" 
+	helpset="com/opentach/client/help/documentacionopentach/OpentachHelp.hs" 
+	splash="com/opentach/client/rsc/i18n/%LOCALE%/cargando.jpg" 
+	loginicon="com/opentach/client/rsc/titulo.jpg" 
+	iconnoconvert="com/opentach/client/conf/iconnoconvert.conf"
+	icon="com/opentach/client/rsc/opentach.png" 
+	preferences="opentach.conf" 
+	logintext="InicioDeSesion" 
+	locale="es_ES" 
+	resources="com.opentach.client.i18n.bundle" 
+	allowrememberpassword="yes" 
+	logindialogclass="com.opentach.client.comp.OpentachLoginDialog"
+	status="com.ontimize.gui.MainApplication.StatusBar"
+	>
+	<!-- status="com.opentach.client.util.OpentachStatusBar" -->
+	<ReferenceLocator remotelocatorname="OpentachServer" local="false" class="com.opentach.client.OpentachClientLocator" 
+	packageorhostname="localhost" port="34007" clientpermissioncolumn="XML_CLIENTE" 
+	checkservermessageperiod="40000" checkinternalnoticesperiod="100000" checktime="60000"/>
+	
+	<Menu archive="menu-desktop/clientmenu.xml" />
+	<MenuListener class="com.opentach.client.ListenerMenu" />
+	<Toolbar archive="menu-desktop/buttonsbar.xml" />
+	<ToolbarListener class="com.ontimize.gui.DefaultToolBarListener" />
+
+	<!-- See ontimize-module -->
+
+</com.opentach.client.OpentachClientDesktopApplication>

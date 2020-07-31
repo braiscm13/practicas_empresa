@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+
+<project default="make opentach" basedir=".">
+
+	<property file="build.properties" />
+	<property name="VERSION" value="14.2.37" />
+
+	<target name="init" unless="deploy.environment">
+		<input message="Deploy environment?" addproperty="deploy.environment" defaultvalue="server-dev" validargs="dev,server-dev,pre-pro" />
+	</target>
+
+	<target name="make_core" depends="init">
+		<delete failonerror="no" dir="${deployment.basepath}">
+		</delete>
+		<mkdir dir="${deployment.basepath}" />
+		<copy todir="${deployment.basepath}">
+			<fileset dir=".">
+				<exclude name="**/target/**" />
+				<exclude name="**/.settings/**" />
+				<exclude name="**/.project/**" />
+				<exclude name="**/.classpath/**" />
+			</fileset>
+		</copy>
+
+		<exec dir="${deployment.basepath}" executable="cmd">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C ${maven} versions:set versions:commit -DnewVersion=${VERSION}  -Dmaven.test.skip=true -DskipTests=true -Dmaven.repo.local=${deployment.repository}" />
+		</exec>
+
+		<exec dir="${deployment.basepath}" executable="cmd">
+			<!--<env key="MAVEN_OPTS" value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/>-->
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<!--<env key="MAVEN_OPTS" value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/>-->
+			<arg value="/C ${maven} install -U -P${deploy.environment},generate-jnlp${extraprofiles} -e -Dmaven.test.skip=true -DskipTests=true -Dmaven.repo.local=${deployment.repository}" />
+		</exec>
+	</target>
+
+	<target name="make primafrio">
+		<antcall target="make_core" inheritall="true">
+			<param name="extraprofiles" value=",primafrio" />
+		</antcall>
+	</target>
+	<target name="make opentach">
+		<antcall target="make_core" inheritall="true">
+			<param name="extraprofiles" value="" />
+		</antcall>
+	</target>
+
+	<target name="release">
+		<mkdir dir="${release.basepath}" />
+		<delete failonerror="yes" dir="${release.basepath}">
+		</delete>
+		<delete dir="${release.basepath}/repository/com/ontimize" failonerror="yes" />
+		<delete dir="${release.basepath}/repository/com/imatia" failonerror="yes" />
+		<copy todir="${release.basepath}">
+			<fileset dir=".">
+				<exclude name="**/target/**" />
+				<exclude name="**/test/**" />
+				<exclude name="**/.settings/**" />
+				<exclude name="**/.project/**" />
+				<exclude name="**/.classpath/**" />
+				<exclude name="**/*.dll" />
+				<exclude name="pom_dev.properties" />
+				<exclude name="pom_server-dev.properties" />
+				<exclude name="build.xml" />
+				<exclude name="build.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/maven">
+			<fileset dir="${maven.installation}">
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/java">
+			<fileset dir="${java.installation}">
+				<exclude name="**/*.zip" />
+			</fileset>
+		</copy>
+		
+		<!--chapuza para sobrescribir componentes de ontimize en los client-->
+		<copy todir="${release.basepath}/opentach-client-admin/src/main/java/com/imlabs">
+			<fileset dir="./opentach-client/src/main/java/com/imlabs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/opentach-client-admin/src/main/java/com/ontimize">
+			<fileset dir="./opentach-client/src/main/java/com/ontimize">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
+		<!--chapuza para sobrescribir componentes de ontimize en los client-->
+		<copy todir="${release.basepath}/opentach-client-admin/src/main/java/com/imlabs">
+			<fileset dir="./opentach-client/src/main/java/com/imlabs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/opentach-client-admin/src/main/java/com/ontimize">
+			<fileset dir="./opentach-client/src/main/java/com/ontimize">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${release.basepath}/opentach-client-italy/src/main/java/com/imlabs">
+			<fileset dir="./opentach-client/src/main/java/com/imlabs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/opentach-client-italy/src/main/java/com/ontimize">
+			<fileset dir="./opentach-client/src/main/java/com/ontimize">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${release.basepath}/opentach-client-primafrio/src/main/java/com/imlabs">
+			<fileset dir="./opentach-client/src/main/java/com/imlabs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${release.basepath}/opentach-client-primafrio/src/main/java/com/ontimize">
+			<fileset dir="./opentach-client/src/main/java/com/ontimize">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<!-- fin chapuza-->
+
+		<!--Parece que hay algún bug y esto no funciona porque no exluye los groupids que se le indican-->
+		<!--<exec dir="${release.basepath}" executable="cmd">
+			<arg value="/C ${maven} install org.apache.maven.plugins:maven-dependency-plugin:2.8:go-offline -P${release.environment},generate-jnlp -e -DexcludeGroupIds=com.imatia.opentach -Dmaven.repo.local=${release.basepath}/repository" />
+		</exec>-->
+
+		<!-- -X -e -->
+
+		<exec dir="${release.basepath}" executable="cmd">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="versions:set"/>
+			<arg value="versions:commit"/>
+			<arg value="-DnewVersion=${VERSION}"/>
+			<arg value="-Dmaven.test.skip=true"/>
+			<arg value="-DskipTests=true"/>
+			<arg value="-Dmaven.repo.local=${deployment.repository}" />
+		</exec>
+<!---
+		<exec dir="${release.basepath}" executable="cmd" failonerror="true">
+			<arg value="/C ${maven} -e install:install-file -Dfile=C:\Users\lorena.sobral.IMATIA\.m2\tachodata.jar -DgroupId=com.imatia.tacho -DartifactId=tachodata -Dversion=1.0.1-SNAPSHOT -Dpackaging=jar -Dmaven.repo.local=${release.basepath}/repository" />
+		</exec>
+-->
+		<exec dir="${release.basepath}" executable="cmd" failonerror="true">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="install"/>
+			<arg value="-P${release.environment}"/>
+			<arg value="-Dmaven.test.skip=true"/>
+			<arg value="-DskipTests=true"/>
+			<arg value="-Dmaven.repo.local=${release.basepath}/repository" />
+		</exec>
+		<exec dir="${release.basepath}" executable="cmd" failonerror="true">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="validate"/>
+			<arg value="dependency:go-offline"/>
+			<arg value="-P${release.environment},generate-jnlp"/>
+			<arg value="-DoverWriteSnapshots=true"/>
+			<arg value="-DexcludeReactor=true"/>
+			<arg value="-DexcludeGroupIds=com.imatia.opentach"/>
+			<arg value="-Dmaven.repo.local=${release.basepath}/repository" />
+		</exec>
+		<exec dir="${release.basepath}" executable="cmd" failonerror="true">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="clean"/>
+			<arg value="-Dmaven.repo.local=${release.basepath}/repository" />
+		</exec>
+		
+		<delete>
+			<fileset dir="${release.basepath}/repository" includes="**/_remote.repositories"/>
+			<fileset dir="${release.basepath}/repository" includes="**/maven-metadata-amtega-dt"/>
+			<fileset dir="${release.basepath}/repository" includes="**/*.xml"/>
+			<fileset dir="${release.basepath}/repository" includes="**/*.sha1"/>
+		</delete>
+		
+		<!-- TODO: limpiar carpeta ${release.basepath}/repository -->
+
+		<!--Generate zip file-->
+		<zip destfile="${release.basepath}/OPENTACH_${VERSION}.zip">
+			<zipfileset dir="${release.basepath}" />
+		</zip>
+	</target>
+	
+	<target name="generateSetups">
+		<mkdir dir="${release.basepath}" />
+		<delete failonerror="yes" dir="${release.basepath}">
+		</delete>
+		<delete dir="${release.basepath}/repository/com/ontimize" failonerror="yes" />
+		<delete dir="${release.basepath}/repository/com/imatia" failonerror="yes" />
+		
+		<copy todir="${release.basepath}">
+			<fileset dir=".">
+				<exclude name="**/target/**" />
+				<exclude name="**/test/**" />
+				<exclude name="**/.settings/**" />
+				<exclude name="**/.project/**" />
+				<exclude name="**/.classpath/**" />
+				<exclude name="**/*.dll" />
+				<exclude name="pom_dev.properties" />
+				<exclude name="pom_server-dev.properties" />
+				<exclude name="build.xml" />
+				<exclude name="build.properties" />
+			</fileset>
+		</copy>
+		
+		<exec dir="${release.basepath}" executable="cmd">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="versions:set"/>
+			<arg value="versions:commit"/>
+			<arg value="-DnewVersion=${VERSION}"/>
+			<arg value="-Dmaven.test.skip=true"/>
+			<arg value="-DskipTests=true"/>
+			<arg value="-Dmaven.repo.local=${deployment.repository}" />
+		</exec>
+
+		<exec dir="${release.basepath}" executable="cmd" failonerror="true">
+			<env key="JAVA_HOME" value="${java.installation}" />
+			<arg value="/C"/>
+			<arg value="${maven}"/>
+			<arg value="install" />
+			<!--<arg value="-X" />-->
+			<!--<arg value="-o" />-->
+			<arg value="--update-snapshots" />
+			<!--<arg value="-<-no-snapshot-updates" />-->
+			<arg value="-Ppre-pro,generate-onlp" />
+			<arg value="-Dmaven.test.skip=true" />
+			<arg value="-DskipTests=true" />
+			<arg value="-Dmaven.repo.local=${deployment.repository}" />
+			<arg value="-pl" />
+			<arg value="com.imatia.opentach:opentach,com.imatia.opentach:opentach-ows" />
+		</exec>
+	</target>
+
+
+</project>

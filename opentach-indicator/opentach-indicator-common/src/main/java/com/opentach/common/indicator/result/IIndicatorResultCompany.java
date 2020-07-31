@@ -1,0 +1,14 @@
+package com.opentach.common.indicator.result;
+
+/**
+ * The object returned by an indicator after its execution, when its assigned to one company.
+ */
+public interface IIndicatorResultCompany extends IIndicatorResult {
+	/**
+	 * The company.
+	 *
+	 * @return
+	 */
+	Object getCompany();
+
+}

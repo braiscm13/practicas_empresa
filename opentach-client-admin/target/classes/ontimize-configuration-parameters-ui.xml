@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DefaultConfiguration>
+	<XMLConfigurationParameters>
+		<Class
+			name="com.utilmize.client.gui.form.UFormExt;com.ontimize.gui.Form">
+			<Parameter key="buttonposition" value="start;previous;countlabel;next;end;status" />
+			<Parameter key="focusmanager" value="utilmize" />
+			<Parameter key="autocompletefocuslist" value="yes" />
+			<!-- <Parameter key="buttonposition" value="start;previous;countlabel;next;end;status;collapsible(controls;help;print;table;refresh);clear"/> -->
+		</Class>
+
+		<Class name="com.utilmize.client.gui.UCollapsiblePanel">
+			<Parameter key="anim" value="yes" />
+		</Class>
+
+		<Class
+			name="com.utilmize.client.gui.field.UImageDataField;com.utilmize.client.gui.field.ULabelReferenceComboDataField;com.ontimize.gui.field.PasswordDataField;com.utilmize.client.gui.field.UMemoDataField;com.utilmize.client.gui.field.UTextComboDataField;com.ontimize.gui.field.TextComboDataField;com.utilmize.client.gui.field.UReferenceComboDataField;com.utilmize.client.gui.field.UAdvancedInsertReferenceDataField;com.utilmize.client.gui.field.UInsertReferenceDataField;com.utilmize.client.gui.field.UHourDateDataField;com.utilmize.client.gui.field.UDateDataField;com.utilmize.client.gui.field.USingleImageDataField;com.utilmize.client.gui.field.UIntegerDataField;com.utilmize.client.gui.field.ULabelTextDataField;com.utilmize.client.gui.field.UTextDataField;com.utilmize.client.gui.field.URealDataField;com.utilmize.client.gui.field.UCheckDataField;com.utilmize.client.gui.field.UIntegerDataField;com.utilmize.client.gui.field.UXMLDataField;com.ontimize.gui.field.RadioButtonDataField;com.utilmize.client.gui.field.UTimeDataField;com.ontimize.gui.field.PercentDataField">
+			<Parameter key="initcacheonsetvalue" value="yes" />
+		</Class>
+
+		<Class name="com.utilmize.client.gui.field.USingleImageDataField">
+			<Parameter key="returnrawbyte" value="yes" />
+		</Class>
+		
+		<Class name="com.utilmize.client.gui.buttons.advanced.USearchPanel">
+<!-- 			<Parameter key="bordercolor" value="#188395" /> -->
+			<Parameter key="layout" value="2x1" />
+			
+			<Parameter key="filter.text" value="queryfilterbutton.selectionbutton.text" />
+			<Parameter key="filter.name" value="whitebutton" />
+<!-- 			<Parameter key="filter.icon" value="images/star16x16.png" /> -->
+			
+			<Parameter key="clean.name" value="whitebutton" />
+			<Parameter key="clean.icon" value="images-admin/find_replace16x16.png" />
+			
+			<Parameter key="search.icon" value="images-admin/magnifying_glass32x32.png" />  
+		</Class>
+		
+		<Class name="com.utilmize.client.gui.field.table.render.UXmlDateCellRenderer">
+			<Parameter key="useapplocale" value="yes" />
+		</Class>
+		
+		<Class name="com.utilmize.client.gui.buttons.advanced.UCancelButton">
+			<Parameter key="icon" value="images-admin/sign_stop16.png"></Parameter>
+		</Class>
+		
+		<Class name="com.utilmize.client.gui.buttons.advanced.UDeleteFromTableButton">
+			<Parameter key="icon" value="images-admin/garbage16.png"></Parameter>
+		</Class>
+
+	</XMLConfigurationParameters>
+</DefaultConfiguration>

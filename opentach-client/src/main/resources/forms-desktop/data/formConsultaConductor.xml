@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="CONSULTA_CONDUCTORES"
+	buttons="no"
+	setvalueorder="">
+<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+</FormHeader>
+<Row>
+		<Column 	expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column	title="" margin="0;5;5;5"	valign="center">
+					<TextDataField	align="left" attr="IDCONDUCTOR" dim="text"	labelsize="11"	maxlength="150" />
+					<TextDataField	align="left" attr="EXTERNAL_EMPLOYEE_ID" dim="text"	labelsize="11"	maxlength="150" />
+					</Column>
+				</Column>
+			</Column>
+</Row>
+<Row expand="yes">
+		<Table entity="EConductoresEmp" keys="IDCONDUCTOR;CG_CONTRATO;CIF" parentkeys="IDCONDUCTOR;EXTERNAL_EMPLOYEE_ID" 
+					cols="EXTERNAL_EMPLOYEE_ID;IDCONDUCTOR;NOMBRE;APELLIDOS;CG_CONTRATO;CIF;NOMBRE_EMPRESA;F_ALTA;F_BAJA" 
+					visiblecols="CIF;NOMBRE_EMPRESA;F_ALTA;F_BAJA" >
+		</Table>
+</Row>
+</Form>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="formRemoteDownloadCfg"
+	buttons="no">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		<Row expand="no" margin="0;0;15;0">		
+			<Column
+				title="">
+				<ReferenceExtDataField
+					entity="EDfEmp"
+					text="EMPRESA"
+					labelsize="12"
+					attr="CIF"
+					dim="no"
+					size="40"
+					cod="CIF"
+					cols="CIF;NOMB"
+					visiblecols="CIF;NOMB"
+					descriptioncols="NOMB"
+					required="yes"
+					csize="10"
+					align="left" />
+				<TextComboDataField 
+					attr="SRCTYPE" 
+					values="V;D"
+					visible="no"
+					equivalences="forms-remotevehicle/srctype.properties" 
+					labelsize="12" 
+					dim="no" 
+					size="20"
+					translate="yes"
+					align="left" />
+			</Column>
+		</Row>
+		<Row expand="yes">
+			<Table
+				entity="ojee.RemoteVehicleManagementService.downloadConfigAll"
+				keys="CIF;SRC_ID;RDW_ID;SRCTYPE"
+				parentkeys="CIF;SRCTYPE"
+				otherkeys="RDW_ID"
+				cols="SRC_ID;SRC_NAME;CIF;RDW_ID;RDW_ACTIVE;RDP_NAME;RDW_PERIOD;RDW_HOUR;SRCTYPE;BUTTON_FORCE_DOWNLOAD;BUTTON_SEE_DOWNLOADS"
+				visiblecols="SRC_ID;SRC_NAME;RDW_ACTIVE;RDP_NAME;RDW_PERIOD;RDW_HOUR;BUTTON_FORCE_DOWNLOAD;BUTTON_SEE_DOWNLOADS"
+				editablecolumns="BUTTON_FORCE_DOWNLOAD;BUTTON_SEE_DOWNLOADS"
+				insertbutton="no"
+				disableinsert="yes"
+				form="formRemoteDownloadCfgDetail.form">
+				<BooleanCellRenderer column="RDW_ACTIVE" />
+				<RenderButton column="BUTTON_FORCE_DOWNLOAD" tip="remotedownload.TIP_FORCE_DOWNLOAD" icon="com/opentach/client/rsc/server_to_client16.png" />
+				<EditorButton column="BUTTON_FORCE_DOWNLOAD" tip="remotedownload.TIP_FORCE_DOWNLOAD" icon="com/opentach/client/rsc/server_to_client16.png" listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgRequestDownloadShowFormListener"/>
+				<RenderButton column="BUTTON_SEE_DOWNLOADS" tip="remotedownload.TIP_SEE_DOWNLOADS" icon="com/opentach/client/rsc/document_view.png" />
+				<EditorButton column="BUTTON_SEE_DOWNLOADS" tip="remotedownload.TIP_SEE_DOWNLOADS" icon="com/opentach/client/rsc/document_view.png"   listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgRequestUploadedFilesShowFormListener"/>
+				<RenderTime column="RDW_HOUR"/>
+				<TableColumnProperties attr="BUTTON_FORCE_DOWNLOAD" minwidth="30" maxwidth="30" defaultwidth="30" preferredwidth="30" resizable="false" text="" />
+				<TableColumnProperties attr="BUTTON_SEE_DOWNLOADS" minwidth="30" maxwidth="30" defaultwidth="30" preferredwidth="30" resizable="false" text="" />
+			</Table>
+		</Row>
+		<Row expand="no">
+			<Column/>
+<!-- 			<Button text="remotedownload.MassiveSetup" /> -->
+		</Row>
+	</Column>
+</FormExt>

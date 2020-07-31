@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="formCartasPorteADRConsulta"
+	buttons="no" >
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField
+		attr="CG_CONTRATO"
+		required="yes"
+		visible="no" />
+	<Row expand="yes">
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+				</Column>
+			</Column>
+			<Column>
+				<Row expand="yes">
+					<Table
+						entity="waybill.EWaybill"
+						keys="WAY_ID"
+						parentkey="CIF"
+						otherkeys="WAY_DATE"
+						rendertime="WAY_DATE"
+						cols="WAY_ID;WAY_DATE;CIF;WAY_TYPE;CARGADOR;EXPEDIDOR;DESTINATARIO;CONDUCTOR"
+						visiblecols="WAY_DATE;WAY_TYPE;CARGADOR;EXPEDIDOR;DESTINATARIO;CONDUCTOR"
+						detailformopener="com.opentach.client.modules.report.IMCartasPorteADRConsultaReportDetailFormOpener"
+						form="dummy.form"
+						>
+					</Table>
+				</Row>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<Column>
+				<ColumnRadioButtonGroup
+					selected="ULTIMOS_DIAS"
+					attr="datos"
+					title="Filtro_Fecha_Alta"
+					expand="no"
+					margin="5;5;5;5">
+					<RadioButtonDataField
+						attr="ULTIMOS_DIAS"
+						labelsize="20"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<RadioButtonDataField
+						attr="RANGO_FECHA"
+						labelsize="18"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<Column expand="no">
+						<Row valign="center">
+							<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMININI" size="5" mask="00:00" text="DESDE" labelsize="7" visible="no"/>
+							<CampoFechaNoEditable
+								attr="FILTERFECINI"
+								text="DESDE"
+								align="left"
+								required="yes"
+								datevisible="no"
+								dim="no"
+								labelsize="7"
+								/>
+						</Row>
+						<Row>
+							<com.utilmize.client.gui.field.UDurationMaskDataField attr="FILTERMINFIN" size="5" mask="00:00" text="HASTA" labelsize="7" visible="no"/>
+							<CampoFechaNoEditable
+								attr="FILTERFECFIN"
+								text="HASTA"
+								align="left"
+								required="yes"
+								datevisible="no"
+								dim="no"
+								labelsize="7"
+								 />
+						</Row>
+					</Column>
+				</ColumnRadioButtonGroup>
+			</Column>
+		</Column>
+	</Row>
+</Form>

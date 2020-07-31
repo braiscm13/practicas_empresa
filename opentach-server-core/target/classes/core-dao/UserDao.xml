@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog=""
+	schema="${mainschema}"
+	table="CDUSU"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>USUARIO</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>USUARIO</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<Sentence>
+				<![CDATA[	
+					SELECT  
+						#COLUMNS#
+					FROM
+						CDVUSUNIVELESFILTER 
+					#WHERE#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+		<Query id="usuarios_todos">
+			<Sentence>
+				<![CDATA[	
+					SELECT  
+						#COLUMNS#
+					FROM
+						CDVUSUNIVELES 
+					#WHERE#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

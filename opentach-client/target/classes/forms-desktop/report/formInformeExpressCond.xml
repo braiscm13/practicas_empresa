@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="FORM_INFORME_EXPRESS" buttons="no">
+	<FormHeader>
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/gears16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<TextDataField attr="COLUMN.2" align="left" visible="no" />
+					
+	 <Row margin="5;5;5;5">
+		<Column title="">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+			
+			<AssetSelectionDataField
+						assetType="DRIVER"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="yes"
+						singleselectionmode="true" 
+						/>
+			
+								
+		</Column>
+		<Column expand="no" margin="0;5;0;5" valign="center" title="">
+			<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+			<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+		</Column>		
+	</Row>
+</Form>

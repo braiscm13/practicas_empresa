@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EConductoresEmpDemo" title="DATOS_COND" keys="IDCONDUCTOR;CIF" parentkeys="CIF" columns="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE">
+	<!-- TODO: IDCONDUCTOR-DNI -->
+	<FormHeader standardbuttons="yes">
+		<Column width="10" expand="no" />
+		<Button key="bdownload" visible="no" />
+		<Button key="btnGrafica" tip="TIP_GRAFICA_ACTIVIDADES" text="GRAFICA_ACTIVIDADES" icon="com/ontimize/gui/images/chart.png" />
+		<!-- <Boton key="btnGraficaFicheros" tip="TIP_GRAFICA_FICHEROS" text="GRAFICA_FICHEROS" icon="com/ontimize/gui/images/chart.png" /> -->
+	</FormHeader>
+
+	<Include file="forms-desktop/data/formDatosConductorIncludeMain.xml" />
+
+</FormExt>

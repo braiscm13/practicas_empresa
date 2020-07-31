@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="USUARIO" entity="EUsuariosTodos" columns="USUARIO" title="USUARIO" setvalueorder="USUARIO;EUsuDfEmpUsuarios" status="no" buttons="no">
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row expand="no">
+			<Column>
+				<Column expandlast="no" title="ACCESS_DATA">
+					<Row>
+						<TextDataField attr="USUARIO" align="left" dim="no" labelsize="8" size="19" required="yes" maxlength="15" />
+						<ReferenceExtDataField entity="EPerfil" attr="NIVEL_CD" text="PERFIL" dim="no" cod="NIVEL_CD" cols="NIVEL_CD;DSCR" labelsize="16"
+							descriptioncols="DSCR" required="yes" csize="5" size="20" />
+						<Column expand="yes" />
+					</Row>
+					<PasswordDataField attr="PASSWORD" text="PASSWORD" dim="no" maxlength="15" labelsize="8" size="19" required="yes" align="left" securitylevel="3" securitybutton="no"/>
+					<Row>
+						<HourDateDataField attr="USERBLOCKED" dim="no" labelsize="8" align="left"/>
+						<TextComboDataField attr="CONTRACT_COMPANY" dim="no" size="20" labelsize="16" align="left" values="OPENSERVICES;LEXTRANSPORT"/>  
+						<Column/>
+					</Row>
+				</Column>
+				<Column title="DATOS_USUARIO" expandlast="no">
+					<Row expand="no">
+						<Column expand="no">
+							<TextDataField attr="NOMBRE_FIRMANTE" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+							<TextDataField attr="APELLIDOS_FIRMANTE" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+						</Column>
+						<Column expand="no">
+							<MaskDataField mask="000000000000000" attr="TELEFONO" dim="no" maxlength="15" align="left" labelsize="8" required="no" size="15" />
+							<WWWDataField attr="EMAIL" dim="text" maxlength="1024" align="right" required="no" labelsize="8" uppercase="no" size="15" />
+						</Column>
+						<Column expand="no">
+							<DateDataField attr="DMAXLOGIN" text="DMAXLOGIN" align="left" labelsize="15" required="no" visible="yes" size="15" />
+							<TextDataField attr="CARGO" align="left" dim="no" labelsize="15" size="15" required="no" maxlength="100" />
+						</Column>
+						<Column expand="yes" />
+					</Row>
+				</Column>
+				<Row expand="yes" />
+			</Column>
+		</Row>
+		<Row attr="EMPRESAS" expand="yes" title="EMPRESAS">
+			<InsertTable entity="EUsuDfEmpUsuarios" key="USUARIO" keys="CIF" parentkey="USUARIO" cols="CIF;USUARIO;CDELEG;CDELEGASIG;PROVINCIA" visiblecols="CIF;CDELEG;CDELEGASIG;PROVINCIA"
+				editablecolumns="CIF" updateentityeditablecolumns="CIF" refreshbutton="yes" deletebutton="yes" form="formUsuDel.xml" requiredcols="CIF"
+				disableinsert="yes">
+				<ComboCellRenderer column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+				<ComboCellEditor column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+			</InsertTable>
+		</Row>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<Button key="bwelcomemail" tip="welcomemail.tip" icon="com/opentach/client/rsc/gears_mail16.png" text="welcomemail.name" listener="com.opentach.adminclient.modules.admin.IMUsuarioWelcomeMailActionListener" />
+			<Column width="10" expand="no"/>
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

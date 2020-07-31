@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-checktrucker" >
+	<Server package="com.opentach.server.checktrucker.entities">
+		<EntityProperties archive="checktrucker-server-conf/entities.properties"/>
+		<RemoteReferences archive="checktrucker-server-conf/remotereferences.xml"/>
+	</Server>
+</OntimizeModule>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kmrecorridosempresa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fca4eacf-fd83-49b1-95f8-b2f7db0a7135">
+	<property name="ireport.zoom" value="2.8531167061100198"/>
+	<property name="ireport.x" value="257"/>
+	<property name="ireport.y" value="295"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="resumenDia" uuid="8cf3a776-15db-4a84-83d9-dee19652b328">
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="dia_anual" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA, DIA_ANUAL
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND   DIA_ANUAL = $P{dia_anual}
+ORDER BY FECINI]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="resumensemana" uuid="b8f88d70-7395-4506-af7b-4cc6b437cb31">
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="semana" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) and SEMANA = $P{semana} AND ANHO=$P{anho} ORDER BY FECINI]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="resumenMensual" uuid="8bfdce3d-b06f-43a5-8cf8-f7194fe929be">
+		<parameter name="idconductor" class="java.lang.String"/>
+		<parameter name="numreq" class="java.lang.String"/>
+		<parameter name="f_inicio" class="java.sql.Timestamp"/>
+		<parameter name="f_fin" class="java.sql.Timestamp"/>
+		<parameter name="mes" class="java.lang.String"/>
+		<parameter name="anho" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT CG_CONTRATO , DNI , NUMREQ , IDCONDUCTOR , APELLIDOS , NOMBRE , MATRICULA , DSCR , FECINI , FECFIN , MINUTOS , KM_INI , KM_FIN , KM_REC , PROCEDENCIA , ORIGEN , DESTINO , DIA , DIA_SEM , SEMANA , MES , MES2 , HORA , VEL_MED , ANHO , NUM_TRJ_CONDU , HORAS , INI_SEMANA , FIN_SEMANA
+FROM CDVINFORM_USOVEHICULO_TEMP
+ WHERE CG_CONTRATO = $P{numreq}  AND IDCONDUCTOR = $P{idconductor} AND  ( FECINI >= $P{f_inicio}  AND FECINI <= $P{f_fin}  ) AND MES = $P{mes} and ANHO = $P{anho} ORDER BY FECINI]]>
+		</queryString>
+		<field name="CG_CONTRATO" class="java.lang.String"/>
+		<field name="DNI" class="java.lang.String"/>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<field name="FECINI" class="java.sql.Timestamp"/>
+		<field name="FECFIN" class="java.sql.Timestamp"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="KM_INI" class="java.math.BigDecimal"/>
+		<field name="KM_FIN" class="java.math.BigDecimal"/>
+		<field name="KM_REC" class="java.math.BigDecimal"/>
+		<field name="PROCEDENCIA" class="java.lang.String"/>
+		<field name="ORIGEN" class="java.lang.String"/>
+		<field name="DESTINO" class="java.lang.String"/>
+		<field name="DIA" class="java.lang.String"/>
+		<field name="DIA_SEM" class="java.lang.String"/>
+		<field name="SEMANA" class="java.lang.String"/>
+		<field name="MES" class="java.lang.String"/>
+		<field name="MES2" class="java.lang.String"/>
+		<field name="HORA" class="java.lang.String"/>
+		<field name="VEL_MED" class="java.math.BigDecimal"/>
+		<field name="ANHO" class="java.lang.String"/>
+		<field name="NUM_TRJ_CONDU" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="INI_SEMANA" class="java.sql.Timestamp"/>
+		<field name="FIN_SEMANA" class="java.sql.Timestamp"/>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() - 1576800000)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["IDCONDUCTOR = '0597FWV' AND"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="detalles" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_diario" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_mensual" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="resumen_semanal" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DIA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_MES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_SEMANA" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_DETALLES" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+'VEHICULO' AS ORIGEN,
+a.matricula as IDORIGEN,
+  a.matricula,
+	a.idconductor,
+	to_date(a.fecha,'DD/MM/YYYY') AS FECHA,
+	a.NUMREQ,
+	a.CG_CONTRATO,
+	a.dni || ',' || a.APELLIDOS || ' '  || a.nombre  as NOMBRE,
+	a.dscr,
+  min(km_ins) as KM_INS,
+  max(km_ext) AS KM_EXT,
+  sum(km_ext - km_ins)  as KM_REC,
+SUM(MINUTOS) AS MINUTOS
+from
+( select distinct
+	cduso_TARJETA_temp.matricula,
+	cdconductor_cont.idconductor,
+	to_char(fec_ins,'DD/MM/YYYY') as fecha,
+  km_ext,
+  km_ins,
+(FEC_EXT - FEC_INS )*24 AS MINUTOS,
+	cduso_TARJETA_temp.NUMREQ,
+	cduso_TARJETA_temp.NUMREQ as CG_CONTRATO,
+	cdconductor_cont.dni,
+	cdconductor_cont.nombre,
+	cdconductor_cont.APELLIDOS,
+	cdvehiculo_cont.dscr
+from
+	cduso_TARJETA_temp,
+	cdconductor_cont,
+	cdvehiculo_cont
+WHERE
+	cduso_TARJETA_temp.IDCONDUCTOR = cdconductor_cont.IDCONDUCTOR
+	AND cduso_TARJETA_temp.MATRICULA = cdvehiculo_cont.MATRICULA
+	AND  cduso_TARJETA_temp.NUMREQ =cdconductor_cont.CG_CONTRATO
+  	AND  cduso_TARJETA_temp.NUMREQ =cdvehiculo_cont.CG_CONTRATO) a
+group by
+	a.matricula,
+	a.idconductor,
+	to_date(a.fecha,'DD/MM/YYYY'),
+	a.NUMREQ,
+	a.dni,
+	a.nombre,
+	a.APELLIDOS,
+	a.dscr
+ORDER BY
+	a.MATRICULA,
+	to_date(a.fecha,'DD/MM/YYYY')]]>
+	</queryString>
+	<field name="ORIGEN" class="java.lang.String"/>
+	<field name="IDORIGEN" class="java.lang.String"/>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="FECHA" class="java.sql.Timestamp"/>
+	<field name="NUMREQ" class="java.lang.String"/>
+	<field name="CG_CONTRATO" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="DSCR" class="java.lang.String"/>
+	<field name="KM_INS" class="java.math.BigDecimal"/>
+	<field name="KM_EXT" class="java.math.BigDecimal"/>
+	<field name="KM_REC" class="java.math.BigDecimal"/>
+	<field name="MINUTOS" class="java.math.BigDecimal"/>
+	<variable name="count_km" class="java.lang.Number" resetType="Group" resetGroup="IDORIGEN" calculation="Sum">
+		<variableExpression><![CDATA[$F{KM_REC}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="origen" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{ORIGEN}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Immediate"/>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Immediate"/>
+		</groupFooter>
+	</group>
+	<group name="IDORIGEN" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{IDORIGEN}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="35" y="22" width="487" height="17" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="c50402ca-e3ce-4bd3-93a3-9fcff7ae2bb8"/>
+				</rectangle>
+				<rectangle>
+					<reportElement style="Back" positionType="Float" mode="Opaque" x="35" y="5" width="487" height="34" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="c50402ca-e3ce-4bd3-93a3-9fcff7ae2bb8"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="106" y="2" width="212" height="20" isRemoveLineWhenBlank="true" uuid="9a8ce1d6-d1e6-485f-99c1-99141f013cfa">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "VEHICULO" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="298" y="19" width="225" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "VEHICULO" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{CONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="35" y="19" width="64" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{FECHA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="106" y="2" width="178" height="20" isRemoveLineWhenBlank="true" uuid="9a8ce1d6-d1e6-485f-99c1-99141f013cfa">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="40" y="2" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "VEHICULO" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="395" y="19" width="90" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{MINUTOS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="301" y="19" width="86" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="101" y="19" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{INICIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="164" y="19" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{FIN}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="35" y="2" width="70" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1">
+						<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{IDCONDUCTOR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="227" y="19" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{KMS}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<textField pattern="###0">
+					<reportElement x="471" y="6" width="36" height="14" printWhenGroupChanges="IDORIGEN" uuid="c533ca68-a411-4465-a125-811528b11413"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{count_km}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="418" y="1" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="36bab97b-b8e1-4bb1-b089-4b614ca04ef1"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$R{TOTAL_KM}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="3" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="6" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="183" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="283" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="134" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="193" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="360" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="433" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="333" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="31" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="105" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="59" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="59" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="59" y="49" width="91" height="14" uuid="f1b9e4a7-cf85-4af2-b801-77ccd76cca02"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="150" y="50" width="60" height="14" uuid="e1c43663-5aab-46e8-8421-55d945fba277"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="134" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{SHOW_DETALLES} == true]]></printWhenExpression>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Zebra" positionType="Float" x="35" y="0" width="66" height="20" isRemoveLineWhenBlank="true" uuid="9a8ce1d6-d1e6-485f-99c1-99141f013cfa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement style="Zebra" positionType="Float" x="164" y="0" width="61" height="20" isRemoveLineWhenBlank="true" uuid="36f9b212-a468-4a69-9f6e-ec8f71988ead"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_EXT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement style="Zebra" positionType="Float" x="101" y="0" width="63" height="20" isRemoveLineWhenBlank="true" uuid="36f9b212-a468-4a69-9f6e-ec8f71988ead"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_INS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement style="Zebra" positionType="Float" x="225" y="0" width="70" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dba70d50-ab3f-4d0b-8584-07ea62bdeb68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_REC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" positionType="Float" x="295" y="0" width="227" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dba70d50-ab3f-4d0b-8584-07ea62bdeb68">
+					<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "VEHICULO" )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" positionType="Float" x="295" y="0" width="92" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dba70d50-ab3f-4d0b-8584-07ea62bdeb68">
+					<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" positionType="Float" x="387" y="0" width="100" height="20" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dba70d50-ab3f-4d0b-8584-07ea62bdeb68">
+					<printWhenExpression><![CDATA[$F{ORIGEN}.equals( "CONDUCTOR" )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{MINUTOS}.intValue(),false)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="66" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

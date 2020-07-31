@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="GRAFICA_COND" buttons="no">
+	<FormHeader/>
+	<Column expandlast="yes">
+		<Row expand="yes">
+			<Table entity="EInformeInfrac" key="FECINI" keys="TIPO" 
+			 cols="DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;CIF;TIPO;TIPO_DSCR;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA;COD_BAREMO;IMPORTE;LEVE;GRAVE;MUYGRAVE;DSCR_TIPO_INFRAC" 
+			 visiblecols="TIPO_DSCR;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA" />
+		</Row >
+	</Column>
+</Form>

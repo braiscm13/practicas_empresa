@@ -1,0 +1,26 @@
+<RemoteReferences>
+	<RemoteReference>
+		<Name>ContractService</Name>
+		<Class>com.opentach.server.companies.ContractService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>ActivityService</Name>
+		<Class>com.opentach.server.activities.ActivityService</Class>
+	</RemoteReference>
+	<RemoteReference init="yes">
+		<Name>SessionStatusService</Name>
+		<Class>com.opentach.server.sessionstatus.SessionStatusService</Class>
+	</RemoteReference>
+	<RemoteReference init="yes">
+		<Name>SessionStatusReportService</Name>
+		<Class>com.opentach.server.sessionstatus.SessionStatusReportService</Class>
+	</RemoteReference>
+	<RemoteReference init="yes">
+		<Name>MailService</Name>
+		<Class>com.opentach.server.mail.MailService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>TranslationService</Name>
+		<Class>com.opentach.server.i18n.TranslationService</Class>
+	</RemoteReference>
+</RemoteReferences>

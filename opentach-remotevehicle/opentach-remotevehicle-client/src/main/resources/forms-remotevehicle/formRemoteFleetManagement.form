@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="FLEET" status="no" buttons="no"
+preferredsizetodialog="1024;768">
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<Row expand="yes" margin="5;5">
+			<Column expand="no" valign="top" expandlast="no">
+				<ReferenceExtDataField
+					entity="EDfEmp"
+					text="EMPRESA"
+					labelsize="12"
+					attr="CIF"
+					dim="no"
+					size="20"
+					cod="CIF"
+					codvisible="no"
+					cols="CIF;NOMB"
+					visiblecols="CIF;NOMB"
+					descriptioncols="NOMB"
+					required="yes"
+					csize="10"
+					align="left"
+					listener="com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagementCifValueChangeListener"
+					 />
+				<Row expand="yes">
+					<Table
+						entity="ojee.RemoteVehicleManagementService.downloadVehicleConfig"
+						keys="COM_ID;VEH_ID"
+						parentkeys="CIF:COM_ID"
+						cols="VEH_ID;COM_ID;RDW_ID;RDV_ID;RDW_ACTIVE;RDV_LAST_LATITUDE;RDV_LAST_LONGITUDE;RDV_LAST_LOCATION_DATE;RDV_LAST_LOCATION_SYNC"
+	    				visiblecols="VEH_ID"
+						insertbutton="no"
+						listener="com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagementTableModelListener;com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagementTableSelectionListener"
+						disableinsert="yes">
+						<HideTableButton
+							attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;copybutton"
+							onlyhide="true" />
+					</Table>
+				</Row>
+				<Row expand="no" margin="5;5;5;5">
+				
+					<ObjectDataField attr = "SelectedVehiclePlate" visible="no"/>
+					<ObjectDataField attr = "SelectedVehicleCif" visible="no"/>
+	
+					<Column expand="yes">
+						<Label attr="SelectedVehicleLabel"/>
+						<HourDateDataField attr="SelectedVehicleFrom" text="remotevehicle.SelectedVehicleFrom" labelsize="7" listener="com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagementDateValueChangeListener"/>
+						<HourDateDataField attr="SelectedVehicleTo" text="remotevehicle.SelectedVehicleTo" labelsize="7"  listener="com.opentach.client.remotevehicle.modules.remotefleet.IMRemoteFleetManagementDateValueChangeListener"/>
+					</Column>
+				</Row>
+			</Column>
+			<Column margin="0;5;0;0">
+				<OGisJFxComponent attr="gisJFxComponent"
+					xrefpoint="0" yrefpoint="0" zoomlevel="3" useactionpanel="no"
+					heightbuttons="40" widthbuttons="60" buttonsvisible="no"		/>
+			</Column>
+<!-- 						saveGisButton:Guardar:null:es.xunta.amtega.intre.desktopclient.nmg.listeners.IMGisSaveButtonListener"  -->
+<!-- 					listener="cancelGisButton:Cancelar:null:es.xunta.amtega.intre.desktopclient.nmg.listeners.IMGisCancelButtonListener; -->
+		</Row>
+	</Column>
+</FormExt>

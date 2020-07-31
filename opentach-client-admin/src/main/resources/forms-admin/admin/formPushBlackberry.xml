@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no" scroll="no" title="EBlackberry" >
+	<FormHeader standardbuttons="no"/>
+         <Row title="">
+        		<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB"  required="yes" csize="10" />
+		</Row >
+        <Row expand="yes">
+        	<Button key='bpush' icon='' text='Enviar_Push'/>
+        	<Table entity="EBlackberry" key="IDBLACKBERRY" parentkey="CIF" fixattr="CIF" 
+        	cols="IDBLACKBERRY;CIF;TELEFONO;MODELO;DNI;PIN" deletebutton="yes" refreshbutton="yes" 
+        	visiblecols="TELEFONO;MODELO;DNI" />
+        </Row >	
+</Form>      

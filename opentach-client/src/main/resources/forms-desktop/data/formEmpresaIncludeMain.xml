@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column margin="5;5;5;5">
+	<ObjectDataField
+		attr="IS_DEMO"
+		listener="com.opentach.client.modules.data.IMEmpresaIsDemoValueChangeListener" />
+	<Row title="">
+		<Column expand="yes">
+			<TextDataField
+				align="left"
+				attr="NOMB"
+				dim="text"
+				labelsize="11"
+				required="yes"
+				maxlength="50" />
+			<TextDataField
+				align="left"
+				attr="CCC"
+				dim="text"
+				labelsize="11"
+				maxlength="70" />
+			<Row>
+				<ReferenceComboDataField
+					align="left"
+					attr="IDGRUPO"
+					labelsize="11"
+					cod="IDGRUPO"
+					cols="IDGRUPO;NOMBRE_GRUPO"
+					visiblecols="NOMBRE_GRUPO"
+					dim="text"
+					entity="EGrupoEmp" />
+				<TextComboDataField
+					attr="TIPO"
+					values="ME;VJ;AM"
+					required="no"
+					dim="text"
+					translate="yes" />
+			</Row>
+			<ReferenceComboDataField
+				align="left"
+				attr="CIF_COOPERATIVA"
+				cod="CIF"
+				cols="CIF;NOMB"
+				visiblecols="CIF;NOMB"
+				dim="text"
+				entity="EDfEmpCoop"
+				labelsize="11" />
+		</Column>
+		<Column expand="no">
+			<Row>
+				<TextDataField
+					align="left"
+					attr="CIF"
+					text="CIF/NIF"
+					labelsize="7"
+					dim="no"
+					maxlength="15"
+					required="yes"
+					size="15" />
+				<CheckDataField
+					align="left"
+					attr="IS_COOPERATIVA"
+					dim="no"
+					labelposition="right"
+					text="IS_COOPERATIVA"
+					returnstring="yes" />
+			</Row>
+			<TextComboDataField
+				labelsize="7"
+				attr="LOCALE"
+				values="es_ES;pt_PT;en_GB;fr_FR;it_IT"
+				required="yes"
+				dim="text"
+				translate="yes" />
+			<CheckDataField
+				align="left"
+				attr="CONTRATO_COOP"
+				dim="no"
+				labelposition="right"
+				text="CONTRATO_COOP"
+				returnstring="yes" />
+			<Row>
+				<TextDataField
+					align="left"
+					attr="REAT_NUM"
+					text="REAT_NUM"
+					labelsize="7"
+					dim="no"
+					maxlength="100" />
+				<TextDataField
+					align="left"
+					attr="COM_SAP_CODE"
+					text="COM_SAP_CODE"
+					dim="no"
+					maxlength="100" />
+			</Row>
+		</Column>
+	</Row>
+	<Row>
+		<Column title="DIRECCION">
+			<Row>
+				<TextDataField
+					align="left"
+					attr="DIRECCION"
+					dim="text"
+					labelsize="11"
+					maxlength="150" />
+			</Row>
+			<Row>
+				<Column expand="yes">
+					<ReferenceComboDataField
+						align="left"
+						attr="CG_NACI"
+						labelsize="11"
+						cod="CG_NACI"
+						cols="DSCR"
+						dim="text"
+						entity="EPaises"
+						size="20" />
+					<TextDataField
+						align="left"
+						attr="MUNI"
+						labelsize="11"
+						dim="text"
+						maxlength="255" />
+				</Column>
+				<Column expand="yes">
+					<ReferenceComboDataField
+						align="left"
+						attr="CG_PROV"
+						labelsize="16"
+						cod="CG_PROV"
+						cols="NOMB"
+						dim="text"
+						entity="EProvincias"
+						parentkey="CG_NACI"
+						size="20" />
+					<TextDataField
+						align="left"
+						attr="POBL"
+						labelsize="16"
+						dim="text"
+						maxlength="255" />
+				</Column>
+			</Row>
+			<Row>
+				<TextDataField
+					align="left"
+					attr="CG_POSTAL"
+					dim="no"
+					maxlength="10"
+					size="10"
+					labelsize="11" />
+			</Row>
+		</Column>
+		<Column
+			expand="yes"
+			title="CONTACTO">
+			<Row>
+				<TextDataField
+					align="left"
+					attr="PCONTACTO"
+					dim="text"
+					labelsize="12"
+					size="10"
+					maxlength="255" />
+			</Row>
+			<Row>
+				<Column>
+					<WWWDataField
+						attr="EMAIL"
+						labelsize="12"
+						dim="text"
+						maxlength="1024" />
+					<MaskDataField
+						mask="000000000000000"
+						align="left"
+						attr="TELF"
+						dim="text"
+						labelsize="12"
+						size="10"
+						maxlength="15" />
+					<MaskDataField
+						mask="000000000000000"
+						align="left"
+						attr="MOVIL"
+						dim="text"
+						labelsize="12"
+						size="10"
+						maxlength="15" />
+				</Column>
+				<Column>
+					<MaskDataField
+						mask="000000000000000"
+						align="left"
+						attr="FAX"
+						dim="text"
+						labelsize="18"
+						size="10"
+						maxlength="15" />
+					<MaskDataField
+						mask="000000000000000"
+						align="left"
+						attr="MCONTACTO"
+						dim="text"
+						labelsize="18"
+						size="10"
+						maxlength="15" />
+				</Column>
+			</Row>
+		</Column>
+	</Row>
+	<Row
+		attr="BBMAILINFORMEANALISIS"
+		title="">
+		<Column>
+			<Row align="left" layout="flow">
+				<CheckDataField
+					align="left"
+					attr="COND_AUTOM"
+					dim="no"
+					labelposition="right"
+					text="COND_AUTOM"
+					returnstring="yes" />
+				<CheckDataField
+					align="left"
+					attr="VEH_AUTOM"
+					dim="no"
+					labelposition="right"
+					text="VEH_AUTOM"
+					returnstring="yes" />
+			</Row>
+			<Row>
+				<WWWDataField
+					align="left"
+					attr="MAILINFORMEANALISIS"
+					dim="text"
+					size="10"
+					maxlength="255" />
+			</Row>			
+		</Column>
+	</Row>
+	<Row
+		align="left"
+		layout="flow">
+		<Column width="60" />
+	</Row>
+	<Row expand="yes">
+		<TabPanel attr="TabEmpresas">
+			<Tab attr="Contratos">
+				<Table
+					entity="ECifEmpreReq"
+					key="NUMREQ"
+					parentkey="CIF"
+					cols="CIF;NUMREQ;USUARIO_ALTA;F_ALTA;F_BAJA;FECINID;FECFIND"
+					visiblecols="NUMREQ;USUARIO_ALTA;F_ALTA;F_BAJA;FECINID;FECFIND" />
+			</Tab>
+			<Tab attr="Contactos">
+				<Table
+					entity="EContactosEmp"
+					key="ECN_ID"
+					parentkey="CIF"
+					fixattr="CIF"
+					cols="ECN_ID;CIF;ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;ECN_ADDRESS;ECN_NOTE"
+					visiblecols="ECN_NAME;ECN_TLF1;ECN_TLF2;ECN_MAIL;ECN_ADDRESS;ECN_NOTE"
+					deletebutton="yes"
+					refreshbutton="yes" 
+					form="formContactoEmp.xml"
+				/>
+			</Tab>
+			<Tab attr="Delegaciones">
+				<Table
+					entity="EDelegacionDfEmp"
+					key="IDDELEGACION"
+					parentkey="CIF"
+					cols="CIF;IDDELEGACION;NOMBRE_DEL;DIRECCION_DEL;MUNI_DEL;CG_PROV_DEL;POBL_DEL;PROVINCIA_DEL;TELF_DEL"
+					visiblecols="NOMBRE_DEL;DIRECCION_DEL;POBL_DEL;PROVINCIA_DEL;TELF_DEL"
+					form="formDelegacion.xml"
+					deletebutton="yes"
+					refreshbutton="yes" />
+			</Tab>
+
+			<Tab attr="Conductores">
+
+				<!-- TODO: IDCONDUCTOR-DNI -->
+				<Table
+					entity="EConductoresEmp"
+					key="IDCONDUCTOR"
+					keys="CIF"
+					parentkey="CIF"
+					cols="IDCONDUCTOR;DNI;CIF;NOMBRE;APELLIDOS;F_ALTA;F_BAJA"
+					refreshbutton="yes"
+					requiredcols="NOMBRE;APELLIDOS"
+					updateentityeditablecolumns="NOMBRE;APELLIDOS"
+					visiblecols="IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;F_ALTA;F_BAJA"
+					form="formConductorEmp.xml"
+					deletebutton="yes" />
+
+
+				<!-- <Table entity="EConductoresEmp" key="DNI" parentkey="CIF" cols="DNI;CIF;NOMBRE;APELLIDOS;F_ALTA;F_BAJA" refreshbutton="yes" requiredcols="NOMBRE;APELLIDOS" 
+					updateentityeditablecolumns="NOMBRE;APELLIDOS" visiblecols="DNI;NOMBRE;APELLIDOS;F_ALTA;F_BAJA" form="formConductorEmp.xml" deletebutton="yes" /> -->
+			</Tab>
+			<Tab attr="Vehiculos">
+				<Table
+					entity="EVehiculosEmp"
+					key="MATRICULA"
+					keys="CIF"
+					parentkey="CIF"
+					fixattr="CIF"
+					cols="MATRICULA;CIF;DSCR;MARCA;MODELO;ANYO;F_ALTA;F_BAJA"
+					deletebutton="yes"
+					refreshbutton="yes"
+					requiredcols="MATRICULA;DSCR"
+					updateentityeditablecolumns="DSCR"
+					visiblecols="MATRICULA;DSCR;MARCA;MODELO;ANYO;F_ALTA;F_BAJA"
+					form="formVehiculoEmp.xml" />
+			</Tab>
+			<Tab attr="ASSET_GROUP_TAB" title="assetgroup.assetGroupTabTitle">
+				<Row expand="yes">
+					<Table
+						entity="ojee.AssetGroupService.assetGroup"
+						keys="CAG_ID"
+						parentkeys="CIF:COM_ID"
+						cols="CAG_NAME"
+						visiblecols="CAG_NAME"
+						form="formAssetGroup.form"
+						refreshbutton="yes" >
+						<TableColumnProperties attr="CAG_NAME" text="assetgroup.CAG_NAME" />
+					</Table>
+				</Row>
+			</Tab>
+			<Tab attr="Usuarios">
+				<Table
+					entity="EUsuDfEmp"
+					key="USUARIO"
+					keys="CIF"
+					parentkey="CIF"
+					cols="CIF;USUARIO;NOMBRE_PERFIL;EMAIL;TELEFONO"
+					deletebutton="yes"
+					refreshbutton="yes"
+					visiblecols="USUARIO;NOMBRE_PERFIL"
+					form="formUsuariosEmp.xml" />
+			</Tab>
+			<Tab attr="Firmantes">
+				<InsertTable
+					entity="EFirmantesEmpresa"
+					key="CIF"
+					keys="NIF"
+					parentkey="CIF"
+					cols="CIF;NIF;NOMBRE;APELLIDOS;CARGO"
+					deletebutton="yes"
+					refreshbutton="yes"
+					visiblecols="NIF;NOMBRE;APELLIDOS;CARGO"
+					form="formFirmanteEmp.xml" />
+			</Tab>
+			<Tab attr="Smartphones">
+				<!-- TODO: IDCONDUCTOR-DNI -->
+				<Table
+					entity="EBlackberry"
+					key="IDBLACKBERRY"
+					parentkey="CIF"
+					fixattr="CIF"
+					cols="IDBLACKBERRY;CIF;TELEFONO;MODELO;IDCONDUCTOR"
+					deletebutton="yes"
+					refreshbutton="yes"
+					visiblecols="TELEFONO;MODELO;IDCONDUCTOR"
+					form="formBlackberry.xml" />
+
+				<!-- <Table entity="EBlackberry" key="IDBLACKBERRY" parentkey="CIF" fixattr="CIF" cols="IDBLACKBERRY;CIF;TELEFONO;MODELO;DNI" deletebutton="yes" refreshbutton="yes" 
+					visiblecols="TELEFONO;MODELO;DNI" form="formBlackberry.xml" /> -->
+			</Tab>
+			<Tab attr="DemoNotif">
+				<Table
+					inserttable="yes"
+					entity="ENotificacionesEmp"
+					key="IDNOTIFEMP"
+					parentkeys="CIF"
+					cols="IDNOTIFEMP;CIF;EMAIL"
+					deletebutton="yes"
+					refreshbutton="yes"
+					visiblecols="EMAIL"
+					editablecolumns="EMAIL"
+					updateentityeditablecolumns="EMAIL"
+					requiredcols="EMAIL"
+					 />
+			</Tab>
+			<Tab attr="CloudFiles">
+				<Column expandlast="no">
+					<Row expand="yes">
+						<Table
+							entity="ECloudFileEmp"
+							key="IDCLOUDFILE"
+							parentkey="CIF"
+							cols="IDCLOUDFILE;NAME;CIF;IDBLACKBERRY;NOTES;UPLOADDATE;TELEFONO;PIN;FILESIZE"
+							visiblecols="NAME;NOTES;UPLOADDATE;TELEFONO"
+							refreshbutton="yes" />
+					</Row>
+					<Row expand="no">
+						<Column />
+						<Button
+							key="downloadfile"
+							text="downloadfile"
+							listener="com.opentach.client.modules.data.listeners.DownloadFileFromTableActionListener"
+							table="ECloudFileEmp"
+							fileid="IDCLOUDFILE" />
+					</Row>
+				</Column>
+			</Tab>
+			<Tab attr="NOTAS">
+				<Row
+					title=""
+					expand="yes">
+					<MemoDataField
+						attr="OBSR"
+						dim="text"
+						expand="yes"
+						labelvisible="no"
+						labelsize="0"
+						align="center"
+						labelposition="top" />
+				</Row>
+			</Tab>
+			<Tab attr="TDI_TAB">
+				<Column
+					title=""
+					expand="yes">
+					<CheckDataField
+						align="left"
+						attr="TDI"
+						dim="no"
+						labelposition="left"
+						returnstring="yes"
+						labelsize="11" />
+					<TextDataField
+						align="left"
+						attr="TDI_IP"
+						dim="text"
+						labelsize="11"
+						maxlength="50" />
+					<TextDataField
+						align="left"
+						attr="TDI_PORT"
+						dim="text"
+						labelsize="11"
+						maxlength="50" />
+					<TextDataField
+						align="left"
+						attr="TDI_USER"
+						dim="text"
+						labelsize="11"
+						maxlength="50" />
+					<TextDataField
+						align="left"
+						attr="TDI_PASS"
+						dim="text"
+						labelsize="11"
+						maxlength="50" />
+					<TextDataField
+						align="left"
+						attr="TDI_GROUPID"
+						dim="text"
+						labelsize="11"
+						maxlength="50" />
+												
+				</Column>
+			</Tab>
+			
+			<Tab attr="FTP_TAB">
+				<Column
+					title=""
+					expand="yes">
+					<CheckDataField
+						align="left"
+						attr="EMP_FTPSYNC"
+						dim="no"
+						labelposition="left"
+						returnstring="yes"
+						 />
+					<TextComboDataField attr="EMP_FTP_CONNECTION_TYPE" text="ftp_connection_type" values="SFTP;FTPS;FTP" labelsize="11" dim="no" size="12" align="left" translate="no" />
+					<TextDataField
+						align="left"
+						attr="EMP_FTP_URL"
+						text="ftp_server"
+						uppercase="false"
+						dim="text"
+						labelsize="11"
+						 />
+					<TextDataField
+						align="left"
+						attr="EMP_FTP_USR"
+						text="ftp_user"
+						uppercase="false"
+						dim="text"
+						labelsize="11"
+						 />
+					<TextDataField
+						align="left"
+						attr="EMP_FTP_PAS"
+						text="ftp_pass"
+						uppercase="false"
+						dim="text"
+						labelsize="11"
+						 />
+					<TextDataField
+						align="left"
+						attr="EMP_FTP_PATH"
+						text="ftp_folder"
+						uppercase="false"
+						dim="text"
+						labelsize="11"
+						 />
+				</Column>
+			</Tab>
+			
+			<Tab attr="remotevehicle.REMOTEVEHICLE_TAB">
+				<Row expand="yes">
+					<Table
+						entity="ojee.RemoteVehicleManagementService.companySetup"
+						keys="CCF_ID"
+						parentkeys="CIF:COM_ID"
+						cols="CCF_ACTIVE;COM_ID;RDP_ID;RDP_NAME;CCF_EXTRA_INFO;CCF_STATUS"
+						visiblecols="CCF_ACTIVE;RDP_NAME;CCF_STATUS;CCF_EXTRA_INFO"
+						form="formRemoteVehicleCompanySetup.form"
+						refreshbutton="yes" >
+						<RenderTextCombo column="CCF_STATUS" values="PE;OK" equivalences="forms-remotevehicle/ccfstatus.properties" translate="yes"/>
+						<RenderBoolean column="CCF_ACTIVE"/> 
+					</Table>
+				</Row>
+			</Tab>
+			
+			<Tab attr="remotevehicle.REMOTE_RESPONSABLE_TAB">
+				<Row expand="yes">
+					<Table
+						entity="ojee.RemoteVehicleManagementService.companyResponsable"
+						keys="RDE_ID"
+						parentkeys="CIF:COM_ID"
+						cols="RDE_ID;COM_ID;RDP_ID;RDP_NAME;RDE_NOTES"
+						visiblecols="RDP_NAME;RDE_NOTES"
+						form="formRemoteVehicleCompanyResponsable.form"
+						refreshbutton="yes" >
+					</Table>
+				</Row>
+			</Tab>
+		</TabPanel>
+	</Row>
+</Column>

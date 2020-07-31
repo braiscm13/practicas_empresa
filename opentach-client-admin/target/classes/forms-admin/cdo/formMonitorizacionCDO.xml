@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	buttons="no"
+	title="managermonitorizacioncdo"
+	preferredsizetodialog="1024;768">
+	<Row
+		title="usuariosconectadoscdo"
+		expand="yes">
+		<Column expand="yes">
+			<Row expand="no">
+				<Column expand="yes" />
+				<CheckDataField
+					attr="autorefreshSessionMonitor"
+					table="ECDOMonitor"
+					interval="autorefreshTimeSessionMonitor"
+					listener="com.opentach.adminclient.modules.admin.IMMonitorizacionUsuariosRefreshListener"
+					align="right" />
+				<IntegerDataField attr="autorefreshTimeSessionMonitor" align="right" size="4" />
+			</Row>
+			<Row expand="yes">
+				<Table
+					entity="ECDOMonitor"
+					key="user"
+					cols="STATUS;USUARIO;user;sessionId;level;app;companies;startupTime;pingDate;connected;uploadedFiles;uploadFails;version;sourceAddress"
+					visiblecols="user;level;companies;startupTime;pingDate;connected;uploadedFiles;uploadFails;version;sourceAddress"
+					refreshbutton="yes">
+					<com.opentach.adminclient.modules.cdo.MonitorCellRenderer column="connected" />
+				</Table>
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

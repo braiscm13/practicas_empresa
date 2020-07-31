@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<com.opentach.downclient.DownCenterClientApplication 
+	title="OPENTACH_TITLE"
+	splash="downcenter-i18n/images/%LOCALE%/cargando.jpg" 
+	loginicon="images/titulo.jpg" 
+	icon="images/opentach.png"
+	preferences="opentach.conf" 
+	logintext="InicioDeSesion" 
+	locale="es_ES" 
+	resources="downcenter-i18n.bundle" 
+	allowrememberpassword="yes"
+	logindialogclass="com.opentach.downclient.component.OpentachLoginDialog" 
+	status="no">
+	
+	<!-- status="com.opentach.client.util.OpentachStatusBar" -->
+	<ReferenceLocator remotelocatorname="OpentachServer" local="false" class="com.opentach.downclient.DownCenterClientLocator"
+		packageorhostname="localhost" port="34007" clientpermissioncolumn="XML_CLIENTE" checkservermessageperiod="40000" checkinternalnoticesperiod="100000"
+		checktime="60000" />
+
+	<!-- MODULO DE ADMINISTRACION -->
+	<FormManager id="manageranonimo" form="downcenter-forms/formMainWizard.xml" imanager="com.opentach.downclient.IMMainWizard" />
+
+</com.opentach.downclient.DownCenterClientApplication>

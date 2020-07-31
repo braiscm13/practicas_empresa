@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EContratoEmp" title="DATOS_CONTRATO" keys="NUMREQ;CIF" parentkey="CIF" columns="NUMREQ;FECINI;FECFIN;CIF;NOMB_EMP">
+	<FormHeader standardbuttons="yes">
+		<Button key="btnAnadir" tip="TIP_ANADIR_REGISTRO" text="ANADIR_REGISTRO" icon="com/ontimize/gui/images/insert.png" />
+		<Button key="btnAnadirV" tip="TIP_ANADIR_REGISTRO" text="ANADIR_REGISTRO" icon="com/ontimize/gui/images/insert.png" />
+	</FormHeader>
+	<Include file="forms-desktop/data/formContratoEmpIncludeMain.xml" />
+</FormExt>

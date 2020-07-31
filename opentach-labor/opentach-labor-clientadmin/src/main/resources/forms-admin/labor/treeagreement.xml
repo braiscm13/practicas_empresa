@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+	<Node 
+		entity="ELaborAgreement" 
+		text="Agreements" 
+		attr="AGR_ID;AGR_NAME"	
+		hideattr="AGR_ID"
+		sortattr="AGR_NAME" 
+		keys="AGR_ID"		
+		iconnoorg="com/opentach/client/rsc/factoryB16.png" 		
+		form="formAgreement.xml"
+		expand="yes">
+	</Node>		

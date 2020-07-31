@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog="" schema="${mainschema}" table="USR_ROL_SERVER_PERMISSION" datasource="mainDataSource" sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>RSP_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>RSP_ID</Column>
+	</UpdateKeys>
+		<GeneratedKey>RSP_ID</GeneratedKey>
+		<Queries>
+		<Query id="id_serverRole">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="ROL_ID" prefix="a" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="ACTIVED" value="(CASE WHEN RSP_ID IS NOT NULL THEN 'S' ELSE 'N' END)" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[	
+					SELECT  
+						#COLUMNS#
+					FROM
+						(SELECT
+							tr.NIVEL_CD,
+							tr.DSCR,
+							ts.SRP_ID,
+							ts.SRP_NAME
+						FROM 
+							CDNIVELES tr,
+							USR_SERVER_PERMISSION ts
+						WHERE
+					    	tr.NIVEL_CD is not null
+					    ) a 
+					    LEFT JOIN USR_ROL_SERVER_PERMISSION rsp USING(NIVEL_CD, SRP_ID) 
+					#WHERE#
+					#ORDER#
+				]]>			
+				</Sentence>
+		</Query>
+		<Query id="id_serverRole_all">
+			<FunctionColumns>
+				<FunctionColumn name="ACTIVED" value="'N'" />
+				<FunctionColumn name="NIVEL_CD" value="null" />
+				<FunctionColumn name="ROL_NAME" value="null" />
+				<FunctionColumn name="RSP_ID" value="null" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[	
+				SELECT
+					#COLUMNS#
+				FROM
+					USR_SERVER_PERMISSION
+				#WHERE#
+				#ORDER#
+				]]>			
+				</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

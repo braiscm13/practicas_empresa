@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_DATOS_TECNICOS" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row>
+		<Column margin="7;5;2;5">
+			<Column title="" valign="center">
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="15" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+					descriptioncols="NOMB" required="yes" csize="10" />
+				<com.opentach.client.report.components.JRComboReport attr="SELECTOR" url="com/opentach/reports/reports.properties"
+					align="left" labelsize="12" dim="text" visible="no" />
+			</Column>
+		</Column>
+		<BasicDataComponentGroup attr="FILTER.2" group="COLUMN.2=FILTERFECINI;FILTERFECINI" />
+		<TextDataField attr="COLUMN.2" align="left" visible="no" />
+		<Column title="Filtro_Fecha_Comienzo" expand="no" align="left" margin="5;5;5;5">
+			<Row>
+				<Column layout="border" expand="no" align="center">
+					<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+						<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+						<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+						<Column expand="no">
+
+
+							<DateDataField attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="yes" dim="no" labelsize="10" calendar="yes" />
+							<DateDataField dateVisible="yes" attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="yes" dim="no"
+								labelsize="10" />
+						</Column>
+					</ColumnRadioButtonGroup>
+				</Column>
+			</Row>
+		</Column>
+		<BasicDataComponentGroup attr="FILTER.1" group="COLUMN.1=DSCR_ACT;VAL.1a;VAL.1b;VAL.1c;VAL.1d;VAL.1e" />
+		<TextDataField attr="COLUMN.1" align="left" labelsize="14" size="18" visible="no" />
+	</Row>
+	<Row expand="yes">
+		<Table entity="EInformeDatosTecnicosVeh" key="MATRICULA" keys="CG_CONTRATO" parentkeys="MATRICULA;CG_CONTRATO"
+			cols="MATRICULA;DSCR;F_ALTA;CG_CONTRATO;CIF;HOMOLOGACION_VU;NUM_SERIE_VU;COEFICIENTE;CONSTANTE;FEC_PROXIMO;BLOQUEO1;BLOQUEO2" renderdate="F_ALTA"
+			visiblecols="MATRICULA;DSCR;HOMOLOGACION_VU;NUM_SERIE_VU;COEFICIENTE;CONSTANTE;FEC_PROXIMO;BLOQUEO1;BLOQUEO2" />
+	</Row>
+</Form>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" title="CONSULTA_FICHEROS" buttons="no">
+<FormHeader>
+	<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+	<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+
+</FormHeader>
+	<Row title="">
+		<Column>
+			<Row title="USUARIO">					
+				<ReferenceComboDataField attr="USUARIO_ALTA" cod="USUARIO" key="USUARIO" entity="EUsuariosTodos" labelsize="16"  cols="USUARIO" visiblecols="USUARIO" dim="text"  align="left"/>
+			</Row>
+			<Row>	
+				<Column expand="yeso" title="Filtro_Nombre" valign="left">	
+					<TextDataField attr="NOMB" visible="yes" text="NOMB" required="no" dim="text" labelsize="16" align="left"/>
+					<TextDataField attr="NOMB_PROCESADO" visible="yes" text="NOMB_PROCESADO" required="no" dim="text" labelsize="16"  align="left"/>
+				</Column >
+			</Row>	
+		</Column>
+		
+		<Column layout="border" expand="no" align="center" title="F_ALTA" >												
+			<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+				<RadioButtonDataField attr="ULTIMOS_DIAS" text="Ultimos_15_dias" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+				<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+				<Column expand="no">	
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+				</Column >
+			</ColumnRadioButtonGroup >
+		</Column >
+					
+	</Row >
+	<Row title="EFicherosSubidos" expand="yes">		
+		<Table entity="EFicherosSubidos" key="NUM" keys="IDFICHERO" parentkey="USUARIO_ALTA" otherkeys="NOMB;NOMB_PROCESADO;F_ALTA" cols="NUM;CG_CONTRATO;TIPO;NOMB;NOMB_PROCESADO;OBSR;PDA;F_ALTA;USUARIO_ALTA" visiblecols="IDFICHERO;NUM;CG_CONTRATO;TIPO;NOMB;OBSR;PDA;F_ALTA;USUARIO_ALTA" rendertime="F_ALTA"  />				
+	</Row >		
+</Form>

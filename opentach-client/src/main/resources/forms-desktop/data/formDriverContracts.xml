@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="EDriverContracts"
+	title="EDriverContracts"
+	keys="DRC_ID"
+	buttons="no"
+	columns="DRC_TYPE;AGR_NAME;DRC_DATE_FROM;DRC_DATE_TO"
+	preferredsizetodialog="600;280">
+	<FormHeader standardbuttons="yes" />
+
+	<ObjectDataField
+		attr="CIF"
+		required="yes"
+		visible="no" />
+	<ObjectDataField
+		attr="IDCONDUCTOR"
+		required="yes"
+		visible="no" />
+	<ObjectDataField
+		attr="DRC_ID"
+		visible="no" />
+	<Row margin="5;5;5;5">
+		<Column>
+			<TextComboDataField
+				attr="DRC_TYPE"
+				values="TIEMPO_PARCIAL;TIEMPO_COMPLETO"
+				labelsize="16"
+				dim="text"
+				translate="yes"
+				size="14"
+				listener="com.opentach.client.modules.data.IMDriverContracts$IMDriverContractsTypeValueChangeListener" />
+			<DeprecatedReferenceExtDataField
+				codvisible="no"
+				codnumber="yes"
+				codnumberclass="BigDecimal"
+				entity="ELaborAgreement"
+				parentkeys="CIF:COM_ID"
+				text="EAgreements"
+				attr="AGR_ID"
+				cod="AGR_ID"
+				dim="text"
+				labelsize="16"
+				align="left"
+				cols="AGR_NAME;AGR_F_BAJA"
+				visiblecols="AGR_NAME"
+				descriptioncols="AGR_NAME" 
+				deprecatedcolumn="AGR_F_BAJA"
+				cachetime="0"
+				populatetableonshowtablewindow="yes"/>
+
+			<Row>
+				<Column expand="no">
+					<Label bold="yes" text="WORKING_TIME_LIMIT" align="center" attr="LABEL_WORKING"/>
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_DAILY_MINUTES"
+						labelsize="14"
+						text="DAILY"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_WEEKLY_MINUTES"
+						labelsize="14"
+						text="WEEKLY"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_BIWEEKLY_MINUTES"
+						labelsize="14"
+						text="BIWEEKLY"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_4WEEKLY_MINUTES"
+						labelsize="14"
+						text="FOUR_WEEKLY"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_MONTHLY_MINUTES"
+						labelsize="14"
+						text="MONTHLY"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_4MONTHLY_MINUTES"
+						labelsize="14"
+						text="FOUR_MONTHLY"
+						dim="no"
+						size="8"
+						align="left" />	
+					<HourMinuteDataField
+						attr="DRC_PARTIAL_ANNUAL_MINUTES"
+						labelsize="14"
+						text="ANNUAL"
+						dim="no"
+						size="8"
+						align="left" />
+				</Column>
+				<Column expand="no">
+					<Label bold="yes" text="COMPLEMENTARY_TIME_LIMIT" align="center" attr="LABEL_COMPL"/>
+					<HourMinuteDataField
+						attr="DRC_COMPL_DAILY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_COMPL_WEEKLY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_COMPL_BIWEEKLY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_COMPL_4WEEKLY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_COMPL_MONTHLY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+					<HourMinuteDataField
+						attr="DRC_COMPL_4MONTHLY_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />	
+					<HourMinuteDataField
+						attr="DRC_COMPL_ANNUAL_MINUTES"
+						labelvisible="no"
+						dim="no"
+						size="8"
+						align="left" />
+				</Column>
+				<Column expand="yes"/>
+			</Row>
+			<Row
+				height="0"
+				expand="yes" />
+		</Column>
+		<Column>
+			<DateDataField
+				attr="DRC_DATE_FROM"
+				dim="no"
+				required="yes"
+				labelsize="16"
+				align="left" />
+			<CheckDataField
+				attr="MARK_CURRENT_CONTRACT"
+				returnboolean="yes"
+				align="left"
+				labelsize="16" 
+				listener="com.opentach.client.modules.data.IMDriverContracts$IMDriverContractsCheckCurrentContractValueChangeListener" />
+			<DateDataField
+				attr="DRC_DATE_TO"
+				dim="no"
+				required="no"
+				labelsize="16"
+				align="left" 
+				listener="com.opentach.client.modules.data.IMDriverContracts$IMDriverContractsDateToValueChangeListener" />
+			<CheckDataField
+				attr="DRC_IRREGULAR_JOURNAL"
+				returnstring="yes"
+				align="left"
+				labelsize="16" />
+		</Column>
+	</Row>
+</FormExt>
+
+
+
+
+
+

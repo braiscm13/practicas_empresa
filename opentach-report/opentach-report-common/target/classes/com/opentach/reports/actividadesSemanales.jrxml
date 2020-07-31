@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incidentes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="6d3e4dc2-3843-4802-947e-805d2cdd9020">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="0.9075000000000012"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vTextAlign="Middle" vImageAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="DatasetTipo" uuid="feaeb9f7-6817-4971-b2f6-1ed706d8da05">
+		<parameter name="numreq" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="tipo" class="java.lang.String"/>
+		<parameter name="f_informe" class="java.sql.Timestamp"/>
+		<queryString>
+			<![CDATA[select
+A.numreq,
+A.idconductor || ', ' || cdconductor_cont.nombre  || ' ' || cdconductor_cont.apellidos as idconductor,
+cdconductor_cont.nombre,
+cdconductor_cont.apellidos,
+cdtipo_actividad.tpactividad,
+A.TIPO_SEM_BIS,
+nvl(A.minutos,0) as minutos,
+cdtipo_actividad.dscr
+from
+((select
+numreq,
+idconductor,
+tpactividad,
+'SEMANAL' as TIPO_SEM_BIS,
+minutos
+from cdactividades
+where numreq =$P{numreq} and fec_comienzo > ($P{f_informe} -30) and fec_fin < $P{f_informe}
+)
+union all
+(select
+numreq,
+idconductor,
+tpactividad,
+'BISEMANAL' as TIPO_SEM_BIS,
+minutos
+from cdactividades
+where numreq = $P{numreq} and fec_comienzo > ($P{f_informe} -60) and fec_fin < $P{f_informe}
+)) A, cdconductor_cont, cdtipo_actividad
+where a.numreq = cdconductor_cont.cg_contrato and
+a.idconductor = cdconductor_cont.idconductor and
+a.tpactividad(+) = cdtipo_actividad.tpactividad  and TIPO_SEM_BIS = $P{tipo}
+order by TIPO_SEM_BIS, A.idconductor || ', ' || cdconductor_cont.nombre  || ' ' || cdconductor_cont.apellidos, tpactividad]]>
+		</queryString>
+		<field name="NUMREQ" class="java.lang.String"/>
+		<field name="IDCONDUCTOR" class="java.lang.String"/>
+		<field name="NOMBRE" class="java.lang.String"/>
+		<field name="APELLIDOS" class="java.lang.String"/>
+		<field name="TPACTIVIDAD" class="java.math.BigDecimal"/>
+		<field name="TIPO_SEM_BIS" class="java.lang.String"/>
+		<field name="MINUTOS" class="java.math.BigDecimal"/>
+		<field name="DSCR" class="java.lang.String"/>
+		<group name="IDCONDUCTOR">
+			<groupExpression><![CDATA[$F{IDCONDUCTOR}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String"/>
+	<parameter name="title" class="java.lang.String">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqldeleg" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ppagenumber" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_hoy" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime())]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+A.numreq,
+A.idconductor,
+cdconductor_cont.nombre,
+cdconductor_cont.apellidos,
+cdtipo_actividad.tpactividad,
+A.TIPO_SEM_BIS,
+nvl(A.minutos,0) as minutos,
+cdtipo_actividad.dscr
+from
+((select
+numreq,
+idconductor,
+tpactividad,
+'SEMANAL' as TIPO_SEM_BIS,
+minutos
+from cdactividades
+where numreq = $P{numreq} and fec_comienzo > ($P{f_informe} -30) and fec_fin < $P{f_informe}
+)
+union all
+(select
+numreq,
+idconductor,
+tpactividad,
+'BISEMANAL' as TIPO_SEM_BIS,
+minutos
+from cdactividades
+where numreq = $P{numreq} and fec_comienzo > ($P{f_informe} -60) and fec_fin < $P{f_informe}
+)) A, cdconductor_cont, cdtipo_actividad
+where a.numreq = cdconductor_cont.cg_contrato and
+ a.idconductor = cdconductor_cont.idconductor and
+a.tpactividad(+) = cdtipo_actividad.tpactividad
+order by TIPO_SEM_BIS,idconductor, tpactividad]]>
+	</queryString>
+	<field name="NUMREQ" class="java.lang.String"/>
+	<field name="IDCONDUCTOR" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<field name="TPACTIVIDAD" class="java.math.BigDecimal"/>
+	<field name="TIPO_SEM_BIS" class="java.lang.String"/>
+	<field name="MINUTOS" class="java.math.BigDecimal"/>
+	<field name="DSCR" class="java.lang.String"/>
+	<group name="tipo">
+		<groupExpression><![CDATA[$F{TIPO_SEM_BIS}]]></groupExpression>
+		<groupHeader>
+			<band height="35">
+				<rectangle>
+					<reportElement key="rectangle-1" style="Back" mode="Opaque" x="22" y="5" width="492" height="30" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="589924ba-35af-4747-b5fc-d9c63b60bdf8"/>
+				</rectangle>
+				<textField>
+					<reportElement style="Value" positionType="Float" x="28" y="7" width="470" height="25" forecolor="#000000" uuid="9fee9f74-111a-406d-b6fd-5be0f7fc21af"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($F{TIPO_SEM_BIS})!=null ? $P{REPORT_RESOURCE_BUNDLE}.getString($F{TIPO_SEM_BIS}) : $F{TIPO_SEM_BIS}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="84">
+				<crosstab ignoreWidth="false">
+					<reportElement positionType="Float" x="29" y="5" width="479" height="69" uuid="c4756018-7a65-42dc-8ebc-7b3c53e90b41"/>
+					<box>
+						<pen lineColor="#FFFFFF"/>
+						<topPen lineColor="#FFFFFF"/>
+						<leftPen lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#FFFFFF"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<crosstabDataset>
+						<dataset resetType="Report">
+							<datasetRun subDataset="DatasetTipo" uuid="771dfcc9-6829-4180-ab5c-f2a8eb3a36c4">
+								<datasetParameter name="numreq">
+									<datasetParameterExpression><![CDATA[$F{NUMREQ}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="tipo">
+									<datasetParameterExpression><![CDATA[$F{TIPO_SEM_BIS}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="REPORT_RESOURCE_BUNDLE">
+									<datasetParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="f_informe">
+									<datasetParameterExpression><![CDATA[$P{f_informe}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+					</crosstabDataset>
+					<rowGroup name="IDCONDUCTOR" width="148">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{IDCONDUCTOR}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<box>
+									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#FFFFFF"/>
+									<topPen lineColor="#FFFFFF"/>
+									<leftPen lineColor="#FFFFFF"/>
+									<bottomPen lineColor="#FFFFFF"/>
+									<rightPen lineColor="#FFFFFF"/>
+								</box>
+								<textField>
+									<reportElement style="Crosstab Data Text" x="10" y="1" width="138" height="25" forecolor="#34679A" uuid="a71b0568-2b9d-4b65-94d6-840f0563e8c2"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement verticalAlignment="Middle">
+										<font size="7"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{IDCONDUCTOR}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents/>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="DSCR" height="30">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{DSCR}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#F0F8FF" mode="Opaque">
+								<box>
+									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#FFFFFF"/>
+									<topPen lineColor="#FFFFFF"/>
+									<leftPen lineColor="#FFFFFF"/>
+									<bottomPen lineColor="#FFFFFF"/>
+									<rightPen lineColor="#FFFFFF"/>
+								</box>
+								<textField>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="75" height="30" forecolor="#34679A" uuid="6d6a74a3-bc9c-41ac-81e6-3578fd6ddb15"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement verticalAlignment="Middle">
+										<font size="7"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString($V{DSCR})!=null ? $P{REPORT_RESOURCE_BUNDLE}.getString($V{DSCR}) : $V{DSCR}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents/>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="MINUTOSMeasure" class="java.math.BigDecimal" calculation="Sum">
+						<measureExpression><![CDATA[$F{MINUTOS}]]></measureExpression>
+					</measure>
+					<crosstabCell width="75" height="26">
+						<cellContents>
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#FFFFFF"/>
+								<topPen lineColor="#FFFFFF"/>
+								<leftPen lineColor="#FFFFFF"/>
+								<bottomPen lineColor="#FFFFFF"/>
+								<rightPen lineColor="#FFFFFF"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="75" height="25" uuid="8d5664ef-80a7-400f-979d-b5bd556c1301"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineColor="#FFFFFF"/>
+									<leftPen lineColor="#FFFFFF"/>
+									<bottomPen lineColor="#FFFFFF"/>
+									<rightPen lineColor="#FFFFFF"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{MINUTOSMeasure}.intValue(), false)]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell height="25" rowTotalGroup="IDCONDUCTOR">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="5dc5d6ad-7fa1-4632-861c-20fa93bba637"/>
+								<textFieldExpression><![CDATA[$V{MINUTOSMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="50" columnTotalGroup="DSCR">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="f2635426-0850-4e53-b706-7f5e78cb2dc8"/>
+								<textFieldExpression><![CDATA[$V{MINUTOSMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell rowTotalGroup="IDCONDUCTOR" columnTotalGroup="DSCR">
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="87f0329d-a711-4284-b825-c1314dc4745a"/>
+								<textFieldExpression><![CDATA[$V{MINUTOSMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="-7" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="-4" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="173" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="273" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="20" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="124" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="183" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="350" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="423" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="323" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="323" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="21" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="95" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="49" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="49" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="49" y="49" width="91" height="14" uuid="f1b9e4a7-cf85-4af2-b801-77ccd76cca02"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="140" y="50" width="60" height="14" uuid="e1c43663-5aab-46e8-8421-55d945fba277"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="116" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="97" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

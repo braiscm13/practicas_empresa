@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/opentach-client-primafrio/src/main/java/com/opentach/client/OpentachPrimafrioLauncher.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+        <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+        <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+    </listAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.opentach.client.OpentachPrimafrioLauncher"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="opentach-client-primafrio"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dcom.ontimize.gui.lafclassname=com.opentach.client.laf.OpentachLAF&#13;&#10;-Dcom.ontimize.gui.lafstyle=com/opentach/client/laf/blue.css&#13;&#10;-DwebDocPath=http://212.89.13.60:8080/openservices/doc/&#13;&#10;-Dremotedownload.base.url=ws://127.0.0.1:8080/opentach-war&#13;&#10;-DBASE_JNLP_URI=http://trial.imatia.com/demoslabs/openservices"/>
+</launchConfiguration>

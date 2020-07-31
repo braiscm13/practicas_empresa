@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" buttons="no"  scroll="no" title="managergeninformegestor">
+	<FormHeader standardbuttons="no"/>
+     <Row title="" expand="yes">
+        <Table entity="EConfInformeGestor" key="CIF" cols="CIF;NOMB;DEND;DGEN;DULTIMO_ENVIO" visiblecols="CIF;NOMB;DEND;DGEN;DULTIMO_ENVIO" rendertime="DULTIMO_ENVIO" deletebutton="no" refreshbutton="yes" editablecolumns="DEND;DGEN" updateentityeditablecolumns="DEND;DGEN" />
+     </Row >    
+</Form>   

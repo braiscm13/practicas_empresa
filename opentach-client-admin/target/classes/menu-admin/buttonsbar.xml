@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ApplicationToolBar toolbarheight="26" visible="no">
+	<ApToolBarButton icon="com/opentach/client/rsc/home_inicio24.png" attr="managerhome" />
+	<ApToolBarSeparator attr="mseparator1" width="20" align="right" />
+	<!--<ApToolBarButton attr="manageracercade" align="right" icon="com/opentach/client/rsc/information24.png" /> -->
+	<ApToolBarSeparator attr="mseparator4" width="20" align="right" />
+	<ApToolBarFiller />
+	<ApToolBarButton attr="SendToTray" icon="com/ontimize/gui/images/sendtotray.png" />
+	<ApToolBarButton attr="Exit" icon="com/opentach/client/rsc/exit24.png" align="right" />
+
+</ApplicationToolBar>

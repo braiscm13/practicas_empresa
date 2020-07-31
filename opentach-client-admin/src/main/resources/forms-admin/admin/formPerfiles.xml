@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="NIVEL_CD" entity="EPerfil" columns="NIVEL_CD;APP;DSCR" title="perfiles_de_usuario">
+	<FormHeader standardbuttons="yes" />
+	<Column expandlast="no">
+		<Row height="10" />
+		<Row align="left">
+			<MaskDataField mask="00" size="2" textalign="center" attr="NIVEL_CD" visible="yes" required="yes" dim="no" fontsize="+2" bold="yes" />
+			<TextDataField maxlength="60" attr="APP" required="yes" dim="no" />
+			<TextDataField maxlength="60" attr="DSCR" required="yes" dim="text" />
+		</Row >
+		<SplitPane>
+			<Row >
+				<SplitPane orientation="h">
+					<Column expand="yes" title="permisos_cliente">
+						<XMLDataField attr="XML_CLIENTE" labelsize="12" labelvisible="no" rows="20" dim="text" align="left" expand="yes" />
+					</Column >
+					<Column expand="yes" title="permisos_servidor">
+						<XMLDataField attr="XML_SERVIDOR" labelsize="12" labelvisible="no" rows="20" dim="text" required="yes" align="left" expand="yes" />
+					</Column >
+				</SplitPane>
+			</Row >
+			<Row expandlast="yes" expand="yes">
+				<Table entity="EUsuariosTodos" cols="USUARIO"  key="USUARIO" parentkey="NIVEL_CD" title="usuario" form="formUsuarios.xml" refreshbutton="yes"/>
+			</Row >
+		</SplitPane>
+	</Column >
+</FormExt>

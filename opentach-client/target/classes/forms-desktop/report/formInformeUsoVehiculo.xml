@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="INFORME_USO_VEHICULO" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="15" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10"/>
+					<AssetSelectionDataField
+						assetType="VEHICLE"
+						align="left"
+						labelsize="15" 
+						dim="text" 
+						required="yes"/>
+				</Column >
+			</Column >
+			<Column >
+				<Row expand="yes">
+					<Table entity="EInformeUsoVehiculoVehiculo" key="MATRICULA" keys="IDCONDUCTOR;FECINI;PROCEDENCIA;CG_CONTRATO" parentkey="NUMREQ" 
+					otherkeys="CG_CONTRATO;MATRICULA;FECINI" 
+					cols="NUMREQ;MATRICULA;DSCR;FECINI;FECFIN;MINUTOS;KM_INI;KM_FIN;KM_REC;PROCEDENCIA;ORIGEN;DESTINO;IDCONDUCTOR;EXTERNAL_EMPLOYEE_ID;DNI;APELLIDOS;NOMBRE;DIA;DIA_SEM;SEMANA;MES;MES2;HORA;VEL_MED;ANHO;HORAS;INI_SEMANA;FIN_SEMANA;DSCR_CONDUCTOR" 
+					visiblecols="MATRICULA;DSCR;MINUTOS;FECINI;FECFIN;KM_INI;KM_FIN;KM_REC;IDCONDUCTOR;EXTERNAL_EMPLOYEE_ID;DNI;APELLIDOS;NOMBRE"/>
+				</Row >
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no">
+			<Column >
+				<BasicDataComponentGroup attr="FILTER.2" group="COLUMN.2=FECINI;FILTERFECINI;FILTERFECINI" />
+				<TextDataField attr="COLUMN.2" align="left" visible="no" />	
+				<Column title="Filtro_Fecha_Comienzo" expand="no" align="left" margin="5;5;5;5">
+						<Row >
+							<Column layout="border" expand="no" align="center">
+								<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+									<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+									<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+									<Column expand="no">
+										<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+										<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+									</Column >
+								</ColumnRadioButtonGroup >
+							</Column >
+						</Row >
+				</Column >
+				<Column title="MOSTRAR" >
+					<BasicDataComponentGroup attr="BANDCFG.1" group="SHOW_DIA;SHOW_SEMANA;SHOW_MES;SHOW_DETALLES;SHOW_GRAFICOS;SHOW_RESUME"/>
+					<CheckDataField attr="SHOW_DIA" align="left" labelposition="right" labelsize="18"/>
+					<CheckDataField attr="SHOW_SEMANA" align="left" labelposition="right" labelsize="24"/>
+					<CheckDataField attr="SHOW_MES" align="left" labelposition="right" labelsize="18"/>
+					<CheckDataField attr="SHOW_DETALLES" align="left" labelposition="right" labelsize="18"/>
+					<CheckDataField attr="SHOW_GRAFICOS" align="left" labelposition="right" labelsize="18"/>
+					<CheckDataField attr="SHOW_RESUME" align="left" labelposition="right" labelsize="18"/>
+				</Column >
+				<Column >
+					<BasicDataComponentGroup attr="FILTER.1" group="COLUMN.1=DSCR_ACT;VAL.1a;VAL.1b;VAL.1c;VAL.1d;VAL.1e"/>
+					<TextDataField attr="COLUMN.1" align="left" labelsize="14" size="18" visible="no"/>					
+				</Column >
+			</Column >
+		</Column >
+	</Row >
+</Form>

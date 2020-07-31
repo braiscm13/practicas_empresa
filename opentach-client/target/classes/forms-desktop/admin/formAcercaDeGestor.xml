@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Form buttons="no" customfocus="yes" status="no" margin="0;0;0;0">
+  <Column expandlast="no">
+		<Row expand="no" bgcolor="#34679A" height="126">
+			<LocaleImageColumn expand="no" imagepath="com/opentach/client/rsc/i18n/" imagename="logoarriba.png" width="356" attr="INFO1"/>
+			<Column expand="yes" bgcolor="#34679A" attr="INFO2"/>						
+		</Row >
+		<Row expand="yes" bgimage="com/opentach/client/rsc/background_black2.jpg">
+			<Column opaque="no" expandlast="no">
+				<Row expand="yes" opaque="no"/>
+				<Row expand="no"  opaque="no">
+					<Label attr="demo" align="center"/>
+				</Row>
+			</Column>
+		</Row>							
+  </Column >	
+</Form>

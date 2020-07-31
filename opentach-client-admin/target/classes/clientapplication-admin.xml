@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<com.opentach.adminclient.OpentachAdminClientApplication title="OPENTACH_TITLE"
+	splash="images-admin/i18n/%LOCALE%/cargando.jpg" loginicon="images-admin/titulo.jpg" icon="images-admin/opentach.png" preferences="opentach.conf"
+	logintext="InicioDeSesion" locale="es_ES" resources="i18n-admin.bundle" allowrememberpassword="yes" logindialogclass="com.opentach.client.comp.OpentachLoginDialog"
+	status="com.ontimize.gui.MainApplication.StatusBar">
+	<!-- status="com.opentach.client.util.OpentachStatusBar" -->
+	<ReferenceLocator remotelocatorname="OpentachServer" local="false" class="com.opentach.adminclient.OpentachAdminClientLocator"
+		packageorhostname="localhost" port="34007" clientpermissioncolumn="XML_CLIENTE" checkservermessageperiod="40000" checkinternalnoticesperiod="100000"
+		checktime="60000" />
+	<Menu archive="menu-admin/clientmenu.xml" />
+	<MenuListener class="com.opentach.adminclient.ListenerMenu" />
+	<Toolbar archive="menu-admin/buttonsbar.xml" />
+	<ToolbarListener class="com.ontimize.gui.DefaultToolBarListener" />
+
+	<!-- MODULO DE ADMINISTRACION -->
+	<FormManager id="managerhome" form="forms-admin/admin/formHome.xml" imanager="com.opentach.adminclient.modules.admin.IMHome" >
+	</FormManager>
+
+	<TabbedFormManager id="managerusuario"  showframe="yes" delayedload="yes" form="forms-admin/admin/formUsuariosManagement.xml" imanager="com.opentach.adminclient.modules.admin.IMUsuarioManagement"	>
+		<InteractionManager form="formUsuarios.xml" class="com.opentach.adminclient.modules.admin.IMUsuario" />
+		<InteractionManager form="formUsuDel.xml" class="com.opentach.adminclient.modules.admin.IMUsuDel" />		
+	</TabbedFormManager>
+	<TabbedFormManager id="managerusuariocdo"  showframe="yes" delayedload="yes" form="forms-admin/cdo/formUsuariosCDOManagement.xml" imanager="com.opentach.adminclient.modules.cdo.IMUsuarioCDOManagement"	>
+		<InteractionManager form="formUsuariosCDO.xml" class="com.opentach.adminclient.modules.cdo.IMUsuarioCDO" />
+	</TabbedFormManager>
+	<FormManager id="managerperfil"  showframe="yes" delayedload="yes" form="forms-admin/admin/formPerfiles.xml" imanager="com.opentach.adminclient.modules.admin.IMPerfiles"
+		tree="forms-admin/admin/arbolperfil.xml">
+		<FManager fmid="managerusuario" delayedload="yes" form="formUsuarios.xml" />
+	</FormManager>
+
+	<FormManager id="managerviewsolicitudes"  showframe="yes" delayedload="yes" form="forms-admin/admin/formViewSolicitudCondVeh.xml" imanager="com.opentach.adminclient.modules.admin.IMViewSolicitudCondVeh" />
+
+	<FormManager id="managertablasmaestras"  showframe="yes" delayedload="yes" form="forms-admin/admin/formTablasMaestras.xml" imanager="com.opentach.adminclient.modules.admin.IMTablasMaestras" />
+	<FormManager id="manageradminmobilefileextraction"  showframe="yes" delayedload="yes" form="forms-admin/admin/formMobileFileExtraction.xml" imanager="com.opentach.adminclient.modules.admin.IMMobileFileExtraction" />
+	<FormManager id="manageradminmobilevipcodes"  showframe="yes" delayedload="yes" form="forms-admin/admin/formMobileVipCodes.xml" imanager="com.opentach.adminclient.modules.admin.IMMobileVipCodes" />
+	<FormManager id="managerpushblackberry"  showframe="yes" delayedload="yes" form="forms-admin/admin/formPushBlackberry.xml" imanager="com.opentach.adminclient.modules.admin.IMPushBlackberry" />
+
+	<!-- MONITORIZACION DE USUARIOS -->
+	<FormManager id="managermonitorizacion"  showframe="yes" delayedload="yes" form="forms-admin/admin/formMonitorizacionUsuarios.xml" imanager="com.opentach.adminclient.modules.admin.IMMonitorizacionUsuarios" />
+
+
+	<FormManager id="managerrestricciones"  showframe="yes" delayedload="yes" form="forms-admin/admin/formRestricciones.xml" imanager="com.opentach.adminclient.modules.admin.IMRestricciones" />
+
+
+	<!-- GENERACION INFORME GESTOR -->
+	<FormManager id="managergeninformegestor"  showframe="yes" delayedload="yes" form="forms-admin/admin/formGenInformeGestor.xml" imanager="com.opentach.adminclient.modules.admin.IMGenInformeGestor" />
+	<!-- INFORME TOTAL DE INFRACCIONES -->
+	<FormManager id="managergeninformefullinfractions"  showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeFullInfractions.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeFullInfractions" />
+
+	<!-- MODULO DE GESTION DE FICHEROS -->
+	<FormManager id="managertacholibraryviewer" form="tacholibraryviewer-forms/formMain.form" imanager="com.imatia.tacho.viewer.FIMMain"/>
+	<FormManager id="managerlistadoficheros"  showframe="yes" delayedload="yes" form="forms-admin/files/formListadoFicheros.xml" imanager="com.opentach.adminclient.modules.files.IMListadoFicheros">
+		<InteractionManager form="formRegistroOperacionesFichero.xml" class="com.opentach.adminclient.modules.files.IMRegistroOperacionesFichero" />
+		<InteractionManager form="formAsociarContrato.xml" class="com.opentach.adminclient.modules.files.IMAsociarContrato" />
+		<FManager fmid="referencesform" form="formDescargaTGDTaco.xml" />
+		<FManager fmid="managertacholibraryviewer" form="formMain.form" />
+	</FormManager>
+	<FormManager id="managerinformependdescargafull" showframe="yes" delayedload="yes" form="forms-admin/files/formInformePendDescargaFull.xml" imanager="com.opentach.adminclient.modules.files.IMInformePendDescargaFull"/>
+	
+	<FormManager id="managerdummy"  delayedload="yes" form="forms-admin/dummy.xml">
+		<InteractionManager form="files/formProcessFileStatus.xml" class="com.opentach.adminclient.modules.files.IMProcessFileStatus" />
+	</FormManager>
+	
+	<FormManager id="referencesform"  showframe="yes" delayedload="yes" form="forms-desktop/files/formDescargaTGDTaco.xml" imanager="com.opentach.client.modules.files.IMDescargaTGD">
+	</FormManager>
+	
+	<FormManager id="managerconsultaficheros"  showframe="yes" delayedload="yes" form="forms-admin/files/formConsultaFicheros.xml" imanager="com.opentach.adminclient.modules.files.IMConsultaFicheros" />
+	<FormManager id="managerlistadoregistro"  showframe="yes" delayedload="yes" form="forms-admin/files/formListadoRegistro.xml" imanager="com.opentach.adminclient.modules.files.IMListadoRegistro" />
+
+	<!-- ALARMAS : NO OPERATIVO -->
+	<FormManager id="manageralertas"  showframe="yes" delayedload="yes" form="forms-admin/alerts/formalerts.xml" imanager="com.opentach.adminclient.modules.alerts.IMAlerts">
+		<InteractionManager form="formalert.xml" class="com.opentach.adminclient.modules.alerts.IMAlert" />
+	</FormManager>
+	
+	<!-- CDO -->
+	<FormManager id="managermonitorizacioncdo"  showframe="yes" delayedload="yes" form="forms-admin/cdo/formMonitorizacionCDO.xml" imanager="com.opentach.adminclient.modules.cdo.IMMonitorizacionCDO" />
+	
+	<FormManager id="managercdonews"  showframe="yes" delayedload="yes" form="forms-admin/cdo/formCDONews.xml" imanager="com.opentach.adminclient.modules.cdo.IMCDONews">
+	</FormManager>
+	
+	<FormManager id="managernews"  showframe="yes" delayedload="yes" form="forms-admin/news/formNews.xml" imanager="com.opentach.adminclient.modules.news.IMNews"/>
+<!-- 	<FormManager id="managercreatenotice" showframe="yes" delayedload="yes" form="forms-admin/notices/formcreatenotice.xml" imanager="com.opentach.adminclient.modules.notices.IMCreateNotices"/> -->
+	<!--  news editor -->
+	<FormManager id="versionNewsEditor"  showframe="yes" delayedload="yes" form="forms-admin/setup/formVersionNewsEditor.xml" imanager="com.opentach.adminclient.modules.setup.IMVersionNewsEditor">
+	</FormManager>
+
+	<!-- INFORMES -->
+	<FormManager id="managerinformeexpireduser" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeExpiredUser.xml" 		imanager="com.opentach.adminclient.modules.reports.IMInformeExpiredUser"/>
+	<FormManager id="managerinformekmsempresa" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformekmsEmpresa.xml" imanager="com.opentach.adminclient.modules.reports.IMInformekmsEmpresa"/>
+	<FormManager id="managerinformedemos" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeDemos.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeDemos"/>
+	<FormManager id="managerpendDescargaEmpresa" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformePendDescargaEmpresa.xml" imanager="com.opentach.adminclient.modules.reports.IMInformePendDescargaEmpresa"/>
+	
+	<FormManager id="managerinformeincidenciasficheros" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeIncidenciasFicheros.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeIncidenciasFicheros"/>
+	<FormManager id="managerinformeresumenempresas" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeResumenEmpresa.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeResumenEmpresa"/>
+	<FormManager id="managerinformeconexionesusu" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeConexionesUsu.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeConexionesUsu"/>
+	<FormManager id="managerinformecooperativas" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeCooperativas.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeCooperativas"/>
+	
+	<FormManager id="managerinformeincidencesbyweek" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeIncidencesByWeek.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeIncidencesByWeek"/>
+	<FormManager id="managerinformeagentcompaniesnotused" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeAgentCompaniesNotUsed.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeAgentCompaniesNotUsed"/>
+	<FormManager id="managerinformevehiclesnotdownloading" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeVehiclesNotDownloading.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeVehiclesNotDownloading"/>
+	<FormManager id="managerinformedriversnotdownloading" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeDriversNotDownloading.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeDriversNotDownloading"/>
+	<FormManager id="managerinformedemosactivas" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeDemosActivas.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeDemosActivas"/>
+	<FormManager id="managerinformecompaniesbyagent" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeCompaniesByAgent.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeCompaniesByAgent"/>
+	
+	<FormManager id="managervehaltabaja" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeVehAltaBaja.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeVehAltaBaja"/>
+	<FormManager id="managervehagente" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeVehAgente.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeVehAgente"/>
+	<FormManager id="managervehprovincias" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeVehProvincias.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeVehProvincias"/>
+	<FormManager id="managercondaltabaja" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeCondAltaBaja.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeCondAltaBaja"/>
+	<FormManager id="managercondagente" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeCondAgente.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeCondAgente"/>
+	<FormManager id="managerempresaflota" showframe="yes" delayedload="yes" form="forms-admin/reports/formInformeEmpresaFlota.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeEmpresaFlota"/>
+	<FormManager id="managerconexionesdescargas" showframe="yes" delayedload="yes" form="forms-desktop/reports/formInformeConexionesDescargas.xml" imanager="com.opentach.adminclient.modules.reports.IMInformeConexionesDescargas"/>
+	
+	<!-- EXTRA RESOURCES -->
+	<FormManager id="managerextraresources" showframe="yes" delayedload="yes" form="forms-admin/extraresources/formExtraResourcesManagement.xml" imanager="com.opentach.adminclient.modules.extraresources.IMExtraResourcesManagement"/>
+	
+	<!-- FIX FICHEROS -->
+	<FormManager id="managerfilefixer" showframe="yes" delayedload="yes" form="forms-admin/filefixer/formFileFixer.xml" imanager="com.opentach.adminclient.modules.filefixer.IMFileFixer"/>
+</com.opentach.adminclient.OpentachAdminClientApplication>

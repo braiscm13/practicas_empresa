@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="formInformeConduDescCond.xml" buttons="no" preferredsizetodialog="1280;700">
+	<FormHeader>
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<Button key="btnRefresh" tip="TIP_refresh_table" icon="com/opentach/client/rsc/refresh16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column title="" margin="7;5;5;5" valign="center" expand="yes">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+				descriptioncols="NOMB" required="yes" csize="10" />
+			<AssetSelectionDataField
+				assetType="DRIVER"
+				align="left" 
+				labelsize="12" 
+				dim="text" 
+				required="yes" />
+			<InfracEngineChooser labelsize="12" attr="ENGINEANALYZER" size="30" align="left" />
+		</Column>
+	</Row>
+	<Row valign="center" align="right" expandlast="no" margin="5;5;5;5">
+		<Column align="left" expand="no">
+			<Button key="btnGrafica" tip="TIP_GRAFICA_ACTIVIDADES" text="GRAFICA_ACTIVIDADES" icon="com/ontimize/gui/images/chart.png" />
+		</Column>
+		<Column align="center" expand="yes">
+			<Label attr="CURRENT_WEEK" align="center" dim="no" size="40" fontcolor="#ffffff" font="Arial-BOLD-12" border="2"></Label>
+		</Column>
+		<Column align="right" expand="no">
+			<Button key="btnInfoInforme" tip="btnInfoInforme" icon="com/opentach/client/rsc/information16.png" align="right" text="Ayuda"/>	
+		</Column>
+		
+	</Row>
+	<!-- <Button key="btnEmail" tip="btnEmail" icon="com/opentach/client/rsc/printer16.png" align="right" text="Enviar E-mail"/> -->
+	<Row expand="yes">
+			 <Table  entity="EInformeConduDescCond"  key="NUMREQ" keys="CIF;IDCONDUCTOR" parentkey="CIF" otherkeys="IDCONDUCTOR;FECINI;CG_CONTRATO;ENGINEANALYZER"
+							cols="updated;idconductor;EXTERNAL_EMPLOYEE_ID;DNI;NOMBRE;APELLIDOS;CG_CONTRATO;F_DESCARGA_DATOS;current_week;last_recorded_activity_date;added_week_driving_time;added_biweek_driving_time;available_driving_time;available_more_driving;expanded_driving;available_reduced_rest;last_weekly_rest;timeLastWeeklyRest;next_weekly_rest;to_compensate_rest_time;next_rest_type;available_reduced_rest_eval"
+							visiblecols="EXTERNAL_EMPLOYEE_ID;DNI;NOMBRE;APELLIDOS;F_DESCARGA_DATOS;last_recorded_activity_date;added_week_driving_time;added_biweek_driving_time;available_driving_time;available_more_driving;expanded_driving;available_reduced_rest;last_weekly_rest;timeLastWeeklyRest;next_weekly_rest;to_compensate_rest_time;next_rest_type;"
+							headergroups="CONDUCTOR:EXTERNAL_EMPLOYEE_ID,DNI,NOMBRE,APELLIDOS,F_DESCARGA_DATOS,last_recorded_activity_date;CONDUCCION:added_week_driving_time,added_biweek_driving_time,available_driving_time,available_more_driving,expanded_driving;DESCANSO_DIARIO:available_reduced_rest;DESCANSO_SEMANAL:last_weekly_rest,timeLastWeeklyRest,next_weekly_rest,to_compensate_rest_time,next_rest_type"
+							insertbutton="no" deletebutton="no"	refreshbutton="no" > 	
+			</Table>
+	</Row>
+</FormExt>

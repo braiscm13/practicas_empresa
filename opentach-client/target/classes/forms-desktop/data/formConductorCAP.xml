@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<FormExt entity="EConductoresCAP" keys="IDCONDUCTOR;CIF;SECCION" columns="IDCONDUCTOR"
+	title="formConductorCAP" buttons="yes">
+	<FormHeader standardbuttons="yes">
+	</FormHeader>
+	<Column margin="10;10;10;10">
+			<ObjectDataField attr="CIF" visible="no" />
+			<com.opentach.client.comp.field.CampoComboReferenciaDespl attr="IDCONDUCTOR" text="IDCONDUCTOR" cod="IDCONDUCTOR" parentkeys="CG_CONTRATO;CIF" csize="10" 
+			entity="EConductorContFicticio" cols="IDCONDUCTOR;APELLIDOS;NOMBRE" visiblecols="IDCONDUCTOR;APELLIDOS;NOMBRE"	descriptioncols="IDCONDUCTOR;APELLIDOS;NOMBRE" 
+			codsearch="IDCONDUCTOR" codvisible="no" align="left" labelsize="15" dim="text" required="no" />
+			<Row>
+				<Column>
+					<TextComboDataField attr="SECCION" translate="yes" values="ME;VJ" dim="no" size="20" align="left" enabled="yes"  labelsize="15"/>
+					<DateDataField attr="F_OBT_CAP" dim="no" required="yes" align="left" labelsize="15" enabled="yes" />
+				</Column>
+				<Column expand="no">
+					<DateDataField attr="F_DESDE" dim="no" required="yes" labelsize="10" />
+					<DateDataField attr="F_HASTA" dim="no" required="yes" labelsize="10" />
+				</Column>
+			</Row>
+</Column>
+</FormExt>

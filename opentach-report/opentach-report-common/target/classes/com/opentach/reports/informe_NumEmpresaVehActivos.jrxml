@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_NumEmpresasVehActivos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f844e904-2568-4b74-a677-da13edab6d44">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="528"/>
+	<parameter name="f_informe" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date("01/01/1970").getTime())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+ "" as usuario,
+0 as num_empresas,
+0 as num_vehiculos
+from dual]]>
+	</queryString>
+	<field name="NUM_EMPRESAS" class="java.math.BigDecimal"/>
+	<field name="NUM_VEHICULOS" class="java.math.BigDecimal"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<background>
+		<band height="800" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="17" y="11" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF" uuid="c3b75082-37f0-40b7-9109-5b2ad23e77e8"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="20" y="706" width="522" height="90" backcolor="#34679A" uuid="3d002606-195e-4ae1-996a-0061ecc67b53"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="22" y="678" width="512" height="79" uuid="a24d3242-5011-4804-9580-d24a04957296"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement key="ellipse" x="166" y="67" width="14" height="14" backcolor="#34679A" uuid="7c7ffa68-332e-41a4-9c51-7a9a8a3b8795"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="147" y="67" width="14" height="14" backcolor="#34679A" uuid="c16e3cf7-c631-4d03-af95-1ec17d3dc6f5"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="128" y="67" width="14" height="14" backcolor="#34679A" uuid="927f3e1e-96c8-4886-9265-d3c77d7e98e2"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="188" y="61" width="336" height="57" uuid="07451a17-db9c-4c30-8488-0d154855c7f6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-11" x="36" y="141" width="495" height="1" forecolor="#34679A" uuid="8afe86d0-08d0-480d-b616-30dcc74d2cdf"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-1" x="59" y="743" width="283" height="26" uuid="019a3672-f81d-49f6-a63b-f22eb9c6e372"/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="492" y="769" width="45" height="18" forecolor="#FFFFFF" uuid="49c633df-e3be-4f09-a24b-d032308f4b99"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape">
+				<reportElement key="image-3" x="382" y="748" width="94" height="33" uuid="6d52eabf-fa85-4b55-8842-0c92f4c012f9"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement key="image-2" x="48" y="33" width="63" height="55" uuid="e34d76d8-553f-478f-9e52-119132664b95"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="476" y="128" width="60" height="14" uuid="e4f30a2a-de6f-4816-abe5-a91978fb160e"/>
+				<textFieldExpression><![CDATA[$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="405" y="127" width="71" height="14" uuid="76f29fd9-e307-466c-8b3d-caa134f122d8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_INFORME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="179" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" mode="Opaque" x="80" y="151" width="325" height="27" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="fb84019d-a100-4f3c-be83-349201ec5cff"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="188" y="150" width="70" height="27" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="352f587d-6833-49d4-9d34-9dcc12bcdb83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NUM_EMPRESAS_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="274" y="150" width="126" height="27" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="28e2420b-384a-43fd-a27f-cad262e6d1d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NUM_VEHICULOS_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" positionType="Float" x="100" y="150" width="70" height="27" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="4210ca75-863d-40c6-949d-666ece7cf060"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{USUARIO_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement x="80" y="0" width="325" height="16" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="9fb69a6d-eb81-4954-988a-0f3e794a31c5"/>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="187" y="1" width="71" height="16" uuid="cf3e3335-0b41-41c1-a218-97cc8bb7c9e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUM_EMPRESAS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="274" y="0" width="126" height="16" uuid="e5651404-f6d1-4834-b50e-ad3bd2e9261c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUM_VEHICULOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="95" y="0" width="85" height="16" uuid="489684f1-4dd1-4641-acd5-1ee8694fabfb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="72" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

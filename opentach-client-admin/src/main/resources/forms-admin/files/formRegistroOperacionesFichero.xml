@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="a" keys="a" title="REGISTRO_OPERACIONES_FICHEROS" buttons="no">
+	<Row title="">					
+		<ReferenceComboDataField attr="IDFICHERO" cod="IDFICHERO" key="IDFICHERO" entity="EFicherosTGD" cols="IDFICHERO;NOMB_PROCESADO" visiblecols="NOMB_PROCESADO" dim="text" enabled="no" align="left"/>		
+	</Row >
+	<Row title="EFicherosRegistro" expand="yes">		
+		<Table entity="EFicherosRegistro" key="NUM" keys="IDFICHERO" parentkey="IDFICHERO" cols="IDFICHERO;NUM;CG_CONTRATO;TIPO;NOMB;NOMB_PROCESADO;OBSR;PDA;MAIL;ANALIZAR;F_ALTA;USUARIO_ALTA" visiblecols="IDFICHERO;NUM;CG_CONTRATO;TIPO;NOMB;OBSR;PDA;MAIL;ANALIZAR;F_ALTA;USUARIO_ALTA" rendertime="F_ALTA"  />				
+	</Row >		
+</Form>

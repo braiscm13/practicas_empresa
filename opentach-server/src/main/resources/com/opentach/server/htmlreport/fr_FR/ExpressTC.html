@@ -1,0 +1,81 @@
+<HTML>
+	<HEAD>
+		<TITLE>Rapport Express</TITLE>
+	<style type="text/css">
+	table.sample{
+	border-color: #FFFFFF;
+	}
+	</style>
+	</HEAD>
+	<BODY>
+	
+	<CENTER><table class="sample" border=3>
+		<TR border=0>
+		<td border=0>
+		<table bgcolor="#FFFFFF" align="center">
+			<TR align="left" border=0 >
+				<TH colspan="2"  border=0 >						
+					<CENTER><FONT COLOR="navy" size="6">Entreprise:       %EMPRESA%</FONT></CENTER>							
+				</TH>
+			</TR>			
+			<TR align="left" border=0 >
+				<TH colspan="2"  border=0 align="left">						
+					<FONT COLOR="navy" size="5">Conducteur:     %CONDUCTOR%</FONT>							
+				</TH>
+			</TR>
+			<TR align="left" border=0>
+				<TD>					
+					<FONT COLOR="blue" size="5">P&eacute;riode analys&eacute;e depuis %INITDATE% jusqu&acute;&agrave; %ENDDATE%</FONT>
+				</TD>
+				<TD>						
+					<FONT COLOR="blue" size="5">Suivant recommand&eacute; t&eacute;l&eacute;chargement:  %FDESCARGA%</FONT>									
+				</TD>
+			</TR>	
+			<tr align="left">	
+				<th align="left">			
+					<FONT COLOR="blue" size="5">R&eacute;sum&eacute; Activit&eacute;s</FONT>		
+					<TABLE border="1" bordercolor="green">
+						<TR bgcolor="green" color="white">
+							<TH>Conduite</TH>
+							<TH>Disponibilit&eacute;</TH>
+							<TH>Pause/Repos</TH>
+							<TH>Travail</TH>
+							<TH>KM Parcours</TH>	
+							</FONT>				
+						</TR>
+						%TABLA_ACTIVIDADES%
+					</TABLE>
+					<br>
+				<FONT COLOR="blue" size="5">Sommaire d&acute;utilisations de v&eacute;hicule</FONT>		
+					<TABLE border="1" bordercolor="green">
+						<TR bgcolor="green" color="white">
+							<TH>Nº d&acute;immatriculation</TH>				
+						</TR>
+						%TABLA_MATRICULAS%			
+					</TABLE>
+				</TH>
+				<th align="left" valign="top" >
+				<FONT COLOR="blue" size="5">Sommaire des infractions au cours des 28 derniers jours</font>	
+				<table border="1" bordercolor="green">
+					<TR bgcolor="green" color="white">
+						<th>Type</th>
+						<th>Date D&eacute;but</th>
+						<th>Date Final</th>						
+						<th>Naturale</th>					
+					</tr>
+					%TABLA_INFRAC%				
+				</table>
+				</th>	
+			</TR>
+			<TR align="left">
+				<th align="left" colspan="2">
+					%INCIDENCIAS_INICIO%
+					%ERRORES%
+				</th>
+			</tr>
+		</table>
+		</td>
+		</TR>
+		</table></CENTER>
+	</BODY>
+</HTML>

@@ -1,0 +1,145 @@
+<NavigationMenu
+	fiximgposition="south_west"
+	basicrenderer="no">
+
+	<!-- SERVICIOS DE DESCARGA -->
+	<MenuGroup
+		header="titulo1"
+		options="managercargaficheros;managerdescargaficheros;managerdownloadficheros;managerdescargaUSBKey;remotedownloadcfg"
+		tooltips="managercargaficheros;managerdescargaficheros;managerdownloadficheros;managerdescargaUSBKey;remotedownloadcfg"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/server_from_client24.png;com/opentach/client/rsc/server_to_client24.png;com/opentach/client/rsc/server_to_client24_query.png;com/opentach/client/rsc/key2_24.png;com/opentach/client/rsc/remote_control24.png"
+		x="645"
+		y="0"
+		width="320"
+		height="250"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+		
+	<!-- INFORME -->
+	<MenuGroup
+		header="titulo2"
+		options="managerinformeactivcond;managerinformeactivcondmacron;managerinformeactivcondmensual;managerinformeusosvehcond;managerinformeinfraccond;managerinformeusovehiculo;managerinformelaboralcond;managerinformeincidentes;managerinformefallos;managerinformeficherostgd;managerinformedescargas;managerkmrecorridos;express_cond;express_veh"
+		tooltips="managerinformeactivcond;managerinformeactivcondmacron;managerinformeactivcondmensual;managerinformeusosvehcond;managerinformeinfraccond;managerinformeusovehiculo;managerinformelaboralcond;managerinformeincidentes;managerinformefallos;managerinformeficherostgd;managerinformedescargas;managerkmrecorridos;express_cond;express_veh"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/truck_blue24.png;com/opentach/client/rsc/warning24_dude_inform.png;com/opentach/client/rsc/dude424.png;com/opentach/client/rsc/document_attachment24.png;com/opentach/client/rsc/truck_red24.png;com/opentach/client/rsc/document_error24.png;com/opentach/client/rsc/documents24.png;com/opentach/client/rsc/download24.png;com/opentach/client/rsc/vehiodo24.png;com/opentach/client/rsc/informeexpresscond.png;com/opentach/client/rsc/informeexpressveh.png"
+		x="350"
+		y="0"
+		width="250"
+		height="700"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+	<!-- INFORMES LABORALES -->
+	<MenuGroup
+		header="laborreports"
+		options="managerlaborrecordwarehouse;managerdriverjournalrecord;managerdriverstatustimerecord;managerinformeagreements"
+		tooltips="managerlaborrecordwarehouse;managerdriverjournalrecord;managerdriverstatustimerecord;managerinformeagreements"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/document_pulse24.png;com/opentach/client/rsc/document_pulse24.png"
+		x="645"
+		y="410"
+		width="320"
+		height="200"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/report32.png"
+		separator="no"
+		opaque="no" />
+
+	<!-- DATOS DE LA EMPRESA -->
+	<MenuGroup
+		header="titulo3"
+		options="managercondveh;managerqueryconductores;managerqueryvehiculos;managergraficacond;managerinspecciones;remotefleetmanagement;managerconductor;managerlaborrecord"
+		tooltips="managercondveh;managerqueryconductores;managerqueryvehiculos;managergraficacond;managerinspecciones;managersolicitudes;managerconductor;managerlaborrecord"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/truck_dude24.png;com/opentach/client/rsc/truck_blue24.png;com/opentach/client/rsc/truck_blue24.png;com/opentach/client/rsc/chartcond24.png;com/opentach/client/rsc/policeman_usa16.png;com/opentach/client/rsc/remote_control24.png;com/opentach/client/rsc/driver_add24.png;com/opentach/client/rsc/document_pulse24.png"
+		x="10"
+		y="0"
+		width="300"
+		height="400"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+		
+	<!-- ALERTAS -->
+	<MenuGroup
+		header="titulo4"
+		options="managerinformependdescarga;managerinformeeventostaco;managerinformeexpireddatetarj;managerinformeproxcalibrado;manageravisosfull;btn_news"
+		tooltips="managerinformependdescarga;managerinformeeventostaco;managerinformeexpireddatetarj;managerinformeproxcalibrado;manageravisosfull;btn_news"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/warning24_files.png;;com/opentach/client/rsc/informeEvents24.png;com/opentach/client/rsc/informeExpired24.png;com/opentach/client/rsc/informeNext24.png;com/opentach/client/rsc/mail_view.png;com/opentach/client/rsc/newspaper24.png"
+		x="10"
+		y="450"
+		width="300"
+		height="300"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+	<!--<MenuGroup
+		header="titulo4"
+		options="managerinformependdescarga;managerinformeeventostaco;managerinformeexpireddatetarj;managerinformeproxcalibrado;manageravisosfull;btn_news"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/warning24_files.png;;com/opentach/client/rsc/informeEvents24.png;com/opentach/client/rsc/informeExpired24.png;com/opentach/client/rsc/informeNext24.png;com/opentach/client/rsc/mail_view.png;com/opentach/client/rsc/newspaper24.png"
+		x="10"
+		y="250"
+		width="300"
+		height="250"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+		-->
+<!-- GESTOR INFORMES -->
+<!-- 	<MenuGroup
+		header="titulo5"
+		options="macroinf_gestor;managerviewinformegestor;managerkmrecorridos;express_cond;express_veh"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/gear_doc.png;com/opentach/client/rsc/gear_view24.png;com/opentach/client/rsc/truck_red24.png;com/opentach/client/rsc/informeexpresscond.png;com/opentach/client/rsc/informeexpressveh.png"
+		x="700"
+		y="200"
+		width="250"
+		height="210"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" /> -->
+		
+	<!-- CERTIFICADOS -->
+	<MenuGroup
+		header="titulo6"
+		options="managercertifactiv;managergraficaactivcertifactiv28;managerconsultacertifactiv;managercartaadvcominfracciones"
+		tooltips="managercertifactiv;managergraficaactivcertifactiv28;managerconsultacertifactiv;managercartaadvcominfracciones"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		icons="com/opentach/client/rsc/contract24.png;com/opentach/client/rsc/contract24_auto.png;com/opentach/client/rsc/contract24_query.png;com/opentach/client/rsc/contract24_query.png"
+		x="645"
+		y="225"
+		width="320"
+		height="200"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />
+		
+
+	<!-- SOPORTE -->
+	<!--<MenuGroup
+		header="titulo9"
+		menugroupclass="com.imlabs.client.laf.common.components.CustomMenuGroupGUI"
+		options="managerLexEduca;managerCAP;managerCDOViewer;managerSoporte;btn_social"
+		tooltips="managerLexEduca;managerCAP;managerCDOViewer;managerSoporte;btn_social"
+		icons="com/opentach/client/rsc/lexeduca24.png;com/opentach/client/rsc/truck224.png;com/opentach/client/rsc/downloadcenter24.png;com/opentach/client/rsc/environment24.png;com/opentach/client/rsc/socialnetwork24.png"
+		x="1000"
+		y="0"
+		width="220"
+		height="360"
+		borderclass="bordernavigation"
+		headericon="com/opentach/client/rsc/invisible.png"
+		separator="no"
+		opaque="no" />  -->
+
+</NavigationMenu>

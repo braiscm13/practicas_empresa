@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="FORM_INFORME_SELEC" buttons="no">
+	<FormHeader>
+		<Button key="btnInforme" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes" margin="5;6;5;6">
+		<Column title="" valign="center" expand="yes">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB"
+				descriptioncols="NOMB" required="yes" csize="10" />
+			<com.opentach.client.report.components.JRComboReport attr="SELECTOR" url="com/opentach/reports/reports.properties"
+				align="left" labelsize="12" dim="text" />
+		</Column>
+		<Column expand="no" title="Filtro_Fecha_Hasta">
+			<TextDataField attr="COLUMN.2" align="left" visible="no" />
+			<CampoFechaNoEditable attr="MAXVAL.2" text="FECHA" align="left" datevisible="no"
+				labelsize="8" required="yes" />
+		</Column>
+	</Row>
+</Form>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<OntimizeModule id="opentach-labor-admin" >
+	<Client package="">
+		<!-- INDICATORS -->
+		<TabbedFormManager id="managerIndicators" showframe="yes" delayedload="yes" 
+			form="forms-indicator/formIndicatorManagement.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+			<InteractionManager form="formIndicator.form" class="com.opentach.client.indicator.fim.IMIndicator"/>
+		</TabbedFormManager>
+		
+		<!-- INDICATOR VALUES -->
+		<TabbedFormManager id="managerIndicatorValues" showframe="yes" delayedload="yes" 
+			form="forms-indicator/formIndicatorValues.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+		</TabbedFormManager>
+	</Client>
+</OntimizeModule>

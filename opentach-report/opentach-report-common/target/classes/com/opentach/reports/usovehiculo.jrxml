@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.2.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="uso vehiculo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="c72fd4dc-ecaa-46a0-a479-15fb99f225e6">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.2100000000000133"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<template><![CDATA[$P{SHOW_TACHOLAB} ? $P{templatePath} + "style_template_tacholab.jrtx" : $P{templatePath} + "style_template_opentach.jrtx"]]></template>
+	<style name="Zebra" mode="Transparent" vAlign="Middle">
+		<paragraph leftIndent="5" rightIndent="5"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E1F5FE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="templatePath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["reports/resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_LEGAL_STAFF" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isLegalStaff()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_TACHOLAB" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isTacholab()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_OPENTACH" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isOpentach()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IsDemo" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[com.opentach.common.report.util.ReportSessionUtils.isDemo(com.opentach.common.report.util.ReportSessionUtils.iscompanyCif($P{empresa}))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE USOS DE LOS TACÓGRAFOS"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqldeleg" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_desde" class="java.sql.Timestamp">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(107,4,1,0,0,0,0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_hasta" class="java.sql.Timestamp">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(109,4,1,0,0,0,0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ppagenumber" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+TRUNC((ROWNUM -1)/10) as GRUPO,
+MATRICULA,
+KM_RECORRIDOS,
+HORAS_MARCHA,
+HORAS_MARCHA as HORAS_INACTIVIDAD,
+KM_RECORRIDOS AS MEDIA_DIARIA_KM,
+HORAS_MARCHA  AS MEDIA_DIARIA_HM,
+HORAS_MARCHA/60  AS MEDIA_DIARIA_HMH
+FROM(
+  SELECT U.MATRICULA,
+	 U.KM_RECORRIDOS,
+	 U.HORAS_MARCHA,
+	 U.HORAS_MARCHA as HORAS_INACTIVIDAD,
+	 NVL(U.KM_RECORRIDOS,0) AS MEDIA_DIARIA_KM,
+	 U.HORAS_MARCHA  AS MEDIA_DIARIA_HM
+FROM (SELECT MATRICULA,  KM_RECORRIDOS, HORAS_MARCHA
+      FROM (SELECT MATRICULA, (KM_FIN - KM_INI) AS KM_RECORRIDOS,
+		(SELECT NVL(SUM(MINUTOS),0)
+		 FROM CDACTIVIDADES A
+		 WHERE A.NUMREQ = $P{numreq}
+		AND U.MATRICULA = A.MATRICULA
+		AND A.FEC_COMIENZO >= ($P{f_desde})
+		AND A.FEC_COMIENZO < $P{f_hasta}
+		 AND A.TPACTIVIDAD = 4  AND RANURA = 0  ) AS HORAS_MARCHA
+		FROM ( 	SELECT MATRICULA, MIN(KM_INS) AS KM_INI, MAX(KM_EXT) AS KM_FIN
+			FROM CDUSO_TARJETA U
+			WHERE U.FEC_INS >=($P{f_desde})
+			 AND U.FEC_INS < $P{f_hasta}
+			 AND U.NUMREQ = $P{numreq} AND RANURA = 0
+			AND U.KM_EXT > 0
+		GROUP BY MATRICULA ORDER BY MATRICULA) U )) U, CDVVEHICULO_CONT C
+		WHERE U.MATRICULA = C.MATRICULA
+		  $P!{sqldeleg}
+		  AND C.CG_CONTRATO =  $P{numreq}
+		  AND  C.F_BAJA IS NULL
+		ORDER BY MATRICULA)]]>
+	</queryString>
+	<field name="GRUPO" class="java.math.BigDecimal"/>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="KM_RECORRIDOS" class="java.math.BigDecimal"/>
+	<field name="HORAS_MARCHA" class="java.math.BigDecimal"/>
+	<field name="HORAS_INACTIVIDAD" class="java.math.BigDecimal"/>
+	<field name="MEDIA_DIARIA_KM" class="java.math.BigDecimal"/>
+	<field name="MEDIA_DIARIA_HM" class="java.math.BigDecimal"/>
+	<field name="MEDIA_DIARIA_HMH" class="java.math.BigDecimal"/>
+	<variable name="TKMRECORRIDOS" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{KM_RECORRIDOS}]]></variableExpression>
+	</variable>
+	<variable name="THORASMARCHA" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{HORAS_MARCHA}]]></variableExpression>
+	</variable>
+	<variable name="THORASINACT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[(new java.math.BigDecimal("90.0").multiply(new java.math.BigDecimal("1440"))).subtract($F{HORAS_MARCHA})]]></variableExpression>
+	</variable>
+	<variable name="TMEDIAHM" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[$F{MEDIA_DIARIA_HM}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)]]></variableExpression>
+	</variable>
+	<variable name="TMEDIAKM" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[$F{MEDIA_DIARIA_KM}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)]]></variableExpression>
+	</variable>
+	<group name="GRUPO">
+		<groupExpression><![CDATA[$F{GRUPO}]]></groupExpression>
+		<groupHeader>
+			<band height="27" splitType="Stretch">
+				<rectangle>
+					<reportElement key="rectangle-1" mode="Opaque" x="20" y="7" width="499" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="88ad7ed9-2754-46f5-929b-2f7adf14c1c8"/>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-5" x="19" y="8" width="59" height="16" forecolor="#000000" uuid="6b0c8a83-00d8-49cc-b3d8-8bbfe0be3387"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Categorias}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-6" x="77" y="8" width="76" height="17" forecolor="#000000" uuid="ef0f02a5-11e0-46d7-81f9-75800b00d8b4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Km_recorridos}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-7" x="153" y="8" width="109" height="16" forecolor="#000000" uuid="9e806d1e-5cc6-47c6-a91d-0d68b785824f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Horas_marcha}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-8" x="262" y="8" width="89" height="17" forecolor="#000000" uuid="68d21f43-4591-470f-95eb-b6e669d74a24"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Horas_inactividad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-9" x="354" y="8" width="86" height="17" forecolor="#000000" uuid="be50aba2-6c01-4e3b-b296-fce76a7b5998"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Media_diaria_km}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-10" x="440" y="8" width="78" height="17" forecolor="#000000" uuid="c21cf26d-4537-4637-928a-8a9ba0eaaec5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Media_diaria_hm}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="421" splitType="Immediate">
+				<rectangle>
+					<reportElement key="rectangle-1" mode="Opaque" x="20" y="0" width="498" height="16" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="74408c42-ef94-4bd9-bf90-38349b6c2b93"/>
+				</rectangle>
+				<barChart>
+					<chart>
+						<reportElement key="element-1" isPrintRepeatedValues="false" x="16" y="27" width="488" height="174" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="8d788b43-71dd-4dae-8586-d8038ed29f84"/>
+						<chartTitle color="#000000">
+							<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<titleExpression><![CDATA[$R{Media_diaria_km}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF">
+							<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						</chartLegend>
+					</chart>
+					<categoryDataset>
+						<dataset resetType="Group" resetGroup="GRUPO"/>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{MATRICULA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{MEDIA_DIARIA_KM}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot isShowTickMarks="false">
+						<plot backgroundAlpha="0.5"/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</labelFont>
+								<tickLabelFont>
+									<font fontName="Arial" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</barPlot>
+				</barChart>
+				<barChart>
+					<chart>
+						<reportElement key="element-2" x="24" y="216" width="480" height="201" uuid="ba864641-1483-4f83-8055-154559cc8a73"/>
+						<chartTitle color="#000000">
+							<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<titleExpression><![CDATA[$R{Media_diaria_hm}]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF">
+							<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						</chartLegend>
+					</chart>
+					<categoryDataset>
+						<dataset resetType="Group" resetGroup="GRUPO"/>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{MATRICULA}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{MATRICULA}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{MEDIA_DIARIA_HM}.divide(new java.math.BigDecimal("60"),2,java.math.BigDecimal.ROUND_HALF_UP).divide(new java.math.BigDecimal("90.0"),2,java.math.BigDecimal.ROUND_HALF_UP)]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot>
+						<plot/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont>
+									<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</labelFont>
+								<tickLabelFont>
+									<font fontName="Arial" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</tickLabelFont>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</barPlot>
+				</barChart>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement key="textField" positionType="Float" x="77" y="4" width="76" height="13" forecolor="#000000" uuid="0c692049-d9d2-4b9c-aa23-a9366719c8d4"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TKMRECORRIDOS}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement key="textField" x="158" y="4" width="94" height="13" forecolor="#000000" uuid="bf5407d4-8cde-49a5-9ad2-a8ad58cbee8d"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{THORASMARCHA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement key="textField" x="262" y="4" width="89" height="13" forecolor="#000000" uuid="d74f8fd6-e4cd-49dc-863d-5516c8cc0615"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{THORASINACT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement key="textField" x="440" y="2" width="78" height="13" forecolor="#000000" uuid="ade5d718-7e74-43e2-bd91-00a215d6ef41"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TMEDIAHM}]]></textFieldExpression>
+				</textField>
+				<textField pattern="##0.00" isBlankWhenNull="false">
+					<reportElement key="textField" x="354" y="4" width="87" height="13" forecolor="#000000" uuid="849a4d47-21d3-44c3-84f1-874ad92d9ec7"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TMEDIAKM}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="20" y="1" width="52" height="14" forecolor="#000000" uuid="85ecf772-2eef-436b-9a42-012a1c2390dd"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{TOTAL}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Opaque" x="-7" y="21" width="550" height="760" forecolor="#2495FF" backcolor="#FFFFFF" uuid="a976d75c-787d-483f-a1c2-da3156f2f160"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="90">
+				<reportElement key="rectangle" style="Border" stretchType="RelativeToTallestObject" mode="Transparent" x="-4" y="24" width="544" height="754" forecolor="#2495FF" backcolor="#FFFFFF" uuid="389c11eb-fc23-450a-91a8-f634a3351520"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="173" y="750" width="100" height="20" uuid="f05025c0-ab94-47b8-a782-a244eeacc09e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="273" y="750" width="120" height="20" uuid="14c4c473-41cd-4562-84b3-c036fd257705"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="730" width="400" height="20" uuid="16d5bdf6-7cbb-44d4-9f01-3ff610caa645">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}.booleanValue()!=true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{FOOTER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="288" width="510" height="270" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{IsDemo}.booleanValue() == true]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/demo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="124" y="740" width="30" height="25" uuid="afb30525-df12-4ec5-b243-04197dedc99d">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_SPICE-logo_ISO-IEC_1504-A_ISO-IEC_12207.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="183" y="740" width="40" height="40" uuid="26074e1f-6ce8-4934-97b1-75b9306b9484">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_27001_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="350" y="740" width="40" height="40" uuid="45c014d6-b7cd-4e5e-96a3-1dcf2741d46f">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_ISO_IEC_20000-1_and_UKAS_Mark.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="423" y="740" width="30" height="25" uuid="6fce61fa-a3b5-43f5-972b-6bd7e8607b64">
+					<printWhenExpression><![CDATA[$P{SHOW_LEGAL_STAFF}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/Anexo_IV_Esquema_Nacional_Seg_(2019)_SELLO_ENS.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="323" y="36" width="155" height="40" uuid="e8e670e6-ede9-4ed4-b7b3-7dcc9e9ed80c">
+					<printWhenExpression><![CDATA[$P{SHOW_TACHOLAB}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_TACHOLAB.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="323" y="36" width="155" height="40" uuid="6de8169d-e90c-451d-8395-8be728b6aeeb">
+					<printWhenExpression><![CDATA[$P{SHOW_OPENTACH}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["reports/resources/LOGO_OPENTACH.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line-11" style="Line_gray" x="21" y="117" width="495" height="1" uuid="83964e7f-45b2-4965-9eea-07cd97b043f0"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="95" y="96" width="300" height="19" uuid="649a772a-1889-4c14-9071-4f5b822286ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" style="Title" x="49" y="68" width="464" height="28" uuid="78e0a3b7-ef7b-4655-a9b6-503ac4f0dff6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="49" y="96" width="46" height="18" uuid="7acea7ab-4220-4cc8-a929-d3b557587e98"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="22" y="122" width="495" height="48" isRemoveLineWhenBlank="true" forecolor="#34679A" uuid="67d0c334-32aa-4da2-8674-2bcf5575f2b2">
+					<printWhenExpression><![CDATA[($V{PAGE_NUMBER}.intValue() == 1) && ($P{f_informe}!=null)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="1.0" lineColor="#34679A"/>
+					<topPen lineWidth="1.0" lineColor="#34679A"/>
+					<leftPen lineWidth="1.0" lineColor="#34679A"/>
+					<bottomPen lineWidth="1.0" lineColor="#34679A"/>
+					<rightPen lineWidth="1.0" lineColor="#34679A"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{uso_vehiculo_dscr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="138" y="50" width="60" height="14" uuid="80704eed-6b67-41cc-9c53-3f5044768268"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}==null?new java.sql.Timestamp(System.currentTimeMillis()):$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="49" y="50" width="88" height="14" uuid="9a28efbb-b2c9-43eb-8c6a-fad00e470fb2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<printWhenExpression><![CDATA[($P{f_informe}!=null)]]></printWhenExpression>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="132" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement x="20" y="0" width="499" height="15" forecolor="#FFFFFF" backcolor="#E8F0FF" uuid="7e19d077-8843-4853-998e-c137e70ba463">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="1" width="55" height="14" uuid="664f0678-3f9b-47ba-90d5-eb5b4c493227"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="81" y="1" width="72" height="14" uuid="6e9991b7-2d3b-410c-b02c-5b800cdc27be"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KM_RECORRIDOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="162" y="1" width="90" height="14" uuid="164a85ab-3d57-48eb-9d64-6cea967b926c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($F{HORAS_MARCHA}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="269" y="1" width="82" height="14" uuid="33040279-e917-4dc0-a635-65912576a843"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible(($F{HORAS_MARCHA}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)).intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="358" y="1" width="83" height="14" uuid="5c2f3c70-66ae-4d72-afc1-71b322d2e176"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEDIA_DIARIA_KM}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="444" y="1" width="74" height="14" uuid="3c65caf5-a94c-4030-a50c-fdd752018bbb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEDIA_DIARIA_HM}.divide(new java.math.BigDecimal("90.0"),java.math.BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Prevent"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

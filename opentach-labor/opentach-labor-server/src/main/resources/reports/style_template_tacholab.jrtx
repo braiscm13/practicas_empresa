@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio -->
+<jasperTemplate xmlns="http://jasperreports.sourceforge.net/jasperreports/template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/template http://jasperreports.sourceforge.net/xsd/jaspertemplate.xsd">
+	<style name="TableTitle" forecolor="#000000" backcolor="#FFFFFF" vTextAlign="Bottom" vImageAlign="Bottom" isBold="true">
+		<box bottomPadding="2">
+			<bottomPen lineWidth="1.0" lineColor="#333333"/>
+		</box>
+		<paragraph leftIndent="5" rightIndent="5"/>
+	</style>
+	<style name="TableTitle_extra" forecolor="#000000" backcolor="#FFFFFF" vTextAlign="Bottom" vImageAlign="Bottom" isBold="true">
+		<box bottomPadding="2">
+			<bottomPen lineWidth="1.0" lineColor="#333333"/>
+		</box>
+		<paragraph leftIndent="5" rightIndent="5"/>
+	</style>
+	<style name="Line_gray" mode="Opaque" forecolor="#949494"/>
+	<style name="Border">
+		<pen lineWidth="5.0" lineStyle="Solid" lineColor="#5C85FF"/>
+	</style>
+	<style name="Value" isBold="true"/>
+	<style name="Title" forecolor="#5C85FF" hTextAlign="Center" fontSize="15" isBold="true"/>
+	<style name="Back" mode="Opaque" backcolor="#80A6FF"/>
+</jasperTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" title="Alerts" buttons="no">
+	<Column expand="yes">
+		<Row title="">
+			<Label text="listadoAlertasProgramadas" labelsize="25" fontsize="12" bold="yes" />
+		</Row >
+		<Row expand="yes" title="">
+			<com.ontimize.util.alerts.AlertTable key="TASK_NAME" keys="TASK_GROUP" entity="EAlerts" cols="TASK_NAME;TASK_GROUP;CRON_NAME;CRON_GROUP;STARTTIME;ENDTIME;NEXTTIMEFIRE;STATE" visiblecols="TASK_NAME;TASK_GROUP;STARTTIME;ENDTIME;NEXTTIMEFIRE;STATE" rendertime="STARTTIME;ENDTIME;NEXTTIMEFIRE" title="Alerts"  disableinsert="yes" insertcontrol="no"  form="formalert.xml"/>
+		</Row >
+	</Column >
+</FormExt>

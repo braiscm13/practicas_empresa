@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="USUARIO;CIF" entity="EUsuDfEmp" columns="USUARIO;CIF" title="USUARIO_EMPRESA" buttons="no" >
+	<FormHeader standardbuttons="yes" />
+	<Column margin="5;5;5;5" expandlast="no">
+		<ReferenceExtDataField entity="EDfEmp" labelsize="8" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="no" csize="10" />
+		<Row height="5" />
+		<ReferenceExtDataField entity="EPerfil" labelsize="8" csize="10" attr="NIVEL_CD" dim="text" text="PERFIL" cod="NIVEL_CD" cols="NIVEL_CD;DSCR" descriptioncols="DSCR" required="yes" />
+		<Row >
+			<Column >
+				<TextDataField attr="USUARIO" align="left" dim="no" labelsize="8" size="15" required="yes" maxlength="255" />
+				<Row height="5"/>
+				<MaskDataField mask="000000000000000" attr="TELEFONO" dim="no" align="left" labelsize="8" required="no" size="10" />
+			</Column >
+			<Column >
+				<PasswordDataField attr="PASSWORD" text="PASSWORD" labelsize="12" dim="no" size="10" align="left" maxlength="10" required="yes"/>
+				<Row height="5"/>
+				<WWWDataField attr="EMAIL" dim="text" maxlength="1024" size="25" labelsize="12" align="left" required="no" uppercase="no" />
+			</Column >
+		</Row >
+		<Row height="5" />			
+		<Column title="DEL_ASIGNADAS" attr="DEL_ASIGNADAS" expand="yes">
+			<InsertTable entity="EUsuDel"  key="USUARIO" keys="IDDELEGACION" parentkey="CIF" otherkeys="USUARIO"  cols="USUARIO;CIF;IDDELEGACION" visiblecols="IDDELEGACION" editablecolumns="IDDELEGACION" updateentityeditablecolumns="IDDELEGACION" refreshbutton="yes" deletebutton="yes">
+				<ComboCellRenderer 	column="IDDELEGACION"   entity="EDelegacionDfEmp" 	align="left" cod="IDDELEGACION" cols="NOMBRE_DEL" visiblecols="NOMBRE_DEL" />
+				<ComboCellEditor 	column="IDDELEGACION"   entity="EDelegacionDfEmp" 	align="left" cod="IDDELEGACION" parentkey="CIF" cols="NOMBRE_DEL" visiblecols="NOMBRE_DEL" />				
+			</InsertTable>		
+		</Column >
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row  />
+		</Row>
+	</Column >
+</FormExt>

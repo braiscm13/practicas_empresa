@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_EVENTOSTACO" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png"/>
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png"/>
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+			<Row >
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+				</Column >
+				<Column title="TIPO_EVENTO" expand="no">
+					<BasicDataComponentGroup attr="FILTER.1" group="COLUMN.1=GRUPO;VAL.1a;VAL.1b;VAL.1c" />
+					<TextDataField attr="COLUMN.1" align="left" labelsize="14" size="18" visible="no" />
+					<CheckDataField attr="VAL.1a" text="EXCESOS_VELOCIDAD" align="left" labelsize="18" labelposition="right" />
+					<CheckDataField attr="VAL.1b" text="CONTROLES" align="left" labelsize="18" labelposition="right" />
+					<CheckDataField attr="VAL.1c" text="CALIBRADOS" align="left" labelsize="18" labelposition="right" />
+				</Column >
+				
+				<Column expand="no" title="RANGO_FECHAS">
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />					
+				</Column >
+			</Row >
+			<Column >
+				<Table entity="EInformeEventosTaco" key="CG_CONTRATO" keys="IDORIGEN" parentkey="CG_CONTRATO" otherkeys="FECINI;GRUPO;CIF" cols="CG_CONTRATO;GRUPO;MATRICULA;EMP;FECINI;FECFIN;VMAX;VMED;NUM_TRJ_CONTROL;TPCONTROL;NUM_TRJ_TALLER;TPCALIBRADO;CIF" visiblecols="GRUPO;MATRICULA;FECINI;FECFIN;DSCR;VMAX;VMED;NUM_TRJ_CONTROL;TPCONTROL;NUM_TRJ_TALLER;TPCALIBRADO" />
+			</Column >
+		</Column >
+	</Row >
+</Form>

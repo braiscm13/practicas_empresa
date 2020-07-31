@@ -1,0 +1,185 @@
+<Column attr="StepSummaryVU" expand="yes" expandlast="yes" margin="10;10;5;10">
+
+    <!-- Alternative 1 -->
+    <Row expand="yes">
+        <Column expandlast="yes" expand="yes">
+            <Column expand="yes" uiname="OutBorderColumn" title="Company" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Label uiname="WhiteStandar" attr="companyVU" text="hola" />
+					</Column>
+				</Column>
+			</Column>
+
+			<Row expand="no" height="10" />
+
+			<Row>
+				<Column expand="yes" uiname="OutBorderColumn" title="Vehicle" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="">
+							<Row>
+								<Row width="5" />
+								<Label uiname="WhiteStandar" attr="vehicleVU" align="left" text="name" />
+								<Row width="5" />
+							</Row>
+						</Column>
+					</Column>
+				</Column>
+				<Column width="20" expand="no" />
+				<Column expand="yes" uiname="OutBorderColumn" title="KMS" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="">
+							<Row>
+								<Row width="5" />
+								<Label icon="images/desde.png" valign="center"/>
+								<Column width="5" expand="no" />
+								<Label uiname="WhiteStandar" attr="vehicleKmsInitVU" align="left" text="hola" />
+								<Row />
+								<Column width="5" expand="no" />
+								<Column width="3" expand="no" opaque="yes" bgcolor="#007cb2"/>
+								<Column width="5" expand="no" />
+								<Row />
+								<Label icon="images/hasta.png" valign="center" />
+								<Column width="5" expand="no" />
+								<Label uiname="WhiteStandar" attr="vehicleKmsEndVU" align="right" text="hola" />
+								<Row />
+								<Column width="5" expand="no" />
+								<Column width="3" expand="no" opaque="yes" bgcolor="#007cb2"/>
+								<Column width="5" expand="no" />
+								<Row />
+								<Label icon="images/sum.png" valign="center" />
+								<Column width="5" expand="no" />
+								<Label uiname="WhiteStandar" attr="vehicleKmsTotalVU" align="right" text="hola" />
+								<Row />
+								<Row width="5" />
+							</Row>
+						</Column>
+					</Column>
+				</Column>				
+			</Row>
+			
+			<Row expand="no" height="10" />
+			
+			<Column expand="yes" expandlast="no">
+				<Column expand="yes" uiname="OutBorderColumn" title="DriversSummary" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+							<Table entity="driverSummaryVU" keys="a" cols="dni;name;surnames" controls="no" quickfiltervisible="no" rows="4" >
+								<RenderObject column="name" globalid="name" align="center"/>
+								<RenderObject column="surnames" globalid="surnames" align="center"/>
+								<TableColumnProperties attr="dni" minwidth="75" defaultwidth="110" preferredwidth="110" />
+								 <TableColumnProperties attr="name" minwidth="75" defaultwidth="100" preferredwidth="100" />
+								 <TableColumnProperties attr="surnames" minwidth="100" defaultwidth="190" preferredwidth="190" />
+							</Table>
+						</Column>
+					</Column>
+				</Column>
+				<Row hgith="10"/>
+				<Column expand="yes" uiname="OutBorderColumn" title="CalibrationsSummary" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+							<Table entity="calibrationSummaryVU" keys="a" cols="description;workshopcard;nextdate" controls="no" quickfiltervisible="no"  rows="6"
+							    minrowheight="30"
+							    >
+							    <RenderMemo column="description" globalid="description" maxnumrows="2"/>
+								<RenderObject column="workshopcard" globalid="workshopcard" align="center"/>
+								<RenderDate column="nextdate" format="SHORT" align="center" useapplocale="yes"/>
+								 
+								 <TableColumnProperties attr="description" minwidth="75" defaultwidth="150" preferredwidth="150" />
+								 <TableColumnProperties attr="workshopcard" minwidth="100" defaultwidth="100" preferredwidth="100" />
+								 <TableColumnProperties attr="nextdate" minwidth="79" maxwidth="90" defaultwidth="85" preferredwidth="85" />
+							</Table>
+						</Column>
+					</Column>
+				</Column>
+			</Column>
+			
+        </Column>
+
+		<Column width="10" expand="no" />
+        								
+        <Column expandlast="yes" expand="yes">
+            <Column expand="yes" uiname="OutBorderColumn" title="Period" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Row>
+						    <Row width="5" />
+							<Label icon="images/desde.png" valign="center"/>
+							<Column width="5" expand="no" />
+							<Label uiname="WhiteStandar" attr="beginPeriodVU" align="left" text="hola" />
+							<Row />
+							<Column width="5" expand="no" />
+							<Column width="3" expand="no" opaque="yes" bgcolor="#007cb2"/>
+							<Column width="5" expand="no" />
+							<Row />
+							<Label uiname="WhiteStandar" attr="endPeriodVU" align="right" text="hola" />
+							<Column width="5" expand="no" />
+							<Label icon="images/hasta.png" valign="center" />
+							<Row width="5" />
+						</Row>
+					</Column>
+				</Column>
+			</Column>
+
+			<Row expand="no" height="10" />
+
+			<Column expand="yes" uiname="OutBorderColumn" title="NextDownload" margin="0;0;0;0">
+				<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+					<Column expand="yes" uiname="InnerBorderColumn" title="">
+						<Label uiname="WhiteStandar" attr="nextDownloadVU" align="center" text="nextDownloadDate" />
+					</Column>
+				</Column>
+			</Column>
+			
+			<Row expand="no" height="10" />
+			
+			<Column expand="yes" expandlast="no">
+			    <!-- 
+				<Column expand="yes" uiname="OutBorderColumn" title="InfractionSummary" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+							<Table entity="infractionSummaryVU" keys="a" cols="type;beginDate;endDate;severity" controls="no" quickfiltervisible="no"  rows="6">
+								<RenderObject column="type" globalid="type" align="center"/>
+								<RenderDate column="beginDate" format="dd/MM/yyyy" align="center"/>
+								<RenderDate column="endDate" format="dd/MM/yyyy" align="center"/>
+								<com.opentach.downclient.component.SeverityCellRenderer column="severity" globalid="severity" align="center"/>
+								 
+								 <TableColumnProperties attr="type" minwidth="32" defaultwidth="32" preferredwidth="32" />
+								 <TableColumnProperties attr="beginDate" minwidth="79" maxwidth="90" defaultwidth="85" preferredwidth="85" />
+								 <TableColumnProperties attr="endDate" minwidth="79" maxwidth="90" defaultwidth="85" preferredwidth="85" />
+								 <TableColumnProperties attr="severity" minwidth="56" defaultwidth="56" preferredwidth="56" /> 
+							</Table>
+						</Column>
+					</Column>
+				</Column>
+			     -->
+				<Column expand="yes" uiname="OutBorderColumn" title="IncidencesSummary" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+							<Table entity="incidenceSummaryVU" keys="a" cols="type" controls="no" quickfiltervisible="no"  rows="6">
+								<BundleCellRenderer column="type" globalid="typeIncidence" align="center"/>
+							</Table>
+						</Column>
+					</Column>
+				</Column>
+				<Row hgith="10"/>
+				<Column expand="yes" uiname="OutBorderColumn" title="ControlsSummary" margin="0;0;0;0">
+					<Column expand="yes" uiname="MiddleBorderColumn" title="" margin="3;3;3;3">
+						<Column expand="yes" uiname="InnerBorderColumn" title="" expandlast="yes">
+							<Table entity="controlSummaryVU" keys="a" cols="date;controlcard;description" controls="no" quickfiltervisible="no"  rows="4">
+								<RenderDate column="date" format="SHORT" align="center"  useapplocale="yes"/>
+								<RenderObject column="controlcard" globalid="controlcard" align="center"/>
+								 
+								 <TableColumnProperties attr="date" minwidth="79" maxwidth="90" defaultwidth="85" preferredwidth="85" />
+								 <TableColumnProperties attr="controlcard" minwidth="75" defaultwidth="150" preferredwidth="150" />
+								 <TableColumnProperties attr="description" minwidth="75" defaultwidth="100" preferredwidth="100" />
+							</Table>
+						</Column>
+					</Column>
+				</Column>
+			</Column>
+            
+        </Column>
+    </Row>
+
+</Column>

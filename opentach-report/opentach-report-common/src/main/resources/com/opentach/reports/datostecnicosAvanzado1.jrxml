@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incidentes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="6d3e4dc2-3843-4802-947e-805d2cdd9020">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0245201830476058"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="datosTecnicos" uuid="fd19c70e-07fb-4bfb-aa46-8c9a72c9ec71">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+MATRICULA,VERSION_SOFTWARE,NUM_MODELO,FABRICANTE,DIR_FABRICANTE,NUM_SERIE,F_INSTAL_SOFT,F_FABRICACION,NUM_APROBACION
+FROM CDDATOS_TECNICOS]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="VERSION_SOFTWARE" class="java.lang.String"/>
+		<field name="NUM_MODELO" class="java.lang.String"/>
+		<field name="FABRICANTE" class="java.lang.String"/>
+		<field name="DIR_FABRICANTE" class="java.lang.String"/>
+		<field name="NUM_SERIE" class="java.lang.String"/>
+		<field name="F_INSTAL_SOFT" class="java.sql.Timestamp"/>
+		<field name="F_FABRICACION" class="java.sql.Timestamp"/>
+		<field name="NUM_APROBACION" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="datosTecnicosSensor" uuid="84f622df-4120-476b-80f8-94be08a6dd1e">
+		<queryString>
+			<![CDATA[SELECT
+MATRICULA,NUM_SERIE_SENSOR,NUM_APROBACION_SENSOR,F_PRIMER_ACOPLAM
+FROM CDDATOS_TECNICOS_SENSOR]]>
+		</queryString>
+		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="NUM_SERIE_SENSOR" class="java.lang.String"/>
+		<field name="NUM_APROBACION_SENSOR" class="java.lang.String"/>
+		<field name="F_PRIMER_ACOPLAM" class="java.sql.Timestamp"/>
+	</subDataset>
+	<subDataset name="bloqueosEmpresa" uuid="9d6fbae6-3fad-4923-af17-f03b2e626aed">
+		<queryString>
+			<![CDATA[SELECT
+F_ACTIVACION,F_DESACTIVACION,NOMBRE_EMPRESA,DIR_EMPRESA,TARJ_EMPRESA
+FROM CDBLOQUEOS_EMPRESA]]>
+		</queryString>
+		<field name="F_ACTIVACION" class="java.sql.Timestamp"/>
+		<field name="F_DESACTIVACION" class="java.sql.Timestamp"/>
+		<field name="NOMBRE_EMPRESA" class="java.lang.String"/>
+		<field name="DIR_EMPRESA" class="java.lang.String"/>
+		<field name="TARJ_EMPRESA" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="datosTecnicosCal" uuid="63a267a2-2efc-445d-95ac-0df0de0799e9">
+		<queryString>
+			<![CDATA[SELECT
+NOMBRE_ESTABLECIMIENTO,DIR_ESTABLECIMIENTO,NUM_TARJETA,F_EXPIRA_TARJETA,NUM_IDENT_VEHICULO,NACIONALIDAD_VEHICULO,COEFIC_VEHICULO,CONSTANTE_CONTROL,DIAMETRO_NEUMATICOS,DIM_NEUMATICOS,VELOCIDAD_AUTO,OLD_ODOMETRO,NEW_ODOMETRO,OLD_VALOR_HORA,NEW_VALOR_HORA,F_NEXT_CALIBRACION
+FROM CDDATOS_TECNICOS_CAL]]>
+		</queryString>
+		<field name="NOMBRE_ESTABLECIMIENTO" class="java.lang.String"/>
+		<field name="DIR_ESTABLECIMIENTO" class="java.lang.String"/>
+		<field name="NUM_TARJETA" class="java.lang.String"/>
+		<field name="F_EXPIRA_TARJETA" class="java.sql.Timestamp"/>
+		<field name="NUM_IDENT_VEHICULO" class="java.lang.String"/>
+		<field name="NACIONALIDAD_VEHICULO" class="java.lang.String"/>
+		<field name="COEFIC_VEHICULO" class="java.math.BigDecimal"/>
+		<field name="CONSTANTE_CONTROL" class="java.math.BigDecimal"/>
+		<field name="DIAMETRO_NEUMATICOS" class="java.math.BigDecimal"/>
+		<field name="DIM_NEUMATICOS" class="java.lang.String"/>
+		<field name="VELOCIDAD_AUTO" class="java.math.BigDecimal"/>
+		<field name="OLD_ODOMETRO" class="java.math.BigDecimal"/>
+		<field name="NEW_ODOMETRO" class="java.math.BigDecimal"/>
+		<field name="OLD_VALOR_HORA" class="java.sql.Timestamp"/>
+		<field name="NEW_VALOR_HORA" class="java.sql.Timestamp"/>
+		<field name="F_NEXT_CALIBRACION" class="java.sql.Timestamp"/>
+	</subDataset>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String">
+		
+	</parameter>
+	<parameter name="title" class="java.lang.String">
+		<defaultValueExpression><![CDATA["INFORME RESUMEN DE INCIDENTES Y EVENTOS DE TACÓGRAFO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String">
+		<defaultValueExpression><![CDATA["5142HSB"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 'a' AS MATRICULA FROM DUAL]]>
+	</queryString>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<group name="tipo">
+		<groupExpression><![CDATA[$P{matricula}]]></groupExpression>
+		<groupHeader>
+			<band height="288">
+				<textField>
+					<reportElement uuid="bc88ddd9-a2a4-45f1-ac9c-dad546c709ff" x="203" y="73" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{matricula}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement uuid="704e4c15-932a-4a65-bd0f-c37365f2c586" key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="11" y="10" width="517" height="781" forecolor="#34679A" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="79324909-ada9-484c-be6c-f84d983c1216" key="rectangle" x="10" y="709" width="522" height="90" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement uuid="7d181823-636d-4646-ae48-2cd5cf29a899" key="rectangle" x="17" y="678" width="505" height="79"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement uuid="43f41b90-ef2d-4969-8814-e9eeed792906" key="ellipse" x="98" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<line>
+				<reportElement uuid="821dff15-9de8-4fc7-983e-26632d47477a" key="line-11" x="14" y="109" width="495" height="1" forecolor="#34679A"/>
+			</line>
+			<ellipse>
+				<reportElement uuid="d8fcca16-70db-41b8-826d-3fe1b724d071" key="ellipse" x="136" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<staticText>
+				<reportElement uuid="9317bd90-06be-4fd2-82f8-6005a50fae18" key="staticText-1" x="39" y="737" width="283" height="26"/>
+				<textElement/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement uuid="3222200c-601a-43d0-abe9-d2853c0299b3" key="ellipse" x="117" y="36" width="14" height="14" backcolor="#34679A"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="39fb391f-923a-4988-a6b8-375ce63e50e7" key="textField-1" x="158" y="30" width="336" height="48"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="e41ed649-31a4-4f2a-9b39-46c9645a007f" key="textField" x="472" y="763" width="45" height="18" forecolor="#FFFFFF">
+					<printWhenExpression><![CDATA[]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="91e88058-8b28-476d-ae49-09c914a49a01" key="textField-5" x="24" y="92" width="46" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Empresa_}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="2496268b-a320-4133-b0f3-ee030ed996dd" key="textField-4" x="360" y="92" width="88" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="903b1ba8-4ce3-49c4-94b2-d4bbbf06e2e3" key="textField-2" x="448" y="92" width="60" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="51df494f-89dc-4c1e-8400-6a3efa5e1e8d" key="textField-3" x="70" y="92" width="300" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="135" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="74" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

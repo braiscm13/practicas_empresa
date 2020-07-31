@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EFirmantesEmpresa" keys="CIF;NIF" title="EFirmantesEmpresa" buttons="no" columns="NOMBRE;APELLIDOS;CARGO"> 
+    <FormHeader standardbuttons="yes" />
+	<Column margin="5;5;5;5" expandlast="no">
+		<Row expand="yes">
+			<Column title="DATOS_FIRMANTE" expand="yes">
+				<Row>
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" attr="CIF" dim="text" labelsize="10" align="left" cod="CIF" cols="CIF;NOMB"
+						descriptioncols="NOMB" required="yes" csize="9" />
+				</Row>
+				<Row height="4" />
+				<Row>
+					   	<Label attr="DNI/NIF" text="DNI/NIF" size="12"/>
+					   	<Column margin="4;0;0;0" expand="no">
+							<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="NIF" tip="CALCULA_LETRA"
+								icon="com/ontimize/gui/images/calc.png" align="left" focusable="no" />
+						</Column>
+						<TextDataField attr="NIF" text="DNI/NIF" dim="text" maxlength="9" required="yes" align="left" size="9" labelsize="0" labelvisible="no"/>
+				    	<TextDataField attr="NOMBRE" dim="no" labelsize="10" maxlength="40" size="30" required="yes" align="left" />
+				</Row>
+				<Row>
+					<TextDataField attr="APELLIDOS" dim="text" size="13" maxlength="100" required="yes" align="left"  labelsize="10"/>
+				</Row>
+				<Row>
+					<TextDataField attr="CARGO" dim="text"  labelsize="10" />
+				</Row>
+			</Column>
+		</Row>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row  />
+		</Row>
+	</Column >	
+</FormExt>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="opentach-war-dev">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="opentach-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-common/opentach-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-common-core-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-common-core/opentach-common-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-server/opentach-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-server-core-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-server-core/opentach-server-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-support-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-support-server/opentach-support-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-support-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-support-common/opentach-support-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-dms-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-dms-server/opentach-dms-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-dms-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-dms-common/opentach-dms-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-remotevehicle-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-remotevehicle-server/opentach-remotevehicle-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-remotevehicle-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-remotevehicle-common/opentach-remotevehicle-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-labor-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-labor-server/opentach-labor-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-labor-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-labor-common/opentach-labor-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-company-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-company-common/opentach-company-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-report-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-report-common/opentach-report-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-messagequeue-api-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-messagequeue-api/opentach-messagequeue-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-tachofiletransfer-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-tachofiletransfer-server/opentach-tachofiletransfer-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-tachofiletransfer-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-tachofiletransfer-common/opentach-tachofiletransfer-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-extractor-directorywatcher-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-extractor-directorywatcher/opentach-extractor-directorywatcher">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-mailmanager-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-mailmanager-server/opentach-mailmanager-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-mailmanager-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-mailmanager-common/opentach-mailmanager-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-checktrucker-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-checktrucker-server/opentach-checktrucker-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-checktrucker-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-checktrucker-common/opentach-checktrucker-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-company-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-company-server/opentach-company-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-report-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-report-server/opentach-report-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-messagequeue-impl-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-messagequeue-impl/opentach-messagequeue-impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-tools-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-tools-common/opentach-tools-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-alert-server-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-alert-server/opentach-alert-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opentach-alert-common-dev.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/opentach-alert-common/opentach-alert-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="opentach-war"/>
+        <property name="java-output-path" value="/opentach-war/target/classes"/>
+    </wb-module>
+</project-modules>

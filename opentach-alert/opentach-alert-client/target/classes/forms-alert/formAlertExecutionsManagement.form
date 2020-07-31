@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="managerAlertExecutions" buttons="no" status="no"
+	preferredsizetodialog="1300;850" autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;10;0">
+				<Column  expand="0.3">
+					<IntegerDataField attr="ALE_NUMBER" labelsize="15" dim="no" size="10" align="left" />
+					<ReferenceExtDataField attr="ALR_ID" key="ALR_ID" cod="ALR_ID"
+						entity="ojee.AlertService.alert"
+						cols="ALR_CODE;ALR_NAME;ALR_DESC;ALR_SENDMAIL;ALR_SAVEDB" visiblecols="ALR_CODE;ALR_NAME;ALR_DESC;ALR_SENDMAIL;ALR_SAVEDB" 
+						descriptioncols="ALR_CODE;ALR_NAME" format="({0}){1};ALR_CODE;ALR_NAME"
+						codvisible="no" translate="yes"
+						labelsize="15" align="left" dim="text" />
+					<TextDataField attr="ALE_SUBJECT" text="ALR_SUBJECT" labelsize="15" dim="text" align="left" />
+					<TextDataField attr="ALE_BODY" text="ALR_BODY" labelsize="15" dim="text" align="left" />
+					<Row align="left">
+			            <DateDataField attr="ALE_EXEDATE_FROM" text="ALE_EXEDATE" align="left" labelsize="15" dim="no" size="7" />
+			            <DateDataField attr="ALE_EXEDATE_TO" text="UNTIL" align="left" dim="no" size="7" />
+			            <Row />
+			        </Row>
+			        <Row align="left">
+			            <DateDataField attr="ALE_READDATE_FROM" text="ALE_READDATE" align="left" labelsize="15" dim="no" size="7" />
+			            <DateDataField attr="ALE_READDATE_TO" text="UNTIL" align="left" dim="no" size="7" />
+			            <Row />
+			        </Row>
+				</Column>
+				<Column margin="0;10;0;0" expand="0.3">
+					<CheckDataField attr="ALE_SENDMAIL" text="ALR_SENDMAIL" labelposition="right" dim="no" align="left" returnstring="yes" />
+					<CheckDataField attr="ALE_SENTMAIL" labelposition="right" dim="no" align="left" returnstring="yes" />
+					<TextDataField attr="ALE_SENTMAIL_TO" labelsize="6" dim="text" align="left" />
+					<TextDataField attr="ALE_SENTMAIL_CC" labelsize="6" dim="text" align="left" />
+					<TextDataField attr="ALE_SENTMAIL_BCC" labelsize="6" dim="text" align="left" />
+				</Column>
+				<Column margin="0;10;0;0" expand="0.3">
+					<CheckDataField attr="ALE_SAVEDB" text="ALR_SAVEDB" labelposition="right" dim="no" align="left" returnstring="yes"/>
+					<CheckDataField attr="ALE_SAVEDDB" labelposition="right" dim="no" align="left" returnstring="yes"/>
+					<ReferenceExtDataField
+						attr="COM_ID"
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="10"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						csize="10" />
+					<com.utilmize.client.gui.field.reference.UReferenceDataField
+						attr="DRV_ID" 
+						text="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="CIF" parentkeylistener="yes" disableonparentkeynull="yes"
+						csize="10"
+						entity="EConductorContFicticio"
+						cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+						visiblecols="DNI;APELLIDOS;NOMBRE"
+						descriptioncols="DNI;NOMBRE;APELLIDOS"
+						format="{0} {1};NOMBRE;APELLIDOS"
+						codsearch="DNI"
+						align="left"
+						labelsize="10"
+						dim="text"
+						required="yes" />
+				</Column>
+				<SearchPanel 
+					table="ojee.AlertService.alertExecution" 
+					search.filterfields="ALR_ID;ALE_NUMBER;ALE_SENDMAIL;ALE_SENTMAIL;ALE_SAVEDB;ALE_SAVEDDB;COM_ID;DRV_ID"
+					containsfilterfields="ALE_SENTMAIL_TO;ALE_SENTMAIL_CC;ALE_SENTMAIL_BCC;ALE_SUBJECT;ALE_BODY"
+					search.daterangefilterfields="ALE_EXEDATE_FROM:ALE_EXEDATE_TO:ALE_EXEDATE;ALE_READDATE_FROM:ALE_READDATE_TO:ALE_READDATE"/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" >
+			<Table
+					entity="ojee.AlertService.alertExecution" key="ALE_ID"
+					parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER"
+					cols="ALE_ID;ALE_NUMBER;ALE_EXEDATE;ALE_READDATE;ALE_ERROR;ALR_ID;ALR_CODE;ALR_NAME;ALE_SENDMAIL;ALE_SENTMAIL;ALE_SENTMAIL_TO;ALE_SENTMAIL_CC;ALE_SENTMAIL_BCC;ALE_SAVEDB;ALE_SAVEDDB;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;ALE_SUBJECT;ALE_BODY"
+					visiblecols="ALE_NUMBER;ALE_EXEDATE;ALE_READDATE;ALE_ERROR;ALR_CODE;ALR_NAME;ALE_SENDMAIL;ALE_SENTMAIL;ALE_SENTMAIL_TO;ALE_SENTMAIL_CC;ALE_SENTMAIL_BCC;ALE_SAVEDB;ALE_SAVEDDB;COM_ID;NOMB;EXTERNAL_EMPLOYEE_ID;DNI;IDCONDUCTOR;NOMBRE;APELLIDOS;ALE_SUBJECT;ALE_BODY" 
+					defaultvisiblecols="ALE_NUMBER;ALE_EXEDATE;ALE_READDATE;ALE_ERROR;ALR_CODE;ALR_NAME;ALE_SENDMAIL;ALE_SENTMAIL;ALE_SAVEDB;ALE_SAVEDDB;COM_ID;NOMB;IDCONDUCTOR;NOMBRE" 
+					headergroups="execution.basicData:ALE_NUMBER,ALE_EXEDATE,ALE_READDATE,ALE_ERROR,ALR_CODE,ALR_NAME;execution.email:ALE_SENDMAIL,ALE_SENTMAIL,ALE_SENTMAIL_TO,ALE_SENTMAIL_CC,ALE_SENTMAIL_BCC;execution.savedb:ALE_SAVEDB,ALE_SAVEDDB;execution.companyData:COM_ID,NOMB;execution.employeeData:EXTERNAL_EMPLOYEE_ID,DNI,IDCONDUCTOR,NOMBRE,APELLIDOS;execution.otherData:ALE_SUBJECT,ALE_BODY"
+					refreshbutton="yes" deletebutton="no" insertbutton="no" scrollh="yes"
+					form="formAlertExecution.form" detailformat="{0};ALE_NUMBER"
+					cellrenderercolormanager="com.utilmize.client.gui.field.table.DeprecatedCellRendererColorManager" deprecatedcolumn="ALE_ERROR" >
+				
+					<TableColumnProperties attr="ALE_NUMBER" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_EXEDATE" defaultwidth="110" preferredwidth="110" />
+					<TableColumnProperties attr="ALE_READDATE" defaultwidth="110" preferredwidth="110" />
+					<TableColumnProperties attr="ALE_ERROR" defaultwidth="200" preferredwidth="200" />
+					<TableColumnProperties attr="ALR_CODE" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALR_NAME" defaultwidth="200" preferredwidth="200" />
+
+					<TableColumnProperties attr="ALE_SENDMAIL" text="ALR_SENDMAIL" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_SENTMAIL" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_SENTMAIL_TO" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_SENTMAIL_CC" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_SENTMAIL_BCC" defaultwidth="100" preferredwidth="100" />
+					
+					<TableColumnProperties attr="ALE_SAVEDB" text="ALR_SAVEDB" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="ALE_SAVEDDB" defaultwidth="100" preferredwidth="100" />
+					
+					<TableColumnProperties attr="COM_ID" text="CIF" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="NOMB" text="EMPRESA" defaultwidth="250" preferredwidth="250" />
+					<TableColumnProperties attr="EXTERNAL_EMPLOYEE_ID" defaultwidth="150" preferredwidth="150" />
+					<TableColumnProperties attr="DNI" defaultwidth="100" preferredwidth="100" />
+					<TableColumnProperties attr="IDCONDUCTOR" text="5B" defaultwidth="140" preferredwidth="140" />
+					<TableColumnProperties attr="NOMBRE" defaultwidth="150" preferredwidth="150" />
+					<TableColumnProperties attr="APELLIDOS" defaultwidth="200" preferredwidth="200" />
+			
+					<TableColumnProperties attr="ALE_SUBJECT" text="ALR_SUBJECT" defaultwidth="200" preferredwidth="200" />
+					<TableColumnProperties attr="ALE_BODY" text="ALR_BODY" defaultwidth="200" preferredwidth="200" />
+					
+					<RenderBoolean atrr="ALE_SENDMAIL" column="ALE_SENDMAIL" returnstring="yes" />
+					<RenderBoolean atrr="ALE_SENTMAIL" column="ALE_SENTMAIL" returnstring="yes" />
+					<RenderBoolean atrr="ALE_SAVEDB" column="ALE_SAVEDB" returnstring="yes" />
+					<RenderBoolean atrr="ALE_SAVEDDB" column="ALE_SAVEDDB" returnstring="yes" />
+			
+					<HideTableButton attr="changeviewbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton" onlyhide="true" />
+				</Table>
+			
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<!-- 
+			<Button key="execute" text="execution.execute" icon="images-indicator/play16.png" listener="com.opentach.client.alert.listeners.LaunchAlertActionListener" enable="yes"/>
+			 -->
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteReferences>
+	<RemoteReference>
+		<Name>LaborService</Name>
+		<Class>com.opentach.server.labor.labor.LaborService</Class>
+	</RemoteReference>
+	<RemoteReference>
+		<Name>LaborAgreementsService</Name>
+		<Class>com.opentach.server.labor.labor.agreement.LaborAgreementsService</Class>
+	</RemoteReference>
+</RemoteReferences>

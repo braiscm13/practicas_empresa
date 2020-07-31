@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	    http://www.springframework.org/schema/tx 
+	    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<!-- 	<import resource="spring-config-hessian.xml" />  -->
+
+	<!-- ******************************************************************* -->
+	<!-- PROPERTY PLACEHOLDER (configuration) -->
+	<!-- ******************************************************************* -->
+	<!-- The property placeholder will be in charge of reading the -->
+	<!-- .properties files that contain environment-specific configuration -->
+	<!-- and make their values available to the application context so that -->
+	<!-- they can be assigned with "${propertyname}". -->
+	<!-- ******************************************************************* -->
+
+	<!-- Enable usage of @Autowired. -->
+	<context:annotation-config />
+	<tx:annotation-driven />
+
+	<!-- Enable component scanning for defining beans with annotations. -->
+	
+	<context:component-scan base-package="com.opentach.server.company.dao" />
+	<context:component-scan base-package="com.opentach.server.company.service" />
+	
+</beans>

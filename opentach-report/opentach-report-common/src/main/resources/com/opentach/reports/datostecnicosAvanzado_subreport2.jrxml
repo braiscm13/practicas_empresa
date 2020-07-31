@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="datostecnicosAvanzado_subreport1" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ae8537d3-3a65-4326-b3c5-bb28de0bd0ad">
+	<property name="ireport.zoom" value="0.8264462809917359"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select
+'1' as NOMBRE_ESTABLECIMIENTO,
+'1' as DIR_ESTABLECIMIENTO,
+'1' as NUM_TARJETA,
+'1' as F_EXPIRA_TARJETA,
+'1' as NUM_IDENT_VEHICULO,
+'1' as NACIONALIDAD_VEHICULO,
+'1' as VEHICLEREGISTRATIONUMBER,
+'1' as COEFIC_VEHICULO,
+'1' as CONSTANTE_CONTROL,
+'1' as DIAMETRO_NEUMATICOS,
+'1' as DIM_NEUMATICOS,
+'1' as VELOCIDAD_AUTO,
+'1' as OLD_ODOMETRO,
+'1' as NEW_ODOMETRO,
+'1' as OLD_VALOR_HORA,
+'1' as NEW_VALOR_HORA,
+'1' as F_NEXT_CALIBRACION
+from cduso_tarjeta]]>
+	</queryString>
+	<field name="NOMBRE_ESTABLECIMIENTO" class="java.lang.String"/>
+	<field name="DIR_ESTABLECIMIENTO" class="java.lang.String"/>
+	<field name="NUM_TARJETA" class="java.lang.String"/>
+	<field name="F_EXPIRA_TARJETA" class="java.lang.String"/>
+	<field name="NUM_IDENT_VEHICULO" class="java.lang.String"/>
+	<field name="NACIONALIDAD_VEHICULO" class="java.lang.String"/>
+	<field name="VEHICLEREGISTRATIONUMBER" class="java.lang.String"/>
+	<field name="COEFIC_VEHICULO" class="java.lang.String"/>
+	<field name="CONSTANTE_CONTROL" class="java.lang.String"/>
+	<field name="DIAMETRO_NEUMATICOS" class="java.lang.String"/>
+	<field name="DIM_NEUMATICOS" class="java.lang.String"/>
+	<field name="VELOCIDAD_AUTO" class="java.lang.String"/>
+	<field name="OLD_ODOMETRO" class="java.lang.String"/>
+	<field name="NEW_ODOMETRO" class="java.lang.String"/>
+	<field name="OLD_VALOR_HORA" class="java.lang.String"/>
+	<field name="NEW_VALOR_HORA" class="java.lang.String"/>
+	<field name="F_NEXT_CALIBRACION" class="java.lang.String"/>
+	<group name="numreq">
+		<groupExpression><![CDATA[$F{DIM_NEUMATICOS}]]></groupExpression>
+		<groupHeader>
+			<band height="55">
+				<rectangle>
+					<reportElement uuid="30ed69b5-bad1-46b4-9095-23f0f46a5143" positionType="Float" x="11" y="4" width="776" height="50" forecolor="#FFFFFF" backcolor="#E8F0FF">
+						<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<staticText>
+					<reportElement uuid="c034e0c6-6857-4e53-bf6e-5d514bf6e9ad" x="11" y="4" width="46" height="50"/>
+					<textElement/>
+					<text><![CDATA[NOMBRE_ESTABLECIMIENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="90f2f74a-7e91-4fcb-97d6-4d33bfd9362c" x="54" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[DIR_ESTABLECIMIENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5bcfe6b1-8486-49fc-9c87-408133454361" x="110" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[NUM_TARJETA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ef51df0a-ef2f-4be8-9190-ed4b21ebfc0f" x="166" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[F_EXPIRA_TARJETA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="421a7a5b-08b7-46b8-94ac-031c64e4512a" x="222" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[NUM_IDENT_VEHICULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9a74e169-ba4a-4473-9050-ef16250dffc9" x="277" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[NACIONALIDAD_VEHICULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7a0448bd-c910-4705-a11b-ce5daadbf448" x="331" y="4" width="56" height="50"/>
+					<textElement/>
+					<text><![CDATA[VEHICLEREGISTRATIONUMBER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a3207c54-1f4e-4d52-b532-33b3a9bd257c" x="387" y="4" width="69" height="50"/>
+					<textElement/>
+					<text><![CDATA[COEFIC_VEHICULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2b4142fa-23aa-4dda-822e-ad3bef5c8f15" x="456" y="4" width="54" height="50"/>
+					<textElement/>
+					<text><![CDATA[CONSTANTE_CONTROL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="59ad5054-ea61-4545-af11-c6ee85825aab" x="510" y="4" width="41" height="50"/>
+					<textElement/>
+					<text><![CDATA[DIAMETRO_NEUMATICOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a8c42f85-9184-4361-a4e5-9eea52add954" x="550" y="4" width="40" height="50"/>
+					<textElement/>
+					<text><![CDATA[DIM_NEUMATICOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="fc4b6f17-a780-49b8-80d2-bafcaedd732a" x="588" y="4" width="40" height="50"/>
+					<textElement/>
+					<text><![CDATA[VELOCIDAD_AUTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="6a1880c5-89b5-4307-a177-48306a16f203" x="627" y="4" width="47" height="50"/>
+					<textElement/>
+					<text><![CDATA[OLD_ODOMETRO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0faa615b-32a2-400a-b044-d64a1aa7bc7c" x="674" y="4" width="40" height="50"/>
+					<textElement/>
+					<text><![CDATA[NEW_ODOMETRO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="206b5a08-0396-4bda-95d6-a95ba6d2e400" x="714" y="4" width="25" height="50"/>
+					<textElement/>
+					<text><![CDATA[OLD_VALOR_HORA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5aefe3b2-cbab-4a5b-9670-26aa3dfda2da" x="739" y="4" width="25" height="50"/>
+					<textElement/>
+					<text><![CDATA[NEW_VALOR_HORA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="987a8709-d364-4a7b-b424-854cace98f08" x="764" y="3" width="23" height="51"/>
+					<textElement/>
+					<text><![CDATA[F_NEXT_CALIBRACION]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement uuid="29ef9e5b-e49c-43f5-8ab4-2cdd18d20732" x="-2" y="-92" width="48" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="143" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="112" splitType="Stretch">
+			<textField>
+				<reportElement uuid="aeaf9dcb-2280-4e37-95b1-7a137a834a78" x="90" y="55" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_ESTABLECIMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5f2bf20a-e172-4038-aa18-daf6ee4ea5ff" x="426" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NUM_TARJETA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b22fe55b-f44e-4b13-86cc-b6ae724b1570" x="352" y="43" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[holaaaa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="81247223-8e65-4237-8fdd-daa4ed801e87" key="rectangle-1" positionType="Float" mode="Opaque" x="12" y="1" width="775" height="16" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="d0a5ff3a-3974-4d8b-b23c-fe9b4218666f" x="8" y="0" width="46" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_ESTABLECIMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ea7110c7-c187-4bff-a623-8f0bd213927c" x="57" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIR_ESTABLECIMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a7dd00ea-9b8c-4b73-9678-f6b390f5616e" x="110" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NUM_TARJETA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8361047d-e43b-4868-b5f6-36aa27ccfbe0" x="166" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_EXPIRA_TARJETA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="db1bc7f7-ebfc-4971-88aa-5aaee0084c6a" x="222" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NUM_IDENT_VEHICULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bb93f565-8a63-4054-b3ff-aec3c5c9ac24" x="277" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NACIONALIDAD_VEHICULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4d5671e5-2775-4ce9-a3ac-330a055ca700" x="331" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{VEHICLEREGISTRATIONUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f42f99f-ff90-4765-891c-dac8332ebe01" x="387" y="0" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COEFIC_VEHICULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6108ea0-e98d-4ef9-979e-f7e5680efb80" x="454" y="0" width="57" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CONSTANTE_CONTROL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ecf2dce5-45a7-455c-8ec1-28960489f85c" x="510" y="0" width="41" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIAMETRO_NEUMATICOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="60f6a29b-f139-4afe-ac16-7ecf658aa90c" x="550" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIM_NEUMATICOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="49ab3b30-c543-4ad0-8eeb-eaaddc0c76dc" x="588" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{VELOCIDAD_AUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f2faca01-b85c-4632-bb42-253a10090973" x="627" y="0" width="47" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OLD_ODOMETRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="451294ee-aeb5-4507-84b8-4862429d8e86" x="674" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NEW_ODOMETRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="875862da-2222-4829-a0eb-016f57a36761" x="714" y="0" width="25" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OLD_VALOR_HORA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="36b43c8a-9d3b-48a6-a8fd-007a9207ba7c" x="739" y="0" width="25" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NEW_VALOR_HORA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4d101e3d-bf3d-4371-8bb5-c9be5234789b" x="764" y="0" width="23" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_NEXT_CALIBRACION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="64" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

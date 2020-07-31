@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="RDW_PROVIDER_EVENT"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>RPE_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>RPE_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>RPE_ID</GeneratedKey>
+</JdbcEntitySetup>

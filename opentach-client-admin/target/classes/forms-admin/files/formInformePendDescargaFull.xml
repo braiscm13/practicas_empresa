@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_PENDDESCARGA" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<Row height="10"/>
+	<Row align="right" expandlast="no">
+	    <Column expand="yes" />
+	    <Column expand="no" title="FILTRO_F_DESCARGA_DATOS" align="right">
+						<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+						<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+		</Column >
+		<Column expand="no" width="10"/>
+	</Row> 
+	<Row height="10"/>
+	<Row expand="yes">
+		<Table entity="EInformePendDescarga" key="CG_CONTRATO" keys="IDORIGEN" parentkeys="F_DESCARGA_DATOS" 
+			cols="CG_CONTRATO;CIF;EMP;TELF;FAX;EMAIL;MOVIL;IDORIGEN;DSCR;TIPO;F_DESCARGA_DATOS;DIAS;IDDELEGACION" visiblecols="CIF;EMP;TELF;FAX;EMAIL;MOVIL;IDORIGEN;DSCR;F_DESCARGA_DATOS;DIAS" />
+	</Row>
+</Form>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<OntimizeModule id="opentach-labor-admin" >
+	<Client package="">
+		<!-- ALERTS -->
+		<TabbedFormManager id="managerAlerts" showframe="yes" delayedload="yes" 
+			form="forms-alert/formAlertManagement.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+			<InteractionManager form="formAlert.form" class="com.opentach.client.alert.fim.IMAlert"/>
+			<FManager fmid="managerAlertExecutions" form="formAlertExecution.form" />
+		</TabbedFormManager>
+		<TabbedFormManager id="managerAlertExecutions" showframe="yes" delayedload="yes" 
+			form="forms-alert/formAlertExecutionsManagement.form" imanager="com.utilmize.client.fim.advanced.UBasicFIMSearch" >
+			<InteractionManager form="formAlertExecution.form" class="com.opentach.client.alert.fim.IMAlertExecution"/>
+		</TabbedFormManager>
+		
+	</Client>
+</OntimizeModule>

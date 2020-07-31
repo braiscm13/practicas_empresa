@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="DUMMY" entity="" title="formDriverDetailResponses.xml" buttons="no" preferredsizetodialog="950;600">
+
+	<Column margin="10;10;10;10">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDCONDUCTOR"
+						text="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="CG_CONTRATO;CIF"
+						csize="10"
+						entity="EConductorCont"
+						cols="IDCONDUCTOR;APELLIDOS;NOMBRE"
+						visiblecols="IDCONDUCTOR;APELLIDOS;NOMBRE"
+						descriptioncols="IDCONDUCTOR;APELLIDOS;NOMBRE"
+						codsearch="IDCONDUCTOR"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="no" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDPERSONAL"
+						text="IDPERSONAL"
+						cod="IDPERSONAL"
+						parentkeys="CIF"
+						csize="10"
+						entity="EPersonalEmp"
+						cols="IDPERSONAL;APELLIDOS;NOMBRE"
+						visiblecols="IDPERSONAL;APELLIDOS;NOMBRE"
+						descriptioncols="IDPERSONAL;APELLIDOS;NOMBRE"
+						codsearch="IDPERSONAL"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="no" />
+					<ReferenceExtDataField
+						entity="ESurveys"
+						text="SURVEY_NAME"
+						labelsize="12"
+						attr="ID_SURVEY"
+						dim="text"
+						cod="ID_SURVEY"
+						cols="ID_SURVEY;SURVEY_NAME"
+						visiblecols="SURVEY_NAME"
+						descriptioncols="SURVEY_NAME"
+						required="no"
+						codvisible="no"
+						codnumber="yes"
+						codnumberclass="BigDecimal"
+						csize="10" />
+		<Table entity="ESurDNIDetailResponses" parentkeys="ID_SURVEY;IDCONDUCTOR;IDPERSONAL" keys="ID_SURVEY;IDCONDUCTOR;IDPERSONAL"
+			cols="ID_SURVEY;SURVEY_NAME;QUESTION_TEXT;ID_QUESTION;CORRECT_OPTION_TEXT;CORRECT_ID_OPTION;ID_OPTION;OPTION_TEXT;IDCONDUCTOR" visiblecols="QUESTION_TEXT;CORRECT_OPTION_TEXT;OPTION_TEXT"
+			refreshbutton="no">
+			<HideTableButton
+				attr="filtersavebutton;visiblecolsbutton;excelexportbutton;reportbutton;pivottablebutton;changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;copybutton"
+				onlyhide="true" />
+		</Table>
+	</Column>
+</FormExt>

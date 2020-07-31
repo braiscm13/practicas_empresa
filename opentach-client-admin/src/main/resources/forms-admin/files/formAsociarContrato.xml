@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EFicherosPendientes" keys="IDFICHERO"  buttons="no" title="DETALLES_FICHERO">
+	<FormHeader standardbuttons="no">
+		<Button icon="com/opentach/client/rsc/sort_ascending.png" key="addqueue" tip="Procesar_ahora" />
+		<Button icon="com/ontimize/gui/images/ok.png" key="asociar" tip="ACEPTAR" />
+		<Button icon="com/ontimize/gui/images/cancel.png" key="cancelar" tip="CANCELAR" />
+		</FormHeader>
+	<Column expand="yes" expandlast="no">
+		<Row >
+			<TextDataField attr="IDORIGEN" align="left" visible="yes" />
+			<IntegerDataField attr="IDFICHERO" visible="yes" />
+		</Row >		
+		<Row title="Empresas" expand="yes">
+			<Table entity="ECondVehCont_Ficheros"  keys="CIF;CG_CONTRATO" otherkeys="IDFICHERO" parentkey="IDORIGEN" cols="IDORIGEN;CIF;NOMB;CG_CONTRATO;ASOCIADO;IDFICHERO;F_PROCESADO" visiblecols="CIF;CG_CONTRATO;NOMB;ASOCIADO;F_PROCESADO" buttons="no" />
+		</Row >			
+	</Column >
+</FormExt>

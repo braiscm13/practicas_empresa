@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_LABORAL_COND" buttons="no" setvalueorder="DNI;IDCONDUCTOR">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expandlast="yes" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<AssetSelectionDataField
+						assetType="DRIVER" 
+						align="left" 
+						labelsize="12" 
+						dim="text" 
+						required="yes" />					
+				</Column >
+			</Column >
+			<Column >
+				<Row expand="yes">
+					<Table entity="EInformeLaboral"  key="IDCONDUCTOR" keys="DATERANGE"  
+					cols="DATERANGE;EXTERNAL_EMPLOYEE_ID;IDCONDUCTOR;DNI;NOMBRE;DCDIARIO;DTDIARIO;DPDIARIO;DPINDEF;DDDIARIO;SEMANA;MES;MES2;ANHO;DIA;INI_SEMANA;FIN_SEMANA;TDIARIO;DIA_SEM;TOTAL_SEMANA;TOTAL_MES" 
+					 visiblecols="DATERANGE;EXTERNAL_EMPLOYEE_ID;IDCONDUCTOR;NOMBRE;DCDIARIO;DTDIARIO;DPDIARIO;DPINDEF;DDDIARIO"
+				 /></Row >
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no">
+			<ColumnRadioButtonGroup margin="7;5;5;5" selected="ULTIMOS_DIAS" attr="datos"  expand="no" title="Filtro_Fecha_Comienzo" >
+				<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+				<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+				<Column expand="no">
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="yes" datevisible="no" dim="no" labelsize="10" />
+				</Column >
+			</ColumnRadioButtonGroup >
+			<Column title="MOSTRAR" >
+				<BasicDataComponentGroup attr="BANDCFG.1" group="SHOW_SEMANA;SHOW_MES;SHOW_DETALLES" />					
+				<CheckDataField attr="SHOW_SEMANA" align="left" labelposition="right" labelsize="24" />
+				<CheckDataField attr="SHOW_MES" align="left" labelposition="right" labelsize="18" />
+				<CheckDataField attr="SHOW_DETALLES" align="left" labelposition="right" labelsize="18" />
+			</Column >				
+			<Column />
+		</Column >
+	</Row >
+</Form>

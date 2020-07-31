@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form buttons="no" title="REGISTRO_OPERACIONES_FICHEROS">
+	<FormHeader standardbuttons="no">
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png"/>	  
+	</FormHeader>
+	
+	<Row expand="yes" align="left">
+		<Column align="left" expand="yes">
+			<Column expand="yes" align="left" >
+				<Row >
+					<Column expand="no" title="Filtro_Nombre" valign="center">	
+						<TextDataField attr="NOMB" visible="yes" text="NOMB" required="no" dim="no" labelsize="14" />
+						<TextDataField attr="NOMB_PROCESADO" visible="yes" text="NOMB_PROCESADO" required="no" dim="no" labelsize="14" />
+					</Column >
+					<Column expand="no" title="Filtro_Nombre" valign="center">	
+						<TextDataField attr="IDORIGEN" labelposition="top" visible="yes" text="IDORIGEN" required="no" dim="no" labelsize="15" />
+					</Column >	
+					<Column expand="yes" title="Filtro_Usuario_Alta" valign="center">																																		
+						<ReferenceComboDataField entity="EDfEmp" text="Empresa"  labelsize="8" size="30" separator=" - " attr="CIF" dim="text"  cod="CIF" cols="NOMB;CIF" descriptioncols="NOMB" required="no" csize="20" />
+						<ReferenceComboDataField entity="EUsuariosTodos" text="USUARIO" labelsize="8" size="30" attr="USUARIO_ALTA" dim="text"  cod="USUARIO" parentkey="CIF" cols="USUARIO;CIF" descriptioncols="USUARIO" visiblecols="USUARIO" codintenger="yes" required="no" csize="20" />													
+					</Column >
+					<Column align="left" expand="no" title="Filtro_Tipo"  valign="center">						
+						<ObjectDataField attr="TIPO" visible="no" text="tipo" required="no" datevisible="no" dim="no" labelsize="12" />
+						<CheckDataField attr="UP" selected="no" labelposition="right" align="left" labelsize="18" />						
+						<CheckDataField attr="DW" selected="no" labelposition="right" align="left" labelsize="18"/>						
+						<CheckDataField attr="PR" selected="no" labelposition="right" align="left" labelsize="18" />						
+					</Column >
+					<!--<Columna expand="yes" title="Filtro Fecha Alta" margin="5;5;5;5">	
+						<CampoFecha attr="F_ALTA" required="no"/>
+					</Columna>-->
+					<Column layout="border" expand="no" align="center" title="F_ALTA" >												
+						<ColumnRadioButtonGroup selected="ULTIMOS_DIAS" attr="datos">
+							<RadioButtonDataField attr="ULTIMOS_DIAS" text="Ultimos_15_dias" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+							<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+							<Column expand="no">	
+								<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+								<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" required="no" datevisible="no" dim="no" labelsize="10" />
+							</Column >
+						</ColumnRadioButtonGroup >
+					</Column >
+					
+				</Row >
+			</Column >
+		</Column >
+	</Row >
+	
+	<Row title="EFicherosRegistro" expand="yes">		
+		<Table entity="EFicherosRegistro" key="NUM" keys="IDFICHERO"   otherkeys="TIPO;IDORIGEN;USUARIO_ALTA;F_DESCARGA_DATOS;F_ALTA;NOMB;NOMB_PROCESADO;CIF" cols="IDFICHERO;NUM;CG_CONTRATO;IDORIGEN;TIPO;NOMB_PROCESADO;NOMB;OBSR;PDA;MAIL;ANALIZAR;F_ALTA;USUARIO_ALTA;CIF;NOMB_EMP" visiblecols="CG_CONTRATO;IDORIGEN;TIPO;NOMB_PROCESADO;NOMB;OBSR;PDA;MAIL;ANALIZAR;F_ALTA;USUARIO_ALTA;CIF;NOMB_EMP" rendertime="F_ALTA" controls="yes" />				
+	</Row >		
+</Form>

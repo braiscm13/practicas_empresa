@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-checktrucker-admin" >
+	
+	<Client package="">
+		<FormManager id="managerreportsurveys" showframe="yes" delayedload="yes" form="forms-checktrucker-admin/formReportSurveys.form" imanager="com.opentach.adminclient.modules.surveys.IMReportSurveys">
+			<FManager fmid="managerdriverdetailresponses" form="formDriverDetailResponses.xml" />
+		</FormManager>
+		<TabbedFormManager id="managersurveys"  showframe="yes" delayedload="yes" form="forms-checktrucker-admin/formSurveys.xml" imanager="com.opentach.adminclient.modules.surveys.IMSurveys">
+			<InteractionManager form="formSurvey.xml" class="com.opentach.adminclient.modules.surveys.IMSurvey" />
+			<InteractionManager form="formQuestionCreate.xml" class="com.opentach.adminclient.modules.surveys.IMQuestionCreate" />
+			<InteractionManager form="formQuestionEdit.xml" class="com.opentach.adminclient.modules.surveys.IMQuestionEdit" />
+		</TabbedFormManager>
+	</Client>
+</OntimizeModule>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="a" entity="a" columns="a" title="user.UserManagement" buttons="no" status="no"
+	preferredsizetodialog="1150;720"
+	 autocompletefocuslist="yes">
+	
+	<ObjectDataField attr="EXPRESSION_KEY_UNIQUE_IDENTIFIER" visible="no"/>
+
+	<Column margin="5;5;5;5" expandlast="no">
+		<CollapsiblePanel orientation="vertical" startshowed="yes" ignoreinitpreferences="yes" borderposition="top" insets="21;0;0;0" title="general.SEARCH_CRITERIAS">
+			<Row margin="5;0;0;0">
+				<Column valign="center" margin="0;10;0;0">
+					<TextDataField
+						attr="AGR_NAME"
+						labelsize="20"
+						dim="text"
+						align="left" />
+					<TextComboDataField
+						attr="AGR_MODALITY"
+						values="MERCANCIAS;MERCANCIASDISCRECIONAL;MERCANCIASREGULAR;MERCANCIAVIAJERO;VIAJEROS;URBANOSVIAJEROS;VIAJEROSREGDISC;AGENCIATRANS;DISCRTURISMO;AGENCIACARGASFRAC"
+						labelsize="20"
+						translate="yes"
+						align="left"
+						size="46" />
+				</Column>
+				<Column expand="yes" />
+				<SearchPanel 
+					table="ELaborAgreement"
+					search.filterfields="AGR_NAME;AGR_MODALITY"
+				/>
+			</Row>
+		</CollapsiblePanel>
+		<Row expand="yes" title="result">
+				
+			<Table 
+				entity="ELaborAgreement" 
+				key="AGR_ID" 
+				parentkeys="EXPRESSION_KEY_UNIQUE_IDENTIFIER" 
+				cols="AGR_ID;AGR_NAME;AGR_MODALITY;AGR_ALGORITHM;AGR_LIMIT_ALGORITHM;AGR_F_BAJA;AGR_DAILY_MINUTES;AGR_WEEKLY_MINUTES;AGR_BIWEEKLY_MINUTES;AGR_FOUR_WEEKLY_MINUTES;AGR_MONTHLY_MINUTES;AGR_FOUR_MONTHLY_MINUTES;AGR_ANNUAL_MINUTES"
+				visiblecols="AGR_NAME;AGR_MODALITY;AGR_ALGORITHM;AGR_LIMIT_ALGORITHM;AGR_F_BAJA;AGR_DAILY_MINUTES;AGR_WEEKLY_MINUTES;AGR_BIWEEKLY_MINUTES;AGR_FOUR_WEEKLY_MINUTES;AGR_MONTHLY_MINUTES;AGR_FOUR_MONTHLY_MINUTES;AGR_ANNUAL_MINUTES" 
+				form="formAgreement.xml"
+				deletebutton="yes" insertbutton="yes" 
+				detailformat="{0};AGR_NAME">
+
+					
+				<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;deletebutton;printingbutton"
+					onlyhide="true" />
+			</Table>
+		</Row>
+		<Row margin="0;0;0;0">
+			<Row />
+			<!-- 
+			<Button key="testremoteoperation" text="testremoteoperation" listener="com.imatia.autobascula.desktopclient.plant.users.listeners.GeneratePermissionsListener" />
+			 -->
+			<DeleteFromTableButton table="ELaborAgreement" icon="images-admin/garbage16.png" />
+			<OpenTableInsertFormButton table="ELaborAgreement"  />
+		</Row>
+	</Column>
+</FormExt>

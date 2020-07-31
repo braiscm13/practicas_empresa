@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Servicio de gestion de empresas/contratos -->
+	<bean name="/company" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="CompanyService" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>	
+	<!-- Servicio de gestion de usuarios de empresa -->
+	<bean name="/companyUser" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="CompanyUserService" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyUserService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>	
+	<!-- Servicio de gestion de usuarios de empresa -->
+	<bean name="/companyDelegation" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="CompanyDelegationService" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyDelegationService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>	
+	<!-- Servicio de gestion de contactos de empresa -->
+	<bean name="/companyContact" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="CompanyContactService" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ICompanyContactService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+		<!-- <property name="debug" value="true" /> -->
+	</bean>	
+	
+	<!-- Servicio de gestion de licencias -->
+	<bean name="/license" class="com.ontimize.jee.server.hessian.OntimizeHessianExporter" lazy-init="true">
+		<property name="service" ref="LicenseService" />
+		<property name="serviceInterface" value="com.opentach.common.company.service.ILicenseService" />
+		<property name="serializerFactory" ref="hessianSerializerFactory" />
+		<property name="exceptionTranslator" ref="exceptionTranslator" />
+	</bean>
+	
+</beans>

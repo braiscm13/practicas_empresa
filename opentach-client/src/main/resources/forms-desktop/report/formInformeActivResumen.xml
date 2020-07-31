@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_ACTIVIDADES_RESUMEN" buttons="no">
+	<FormHeader>
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png"/>
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no"/>
+	<Row expand="yes">
+		<Column expandlast="yes" expand="yes">
+			<Column margin="7;5;5;5" expand="yes">
+				<Column title="" margin="0;5;5;5" valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+				</Column >
+			</Column >
+		</Column >
+		<Column expandlast="yes" expand="no" title="Filtro_Fecha_Comienzo_Act">
+			<Column valign="top" attr="Filtro_Fecha_Comienzo_Act">					
+				<TextDataField attr="COLUMN.2" align="left" visible="no" />
+				<CampoFechaNoEditable attr="MINVAL.2" align="left" datevisible="no" labelsize="8" required="yes" />
+				<CampoFechaNoEditable attr="MAXVAL.2" align="left" datevisible="no" labelsize="8" required="yes" />
+			</Column >
+		</Column >
+	</Row >
+</Form>

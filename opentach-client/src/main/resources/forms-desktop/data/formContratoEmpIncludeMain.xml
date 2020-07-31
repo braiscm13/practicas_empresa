@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Column margin="5;5;2;5">
+	<Row expand="no">
+		<Column margin="5;5;10;5">
+			<TextDataField attr="NUMREQ" visible="no" />
+		 	<Row margin="5;5;5;5" expandlast="no">
+		 			<Column expand="yes">
+		 				<ReferenceExtDataField attr="CIF" labelsize="16" text="EMPRESA" cod="CIF" csize="9" entity="EDfEmp" cols="CIF;NOMB"
+											descriptioncols="NOMB" codsearch="CIF" dim="text" />
+		 				<Row>
+		 					<TextDataField attr="CG_CONTRATO" labelsize="16" align="left" dim="no" bold="yes" size="20" enable="no" />
+		 				</Row>
+		 				<TextDataField attr="DSCR" align="left" labelsize="16" dim="text" visible="yes"></TextDataField>
+		 				<Row expandlast="no">
+		 					<Column expand ="yes">
+		 						<Row>
+									<TextComboDataField attr="TIPO_FACTURACION" values="SEMANAL;MENSUAL;ANUAL" align="left" translate="yes"  labelsize="16" dim="no" size="20"></TextComboDataField>
+									<IntegerDataField attr="U_NUM_MAXIMO" align="right"  ></IntegerDataField>	
+									<TextComboDataField attr="ESTADO_ACTIVIDAD" values="DEMO;ACTIVO;INACTIVO" align="left" translate="yes"   dim="no" size="15"></TextComboDataField>
+									<Column/>
+								</Row>
+								<TextDataField attr="MODALIDAD_DIGITAL" align="left" labelsize="16" visible="yes"></TextDataField>
+							</Column>
+		 				</Row>
+		 			</Column>
+		 			<Column expand="no">
+		 				<DateDataField attr="F_CONTRATO" dim="no" align="left" required="yes" labelsize="17" />
+		 				<DateDataField attr="FECINI" text="FECINI_DATOS" align="left" required="yes" labelsize="17"  dim="no" />
+						<DateDataField attr="FECFIN" text="FECFIN_DATOS" align="left" required="yes" labelsize="17" dim="no" />
+						<DateDataField attr="TERMDATEDEMO" align="left" labelsize="17" visible="yes" />
+						<DateDataField attr="ENDDATEDEMO" align="left" labelsize="17" visible="yes" />
+						<DateDataField attr="F_BAJA" align="left" required="no" dim="no" labelsize="17" enabled="no" />
+						
+		 			</Column>
+		 	</Row>
+	</Column>
+	</Row>
+	<Row height="5" />
+	<Row>
+		<Button key="CHACTIVO" text="Contrato_en_uso" icon="com/opentach/client/rsc/scroll_run16.png" labelsize="22" />
+		<Column expand="yes" />
+	</Row>
+	<TabPanel>
+		<Tab title="CONDUCTORES_CONT">
+			<Table expand="yes" entity="EConductorCont" title="CONDUCTOR_CONT" key="IDCONDUCTOR" keys="CG_CONTRATO" parentkeys="CG_CONTRATO;CIF" fixattr="CIF"
+				cols="CG_CONTRATO;CIF;IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;TIPO;F_ALTA;F_BAJA" visiblecols="DNI;NOMBRE;APELLIDOS;F_ALTA;F_BAJA" refreshbutton="no"
+				deletebutton="yes" />
+		</Tab>
+		<Tab title="VEHICULOS_CONT">
+			<Table expand="yes" entity="EVehiculoCont" title="VEHICULO_CONT" key="MATRICULA" keys="CIF" parentkeys="CG_CONTRATO;CIF" fixattr="CIF"
+				cols="CG_CONTRATO;CIF;MATRICULA;DSCR;TIPO;F_ALTA;F_BAJA" visiblecols="MATRICULA;DSCR;F_ALTA;F_BAJA" refreshbutton="no" deletebutton="yes" />
+		</Tab>
+	</TabPanel>
+</Column>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="INFORME_VEHICULOS" buttons="no">
+	<FormHeader/>
+		
+	<Column expandlast="yes">
+			
+		<Row expand="yes">
+			<Table entity="EGraficaVehiculos" key="MATRICULA" 
+			 cols="MATRICULA" 
+			 visiblecols="MATRICULA" controls="no"/>
+			
+		</Row >
+	</Column>
+</Form>

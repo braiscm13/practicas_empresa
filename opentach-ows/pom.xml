@@ -1,0 +1,171 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-ows</artifactId>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<packaging>jar</packaging>
+	<description>ows</description>
+
+	<profiles>
+		<profile>
+			<id>generate-onlp</id>
+			<activation>
+				<activeByDefault></activeByDefault>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<!-- If we e.g. execute on JDK 1.7, we should compile for Java 7 to get the same (or higher) 
+							JAXB API version as used during the xjc execution. -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<configuration>
+								<source>1.8</source>
+								<target>1.8</target>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+				<plugins>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>3.0.2</version>
+						<executions>
+							<execution>
+								<id>copy-onlp</id>
+								<!-- here the phase you need -->
+								<phase>package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/innosetup</directory>
+											<includes><include>*.oad</include></includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.6</version>
+						<executions>
+							<execution>
+								<id>make-assembly</id>
+								<!-- bind to the packaging phase -->
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<!-- get all project dependencies -->
+									<descriptorRefs>
+										<descriptorRef>jar-with-dependencies</descriptorRef>
+									</descriptorRefs>
+								</configuration>
+							</execution>
+							<execution>
+								<id>make-final-assembly</id> <!-- this is used for inheritance merges -->
+								<phase>verify</phase> <!-- append to the packaging phase. -->
+								<goals>
+									<goal>single</goal> <!-- goals == mojos -->
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/innosetup/make-final-assembly.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.akathist.maven.plugins.launch4j</groupId>
+						<artifactId>launch4j-maven-plugin</artifactId>
+						<version>1.7.8</version>
+						<executions>
+							<execution>
+								<id>l4j-desktopclient</id>
+								<phase>package</phase>
+								<goals>
+									<goal>launch4j</goal>
+								</goals>
+								<configuration>
+									<infile></infile>
+									<headerType>gui</headerType>
+									<outfile>${ows.launch4j_outfile}</outfile>
+									<jar>${project.basedir}/target/${project.artifactId}-${project.version}-jar-with-dependencies.jar</jar>
+									<errTitle>${ows.launch4j_name}</errTitle>
+									<cmdLine>${ows.launch4j_onlp}</cmdLine>
+									<icon>${ows.launch4j_ico}</icon>
+									<classPath>
+										<mainClass>${ows.launch4j_mainclass}</mainClass>
+										<addDependencies>false</addDependencies>
+										<!-- <preCp>anything</preCp> -->
+									</classPath>
+									<jre>
+										<minVersion>1.8.0</minVersion>
+										<path>jvm</path>
+										<bundledJre64Bit>true</bundledJre64Bit>
+									</jre>
+									<versionInfo>
+										<fileVersion>1.0.0.0</fileVersion>
+										<txtFileVersion>${project.version}</txtFileVersion>
+										<fileDescription>${ows.launch4j_name}</fileDescription>
+										<copyright>Imatia Innovation S.L.</copyright>
+										<productVersion>1.0.0.0</productVersion>
+										<txtProductVersion>${project.version}</txtProductVersion>
+										<productName>${ows.launch4j_name}</productName>
+										<internalName>${ows.launch4j_name}</internalName>
+										<originalFilename>${ows.launch4j_filename}</originalFilename>
+									</versionInfo>
+								</configuration>
+							</execution>						    
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.4.0</version>
+						<executions>
+							<execution>
+								<id>inno setup 64</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${ows.innosetup_bin}</executable>
+									<arguments>
+										<argument>${ows.innosetup_64bitiss}</argument>
+									</arguments>
+								</configuration>
+							</execution>											    
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilwebstart</artifactId>
+		</dependency>
+	</dependencies>
+</project>

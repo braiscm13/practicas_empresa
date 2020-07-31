@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerinformevehiclesnotdownloading" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+	</FormHeader>
+	<Row>
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+
+				</Column>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+
+		</Column>
+	</Row>
+	<Row expand="yes">
+	    <Column>
+				<Row expand="yes">
+					<Table entity="EInformeVehiclesNotDownloading" keys="NOMB;MATRICULA"  
+					    cols="NOMB;MATRICULA" 
+						visiblecols="NOMB;MATRICULA"/>
+				</Row>
+		</Column>
+	</Row>
+</Form>

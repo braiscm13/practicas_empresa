@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog=""
+	schema="${mainschema}"
+	table="MAL_MAIL"
+	datasource="mainDataSource"
+	sqlhandler="mainSQLStatementHandler"
+	nameconverter="defaultNameConverter">
+	<DeleteKeys>
+		<Column>MAI_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>MAI_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>MAI_ID</GeneratedKey>
+
+	<Queries>
+		<Query id="company">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CIF" prefix="mai" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="COM_NAME" value="DFEMP.NOMB" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM
+						MAL_MAIL mai,
+						DFEMP
+					WHERE
+						mai.CIF = DFEMP.CIF 
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+		<Query id="admin">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CIF" prefix="mai" />
+				<AmbiguousColumn name="MAC_ID" prefix="mai" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="COM_NAME" value="com.NOMB" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM
+						MAL_MAIL mai,
+						MAL_ACCOUNT mac,
+						DFEMP com
+					WHERE
+						mai.CIF = com.CIF 
+						AND mai.MAC_ID = mac.MAC_ID
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+		<Query id="agents">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="CIF" prefix="mai" />
+				<AmbiguousColumn name="MAC_ID" prefix="mai" />
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="COM_NAME" value="DFEMP.NOMB" />
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[
+					SELECT 
+						#COLUMNS#
+					FROM
+						CDUSU
+					WHERE
+						NIVEL_CD in (select NIVEL_CD from CDNIVELES where DSCR LIKE 'AGENTE%')
+						#WHERE_CONCAT#
+					#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

@@ -1,0 +1,243 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-jws</artifactId>
+	<packaging>pom</packaging>
+	<name>${desktopIconName}</name>
+	<description>OPENSERVICES SGT</description>
+
+	<!-- =========================================================== -->
+	<!-- Profiles -->
+	<!-- =========================================================== -->
+	<properties>
+		<serverhostname>${server.hostname}</serverhostname>
+		<serverPort>${server.port}</serverPort>
+		<desktopIconName>Opentach</desktopIconName>
+		<mainclass>com.opentach.client.OpentachLauncher</mainclass>
+		<clientapplicationxml>clientapplication.xml</clientapplicationxml>
+		<mainclassAdmin>com.opentach.adminclient.OpentachAdminLauncher</mainclassAdmin>
+		<mainclassDowncenter>com.opentach.downclient.DownCenterLauncher</mainclassDowncenter>
+		<client-main-jar>opentach-client</client-main-jar>
+		<proxyUrl>${proxy.url}</proxyUrl>
+	</properties>
+	<profiles>
+		<profile>
+			<id>generate-jnlp</id>
+			<activation>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Generated zip for jnlp -->
+					<plugin>
+						<groupId>com.imatia.maven.plugin</groupId>
+						<artifactId>imatia-webstart-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>1</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jnlp-inline</goal>
+								</goals>
+							</execution>
+						</executions>
+
+						<configuration>
+							<attachArchive>true</attachArchive>
+							<resourcesDirectory>${project.basedir}/src/main/jnlp/resources</resourcesDirectory>
+
+							<!-- Activar esta propiedad borra las directivas OSGI en los ficheros manifest de las librerias previamente firmadas. En el caso de que utilices 
+								OSGI y detectes algun comportamiento extraño prueba a desactivarla. -->
+							<unsignAlreadySignedJars>true</unsignAlreadySignedJars>
+							<!-- activar las propiedades outputJarVersions, pack200 y gzip mejora el rendimiento ed la aplicacion -->
+							<!-- Si modificas la propiedad outputJarVersions tendras que modificar template.vm. Hay un comentario en el fichero indicandote lo que tienes que 
+								hacer -->
+
+							<!-- Hay un bug con el versioning que entiendo que solucionarán en alguna actualización de java, muestra el warning del permiso aunque esté en el 
+								manifest https://community.oracle.com/thread/2594060?start=0&tstart=0 -->
+							<outputJarVersions>true</outputJarVersions>
+							<includeIndexList>true</includeIndexList>
+							<updateManifestEntries>
+								<Permissions>all-permissions</Permissions>
+								<Codebase>*</Codebase>
+								<Trusted-Library>true</Trusted-Library>
+								<Application-Name>Opentach</Application-Name>
+								<Trusted-Only>true</Trusted-Only>
+							</updateManifestEntries>
+							<jnlps>
+								<jnlp>
+									<inputTemplateResourcePath>${project.basedir}/src/main/jnlp</inputTemplateResourcePath>
+									<outputFile>${jnlpLaunch}</outputFile>
+									<inputTemplate>template.vm</inputTemplate>
+									<uInputTemplate>utemplate.vm</uInputTemplate>
+									<mainClass>${mainclass}</mainClass>
+									<inputJnlpTemplateTemplateResourcePath>${project.basedir}/src/main/jnlp</inputJnlpTemplateTemplateResourcePath>
+									<inputJnlpTemplateTemplate>template_template.vm</inputJnlpTemplateTemplate>
+									<manipulateJarVersion>8</manipulateJarVersion>
+									<dependencyGroups>
+										<!-- <dependencyGroup> -->
+										<!-- <name>dependency-j7</name> -->
+										<!-- <artifacts> -->
+										<!-- <artifact> -->
+										<!-- <groupId>com.imatia.utilmize</groupId> -->
+										<!-- <artifactId>utilplaf-j7</artifactId> -->
+										<!-- </artifact> -->
+										<!-- </artifacts> -->
+										<!-- </dependencyGroup> -->
+									</dependencyGroups>
+									<dependencies>
+										<dependency>
+											<groupId>com.imatia.opentach</groupId>
+											<artifactId>${client-main-jar}</artifactId>
+										</dependency>
+									</dependencies>
+								</jnlp>
+								<jnlp>
+									<inputTemplateResourcePath>${project.basedir}/src/main/jnlp</inputTemplateResourcePath>
+									<outputFile>${jnlpLaunchAdmin}</outputFile>
+									<inputTemplate>templateAdmin.vm</inputTemplate>
+									<mainClass>${mainclassAdmin}</mainClass>
+									<inputJnlpTemplateTemplateResourcePath>${project.basedir}/src/main/jnlp</inputJnlpTemplateTemplateResourcePath>
+									<inputJnlpTemplateTemplate>template_templateAdmin.vm</inputJnlpTemplateTemplate>
+									<manipulateJarVersion>8</manipulateJarVersion>
+									<dependencies>
+										<dependency>
+											<groupId>com.imatia.opentach</groupId>
+											<artifactId>opentach-client-admin</artifactId>
+										</dependency>
+									</dependencies>
+								</jnlp>
+								<jnlp>
+									<inputTemplateResourcePath>${project.basedir}/src/main/jnlp</inputTemplateResourcePath>
+									<outputFile>${jnlpLaunchDowncenter}</outputFile>
+									<inputTemplate>templateDowncenter.vm</inputTemplate>
+									<mainClass>${mainclassDowncenter}</mainClass>
+									<inputJnlpTemplateTemplateResourcePath>${project.basedir}/src/main/jnlp</inputJnlpTemplateTemplateResourcePath>
+									<inputJnlpTemplateTemplate>template_templateDowncenter.vm</inputJnlpTemplateTemplate>
+									<manipulateJarVersion>8</manipulateJarVersion>
+									<dependencies>
+										<dependency>
+											<groupId>com.imatia.opentach</groupId>
+											<artifactId>opentach-client-downcenter</artifactId>
+										</dependency>
+									</dependencies>
+								</jnlp>
+							</jnlps>
+
+							<!-- <sign implementation="com.imatia.sign.maven.RemoteSignToolMojoConfig"> -->
+							<!-- <serverUrl>${sign_server_url}</serverUrl> -->
+							<!-- <applicationName>${sign_server_application_name}</applicationName> -->
+							<!-- </sign> -->
+							<sign>
+								<serverUrl>${sign_server_url}</serverUrl>
+								<applicationName>${sign_server_application_name}</applicationName>
+								<keystore>${jarsigner_keystore}</keystore>
+								<storepass>${jarsigner_storepass}</storepass>
+								<alias>${jarsigner_alias}</alias>
+								<keypass>${jarsigner_keypass}</keypass>
+
+								<verify>false</verify>
+								<keystoreConfig>
+									<delete>false</delete>
+									<gen>false</gen>
+								</keystoreConfig>
+							</sign>
+							<pack200>
+								<enabled>true</enabled>
+							</pack200>
+							<gzip>true</gzip>
+							<verbose>true</verbose>
+							<makeArchive>true</makeArchive>
+							<excludeJars>true</excludeJars>
+							<codebase>${jnlp.codebase}</codebase>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>keytool-api-1.7</artifactId>
+								<version>1.4</version>
+							</dependency>
+							<dependency>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>webstart-pack200-impl</artifactId>
+								<version>1.0-beta-6</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>primafrio</id>
+			<properties>
+				<desktopIconName>Primafrio</desktopIconName>
+				<mainclass>com.opentach.client.OpentachPrimafrioLauncher</mainclass>
+				<clientapplicationxml>clientapplication_primafrio.xml</clientapplicationxml>
+				<client-main-jar>opentach-client-primafrio</client-main-jar>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.imatia.opentach</groupId>
+					<artifactId>opentach-client-primafrio</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>italy</id>
+			<properties>
+				<desktopIconName>Opentach Italia</desktopIconName>
+				<mainclass>com.opentach.client.OpentachItalyLauncher</mainclass>
+				<clientapplicationxml>clientapplication_italy.xml</clientapplicationxml>
+				<client-main-jar>opentach-client-italy</client-main-jar>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.imatia.opentach</groupId>
+					<artifactId>opentach-client-italy</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<build>
+		<!-- <finalName>${jwsfilename}</finalName> -->
+	</build>
+	<dependencies>
+		<!-- Es necesario declarar así el plugin porque sino no resuelve bien las dependencias al hacer el go-offline -->
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>keytool-api-1.7</artifactId>
+			<version>1.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.maven.plugin</groupId>
+			<artifactId>imatia-webstart-plugin</artifactId>
+			<version>${webstart.plugin.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>webstart-pack200-impl</artifactId>
+			<version>1.0-beta-6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-client-admin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-client-downcenter</artifactId>
+		</dependency>
+
+
+	</dependencies>
+</project>

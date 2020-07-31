@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.RemoteVehicleManagementService.companySetup"
+	keys="CCF_ID"
+	title="remotevehicle.formRemoteVehicleCompanySetup"
+	buttons="no" status="no"	
+	>
+	
+	<ObjectDataField attr="CCF_ID" visible="no"/>
+	<ObjectDataField attr="COM_ID" visible="no"/>
+	
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		<CheckDataField attr="CCF_ACTIVE" text ="CCF_ACTIVE" tip="CCF_ACTIVE" returnstring="yes" align="left" labelsize="10" dim="no"/>
+		<ReferenceComboDataField 
+			attr="RDP_ID" 
+			cod="RDP_ID" 
+			entity="ojee.RemoteVehicleManagementService.provider" 
+			cols="RDP_ID;RDP_NAME;RDP_COMPANY_SETUP_TEMPLATE" 
+			visiblecols="RDP_NAME"
+			align="left" 
+			labelsize="10" 
+			dim="no" 
+			size="25" 
+			required="yes" 
+			visible="yes"
+			onsetvalueset="RDP_COMPANY_SETUP_TEMPLATE:CCF_EXTRA_INFO"/>
+		<TextComboDataField 
+					enabled="no"
+					attr="CCF_STATUS" 
+					values="PE;OK"
+					equivalences="forms-remotevehicle/ccfstatus.properties" 
+					labelsize="10" 
+					dim="no" 
+					size="25"
+					translate="yes"
+					align="left" />
+		<MemoDataField attr="CCF_EXTRA_INFO" dim="text" expand="yes" 
+			labelsize="10" labelposition="topleft"/>
+		
+		<Row expand="no" margin="5;0;0;0">
+			<Column/>
+			<CancelButton />
+			<SaveButton listener="com.opentach.client.remotevehicle.modules.remotevehicle.IMRemoteVehicleCompanySetupSaveActionListener"/>
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form
+	entity=""
+	title="INFORME_ACTIVIDADES_COND"
+	buttons="no"
+	setvalueorder="DNI;IDCONDUCTOR">
+	<FormHeader>
+		<Button
+			key="btnRefrescar"
+			tip="TIP_REFRESCAR"
+			icon="com/opentach/client/rsc/refresh16.png" />
+		<Button
+			key="btnInforme2"
+			tip="TIP_INFORME"
+			icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="yes">
+		<Column
+			expandlast="yes"
+			expand="yes">
+			<Column
+				margin="7;5;5;5"
+				expandlast="yes"
+				expand="yes">
+				<Column
+					title=""
+					margin="0;5;5;5"
+					valign="center">
+					<ReferenceExtDataField
+						entity="EDfEmp"
+						text="EMPRESA"
+						labelsize="12"
+						attr="CIF"
+						dim="text"
+						cod="CIF"
+						cols="CIF;IDGRUPO;NOMB"
+						visiblecols="CIF;NOMB"
+						descriptioncols="NOMB"
+						required="yes"
+						csize="10"
+						onsetvalueset="IDGRUPO" />
+					<com.opentach.client.comp.field.CampoComboReferenciaDespl
+						attr="IDCONDUCTOR"
+						cod="IDCONDUCTOR"
+						parentkeys="CG_CONTRATO;CIF"
+						csize="10"
+						entity="EConductorContFicticio"
+						cols="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE"
+						visiblecols="DNI;APELLIDOS;NOMBRE"
+						descriptioncols="DNI;APELLIDOS;NOMBRE"
+						codsearch="DNI"
+						codvisible="no"
+						align="left"
+						labelsize="12"
+						dim="text"
+						required="yes" />
+					<Row>
+						<ReferenceComboDataField
+							attr="NUM_TARJ"
+							cod="IDTARJETAS_COND"
+							entity="ETarjetasCond"
+							parentkey="IDCONDUCTOR"
+							cols="NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST;IDCONDUCTOR"
+							visiblecols="NUM_TARJETA;INDICE_CONS;INDICE_RENOV;INDICE_SUST"
+							align="left"
+							labelsize="12"
+							dim="no"
+							size="20"
+							required="no"
+							visible="yes" />
+						<!-- INICIO PRIMAFRIO -->
+						<ReferenceComboDataField
+							align="left"
+							attr="IDGRUPO"
+							labelsize="10"
+							cod="IDGRUPO"
+							cols="IDGRUPO;NOMBRE_GRUPO"
+							visiblecols="NOMBRE_GRUPO"
+							dim="text"
+							entity="EGrupoEmp"
+							visible="no" />
+						<ReferenceExtDataField
+							entity="EDfEmpCertificado"
+							text="EMPRESA_INFORME"
+							labelsize="15"
+							attr="CIF_CERTIFICADO"
+							dim="text"
+							cod="CIF"
+							cols="CIF;NOMB;IDGRUPO"
+							descriptioncols="NOMB"
+							visiblecols="CIF;NOMB"
+							required="no"
+							csize="10"
+							parentkey="IDGRUPO" />
+					</Row>
+				</Column>
+			</Column>
+			<Column>
+				<Row expand="yes">
+					<Table
+						entity="EInformeActivPeriodosCond"
+						key="NUMREQ"
+						keys="IDCONDUCTOR;TPACTIVIDAD;FECINI;FECFIN;RANURA"
+						parentkey="CIF"
+						otherkeys="IDCONDUCTOR;FECINI;CG_CONTRATO;NUM_TARJ"
+						rendertime="FECINI;FECFIN"
+						cols="NUMREQ;IDCONDUCTOR;DNI;NOMBRE;APELLIDOS;TPACTIVIDAD;FECINI;FECFIN;ESTADO_TRJ_RANURA;ESTADO_TRJ_RANURA_DSCR;FUERA_AMBITO;TRANS_TREN;ORIGEN_DSCR;ORIGEN;REGIMEN;REGIMEN_DSCR;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA;NUM_TRJ_CONDU;RANURA;DIA;RANURA_DSCR;DSCR_ACT;DSCR_ACT_PAIS;REGION;PAIS;MINUTOS;CIF;NOMB;IDINSPECCION;INSP_FECINI;INSP_FECFIN;PROCEDENCIA;SEMANA;MES;MES2;DIA_SEM;HORA;ANHO;HORAS_COND;INI_SEMANA;FIN_SEMANA;DSCRTIPO_COMIENZO;DSCRTIPO_FIN;NUM_TARJ"
+						visiblecols="DNI;APELLIDOS;NOMBRE;FECINI;FECFIN;DSCR_ACT;REGION;PAIS;MINUTOS;MATRICULA;RANURA_DSCR;PROCEDENCIA;FUERA_AMBITO;TRANS_TREN">
+						<BooleanCellRenderer column="FUERA_AMBITO" />
+						<BooleanCellRenderer column="TRANS_TREN" />
+					</Table>
+				</Row>
+			</Column>
+		</Column>
+		<Column
+			expandlast="yes"
+			expand="no">
+			<Column>
+				<ColumnRadioButtonGroup
+					selected="ULTIMOS_DIAS"
+					attr="datos"
+					title="Filtro_Fecha_Comienzo"
+					expand="no"
+					margin="5;5;5;5">
+					<RadioButtonDataField
+						attr="ULTIMOS_DIAS"
+						labelsize="20"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<RadioButtonDataField
+						attr="RANGO_FECHA"
+						labelsize="18"
+						align="left"
+						labelposition="right"
+						returnboolean="yes" />
+					<Column expand="no">
+						<CampoFechaNoEditable
+							attr="FILTERFECINI"
+							text="DESDE"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+						<CampoFechaNoEditable
+							attr="FILTERFECFIN"
+							text="HASTA"
+							align="left"
+							required="yes"
+							datevisible="no"
+							dim="no"
+							labelsize="10" />
+					</Column>
+				</ColumnRadioButtonGroup>
+				<Column
+					title="MOSTRAR"
+					border="raised">
+					<BasicDataComponentGroup
+						attr="BANDCFG.1"
+						group="SHOW_DIA;SHOW_SEMANA;SHOW_MES;SHOW_DETALLES;SHOW_GRAFICOS;SHOW_RESUME" />
+					<CheckDataField
+						attr="SHOW_DIA"
+						align="left"
+						labelposition="right"
+						labelsize="18" />
+					<CheckDataField
+						attr="SHOW_SEMANA"
+						align="left"
+						labelposition="right"
+						labelsize="24" />
+					<CheckDataField
+						attr="SHOW_GRAFICOS"
+						align="left"
+						labelposition="right"
+						labelsize="18" />
+					<CheckDataField
+						attr="SHOW_RESUME"
+						align="left"
+						labelposition="right"
+						labelsize="18" />
+					<CheckDataField
+						attr="SHOW_MES"
+						align="left"
+						labelposition="right"
+						labelsize="18" />
+					<CheckDataField
+						attr="SHOW_DETALLES"
+						align="left"
+						labelposition="right"
+						labelsize="18" />
+				</Column>
+				<Column title="TIPOACTIVIDAD">
+					<BasicDataComponentGroup
+						attr="FILTER.1"
+						group="COLUMN.1=DSCR_ACT;VAL.1a;VAL.1c;VAL.1b;VAL.1d;VAL.1e;VAL.1f" />
+					<TextDataField
+						attr="COLUMN.1"
+						align="left"
+						labelsize="14"
+						size="18"
+						visible="no" />
+					<CheckDataField
+						attr="VAL.1a"
+						text="CONDUCCION"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+					<CheckDataField
+						attr="VAL.1c"
+						text="PAUSA/DESCANSO"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+					<CheckDataField
+						attr="VAL.1b"
+						text="TRABAJO"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+					<CheckDataField
+						attr="VAL.1d"
+						text="DISPONIBILIDAD"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+					<CheckDataField
+						attr="VAL.1e"
+						text="INDEFINIDA"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+					<CheckDataField
+						attr="VAL.1f"
+						text="PERIODOS_TRABAJO"
+						align="left"
+						labelsize="18"
+						labelposition="right" />
+				</Column>
+				<Column />
+			</Column>
+		</Column>
+	</Row>
+</Form>

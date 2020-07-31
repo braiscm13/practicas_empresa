@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="ojee.AssetGroupService.assetGroup"
+	keys="CAG_ID"
+	title="assetgroup.formAssetGroupAddAsset"
+	buttons="no"
+	status="no">
+
+	<ObjectDataField
+		attr="CAG_ID"
+		visible="no" />
+	<ObjectDataField
+		attr="COM_ID"
+		visible="no" />
+
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		<Label text="assetgroup.addAssetInfo" />
+		<Row expand="yes">
+			<Table
+				entity="ojee.AssetGroupService.availableVehicleGroup"
+				keys="AGV_ID"
+				parentkeys="COM_ID;CAG_ID"
+				cols="VEH_ID"
+				visiblecols="VEH_ID"
+				refreshbutton="no">
+				<TableColumnProperties attr="VEH_ID" text="assetgroup.VEH_ID" />
+				<HideTableButton attr="pivottablebutton;reportbutton;changeviewbutton;copybutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton;deletebutton;refreshbutton" />
+			</Table>
+			<Table
+				entity="ojee.AssetGroupService.availableDriverGroup"
+				keys="AGD_ID"
+				parentkeys="COM_ID;CAG_ID"
+				cols="DRV_ID;NOMBRE;APELLIDOS"
+				visiblecols="DRV_ID;NOMBRE;APELLIDOS"
+				refreshbutton="no">
+				<TableColumnProperties attr="DRV_ID" text="assetgroup.DRV_ID" />
+				<HideTableButton attr="pivottablebutton;reportbutton;changeviewbutton;copybutton;htmlexportbutton;insertbutton;printingbutton;chartbutton;defaultchartbutton;sumrowbutton;calculedcolsbutton;deletebutton;refreshbutton" />
+			</Table>
+		</Row>
+		<Row
+			expand="no"
+			margin="5;0;0;0">
+			<Column />
+			<CancelButton />
+			<Button text="assetgroup.addAssets" listener="com.opentach.client.modules.data.IMAssetGroupAddAssetConfirmActionListener" icon="images/floppy_disk16.png"/>
+		</Row>
+	</Column>
+</FormExt>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="NoticeId" entity="EAvisos" title="Avisos" buttons="no">
+	<Column expandlast="no">
+		<Row height="10" />
+		<TextDataField attr="SendUser" visible="no" />
+		<TabPanel>
+			<Tab title="AvisosRecibidos">
+				<SplitPane attr="splitReceivedNotices">
+					<Row expandlast="yes" expand="yes" title="AvisosRecibidos">
+						<TabPanel>
+							<Tab expand="yes" title="deUsuarios">
+								<Row expand="yes">
+									<com.opentach.client.modules.notices.MyNoticeTable receivetable="yes" entity="EAvisosRecibidosUser" refreshbutton="yes" cols="Message;NoticeId;Subject;CreationDate;NoticeType;SendUser;MandatoryRead;ResponseRequest;Content;Read" visiblecols="CreationDate;SendUser;Subject;NoticeType;MandatoryRead;ResponseRequest;Read" key="NoticeId" title="Avisos" alertsystemnotices="excluded" />
+								</Row >
+							</Tab>
+							<Tab expand="yes" title="deAlertas">
+								<Row expand="yes">
+									<com.opentach.client.modules.notices.MyNoticeTable receivetable="yes" entity="EAvisosRecibidosAlert" refreshbutton="yes" cols="Message;NoticeId;Subject;CreationDate;NoticeType;SendUser;MandatoryRead;ResponseRequest;Content;Read" visiblecols="CreationDate;SendUser;Subject;NoticeType;MandatoryRead;ResponseRequest;Read" key="NoticeId" title="Avisos" alertsystemnotices="only" />
+								</Row >
+							</Tab>
+						</TabPanel>
+					</Row >
+					<Row expand="yes" title="AvisoSeleccionado">
+						<com.ontimize.util.notice.HTMLTemplate attr="htmltemplate" scroll="yes" />
+					</Row >
+				</SplitPane>
+			</Tab>
+
+			<Tab  attr="AvisosEnviados"> <!-- title="AvisosEnviados" -->
+				<Row expandlast="yes" expand="yes" title="AvisosEnviados">
+					<com.ontimize.util.notice.NoticeTable insertform="formcreatenotice.xml" entity="EAvisos" refreshbutton="yes" cols="NoticeId;SendMail;Subject;CreationDate;NoticeType;SendUser;MandatoryRead;ResponseRequest;Content" visiblecols="CreationDate;Subject;NoticeType;MandatoryRead;ResponseRequest;SendMail" key="NoticeId" parentkey="SendUser" title="Avisos" form="formnoticesend.xml" /> <!-- disableinsert="yes"-->
+					<!--	rendermemo="Asunto"-->
+				</Row >
+			</Tab>
+		</TabPanel>
+	</Column >
+</FormExt>

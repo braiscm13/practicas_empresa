@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="IND_INDICATOR">
+	<DeleteKeys>
+		<Column>IND_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>IND_ID</Column>
+	</UpdateKeys>
+	<GeneratedKey>IND_ID</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<FunctionColumns>
+				<FunctionColumn name="LAST_EXECUTION" value="(select max(EXE_DATE) from IND_EXECUTIONS exe where exe.IND_ID = ind.IND_ID)"/>
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							IND_INDICATOR ind
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

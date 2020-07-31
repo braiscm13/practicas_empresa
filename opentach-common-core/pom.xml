@@ -1,0 +1,110 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-common-core</artifactId>
+	<build>
+		<plugins>
+			<!-- Compiler configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.server.version}</source>
+					<target>${jdk.server.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-tools-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.utilmize</groupId>
+			<artifactId>utilmize-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ontimize.jee</groupId>
+			<artifactId>ontimize-jee-common</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>com.imatia.tacho</groupId> -->
+		<!-- <artifactId>tachodata</artifactId> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.imatia.tacho</groupId>
+			<artifactId>tacholibrary</artifactId>
+		</dependency>
+
+		<!-- ONTIMIZE -->
+		<dependency>
+			<groupId>com.ontimize</groupId>
+			<artifactId>ontimize-core</artifactId>
+		</dependency>
+		<!-- JFREECHART -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+		</dependency>
+		<!-- JCOMMON -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jcommon</artifactId>
+		</dependency>
+		<!-- reports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		
+
+	</dependencies>
+</project>

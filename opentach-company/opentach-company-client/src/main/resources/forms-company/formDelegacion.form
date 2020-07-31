@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EDelegacionDfEmp" keys="CIF;IDDELEGACION" title="EDelegacionDfEmp" buttons="no" columns="NOMBRE_DEL" preferredsizetodialog="850;580">
+	<FormHeader standardbuttons="no" />
+	<Column margin="5;5;5;5" expandlast="no">
+		<Row>
+			<Column attr="mainData" title="MAINDATA">
+				<IntegerDataField 		attr="IDDELEGACION" visible="no" />
+				<ReferenceExtDataField 	attr="CIF" entity="EDfEmp" text="EMPRESA" labelsize="11" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="no" csize="10" />
+				<TextDataField 			attr="NOMBRE_DEL" align="left" dim="text" labelsize="11" required="yes"  />
+				<TextDataField 			attr="TELF_DEL"  align="left"  dim="no" labelsize="11" size="14"  />
+			</Column>
+			<Column attr="addressData" title="DIRECCION">
+				<ReferenceComboDataField attr="CG_NACI_DEL" align="left" labelsize="11" dim="text" cod="CG_NACI" cols="DSCR" entity="EPaises" size="20" />
+				<ReferenceComboDataField attr="CG_PROV_DEL" align="left" labelsize="11" dim="text" cod="CG_PROV" cols="NOMB" entity="EProvincias" parentkey="CG_NACI_DEL" parentkeylistener="yes" size="20" />
+				<TextDataField 			attr="MUNI_DEL" align="left" labelsize="11" dim="text"  />
+				<TextDataField 			attr="POBL_DEL" align="left" labelsize="11" dim="text"  />
+				<TextDataField 			attr="DIRECCION_DEL" align="left" labelsize="11" dim="text"  />
+				<TextDataField 			attr="CG_POSTAL" align="left" labelsize="11" dim="no"   />
+			</Column>
+		
+		</Row>
+		<Row height="15" expand="no"/>
+		<Row title="USU_DELEGACION" attr="USU_DELEGACION" expand="yes">
+			<Table entity="EUsuDel"  key="USUARIO" inserttable="yes" keys="IDDELEGACION" parentkey="IDDELEGACION" otherkeys="CIF" cols="USUARIO;CIF;IDDELEGACION" visiblecols="USUARIO" editablecolumns="USUARIO" updateentityeditablecolumns="USUARIO" refreshbutton="yes" deletebutton="yes">
+				<ComboCellRenderer 	column="USUARIO"   entity="EUsuDfEmp" 	align="left" cod="USUARIO" cols="USUARIO" visiblecols="USUARIO" />
+				<ComboCellEditor 	column="USUARIO"   entity="EUsuDfEmp" 	align="left" cod="USUARIO" parentkey="CIF" cols="USUARIO" visiblecols="USUARIO" />
+			</Table>		 		
+		</Row >
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<CancelButton />
+			<SaveButton stayinrecordafterupdate="yes" />
+		</Row>
+	</Column>
+</FormExt>

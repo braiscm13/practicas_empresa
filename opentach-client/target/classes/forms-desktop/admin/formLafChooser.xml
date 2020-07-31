@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="a" keys="a" title="formLafChooser.xml" buttons="no">
+	<Row expand="yes" margin="5;5;5;5">
+		<Column width="200" expand="no" expandlast="no">
+			<ListDataField attr="lafList" labelvisible="no" expand="yes" dim="text" opaque="true" />
+			<TextComboDataField attr="fontSize" values="SMALL;NORMAL;BIG" labelsize="14" dim="text" translate="yes" />
+		</Column>
+		<Column expand="yes" expandlast="no">
+			<SingleImageDataField attr="images" expand="yes" dim="text" labelvisible="no" hexpand="yes" vexpand="yes" buttons="no" />
+			<Row height="5" expand="no" />
+			<Button key="save" listener="com.opentach.client.modules.admin.IMLafChooserSaveListener" align="right" text="applychanges" />
+		</Column>
+	</Row>
+</FormExt>

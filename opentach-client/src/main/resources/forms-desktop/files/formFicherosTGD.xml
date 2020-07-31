@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- <FormExt entity="EFicherosTGD" title="RECEPCION_FICHEROS_CSD" buttons="no" keys="IDFICHERO" cols="IDFICHERO;CIF;CG_CONTRATO"> -->
+<Form title="RECEPCION_FICHEROS_CSD" entity="" buttons="no">
+	<FormHeader>
+				<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+				<Button key="btnDownload" tip="DESCARGAR_FICHEROS_CSD" icon="com/opentach/client/rsc/server_to_client16.png" />
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO"  required="yes" visible="no"/>
+	<Row margin="5;5;5;5">
+		<Column  title="">
+			<Column />
+			<Column valign="top">
+				<Row height="20"/>
+				<Row >
+				<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+				</Row >
+				<Row height="20"></Row >
+				<Row height="20"></Row >
+				<Row >
+					<CheckDataField attr="renombrar" text="Renombrar_ficheros" returnboolean="yes" labelsize="18" labelposition="left" align="right"></CheckDataField >
+				</Row >
+			</Column >
+		</Column >
+		<Column align="right" expand="no" title="Filtro_Fecha_Alta">
+			<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" datevisible="no" labelsize="10" required="yes" />
+			<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" datevisible="no" labelsize="10" required="yes" />
+			<Row height="5" />
+			<Button key="ULTIMA_SEMANA" text="ULTIMA_SEMANA" align="left" dim="text" expand="yes" labelsize="20" height="20" />
+			<Button key="ULTIMOS_15_DIAS" text="Ultimos_28_dias" align="left" dim="text" expand="yes" labelsize="20" height="20" />
+		</Column >
+	</Row >
+	<Row expand="yes">
+			<Table entity="EFicherosSubidos" title="FICHEROS_TGD" key="IDFICHERO" keys="NUM" parentkeys="CG_CONTRATO;CIF" otherkeys="F_ALTA" rendertime="FECINI;FECFIN;F_PROCESADO;F_ALTA" 
+			    cols="IDFICHERO;FECINI;FECFIN;CIF;TIPO;IDORIGEN;DSCR_COND;OBSR_CLIENT;NOMB_PROCESADO;NOMB;F_DESCARGA_DATOS;CG_CONTRATO;F_PROCESADO;NUM;F_ALTA;USUARIO_ALTA;SOURCE_TYPE" 
+			    visiblecols="FECINI;FECFIN;TIPO;IDORIGEN;DSCR_COND;OBSR_CLIENT;NOMB_PROCESADO;NOMB;F_DESCARGA_DATOS;F_PROCESADO;F_ALTA;USUARIO_ALTA;SOURCE_TYPE" >
+			    <BundleCellRenderer column="SOURCE_TYPE" prefix="uploadType."/>
+			    </Table>
+	</Row >
+
+</Form>

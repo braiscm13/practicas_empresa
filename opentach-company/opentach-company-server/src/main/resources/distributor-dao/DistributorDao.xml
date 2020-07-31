@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc https://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	datasource="mainDataSource" sqlhandler="mainSQLStatementHandler" table="COR_DISTRIBUIDOR">
+	<DeleteKeys>
+		<Column>DIS_ID</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>DIS_ID</Column>
+	</UpdateKeys>
+	<Queries>
+		<Query id="default">
+			<FunctionColumns>
+				<FunctionColumn name="DIS_PRODUCT" value="(select DIS_PRODUCT from CDUSU_DFEMP usuemp where usuemp.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="F_ALTA" value="(select F_ALTA from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="EMAIL" value="(select EMAIL from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>	
+				<FunctionColumn name="NIVEL_CD" value="(select NIVEL_CD from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="TELEFONO" value="(select TELEFONO from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="PASSWORD" value="(select PASSWORD from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="NOMBRE_FIRMANTE" value="(select NOMBRE_FIRMANTE from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>
+				<FunctionColumn name="APELLIDOS_FIRMANTE" value="(select APELLIDOS_FIRMANTE from CDUSU usu where usu.USUARIO = dis.USUARIO)"/>			
+			</FunctionColumns>
+			<Sentence>
+					<![CDATA[
+						SELECT
+							#COLUMNS#
+						FROM
+							COR_DISTRIBUIDOR dis
+						#WHERE#
+						#ORDER#
+					]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

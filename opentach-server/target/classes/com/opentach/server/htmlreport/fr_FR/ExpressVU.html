@@ -1,0 +1,93 @@
+<HTML>
+	<HEAD>
+		<TITLE>Rapport Express</TITLE>
+			<style type="text/css">
+				table.sample{
+				border-color: #FFFFFF
+				}
+			</style>
+	</HEAD>
+	<BODY>	
+	<table class="sample" border=3>
+		<TR border=0>
+			<td border=0>
+				<table  class="sample" bgcolor="#FFFFFF" align="center" border="0">
+					<TR align="left" border=0 >
+						<TH colspan="3"  border=0 >						
+							<CENTER><FONT COLOR="navy" size="6">Entreprise:       %EMPRESA%</FONT></CENTER>							
+						</TH>
+					</TR>
+					<TR align="left" border=0>
+						<TD width="20%">					
+							<FONT COLOR="navy" size="5">v&eacute;hicule: %VEHICULO%</FONT>
+						</TD>
+						<TD width="43%">					
+							<FONT COLOR="blue" size="4">P&eacute;riode analys&eacute;e depuis %INITDATE% jusqu&acute;&agrave; %ENDDATE%</FONT>
+						</TD>
+						<TD width="37%">						
+							<FONT COLOR="blue" size="4">Suivant recommand&eacute; t&eacute;l&eacute;chargement:  %FDESCARGA%</FONT>									
+						</TD>
+					</TR>
+					<TR align="left" border=0 >	
+							<TD valign="top" colspan="3">
+								<TABLE border=0>	
+									<TR align="left" border=0>
+										<TD align="left" valign="top" width="40%">				
+											<FONT COLOR="blue" size="5">Kil&oacute;metros parcours</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Km Iniciales</TH>
+													<TH>Km Finale</TH>
+													<TH>Km Total</TH>					
+												</TR>
+												%TABLA_KM%
+											</TABLE>
+											<BR/>											
+											<FONT COLOR="blue" size="5">Sommaire d&acute;&eacute;v&eacute;nements et anomalies</FONT>		
+											<TABLE border="1" bordercolor="green">
+												%TABLA_INCIDENTES%				
+											</TABLE>
+											<BR/>
+											<FONT COLOR="blue" size="5">Conducteurs qui utilisent le v&eacute;hicule</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>C.I.</TH>
+													<TH>Pr&eacute;nom</TH>
+													<TH>Nom</TH>
+												</TR>
+												%TABLA_CONDUCTORES%			
+											</TABLE>	
+											
+										</TD>	
+										</TD>												
+										<TD align="left" valign="top" width="60%">
+											<FONT COLOR="blue" size="5">Contr&ocirc;les (atelier, agent de contr&ocirc;le)</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Date</TH>
+													<TH>Description</TH>
+													<TH>Nº de carte de contr&ocirc;le</TH>
+												</TR>
+												%TABLA_CONTROLES%			
+											</TABLE>
+											<BR/>											
+											<FONT COLOR="blue" size="5">&Eacute;talonnages</FONT>		
+											<TABLE border="1" bordercolor="green">
+												<TR bgcolor="green" color="white">
+													<TH>Description</TH>
+													<TH>Nº de carte de atelier</TH>
+													<TH>Date de la prochaine</TH>
+												</TR>
+												%TABLA_CALIBRADOS%			
+											</TABLE>											
+										</TD>																											
+									</tr>								
+							</TABLE>
+							</TD>		
+							</TR>			
+				</table>
+			</td>
+			</TR>
+			</table>			
+	</BODY>
+</HTML>

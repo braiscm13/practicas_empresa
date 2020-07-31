@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FormExt entity="EManagedStaff" keys="CIF;IDENCARGADO"
+	title="MANAGEDSTAFF.ASSIGN_MANAGED_STAFF" columns="CIF;IDENCARGADO" buttons="no">
+	
+	<FormHeader standardbuttons="no" />
+	
+	<Column margin="5;5;5;5">
+		<TextDataField attr="CIF" visible="no" />
+		<TextDataField attr="IDENCARGADO" visible="no" />
+		<Column expandlast="no" margin="5" >
+			<Row height="100" expand="yes" title="">
+				<Table entity="EUnManagedStaff" keys="CIF;IDENCARGADO"
+					parentkeys="CIF;IDENCARGADO" expand="yes" refreshbutton="yes"
+					cols="CIF;IDCONDUCTOR;IDENCARGADO;DNI;NOMBRE;APELLIDOS"
+					visiblecols="DNI;NOMBRE;APELLIDOS" >
+					
+					<HideTableButton attr="changeviewbutton;sumrowbutton;calculedcolsbutton;htmlexportbutton;insertbutton;chartbutton;defaultchartbutton;printingbutton;deletebutton" onlyhide="true" />
+					
+				</Table>
+			</Row>
+			<Row height="30" expand="no">
+				<Row/>
+				<Column expand="yes" />
+				<CancelButton />
+				<Column expand="no">
+					<Button key="ACCEPT_BUTTON" text="aceptar" name="MainButton"
+						icon="com/ontimize/gui/images/ok.png"
+						listener="com.opentach.client.employee.listeners.IMUnManagedStaffAcceptActionListener" />
+				</Column>
+			</Row>
+		</Column>
+	</Column>
+</FormExt>

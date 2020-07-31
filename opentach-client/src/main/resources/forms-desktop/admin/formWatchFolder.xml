@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="formWatchFolder.xml"
+	buttons="no">
+	<ButtonGroup buttonskeys="rdb_local;rdb_ftp" />
+	<Column
+		width="400"
+		expand="no"
+		margin="5;5;5;5">
+		<RadioButtonDataField
+			key="rdb_local"
+			attr="rdb_local" align="left"/>
+		<Column margin="5;5;15;5">
+			<Row>
+				<TextDataField
+					attr="local_folder"
+					dim="text"
+					labelsize="10" uppercase="false" />
+			</Row>
+		</Column>
+	
+		<RadioButtonDataField
+			key="rdb_ftp"
+			attr="rdb_ftp" align="left"/>
+		<Column margin="5;5;5;5">
+			<TextComboDataField attr="ftp_connection_type" values="SFTP;FTPS;FTP" labelsize="10" dim="text" translate="no" />
+			<TextDataField
+				attr="ftp_server"
+				dim="text"
+				labelsize="10" uppercase="false"/>
+			<TextDataField
+				attr="ftp_user"
+				dim="text"
+				labelsize="10" uppercase="false"/>
+			<TextDataField
+				attr="ftp_pass"
+				dim="text"
+				labelsize="10" uppercase="false"/>
+			<Row>
+				<TextDataField
+					attr="ftp_folder"
+					dim="text"
+					labelsize="10" uppercase="false"/>
+			</Row>
+		</Column>
+
+		<Row
+			align="right"
+			expand="no">
+			<Column expand="yes"/>
+			<Button
+				key="cancel"
+				text="cancel"
+				listener="com.opentach.client.modules.admin.IMWatchFolderCancelActionListener" />
+			<Button
+				key="ok"
+				text="ok"
+				listener="com.opentach.client.modules.admin.IMWatchFolderOkActionListener" />
+
+		</Row>
+		<Row expand="yes" />
+	</Column>
+</FormExt>

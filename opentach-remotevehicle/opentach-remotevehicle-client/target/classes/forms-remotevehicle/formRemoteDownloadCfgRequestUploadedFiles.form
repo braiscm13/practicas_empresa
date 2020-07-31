@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="a" keys="a" title="remotevehicle.RemoteDownloadCfgRequestUploadedFiles" buttons="no">
+	<ObjectDataField attr="CG_CONTRATO"  required="yes" visible="no"/>
+	<ObjectDataField attr="CIF"  required="yes" visible="no"/>
+	<ObjectDataField attr="SOURCE_TYPE"  required="yes" visible="no"/>
+	<ObjectDataField attr="F_ALTA"  required="yes" visible="no"/>
+	<ObjectDataField attr="IDORIGEN"  required="yes" visible="no"/>
+	
+	
+	<Column margin="5;5;5;5" expandlast="no">
+		<Row expand="yes">
+			<Table entity="EFicherosSubidos" title="FICHEROS_TGD" key="IDFICHERO" keys="NUM" parentkeys="CG_CONTRATO;CIF;SOURCE_TYPE;F_ALTA;IDORIGEN" otherkeys="F_ALTA" 
+				rendertime="FECINI;FECFIN;F_PROCESADO;F_ALTA" 
+			    cols="IDFICHERO;FECINI;FECFIN;CIF;TIPO;IDORIGEN;DSCR_COND;OBSR_CLIENT;NOMB_PROCESADO;NOMB;F_DESCARGA_DATOS;CG_CONTRATO;F_PROCESADO;NUM;F_ALTA;USUARIO_ALTA" 
+			    visiblecols="FECINI;FECFIN;TIPO;IDORIGEN;DSCR_COND;OBSR_CLIENT;NOMB_PROCESADO;NOMB;F_DESCARGA_DATOS;F_PROCESADO;F_ALTA;USUARIO_ALTA" />
+		</Row >
+	
+		<Row expand="no" margin="5;0;0;0">
+			<Column/>
+			<CancelButton text="ok" icon="com/opentach/client/rsc/ok16.png"/>
+		</Row>
+	</Column>
+</FormExt>

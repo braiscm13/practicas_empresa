@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="none"
+	buttons="no"
+	title="ASK_FOR_DATES"
+	keys="CIF"
+	status="no"
+	>
+	<FormHeader standardbuttons="no" visible="no"/>
+
+	<ObjectDataField attr="RESULT" visible="no" />
+	
+	<Column margin="5;5;5;5" expandlast="no">
+		<Column margin="10;10;10;10">
+			<DateDataField attr="INIT_DATE" text="INIT_DATE" labelsize="7" dim="no" size="7" />
+			<DateDataField attr="END_DATE" text="END_DATE" labelsize="7" dim="no" size="7" />
+		</Column>
+		<Row align="center">
+			<Button
+				key="CANCELAR"
+				text="CANCELAR"
+				tip="CANCELAR" 
+				icon="com/ontimize/gui/images/cancel.png"
+				listener="com.opentach.client.company.listeners.licensing.SimpleResultActionListener" result="false"
+			/>
+			<Button
+				key="ACEPTAR"
+				name="MainButton"
+				text="ACEPTAR"
+				tip="ACEPTAR" 
+				icon="com/ontimize/gui/images/ok.png"
+				listener="com.opentach.client.company.listeners.licensing.SimpleResultActionListener" result="true"
+			/>
+		</Row>
+	</Column>
+</FormExt>

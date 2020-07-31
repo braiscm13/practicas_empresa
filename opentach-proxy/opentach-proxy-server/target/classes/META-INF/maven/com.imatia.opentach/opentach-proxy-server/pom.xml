@@ -1,0 +1,54 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.imatia.opentach</groupId>
+		<artifactId>opentach-proxy</artifactId>
+		<version>dev</version>
+	</parent>
+	<artifactId>opentach-proxy-server</artifactId>
+	<packaging>jar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-tachofiletransfer-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.imatia.opentach</groupId>
+			<artifactId>opentach-checktrucker-common</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.imatia.opentach</groupId> -->
+<!-- 			<artifactId>opentach-tachofiletransfer-server</artifactId> -->
+<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.imatia.elastic</groupId> -->
+		<!-- <artifactId>elastic-more-sii</artifactId> -->
+		<!-- </dependency> -->
+
+		<!-- Ontimize Boot -->
+		<dependency>
+			<groupId>com.ontimize.boot</groupId>
+			<artifactId>ontimize-boot-starter-rest</artifactId>
+		</dependency>
+		<!-- for java11 -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+		</dependency>
+	</dependencies>
+</project>

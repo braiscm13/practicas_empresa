@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form entity="" title="managerconexionesdescargas" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="TIP_REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnInforme2" tip="TIP_INFORME" icon="com/opentach/client/rsc/printer16.png" />
+		<NewTabButton />
+	</FormHeader>
+	<Row expand="yes">
+		<Table entity="EInformeConexionesDescargas"  key="USUARIO" 
+					cols="USUARIO;F_SESSION;F_ULTIMO_FICH;NUM_FICHEROS" visiblecols="USUARIO;F_SESSION;F_ULTIMO_FICH;NUM_FICHEROS" />
+	</Row>
+</Form>

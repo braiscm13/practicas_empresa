@@ -1,0 +1,153 @@
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. 
+	The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and limitations under the License. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation=" 
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		
+		http://cxf.apache.org/jaxrs
+        http://cxf.apache.org/schemas/jaxrs.xsd
+
+		http://cxf.apache.org/bindings/soap 
+		http://cxf.apache.org/schemas/configuration/soap.xsd 
+
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-jaxws.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<!-- ############################################################## DriverAnalysis ############################################################################### -->
+	<jaxws:server id="driverAnalysis" serviceClass="com.opentach.server.webservice.driverAnalysis.IDriverAnalisysService" address="/driverAnalysis">
+		<jaxws:serviceBean>
+			<bean class="com.opentach.server.webservice.driverAnalysis.DriverAnalysisService" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+
+	<!-- ############################################################## Jaltest NOTIFICATION ############################################################################### -->
+ 	<jaxws:server id="jaltestWebservice" serviceClass="com.opentach.server.remotevehicle.provider.jaltest.webservice.IJaltestNotificationWebservice" address="/jaltestWebservice">
+		<jaxws:serviceBean>
+			<bean class="com.opentach.server.remotevehicle.provider.jaltest.webservice.JaltestNotificationWebservice" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+
+	<!-- ############################################################## Drivers Query ############################################################################### -->
+ 	<jaxws:server id="companyService" serviceClass="com.opentach.server.webservice.company.ICompanyService" address="company">
+		<jaxws:serviceBean>
+			<bean class="com.opentach.server.webservice.company.CompanyService" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+	<!-- ############################################################################################################################################################# -->
+
+	<!-- ###################################################### serviceResquest SOAP and REST ######################################################################## -->
+	<jaxrs:server id="restStationsService" address="/restStationsService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestStationsService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restLoginService" address="/restLoginService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestLoginService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restCompanyService" address="/restCompanyService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestCompanyService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restDriverService" address="/restDriverService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestDriverService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restVehicleService" address="/restVehicleService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestVehicleService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restInfractionService" address="/restInfractionService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestInfractionService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restExpressReportService" address="/restExpressReportService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestExpressReportService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restFilesService" address="/restFilesService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestFilesService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restSurveyService" address="/restSurveyService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.checktrucker.webservice.rest.RestSurveyService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<jaxrs:server id="restActivityChartService" address="/restActivityChartService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.webservice.rest.RestActivityChartService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+	<jaxrs:server id="restGraphicsSurveyService" address="/restGraphicsSurveyService">
+		<jaxrs:serviceBeans>
+			<bean class="com.opentach.server.checktrucker.webservice.rest.RestGraphicsSurveyService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<!-- ############################################################################################################################################################# -->
+
+</beans>
+
+
+
+
+
+

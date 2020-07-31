@@ -1,0 +1,23 @@
+<Row attr="Step2" expand="yes">
+	<Column width="180" expand="no" />
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row expand="yes">
+			<RoundPanel attr="DownloadingRoundPanel" expand="yes">
+				<Row expand="no" height="20" />
+				<Label attr="DownloadingTypeTitle" text="DownloadingCard" uiname="MainRound" />
+				<Row expand="no" height="10" />
+				<Label text="WaitMessage" uiname="StandardRound" />
+				<Label text="FinishOkMessage" uiname="StandardBoldRound" />
+				<Row expand="no" height="10" />
+				<ProgressBar attr="DownloadingProgressBar" max="100" min="0" expand="no" />
+				<Label attr="DownloadingProgressText" text="Extracting" uiname="StandardRound" />
+			</RoundPanel>
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+	<Column width="180" expand="no" expandlast="no">
+		<Column expand="no" />
+		<Label attr="IconCard" icon="images/card.png" />
+		<Label attr="IconUsb" icon="images/usb.png" />
+	</Column>
+</Row>

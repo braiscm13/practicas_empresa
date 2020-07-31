@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-labor" >
+	<Server package="com.opentach.server.labor.entities">
+		<EntityProperties archive="labor-server-conf/entities.properties"/>
+		<RemoteReferences archive="labor-server-conf/remotereferences.xml"/>
+	</Server>
+</OntimizeModule>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="ESetupSprint_dummy" keys="IDSetupSprint_dummy" columns="IDSetupSprint_dummy"
+	title="formCalendarioUsos.xml" buttons="no">
+	<FormHeader>
+		<Button listener="com.opentach.client.modules.data.IMCalendarioUsosReportBuilderActionListener" key="reportCalendarioUsos" tip="TIP_INFORME"
+			icon="com/opentach/client/rsc/printer16.png" />
+	</FormHeader>
+	<IntegerDataField attr="MONTH" visible="no" />
+	<IntegerDataField attr="YEAR" visible="no" />
+	<IntegerDataField attr="COUNT_MONTH" visible="no" />
+	<CampoFechaNoEditable
+		attr="FILTERFECINI" visible="no" />
+	<CampoFechaNoEditable
+		attr="FILTERFECFIN" visible="no" />
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+
+
+	<Column margin="5;5;5;5" expandlast="yes">
+		<Row expand="no">
+			<Column title="RANGO_CONSULTA">
+			<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12"
+				attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" 
+				required="yes" csize="10" />
+				
+			<ReferenceExtDataField attr="IDCONDUCTOR" labelsize="12" csize="10" parentkeylistener="yes" populatetableonshowtablewindow="true"
+				cod="IDCONDUCTOR" entity="EConductorContFicticio" parentkeys="CIF;CG_CONTRATO" cols="IDCONDUCTOR;NOMBRE;APELLIDOS" align="left" dim="text"
+				required="yes" descriptioncols="NOMBRE;APELLIDOS"  />
+			<Row>
+				<Column expand="yes" />
+				<Column expand="no" title="INICIO">
+					<TextComboDataField attr="YEAR_INICIO" labelsize="6" align="left"
+						values="2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022"
+						dim="no" size="10" />
+					<MonthComboDataField attr="MONTH_INICIO" dim="no" required="no"
+						align="left" size="20" labelsize="6" />
+				</Column>
+				<Column margin="5;15;5;15" expand="no" with="30" valign="bottom">
+					<Button attr="brefresh" text="refresh" key="brefresh"
+						icon="com/opentach/client/rsc/id_card_view16.png"
+						 listener="com.opentach.client.modules.data.IMCalendarioUsosRefreshActionListener" />
+				</Column>
+				<Column expand="no" title="FIN">
+					<TextComboDataField attr="YEAR_FIN" labelsize="6" align="left"
+						values="2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022"
+						dim="no" size="10" />
+					<MonthComboDataField attr="MONTH_FIN" dim="no" required="no"
+						align="left" size="20" labelsize="6" />
+				</Column>
+				<Column expand="yes" />
+			</Row>
+
+		</Column>
+		</Row>
+		<Row margin="5;0;0;0" expand="yes">
+			<Column expand="no" width="300">
+				<com.opentach.client.comp.calendar.UCalendarPanel
+					attr="CALENDAR" orientation="1"
+					rightrenderer="com.opentach.client.comp.calendar.SprintCalendarRenderer"
+					sprintdatasource="EInformeUsoVehiculoConductor" dayrenderer="com.opentach.client.comp.calendar.DayRendererDecorator"
+					language="ES" country="ES" format="dd MMMM" />
+			</Column>
+			<Column>
+				<Table entity="EInformeUsoVehiculoConductor" key="MATRICULA" otherkeys="FECINI;CG_CONTRATO"
+					parentkey="IDCONDUCTOR" rendertime="FECINI;FECFIN"
+					cols="MATRICULA;DSCR;HORAS;FECINI;FECFIN;KM_INI;KM_FIN;PROCEDENCIA;IDCONDUCTOR;ORIGEN;DESTINO;ORIGEN_DSCR;NOMBRE;APELLIDOS"
+					visiblecols="MATRICULA;DSCR;FECINI;FECFIN;KM_INI;KM_FIN" />
+			</Column>
+		</Row>
+	</Column>
+</FormExt>

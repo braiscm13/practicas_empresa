@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficheros" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="7242815d-9b03-44b1-87a8-01924ff48335">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.3310000000000248"/>
+	<property name="ireport.x" value="74"/>
+	<property name="ireport.y" value="200"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NEW_DATAADAPTER.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="ColorGroup1" forecolor="#F7F7F7" backcolor="#34679A"/>
+	<style name="ColorGroup2" forecolor="#E8E8E8" backcolor="#407CBD"/>
+	<style name="TableHeader" forecolor="#FAFAFA" backcolor="#60A1EB"/>
+	<queryString>
+		<![CDATA[select 
+  --Datos del usuario
+  USUARIO_ASIGNEE,
+  --Datos de la empresa afectada/cliente
+  CIF,
+  COMPANY_NAME,
+  --CONTACT_NAME,
+  --ECN_TLF1,
+  --ECN_TLF2,
+  --ECN_MAIL
+  --Datos de la incidencia
+  TSK_ID,
+  TSK_TITLE,
+  --TSK_DESCRIPTION,
+  TSK_CREATION_DATE,
+  TSK_CLOSED_DATE,
+  --TPR_NAME,--prioridad
+  TKS_NAME,--estado
+  TKC_NAME,--tipo
+  TSU_NAME--subtipo
+from 
+	VTSK_TASK
+where
+	CIF is not null
+order by USUARIO_ASIGNEE, CIF, COMPANY_NAME, TSK_CREATION_DATE desc]]>
+	</queryString>
+	<field name="USUARIO_ASIGNEE" class="java.lang.String"/>
+	<field name="CIF" class="java.lang.String"/>
+	<field name="COMPANY_NAME" class="java.lang.String"/>
+	<field name="TSK_ID" class="java.math.BigDecimal"/>
+	<field name="TSK_TITLE" class="java.lang.String"/>
+	<field name="TSK_CREATION_DATE" class="java.sql.Timestamp"/>
+	<field name="TSK_CLOSED_DATE" class="java.sql.Timestamp"/>
+	<field name="TKS_NAME" class="java.lang.String"/>
+	<field name="TKC_NAME" class="java.lang.String"/>
+	<field name="TSU_NAME" class="java.lang.String"/>
+	<group name="User">
+		<groupExpression><![CDATA[$F{USUARIO_ASIGNEE}]]></groupExpression>
+		<groupHeader>
+			<band height="35" splitType="Stretch">
+				<rectangle>
+					<reportElement key="rectangle-2" style="ColorGroup1" mode="Opaque" x="27" y="12" width="498" height="18" printWhenGroupChanges="User" uuid="0b20c7d0-c04b-4b94-9d08-4a628d66d6bf"/>
+				</rectangle>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="ColorGroup1" x="30" y="12" width="50" height="18" uuid="d8a50b10-8166-4813-91ed-46b5b6ca052e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("Usuario_")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" style="ColorGroup1" x="80" y="12" width="400" height="18" uuid="47459f01-a0a3-4fc0-a3f4-1d876bb892b2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USUARIO_ASIGNEE}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="User" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" style="ColorGroup1" x="480" y="12" width="45" height="18" printWhenGroupChanges="User" uuid="8fa7e26d-d633-4ef7-b5e1-123d99e5d4af"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA["("+$V{User_COUNT}+") "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<group name="CompanyGroup">
+		<groupExpression><![CDATA[$F{CIF}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<rectangle>
+					<reportElement key="rectangle-2" style="ColorGroup2" mode="Opaque" x="33" y="6" width="487" height="18" printWhenGroupChanges="User" uuid="129b3bdc-4c9e-40ac-9062-6595215c7c24"/>
+				</rectangle>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="ColorGroup2" x="36" y="6" width="34" height="18" uuid="f65e0b25-fd4e-4090-a293-2de8e53d3a81">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("CIF_")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" style="ColorGroup2" x="70" y="6" width="81" height="18" uuid="3cfc339b-acef-46eb-a838-fcfa2974e2d7"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CIF}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" style="ColorGroup2" x="210" y="6" width="267" height="18" uuid="19d5d898-1a92-4376-a01e-57188576d01f"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COMPANY_NAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="ColorGroup2" x="151" y="6" width="59" height="18" uuid="20bcd9ce-9bec-4c52-b80c-d433913cff6a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("Empresa_")]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="CompanyGroup" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" style="ColorGroup2" x="477" y="6" width="43" height="18" uuid="7b33b24f-7d44-47cc-86dc-0945b2304c45"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["("+$V{CompanyGroup_COUNT}+") "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="DetailHeader" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{CIF}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<rectangle>
+					<reportElement key="rectangle-1" style="TableHeader" x="40" y="4" width="470" height="19" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="6afa0df0-5514-4055-a2c4-97d34c2103c8">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+				</rectangle>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="41" y="5" width="67" height="18" uuid="86560adc-7d45-43fe-87ba-e13f994d9f57">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("INICIO_")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="110" y="5" width="70" height="18" printWhenGroupChanges="DetailHeader" uuid="6cacdafb-7025-4175-bd0a-88d0947693fe">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("FIN_")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="180" y="4" width="50" height="18" uuid="5f4793bb-7675-4107-a59a-872fdafd9053">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("ID_")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="230" y="4" width="60" height="18" uuid="90b01a3d-f569-4e0b-a629-ea22ddb423a2">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("ESTADO_")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="290" y="4" width="60" height="18" uuid="e232fbd8-b719-441f-8204-b247038b9476">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("TIPO_")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" style="TableHeader" x="350" y="4" width="159" height="18" uuid="b15abd66-2473-40e9-9456-2ff508141287">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("TITULO_")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="800" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="10" y="10" width="528" height="781" forecolor="#34679A" backcolor="#FFFFFF" uuid="0c6fd1f4-19c8-4cda-ac73-3700ba841764"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="10" y="705" width="525" height="90" backcolor="#34679A" uuid="ad1620cb-d029-4a7c-957d-bac22e15cf15"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="168" y="30" width="336" height="86" uuid="ac0ba955-149d-4999-b42d-fe36c8afc605"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="20" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("TITTLE_INCIDENCIA_USUARIO_EMPRESA")]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement key="ellipse" x="127" y="36" width="14" height="14" backcolor="#34679A" uuid="f135b43a-3605-4f9e-8322-f3e27c1e7e32"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="15" y="678" width="518" height="79" uuid="f2606ece-8072-4624-943a-720356068afc"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement key="line-11" x="30" y="120" width="495" height="1" forecolor="#34679A" uuid="d7205c04-5c7f-42db-9226-fdc8a546bffc"/>
+			</line>
+			<image>
+				<reportElement key="image-2" x="33" y="22" width="63" height="55" uuid="3b6a90cc-020e-487f-a12d-6c665001e03b"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement key="staticText-1" x="44" y="743" width="283" height="26" uuid="e7f4a268-d9aa-4fce-9087-120658aceb2a"/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement key="ellipse" x="108" y="36" width="14" height="14" backcolor="#34679A" uuid="6eef9be6-89e4-4246-b78d-48b9f12cdcdc"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-4" x="360" y="96" width="101" height="14" uuid="ed60dad1-f52f-47a6-ad6c-e0b8044b5246"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}.getString("F_INFORME_")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="462" y="96" width="60" height="14" uuid="ea913cd3-0f8d-4fd9-b343-7f918bbb9c52">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp(System.currentTimeMillis())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="477" y="769" width="45" height="18" forecolor="#FFFFFF" uuid="80573b65-710b-4804-955c-53dae21cfdb4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement key="ellipse" x="146" y="36" width="14" height="14" backcolor="#34679A" uuid="95191e43-7649-48a5-9ffc-940e2cf9f198"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<image scaleImage="RetainShape">
+				<reportElement key="image-3" x="367" y="742" width="94" height="33" uuid="f9b707d3-bb3e-4b4e-95b9-17c329b6b526"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="121" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="40" y="0" width="470" height="16" forecolor="#E8F0FF" backcolor="#E8F0FF" uuid="9c2e2ed8-b0b5-4c46-a378-11733fcfe494">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement key="textField" x="41" y="1" width="68" height="14" uuid="63fb66d5-d3fc-4b32-9fd0-a409509eb515">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TSK_CREATION_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement key="textField" x="109" y="1" width="68" height="14" uuid="773935b0-ead7-4b34-80c5-2b3beb18022b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TSK_CLOSED_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="177" y="1" width="53" height="14" uuid="620be74c-2c14-49b4-ae5c-dfe08a326c44">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TSK_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="290" y="1" width="60" height="14" uuid="ad18083b-39a3-46e7-9c7c-0e263ad9fecf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKC_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="350" y="1" width="159" height="14" uuid="be809ddd-515b-4150-b806-7c8f2ef0f900"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TSK_TITLE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="230" y="1" width="60" height="14" uuid="f13d2470-7351-4e09-8394-766e5f4ca3e0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKS_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="95" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

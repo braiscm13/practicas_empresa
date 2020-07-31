@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="remotevehicle.RemoteDownloadCfgRequestDownload"
+	buttons="no"
+	preferredsizetodialog="500;275">
+	
+	<ObjectDataField attr="SRCTYPE" visible="no" listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgRequestDownloadTypeValueChangeListener"/>
+	<ObjectDataField attr="CIF" visible="no" />
+	<ObjectDataField attr="SRC_ID" visible="no" />
+
+	<Column
+		expandlast="no"
+		margin="5;5;5;5">
+		
+		<Column>
+			<Label attr="LABEL_DRIVER" text="remotevehicle.downloadinfodriver" />
+			<Label attr="LABEL_VEHICLE" text="remotevehicle.downloadinfovehicle"/>
+			<ColumnRadioButtonGroup selected="LAST_DOWNLOAD" attr="datos" margin="10;5;5;5">
+				<RadioButtonDataField attr="LAST_DOWNLOAD" text="remotevehicle.lastdownload" align="left" labelposition="right" returnboolean="yes" />
+				<RadioButtonDataField attr="RANGO_FECHA" align="left" labelposition="right" returnboolean="yes" listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgRequestRangeValueChangeListener"/>
+				<Column expand="yes" margin="5;10;0;0">	
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="no" datevisible="no" dim="no" labelsize="10" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="no" datevisible="no" dim="no" labelsize="10" />
+				</Column >
+			</ColumnRadioButtonGroup >			
+		</Column>
+		
+		<Row expand="no">
+			<Column/>
+			<CancelButton />
+			<Button text="remotevehicle.doDownload" icon="com/opentach/client/rsc/server_to_client16.png" listener="com.opentach.client.remotevehicle.modules.remotedownload.IMRemoteDownloadCfgRequestDownloadListener"/>
+		</Row>
+	</Column>
+</FormExt>

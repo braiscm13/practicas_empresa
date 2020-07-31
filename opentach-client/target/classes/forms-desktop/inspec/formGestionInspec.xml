@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Form title="GESTION_INSPECCIONES" entity="" buttons="no">
+	<FormHeader>
+		<Button key="btnRefrescar" tip="REFRESCAR" icon="com/opentach/client/rsc/refresh16.png" />
+		<Button key="btnDownload" tip="DESCARGAR_FICHEROS_CSD" icon="com/opentach/client/rsc/server_to_client16.png" />	
+		<Button key="btnAnalizar" tip="REALIZAR_ANALISIS" icon="com/opentach/client/rsc/gear16.png" listener="com.opentach.client.modules.inspec.IMGestionInspecAnalyzeActionListenerButton"/>
+		<NewTabButton />		 		
+	</FormHeader>
+	<ObjectDataField attr="CG_CONTRATO" required="yes" visible="no" />
+	<Row expand="no" margin="5;5;5;5" >
+		<Column title="">
+			<Column valign="top">
+				<Column valign="center">
+					<ReferenceExtDataField entity="EDfEmp" text="EMPRESA" labelsize="12" attr="CIF" dim="text" cod="CIF" cols="CIF;NOMB" descriptioncols="NOMB" required="yes" csize="10" />
+					<AssetSelectionDataField
+						assetType="VEHICLE" 
+						attr="IDORIGEN" 
+					    align="left" 
+					    labelsize="12" 
+					    dim="text" 
+					    required="yes"
+					    />
+					<InfracEngineChooser labelsize="12" attr="ENGINEANALYZER" size="30" align="left"/>
+				</Column >	
+				<CheckDataField attr="renombrar" text="Renombrar_ficheros" returnboolean="yes" labelsize="18" labelposition="left" align="right"></CheckDataField >
+			</Column>
+		</Column>
+		<Column align="right" expand="no" margin="0;5;0;5" >
+			<Column title="Filtrar_por_fechas" expand="no" align="right" margin="10;5;10;5">
+					<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="right" datevisible="no" labelsize="10" required="yes" />
+					<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="right" datevisible="no" labelsize="10" required="yes" />
+			</Column >
+		</Column >
+	</Row >
+	<TabPanel>
+		<Tab title="FICHEROS_VEHICULO">
+			<ExpansibleTable entity="EInspecciones" expandcolumn="DUMMY" groupkeys="IDORIGEN" key="IDFICHERO" keys="CG_CONTRATO" parentkey="CG_CONTRATO" 
+			otherkeys="FILTERFECINI;FILTERFECFIN" rendertime="FECINI;FECFIN;F_ALTA" 
+			cols="DUMMY;DESCARGAR;IDORIGEN;DSCR_COND;DSCR_COND_EXTRA;IDFICHERO;FECINI;FECFIN;TIPO;NOMB;NOMB_PROCESADO;OBSR" 
+			visiblecols="DUMMY;IDORIGEN;DSCR_COND;FECINI;FECFIN;TIPO;NOMB;OBSR" >
+			      <com.utilmize.client.gui.field.table.UTableColumnProperties attr="DSCR_COND" text="DSCR" />
+			</ExpansibleTable>
+		</Tab>
+		<Tab title="FICHEROS_CONDUCTOR">
+			<ExpansibleTable entity="EInspeccionesCondu" expandcolumn="DUMMY"  groupkeys="IDORIGEN" key="IDFICHERO" keys="CG_CONTRATO" parentkey="CG_CONTRATO" otherkeys="FILTERFECINI;FILTERFECFIN" rendertime="FECINI;FECFIN;F_ALTA" cols="DUMMY;DESCARGAR;IDORIGEN;DSCR_COND;DSCR_COND_EXTRA;IDFICHERO;FECINI;FECFIN;TIPO;NOMB;NOMB_PROCESADO;OBSR" visiblecols="DUMMY;IDORIGEN;DSCR_COND_EXTRA;FECINI;FECFIN;TIPO;NOMB;OBSR" />
+		</Tab>		 
+		<Tab title="INFRACCIONES">
+			<Column expand="yes">				
+				<Row expand="yes">	
+					<!-- <ExpansibleTable entity="EInformeInfrac" expandcolumn="DUMMY" groupkeys="DNI" key="FECINI" keys="TIPO" parentkey="CG_CONTRATO" otherkeys="CIF" cols="DUMMY;DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;CIF;TIPO;TIPO_DSCR;FECINI;FECFIN;TDP;TCP;EXCON;FADES;NATURALEZA;COD_BAREMO;IMPORTE;LEVE;GRAVE;MUYGRAVE;DSCR_TIPO_INFRAC" visiblecols="DUMMY;DNI;APELLIDOS;NOMBRE;TIPO;FECINI;FECFIN;TDP;TCP;EXCON;FADES;NATURALEZA" />
+				 -->
+						<!-- TODO: IDCONDUCTOR-DNI -->
+			 	<ExpansibleTable entity="EInformeInfrac" expandcolumn="DUMMY" groupkeys="IDCONDUCTOR" key="FECINI" keys="TIPO" parentkey="CG_CONTRATO" otherkeys="CIF" 
+			 	cols="DUMMY;DNI;IDCONDUCTOR;APELLIDOS;NOMBRE;CIF;TIPO;TIPO_DSCR;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA;COD_BAREMO;IMPORTE;LEVE;GRAVE;MUYGRAVE;DSCR_TIPO_INFRAC" 
+			 	visiblecols="DUMMY;DNI;APELLIDOS;NOMBRE;TIPO;FECHORAINI;FECHORAFIN;TDP;TCP;EXCON;FADES;NATURALEZA">
+			 		<TableButton 
+			 			key="bReportInfrac" tip="TIP_INFORME" text="TIP_INFORME" icon="com/opentach/client/rsc/printer_view24.png"
+			 			listener="com.opentach.client.modules.inspec.IMGestionInspecBuildReportActionListenerButton"/>
+<!-- 		params.put("rollover", "yes"); -->
+			 	</ExpansibleTable>
+			 
+				</Row>	
+			</Column>	
+		</Tab>	
+		<Tab title="EIncidentes">
+			<Column expand="yes">				
+				<Row expand="yes">	
+					<ExpansibleTable entity="EIncidentes" expandcolumn="DUMMY" groupkeys="MATRICULA" key="CG_CONTRATO" keys="MATRICULA;TIPO;FECINI;FECFIN" parentkey="CG_CONTRATO"  rendertime="FECINI;FECFIN" cols="DUMMY;MATRICULA;DSCR;NUMREQ;NOMB;CIF;FECINI;FECFIN;MINUTOS;DURACION_SEGUNDOS;TIPO_DSCR_INC;NUM_SIMILARES;VMAX;VMED;NUM_TRJ_CONDU_INI;NUM_TRJ_CONDU_FIN;NUM_TRJ_COPI_INI;NUM_TRJ_COPI_FIN;DSCRPAIS;PROCEDENCIA;TPPROPOSITO;OBSR;TPPROPOSITO_DSCR;DSCR_TRJ_CONDU_INI;DSCR_TRJ_CONDU_FIN;DSCR_TRJ_COPI_INI;DSCR_TRJ_COPI_FIN" visiblecols="DUMMY;MATRICULA;DSCR;FECINI;FECFIN;DURACION_SEGUNDOS;TIPO_DSCR_INC;VMAX;VMED;OBSR" >
+						<TableButton 
+			 				key="bReportIncidentes" tip="TIP_INFORME" text="TIP_INFORME" icon="com/opentach/client/rsc/printer_view24.png"
+			 				listener="com.opentach.client.modules.inspec.IMGestionInspecBuildReportActionListenerButton"/>
+					</ExpansibleTable>
+				</Row>	
+			</Column>
+		</Tab>
+		<Tab title="FALLOS">
+			<Column expand="yes">				
+				<Row expand="yes">	
+					<ExpansibleTable entity="EFallos" expandcolumn="DUMMY" groupkeys="MATRICULA" key="NUMREQ" keys="MATRICULA;TPFALLO;FECINI;FECFIN" parentkey="CG_CONTRATO" rendertime="FECINI;FECFIN" cols="DUMMY;MATRICULA;DSCR_VEHICULO;FECINI;FECFIN;DURACION_SEGUNDOS;DSCR;NUM_TRJ_CONDU_INI;NUM_TRJ_CONDU_FIN;NUM_TRJ_COPI_INI;NUM_TRJ_COPI_FIN;NOMB;CIF;TPPROPOSITO;TPPROPOSITO_DSCR;DSCR_TRJ_CONDU_INI;DSCR_TRJ_CONDU_FIN;DSCR_TRJ_COPI_INI;DSCR_TRJ_COPI_FIN" visiblecols="DUMMY;MATRICULA;DSCR_VEHICULO;FECINI;FECFIN;DURACION_SEGUNDOS;DSCR;NUM_TRJ_CONDU_INI;NUM_TRJ_CONDU_FIN;NUM_TRJ_COPI_INI;NUM_TRJ_COPI_FIN">
+						<TableButton 
+			 				key="bReportFallos" tip="TIP_INFORME" text="TIP_INFORME" icon="com/opentach/client/rsc/printer_view24.png"
+			 				listener="com.opentach.client.modules.inspec.IMGestionInspecBuildReportActionListenerButton"/>
+					</ExpansibleTable>
+				</Row>	
+			</Column>	
+		</Tab>
+	</TabPanel>
+</Form>

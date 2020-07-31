@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc https://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	table="CDPREFSERVIDOR" datasource="mainDataSource" sqlhandler="mainSQLStatementHandler">
+	<DeleteKeys>
+		<Column>NOMBRE</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>NOMBRE</Column>
+	</UpdateKeys>
+	<!-- <GeneratedKey>USER_</GeneratedKey> -->
+	<Queries>
+		<Query id="default">
+			<FunctionColumns>
+				<FunctionColumn name="MAIL_ENCODING" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.Encoding'"/>
+				<FunctionColumn name="MAIL_HOST" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.server'"/>
+				<FunctionColumn name="MAIL_PORT" value="NULL"/>
+				<FunctionColumn name="MAIL_PROTOCOL" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.Protocol'"/>
+				<FunctionColumn name="MAIL_USER" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.User'"/>
+				<FunctionColumn name="MAIL_PASSWORD" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.Password'"/>
+				<FunctionColumn name="MAIL_PROPERTIES" value="SELECT VALOR FROM CDPREFSERVIDOR WHERE NOMBRE = 'Mail.Properties'"/>
+			</FunctionColumns>
+			<Sentence>
+				<![CDATA[
+				SELECT
+					#COLUMNS#
+				FROM
+					CDPREFSERVIDOR
+				#WHERE#
+				#ORDER#
+				]]>
+			</Sentence>
+		</Query>
+	</Queries>
+</JdbcEntitySetup>

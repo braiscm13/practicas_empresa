@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="ECalendarSummaryDummy" title="EMPLOYEEDATA.EMPLOYEE_CALENDAR"
+	keys="CIF;IDCONDUCTOR;CALENDAR;YEAR" buttons="no" >
+	<FormHeader standardbuttons="no"/>
+<!-- 	<ObjectDataField attr="CIF" visible="yes" /> -->
+<!-- 	<ObjectDataField attr="IDCONDUCTOR" visible="yes" /> -->
+<!-- 	<ObjectDataField attr="CALENDAR" visible="yes" /> -->
+<!-- 	<ObjectDataField attr="YEAR" visible="yes" /> -->
+	<Row height="20" />
+	
+	<Row margin="20;20;20;20" width="600" expand="yes">
+		<TabPanel attr="TABCALENDAR">
+			<Tab attr="CAL_HOLIDAYS">
+				<Table entity="ECalendarHolidays"
+					key="CALENDAR" keys="DAY_ID;YEAR"
+					parentkeys="CALENDAR;YEAR"
+					cols="CIF;IDCONDUCTOR;CALENDAR;YEAR;DAY_ID;STARTDATE;ENDDATE;NUMBERDAYS;OBS;APPROVED;DISMISSED;TYPE"
+					visiblecols="STARTDATE;ENDDATE;NUMBERDAYS;OBS;APPROVED;DISMISSED"
+					editablecolumns="APPROVED;DISMISSED"
+					updateentityeditablecolumns="APPROVED;DISMISSED"
+					refreshbutton="no">
+					<RenderDate column="STARTDATE" format="dd/MM/yyyy" />
+					<RenderDate column="ENDDATE" format="dd/MM/yyyy" />
+					<BooleanCellRenderer column="APPROVED"/>
+					<BooleanCellEditor column="APPROVED" />
+					<BooleanCellRenderer column="DISMISSED"/>
+					<BooleanCellEditor column="DISMISSED" />
+				</Table>
+			</Tab>
+			<Tab attr="CAL_EVENTDAYS">
+				<Table entity="ECalendarEventDays"
+					key="CALENDAR" keys="DAY_ID" parentkeys="CALENDAR"
+					cols="DAY_ID;STARTDATE;ENDDATE;OBS;APPROVED;DISMISSED;TYPE"
+					visiblecols="STARTDATE;ENDDATE;OBS"
+					editablecolumns="OBS"
+					updateentityeditablecolumns="OBS"
+					refreshbutton="yes">
+					<RenderDate column="STARTDATE" format="dd/MM/yyyy" />
+					<RenderDate column="ENDDATE" format="dd/MM/yyyy" />
+				</Table>
+			</Tab>
+		</TabPanel>
+	</Row>
+</FormExt>

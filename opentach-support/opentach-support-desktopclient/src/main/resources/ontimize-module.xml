@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntimizeModule id="opentach-tasks" >
+	
+	<Client package="">
+		<!-- INCIDENCIAS -->
+		<TabbedFormManager id="managerTasks" showframe="yes" delayedload="yes" form="forms-tasks/formTaskManagement.form" imanager="com.opentach.client.tasks.im.IMTaskManagement">
+			<InteractionManager form="formTask.form" class="com.opentach.client.tasks.im.IMTask" />
+			<InteractionManager form="formTaskJournal.form" class="com.utilmize.client.fim.UBasicFIM" />
+			<InteractionManager form="formTaskAttachment.form" class="com.utilmize.client.fim.UBasicFIM" />
+		</TabbedFormManager>
+	</Client>
+</OntimizeModule>

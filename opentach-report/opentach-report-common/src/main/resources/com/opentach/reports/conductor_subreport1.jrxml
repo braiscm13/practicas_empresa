@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="65ef605e-0f08-4d7a-b201-82a5323e682b">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.9487171000000159"/>
+	<property name="ireport.x" value="3"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fdesde" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.sql.Timestamp(new java.util.Date().getTime() -(1000*24*3600))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idconductor" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["00000001050800"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cif" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["ESB15296072"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cgcontrato" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["596930283"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dni" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReturnedValuesMap" class="java.util.Map" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new java.util.HashMap()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+(SELECT NVL(SUM(C.MINUTOS),0) FROM  CDVINFORM_ACTIVIDADES C
+	WHERE C.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+		and C.CG_CONTRATO = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+		and C.CIF = CDVINFORM_ACTIVIDADES.CIF
+		and C.FEC_COMIENZO > $P{fdesde}
+		and C.FEC_COMIENZO < $P{fhasta}
+		and C.TPACTIVIDAD = 1) AS PAUSA_DESCANSO,
+(SELECT NVL(SUM(C.MINUTOS),0) FROM  CDVINFORM_ACTIVIDADES C
+	WHERE C.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+		and C.CG_CONTRATO = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+		and C.CIF = CDVINFORM_ACTIVIDADES.CIF
+		and C.FEC_COMIENZO > $P{fdesde}
+		and C.FEC_COMIENZO < $P{fhasta}
+		and C.TPACTIVIDAD = 2) AS DISPONIBILIDAD,
+(SELECT NVL(SUM(C.MINUTOS),0) FROM  CDVINFORM_ACTIVIDADES C
+	WHERE C.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+		and C.CG_CONTRATO = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+		and C.CIF = CDVINFORM_ACTIVIDADES.CIF
+		and C.FEC_COMIENZO > $P{fdesde}
+		and C.FEC_COMIENZO < $P{fhasta}
+		and C.TPACTIVIDAD = 3) AS TRABAJO,
+(SELECT NVL(SUM(C.MINUTOS),0) FROM  CDVINFORM_ACTIVIDADES C
+	WHERE C.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+		and C.CG_CONTRATO = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+		and C.CIF = CDVINFORM_ACTIVIDADES.CIF
+		and C.FEC_COMIENZO > $P{fdesde}
+		and C.FEC_COMIENZO < $P{fhasta}
+		and C.TPACTIVIDAD = 4) AS CONDUCCION,
+(SELECT NVL(SUM(C.MINUTOS),0) FROM  CDVINFORM_ACTIVIDADES_TEMP C
+	WHERE C.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+		and C.CG_CONTRATO = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+		and C.CIF = CDVINFORM_ACTIVIDADES.CIF
+		and C.FEC_COMIENZO > $P{fdesde}
+		and C.FEC_COMIENZO < $P{fhasta}
+		and C.TPACTIVIDAD = 5) AS INDEFINIDA,
+ (SELECT NVL(SUM(KM),0) as KM
+   FROM CDREGKM_CONDUCTOR U
+   WHERE U.FECHA >= $P{fdesde}
+    AND U.FECHA < $P{fhasta}
+    AND U.NUMREQ = CDVINFORM_ACTIVIDADES.CG_CONTRATO
+    AND U.IDCONDUCTOR = CDVINFORM_ACTIVIDADES.IDCONDUCTOR
+) AS KM
+FROM CDVINFORM_ACTIVIDADES
+WHERE CDVINFORM_ACTIVIDADES.IDCONDUCTOR = $P{idconductor}
+and CDVINFORM_ACTIVIDADES.CG_CONTRATO = $P{cgcontrato}
+and CDVINFORM_ACTIVIDADES.CIF = $P{cif}
+and CDVINFORM_ACTIVIDADES.FEC_COMIENZO > $P{fdesde}
+and CDVINFORM_ACTIVIDADES.FEC_COMIENZO < $P{fhasta}
+and CDVINFORM_ACTIVIDADES.DNI = $P{dni}]]>
+	</queryString>
+	<field name="PAUSA_DESCANSO" class="java.math.BigDecimal"/>
+	<field name="DISPONIBILIDAD" class="java.math.BigDecimal"/>
+	<field name="TRABAJO" class="java.math.BigDecimal"/>
+	<field name="CONDUCCION" class="java.math.BigDecimal"/>
+	<field name="INDEFINIDA" class="java.math.BigDecimal"/>
+	<field name="KM" class="java.math.BigDecimal"/>
+	<variable name="vpausa" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{PAUSA_DESCANSO}]]></variableExpression>
+	</variable>
+	<variable name="vdisponibilidad" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{DISPONIBILIDAD}]]></variableExpression>
+	</variable>
+	<variable name="vtrabajo" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{TRABAJO}]]></variableExpression>
+	</variable>
+	<variable name="vconduccion" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{CONDUCCION}]]></variableExpression>
+	</variable>
+	<variable name="vindefinida" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{INDEFINIDA}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="6" y="26" width="468" height="20" forecolor="#E8F0FF" backcolor="#CCCCCC" uuid="2afca84c-eda1-4572-b0e7-94eb76ec82b5"/>
+			</rectangle>
+			<line>
+				<reportElement key="line-2" x="6" y="46" width="469" height="1" forecolor="#E8F0FF" uuid="855b183e-43f1-4f92-b944-5c93502cba8b"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="9" y="0" width="257" height="20" forecolor="#000000" uuid="c8e660a4-5033-4c4c-aae8-364a3487453b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{RESUMEN_ACTIVIDADES}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="9" y="29" width="71" height="16" uuid="a84dd952-9412-4cdf-bdc8-26cd54f31866"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{CONDUCCION}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="82" y="29" width="73" height="16" uuid="f2ec30ad-98f7-4baa-8d62-d627f6045144"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{DISPONIBILIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="161" y="29" width="87" height="16" uuid="6edb2af5-5f0e-408b-b590-fd21ab9d0781"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{PAUSA/DESCANSO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="251" y="29" width="67" height="16" uuid="638f93b4-e05d-477d-9b1d-cf31f5cb69ca"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{TRABAJO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-6" x="396" y="29" width="78" height="16" uuid="389e275d-a903-4c58-9903-8b4c0707e3a0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{KM_REC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="320" y="29" width="67" height="16" uuid="638f93b4-e05d-477d-9b1d-cf31f5cb69ca"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{INDEFINIDA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement x="6" y="-2" width="468" height="17" forecolor="#FFFFFF" backcolor="#E8F0FF" uuid="d3b13bd1-08b1-43f6-a083-a33ad3846ddd">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="9" y="0" width="69" height="14" uuid="fa807534-0fe7-4e30-b83f-2f973b8209a6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{vconduccion}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="84" y="0" width="73" height="14" uuid="e8e390bd-ea9e-41e8-977d-e7ff5023225f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{vdisponibilidad}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="162" y="0" width="86" height="14" uuid="465c4603-633c-4862-8926-a762e06afd93"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{vpausa}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement key="textField" x="251" y="0" width="62" height="14" uuid="71a9a4e4-d24c-463b-a220-daef9972ccf4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{vtrabajo}.intValue(), false)]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement key="textField" x="401" y="0" width="73" height="14" uuid="0f436d20-2f30-4837-83c2-ad580ffcd85a"/>
+				<textFieldExpression><![CDATA[$F{KM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="false">
+				<reportElement key="textField" x="319" y="0" width="62" height="14" uuid="71a9a4e4-d24c-463b-a220-daef9972ccf4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[com.opentach.common.util.DateUtil.parsearTiempoDisponible($V{vindefinida}.intValue(), false)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="0" width="381" height="20" uuid="1b986ad6-e0c4-4d8a-b4d0-dd09d2628afe">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}==0]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$R{No_se_han_encontrado_actividades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

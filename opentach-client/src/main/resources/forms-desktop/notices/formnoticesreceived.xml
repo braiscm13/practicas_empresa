@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt keys="NoticeId" entity="EAvisos" title="Avisos" buttons="no">
+	<Column expandlast="no">
+		<Row height="10" />
+		<TextDataField attr="SendUser" visible="no" />
+		<SplitPane attr="splitReceivedNotices" orientation="horizontal">
+			<Row expandlast="yes" expand="yes" title="AvisosRecibidos">
+				<Row expand="yes">
+					<com.opentach.client.modules.notices.MyNoticeTable receivetable="yes" entity="EAvisosRecibidosUser" refreshbutton="yes" cols="Message;NoticeId;Subject;CreationDate;NoticeType;SendUser;MandatoryRead;ResponseRequest;Content;Read" visiblecols="CreationDate;Subject;Read" key="NoticeId" title="Avisos" alertsystemnotices="excluded" insertbutton="no"/>
+				</Row >
+			</Row >
+			<Row expand="yes" title="AvisoSeleccionado">
+				<com.ontimize.util.notice.HTMLTemplate attr="htmltemplate" scroll="yes" />
+			</Row >
+		</SplitPane>
+	</Column >
+</FormExt>

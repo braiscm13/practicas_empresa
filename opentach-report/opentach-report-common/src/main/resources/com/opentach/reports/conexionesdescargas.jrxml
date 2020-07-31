@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="alta baja vehiculo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="be290f97-9112-42a6-9fff-b953830deeef">
+	<property name="ireport.zoom" value="1.3310000000000064"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="98"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="902"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="RFVBTCAsMTUsMTUsMzQxY2Y3MDItNjA4OC00YmIwLTkwZjgtN2FjODc1ODk4ZDk0Ow=="/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Transportes Corte"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["INFORME ALTA BAJA CONDUCTORES"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_informe" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqldeleg" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ppagenumber" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_inicio" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.sql.Timestamp" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT '' AS USUARIO,
+	'' AS F_SESSION,
+	'' AS F_ULTIMO_FICH,
+	'' AS NUM_FICHEROS
+FROM DUAL]]>
+	</queryString>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="F_SESSION" class="java.sql.Timestamp"/>
+	<field name="F_ULTIMO_FICH" class="java.sql.Timestamp"/>
+	<field name="NUM_FICHEROS" class="java.math.BigDecimal"/>
+	<variable name="MY_PAGE_COUNT" class="java.lang.Integer" incrementType="Page" calculation="Sum">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="21">
+				<reportElement key="rectangle" stretchType="RelativeToTallestObject" mode="Opaque" x="11" y="5" width="522" height="781" forecolor="#34679A" backcolor="#FFFFFF" uuid="da3d3462-0942-42d9-85c2-140d1fa1bcd2"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="10.0" lineStyle="Solid" lineColor="#34679A"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="9" y="703" width="522" height="90" backcolor="#34679A" uuid="7e8b8a06-db1a-4d8c-9027-3c8e9e60040b"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="30">
+				<reportElement key="rectangle" x="16" y="675" width="512" height="79" uuid="5c7b58a9-17c8-4a42-aad4-c830a4a11efb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement key="ellipse" x="135" y="33" width="14" height="14" backcolor="#34679A" uuid="75d32867-de67-4851-b5a3-19d24d2e99bf"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="116" y="33" width="14" height="14" backcolor="#34679A" uuid="48ebc5bb-e605-4011-9876-3db2723be907"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<ellipse>
+				<reportElement key="ellipse" x="97" y="33" width="14" height="14" backcolor="#34679A" uuid="7fb9312f-4543-4e91-9688-85e50288988a"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</ellipse>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="157" y="27" width="336" height="48" uuid="ee5ebb33-faf2-4d85-b73f-eb50c51dfcab"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="18" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="443" y="93" width="68" height="18" uuid="3b72a5f3-bd2d-4013-aa42-ac90e1ae6bfa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_informe}==null?new java.sql.Timestamp(System.currentTimeMillis()):$P{f_informe}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-11" x="20" y="112" width="495" height="1" forecolor="#34679A" uuid="9109c7c1-aad6-4afa-9d5d-d0ef61ea8020"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="354" y="93" width="88" height="18" uuid="33ba808c-22f5-4776-ae9b-50c0839d5b2d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Fecha_del_informe_}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="33" y="740" width="283" height="26" uuid="69b091de-1835-4f77-bf50-aca388798251"/>
+				<text><![CDATA[Opentach es una marca propiedad de OpenServices S.L.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="466" y="766" width="45" height="18" forecolor="#FFFFFF" uuid="58cbde50-d79b-409e-8db7-d4891ea60af9">
+					<printWhenExpression><![CDATA[$P{ppagenumber}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement key="image-2" x="33" y="22" width="63" height="55" uuid="43917ff7-500b-4f8a-ad9e-edf050659a1c"/>
+				<imageExpression><![CDATA["com/opentach/reports/ico.png"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape">
+				<reportElement key="image-3" x="367" y="742" width="94" height="33" uuid="bd53f33c-52d6-4cd6-bf5c-b667d6befa19"/>
+				<imageExpression><![CDATA["reports/resources/LOGO_iso.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="1">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[($V{MY_PAGE_COUNT}.intValue() == 0)]]></printWhenExpression>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="125" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" mode="Opaque" x="27" y="2" width="485" height="39" backcolor="#CCCCCC" uuid="fbbfa2cb-2ed8-4ba3-9475-09c4490bf93c"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-7" mode="Transparent" x="162" y="4" width="118" height="35" forecolor="#34679A" uuid="a16bde16-89ce-4bf8-9545-bba33b39a522"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_SESSION_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-9" mode="Transparent" x="310" y="5" width="91" height="35" forecolor="#34679A" uuid="f13c6f2c-8d56-4633-9467-57db53098cae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{F_ULTIMO_FICH_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-10" mode="Transparent" x="406" y="4" width="87" height="35" forecolor="#34679A" uuid="cb3a5aa4-61c8-48eb-8086-43f50d6fcc2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{NUM_FICHEROS_}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-7" mode="Transparent" x="30" y="4" width="120" height="35" forecolor="#34679A" uuid="a614a629-5735-4560-8e71-764b5794ab25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{USUARIO_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-2" mode="Opaque" x="27" y="0" width="485" height="21" backcolor="#E8F0FF" uuid="81f6ab31-9a3e-461f-a56c-84c339efb36e">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue()%2)==1)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="165" y="0" width="115" height="18" uuid="388e62cc-04c4-4375-9513-ddd209ab7bcb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_SESSION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="310" y="0" width="87" height="18" uuid="a60eae76-749e-437a-ae0a-03f9c72d450e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ULTIMO_FICH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="29" y="0" width="126" height="18" uuid="75f7a520-91ff-47fe-93f9-9cc5077cbef1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="410" y="0" width="83" height="18" uuid="28524892-990a-4dcf-9057-d0dc3fc9bf53">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUM_FICHEROS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="70" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

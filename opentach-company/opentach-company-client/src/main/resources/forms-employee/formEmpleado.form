@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt entity="EConductoresEmp" title="DATOS_COND" keys="IDCONDUCTOR;CIF" columns="IDCONDUCTOR;DNI;APELLIDOS;NOMBRE" buttons="no" preferredsizetodialog="1150;800" 
+	notqueryfields="CG_CONTRATO"
+	setvalueorder="CG_CONTRATO;CIF">
+	<FormHeader standardbuttons="no" />
+
+	<ObjectDataField attr="IDORIGEN" visible="no" />
+	<ObjectDataField attr="CALENDAR" visible="no" />
+
+	<Column margin="2;4;2;4" expandlast="no">
+		<Row>
+			 <Column expand="0.3">
+				<Column title="DATOS_COND" >
+					<TextDataField 			attr="NOMBRE" 		align="left" labelsize="15" dim="text" maxlength="40" required="yes"  />
+					<TextDataField 			attr="APELLIDOS" 	align="left" labelsize="15" dim="text" maxlength="100" required="yes" />
+					<Row>
+						<TextDataField 		attr="DNI" 		align="left" labelsize="15" dim="no" text="DNI/NIF" maxlength="9" required="yes" size="9" 
+															listener="com.opentach.client.employee.listeners.AutocompleteIdConductorFromNIFValueChangeListener"/>
+						<com.opentach.client.comp.BotonLetraNIF key="calculaletranif" nif="DNI" tip="CALCULA_LETRA" icon="com/ontimize/gui/images/calc.png" focusable="no" />
+						<Row/>
+					</Row>
+					<TextDataField 			attr="IDCONDUCTOR" 			align="left" labelsize="15" dim="text" text="5B" maxlength="14" required="yes" 
+																		listener="com.opentach.client.employee.listeners.OnSetValueSetToIdOrigenValueChangeListener" />
+					<TextDataField 			attr="EXTERNAL_EMPLOYEE_ID" align="left" labelsize="15" dim="text" maxlength="50" required="no" size="12" />
+					<TextDataField 			attr="NAF" 					align="left" labelsize="15" dim="text" maxlength="70" />
+					<DateDataField 			attr="F_NAC" 				align="left" labelsize="15" dim="no" required="no" />
+					<DateDataField 			attr="F_ALTA" 				align="left" labelsize="15" dim="no" required="no" />
+					<CheckDataField 		attr="DURMIENTE" 			align="left" labelsize="15" dim="text" text="DURMIENTE_COND" tip="TIP_DURMIENTE" returnstring="yes"  />
+				</Column>
+				<Column title="DATOS_OUTROS" attr="OTHER_DATA_COLUMN">
+					<ReferenceComboDataField 	attr="TYPE" 			align="left" labelsize="15" dim="text" text="EMPLOYEEDATA.TYPE" cod="TYPE" entity="EEmployeeTypes" cols="DESCRIP" translate="yes" 
+																		listeners="com.opentach.client.employee.listeners.EmployeTypeValueChangeListener;com.opentach.client.employee.listeners.AutocompleteIdConductorFromNIFValueChangeListener" 
+																		/>
+					<ReferenceComboDataField 	attr="PARENT_CALENDAR" align="left" labelsize="15" dim="text" text="EMPLOYEEDATA.CALENDAR" cod="CALENDAR" entity="ERootCalendar" cols="DESCRIP" parentkey="CIF" translate="yes" nullselection="no"/>
+					<Column/>
+				</Column>
+			 </Column>
+			 <Column expand="0.4" expandlast="yes" >
+			 		<Row>
+			 			<Column>
+				 			<Column title="DATOS_EMPRESA" expand="0.75">
+								<ReferenceExtDataField 		attr="CIF" 				align="left" labelsize="14" dim="text" entity="EDfEmp" text="EMPRESA"  cod="CIF" cols="CIF;NOMB;CG_CONTRATO" descriptioncols="NOMB" onsetvalueset="CG_CONTRATO" required="yes"	csize="8" />
+								<ReferenceComboDataField 	attr="CG_CONTRATO" 		align="left" labelsize="14" dim="text" cod="CG_CONTRATO" entity="EEmpreReq" parentkey="CIF" cols="NUMREQ" size="15" required="yes" visible="yes" enabled="no"/>
+								<ReferenceComboDataField 	attr="IDDELEGACION" 	align="left" labelsize="14" dim="text" cod="IDDELEGACION" cols="IDDELEGACION;CIF;NOMBRE_DEL" visiblecols="NOMBRE_DEL" parentkey="CIF" entity="EDelegacionDfEmp" />
+							</Column>
+							<Row height="17"/>
+							<Column title="CONTACTO" >
+								<MaskDataField	attr="MOVIL" 		align="left" labelsize="14" dim="no" mask="000000000000000"  size="12" />
+								<WWWDataField 	attr="EMAIL" 		align="left" labelsize="14" dim="text" text="EMAIL" maxlength="50" uppercase="no" />
+							</Column>
+			 			</Column>
+				 		
+			 		</Row>
+			 		<Row height="24"/>
+					<Row title="EMPLOYEEDATA.EMPLOYEE_PORTAL" expand="0.25" attr="WEB_PORTAL_SECTION">
+						<Column>
+							<Row>
+									<TextDataField 		attr="WEB_USER" 	align="left" labelsize="19" dim="text" text="EMPLOYEEDATA.WEB_USER" size="15" valign="center" uppercase="false" />
+									<Button 			key="EMPLOYEEDATA.GENERATE_USER" text="EMPLOYEEDATA.GENERATE_USER" tip="EMPLOYEEDATA.TIP_GENERATE_USER" listener="com.opentach.client.employee.listeners.IMEmployeeGenerateUserActionListener" />
+							</Row>
+							
+							<Row>
+									<PasswordDataField	attr="WEB_PASSWORD" align="left" labelsize="19" dim="text" text="EMPLOYEEDATA.WEB_PASSWORD" size="15" valign="center" uppercase="false" enabled="no"/>
+									<Button 		  	key="EMPLOYEEDATA.GENERATE_PASSWORD" text="EMPLOYEEDATA.GENERATE_PASSWORD" tip="EMPLOYEEDATA.TIP_GENERATE_PASSWORD" listener="com.opentach.client.employee.listeners.IMEmployeeGeneratePasswordActionListener" />
+							</Row>
+							
+							<CheckDataField 	attr="WEB_INACTIVE" align="left" labelsize="19" dim="text" text="EMPLOYEEDATA.WEB_INACTIVE" tip="EMPLOYEEDATA.WEB_INACTIVE.tip" labelposition="left" returnstring="no" valign="center"/>
+						</Column>
+						<Column width="70" resize="no">
+							<Button key="EMPLOYEEDATA.RESEND_WEB_USER_PASSWORD" text="EMPLOYEEDATA.RESEND_WEB_USER_PASSWORD" tip="EMPLOYEEDATA.TIP_RESEND_WEB_USER_PASSWORD" listener="com.opentach.client.employee.listeners.IMEmployeeResendWebUserPasswordActionListener" />
+							<Row />
+						</Column>
+					</Row>
+			</Column>
+			<Column width="275" expand="no">
+				<Row height="200" expand="no" align="left" title="Foto">
+					<Column expand="no"  width="200" align="left" >
+						<com.opentach.client.comp.SingleImageDataFieldExtended attr="PHOTO" emptyimage="images-general/noDisponible.png" dim="text" labelvisible="no" vexpand="yes" hexpand="yes" />
+					</Column>
+		 		</Row>
+		 		<Row height="29"/>
+				<Row expand="no">
+					<Column title="DATOS_CADUCIDADES" expand="no" attr="EXPIRATION_COLUMN">
+						
+						<!--  This date is read automatically when importing data from the driver card. Editing disabled. -->
+						<DateDataField attr="EXPIRED_DATE_TRJCONDU" 	align="left" labelsize="16" dim="no" text="EMPLOYEEDATA.EXPIRED_DATE_TRJCONDU" enabled="no" /> 
+						<DateDataField attr="EXPIR_DATE_DRV_LICENSE" 	align="left" labelsize="16" dim="no" text="EMPLOYEEDATA.EXPIR_DATE_DRV_LICENSE"  />
+						<DateDataField attr="EXPIR_DATE_CAP" 			align="left" labelsize="16" dim="no" text="EMPLOYEEDATA.EXPIR_DATE_CAP" />
+						<DateDataField attr="EXPIR_DATE_ADR"			align="left" labelsize="16" dim="no"  text="EMPLOYEEDATA.EXPIR_DATE_ADR"/>
+					</Column>
+				</Row>
+			</Column>
+			<Column expand="0.3"/>
+		</Row>
+
+		<Column attr="tabs_and_filters">
+			<Row expand="yes">
+				<TabPanel attr="tabpanel">
+					<Tab attr="CONTRATOS" title="CONTRATOS" expand="yes">
+						<Table entity="EDriverContracts" keys="DRC_ID"
+							parentkeys="IDCONDUCTOR;CIF;TYPE" refreshbutton="yes"
+							cols="DRC_ID;IDCONDUCTOR;CIF;DRC_TYPE;AGR_ID;DRC_IRREGULAR_JOURNAL;DRC_DATE_FROM;DRC_DATE_TO;AGR_NAME"
+							visiblecols="DRC_TYPE;AGR_NAME;DRC_DATE_FROM;DRC_DATE_TO"
+							form="formDriverContracts.xml"
+							cellrenderercolormanager="com.opentach.client.employee.render.EmployeeContractCellRendererColorManager"
+							>
+							<BundleCellRenderer column="DRC_TYPE" />
+							<BundleCellRenderer column="AGR_NAME" />
+						</Table>
+					</Tab>
+					<Tab attr="ACTIVIDADES" title="ACTIVIDADES">
+						<Table entity="EInformeActivCond" key="NUMREQ"
+							keys="IDCONDUCTOR;TPACTIVIDAD;FECINI;FECFIN;RANURA"
+							parentkeys="CIF;IDCONDUCTOR;CG_CONTRATO;FEC_FILTER:FECINI" requiredparentkeys="CIF;IDCONDUCTOR;CG_CONTRATO;FEC_FILTER" parentkeylistener="yes" cansetenablebyparentkeys="yes"
+							rendertime="FECINI;FECFIN"
+							cols="NUMREQ;IDCONDUCTOR;NOMBRE;APELLIDOS;TPACTIVIDAD;FECINI;FECFIN;ESTADO_TRJ_RANURA;ESTADO_TRJ_RANURA_DSCR;ORIGEN_DSCR;ORIGEN;REGIMEN;REGIMEN_DSCR;USUARIO_ALTA;F_ALTA;USUARIO_MODIF;F_MODIF;MATRICULA;RANURA;DIA;RANURA_DSCR;DSCR_ACT;MINUTOS;CIF;NOMB;IDINSPECCION;INSP_FECINI;INSP_FECFIN;PROCEDENCIA;SEMANA;MES;DIA_SEM;HORA;HORAS_COND;FUERA_AMBITO;TRANS_TREN"
+							visiblecols="FECINI;FECFIN;DSCR_ACT;MINUTOS;MATRICULA;RANURA_DSCR;PROCEDENCIA;ORIGEN_DSCR;FUERA_AMBITO;TRANS_TREN"
+							disableinsert="yes" refreshbutton="yes" insertcontrol="no"
+							>
+							<BooleanCellRenderer column="FUERA_AMBITO" />
+							<BooleanCellRenderer column="TRANS_TREN" />
+							
+							<com.opentach.client.comp.render.MinutesCellRender column="MINUTOS"/>
+							
+							<TableControlsPanel>
+								<Row>
+									<Row/>
+											<Button key="btnGrafica" tip="TIP_GRAFICA_ACTIVIDADES" text="GRAFICA_ACTIVIDADES" icon="com/ontimize/gui/images/chart.png" 
+													listener="com.opentach.client.employee.listeners.ShowActivitiesChartActionListener"
+													title="GRAFICA_COND" formmanager="managergraficacond" form="formGraficaCond.xml" detail="false" clean="yes" autosearch="no" passattr="CIF;IDCONDUCTOR;CG_CONTRATO;FILTERFECINI;FILTERFECFIN"
+											/>
+									<Row/>
+								</Row>
+							</TableControlsPanel>
+							
+							<HideTableButton attr="insertbutton;deletebutton" onlyhide="true" />
+						</Table>
+					</Tab>
+					<Tab attr="JORNADAS_TRABAJO">
+						<Table entity="EPeriodosTrabajo" key="IDPERIODO"
+							rendertime="FECINI" 
+							parentkeys="IDCONDUCTOR;CIF;CG_CONTRATO;FEC_FILTER:FECINI" requiredparentkeys="CIF;IDCONDUCTOR;CG_CONTRATO;FEC_FILTER" parentkeylistener="yes" cansetenablebyparentkeys="yes"
+							cols="IDCONDUCTOR;IDPERIODO;DSCRTIPO;TPPERIODO;FECINI;DSCRPAIS;DSCRREGION;PROCEDENCIA;ERROR"
+							visiblecols="DSCRTIPO;TPPERIODO;FECINI;DSCRPAIS;DSCRREGION" 
+							cellrenderercolormanager="com.opentach.client.comp.render.PeriodosCellRenderer"
+							disableinsert="yes" refreshbutton="yes" insertcontrol="no"
+							>
+							<HideTableButton attr="insertbutton;deletebutton" onlyhide="true" />
+						</Table>
+					</Tab>
+					<Tab attr="NOTAS">
+						<Row title="" expand="yes">
+							<MemoDataField attr="OBSR" dim="text" expand="yes"
+								border="lowered" labelvisible="no" labelsize="0" align="center"
+								labelposition="top" />
+						</Row>
+					</Tab>
+					<Tab attr="MANAGED_STAFF" queryifvisible="yes">
+						<Table entity="EManagedStaff" keys="CIF;IDCONDUCTOR" editable="no"
+							parentkeys="CIF;IDCONDUCTOR:IDENCARGADO;" refreshbutton="yes"
+							cols="CIF;DNI;NOMBRE;APELLIDOS;IDCONDUCTOR;IDENCARGADO"
+							form="formUnManagedStaff.xml"
+							visiblecols="DNI;NOMBRE;APELLIDOS"
+							deletebutton="yes">
+						</Table>
+					</Tab>
+					<Tab attr="EMPLOYEEDATA.EMPLOYEE_CALENDAR" queryifvisible="yes">
+					 	<Table entity="ECalendarSummary"
+					 		keys="CIF;IDCONDUCTOR;CALENDAR"
+						 	parentkeys="CIF;IDCONDUCTOR;CALENDAR"
+						 	parentkeylistener="yes"
+						 	cols="YEAR;HOLIDAYS;PENDING_HOLIDAYS;CALENDAR"
+						 	visiblecols="YEAR;HOLIDAYS;PENDING_HOLIDAYS"
+						 	refreshbutton="yes"
+						 	disableinsert="yes"
+						 	form="formAcceptHolidays.xml">
+						 </Table>
+					</Tab>
+				</TabPanel>
+				<Column expand="no" margin="20;4;0;0">
+					<CollapsiblePanel attr="reports.filters" orientation="horizontal" startshowed="yes" ignoreinitpreferences="yes" borderposition="left" title="Filtro_Fecha_Comienzo" expand="no" width="210" recttitlecolor="#cccccc" fontcolor="#000000" fontshadowcolor="#cccccc">
+							<ObjectDataField attr="FEC_FILTER" visible="no"/>
+							<ColumnRadioButtonGroup attr="datos" title=" " expand="no" selected="ULTIMOS_DIAS">
+								
+								<RadioButtonDataField attr="ULTIMOS_DIAS" labelsize="20" align="left" labelposition="right" returnboolean="yes" />
+								
+								<Row height="10"/>
+								
+								<RadioButtonDataField attr="RANGO_FECHA" labelsize="18" align="left" labelposition="right" returnboolean="yes" />
+								<Column expand="no">
+									<CampoFechaNoEditable attr="FILTERFECINI" text="DESDE" align="left" required="no" datevisible="no" dim="no" labelsize="6" />
+									<CampoFechaNoEditable attr="FILTERFECFIN" text="HASTA" align="left" required="no" datevisible="no" dim="no" labelsize="6" />
+								</Column>
+								<Row expand="yes" />
+							</ColumnRadioButtonGroup>
+														
+							<Column attr="FAKE_DATA_COLUMN">
+								<Button key="EMPLOYEEDATA.GENERATE_FAKE_DATA" text="EMPLOYEEDATA.GENERATE_FAKE_DATA" tip="EMPLOYEEDATA.TIP_GENERATE_FAKE_DATA" listener="com.opentach.client.employee.listeners.IMEmployeeGenerateFakeDataActionListener" />
+								<Column expand="no">
+									<DateDataField attr="FAKEDATAFECINI" text="DESDE" align="left" required="no" datevisible="yes" dim="no" labelsize="6" />
+									<DateDataField attr="FAKEDATAFECFIN" text="HASTA" align="left" required="no" datevisible="yes" dim="no" labelsize="6" />
+								</Column>
+
+								<Column height="20" />
+								
+	 							<Button key="EMPLOYEEDATA.SEARCH_SERVICE_METHODS" text="EMPLOYEEDATA.SEARCH_SERVICE_METHODS" listener="com.opentach.client.employee.listeners.IMEmployeeSearchServiceMethodsActionListener" />
+							</Column>
+							
+							
+							<Column />
+					</CollapsiblePanel>
+				</Column>
+			</Row>
+		</Column>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<Button key="delete_special" text="deleteRecord" tip="deleteRecord.tip" icon="images-general/garbage16.png" listener="com.opentach.client.employee.listeners.IMEmpleadoDeleteActionListener"/>
+			<CancelButton />
+			<SaveButton stayinrecordafterupdate="yes" />
+		</Row>
+	</Column>
+</FormExt>

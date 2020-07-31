@@ -1,0 +1,15 @@
+<Row attr="StepFinished" expand="yes">
+	<Column expand="1.0" margin="15;15;0;15" expandlast="no">
+		<Row expand="yes">
+			<RoundPanel attr="FinishedRoundPanel" expand="yes">
+				<Row expand="yes" />
+				<Label icon="images/success.png" />
+				<Label text="TitleDownloadFinished" uiname="MainRound" />
+				<Row expand="no" height="15" />
+				<Label text="TakeSources" uiname="StandardBoldRound" />
+				<Row expand="yes" />
+			</RoundPanel>
+		</Row>
+		<Row height="30" expand="no" />
+	</Column>
+</Row>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	buttons="no"
+	title="managermonitorizacion"
+	preferredsizetodialog="1024;768">
+	<Row
+		title="usuariosconectados"
+		expand="yes">
+		<Column expand="yes">
+			<Row expand="no">
+				<Column expand="yes" />
+				<CheckDataField
+					attr="autorefreshSessionMonitor"
+					table="ESessionMonitor"
+					interval="autorefreshTimeSessionMonitor"
+					listener="com.opentach.adminclient.modules.admin.IMMonitorizacionUsuariosRefreshListener"
+					align="right" />
+				<IntegerDataField attr="autorefreshTimeSessionMonitor" align="right" size="4" />
+			</Row>
+			<Row expand="yes">
+				<Table
+					entity="ESessionMonitor"
+					key="user"
+					cols="user;sessionId;level;companies;startupTime;pingDate;connected;version;sourceAddress"
+					visiblecols="user;level;companies;startupTime;pingDate;connected;version;sourceAddress"
+					refreshbutton="yes">
+
+					<com.opentach.adminclient.modules.cdo.MonitorCellRenderer column="connected" />
+				</Table>
+			</Row>
+		</Column>
+	</Row>
+</FormExt>

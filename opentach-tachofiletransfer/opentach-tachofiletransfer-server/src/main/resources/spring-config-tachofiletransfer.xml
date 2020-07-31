@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Enable usage of @Autowired. -->
+	<context:annotation-config />
+	<tx:annotation-driven />
+	
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="maxUploadSize" value="10485760"></property>
+	</bean>
+
+	<!-- Enable component scanning for defining beans with annotations. -->
+	<context:component-scan base-package="com.opentach.tachofiletransfer.server.dao" />
+	<context:component-scan base-package="com.opentach.tachofiletransfer.server.services" />
+	<context:component-scan base-package="com.opentach.tachofiletransfer.server.tools" />
+</beans>

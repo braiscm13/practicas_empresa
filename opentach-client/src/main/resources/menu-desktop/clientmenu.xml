@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ApplicationMenuBar>
+	<Menu attr="INICIO">
+		<MenuItem attr="manageracercade2" icon="com/opentach/client/rsc/home_inicio24.png" shortcut="ctrl I"/>
+		<MenuItem attr="managergestor" icon="com/opentach/client/rsc/home_inicio24.png" />
+		<MenuItem attr="Exit" icon="com/opentach/client/rsc/exit24.png" />
+	</Menu>
+	<Menu attr="mantenimiento">
+	
+		<MenuItem attr="managercondveh" icon="com/opentach/client/rsc/truck_dude24.png" shortcut="ctrl F"/>
+		<MenuItem attr="managerqueryvehiculos" icon="com/opentach/client/rsc/truck_dude24.png"/>
+		<MenuItem attr="managerqueryconductores" icon="com/opentach/client/rsc/truck_dude24.png"/>
+		<MenuItem attr="managerempresaagente" icon="com/opentach/client/rsc/truck_dude24.png" />
+		<MenuItem attr="managergraficacond" icon="com/opentach/client/rsc/chartcond24.png" />
+		
+		
+		<MenuItem attr="managercalendaruso" icon="com/opentach/client/rsc/date-time.png" />
+		<MenuItem attr="managercontratoemp" icon="com/opentach/client/rsc/scroll224.png" />
+		<MenuSeparator attr="separatormanagerinspecciones" />
+		<MenuItem attr="managerinspecciones" icon="com/opentach/client/rsc/policeman_usa16.png" />	
+		<MenuSeparator attr="separatormanagersolicitudes" />
+		<MenuItem attr="managersolicitudes" icon="com/opentach/client/rsc/add2_24.png" />	
+		<MenuSeparator attr="separatormanagersolicitudes" />
+		<MenuItem attr="remotefleetmanagement" icon="com/opentach/client/rsc/remote_control24.png" listener="com.opentach.client.remotevehicle.comp.action.RemoteVehicleOpenPubliManagerListener" manager="managerremotefleetmanagement" publirsc="com/opentach/client/rsc/publi_flota.png"/>
+		<MenuItem attr="managerconductor" icon="com/opentach/client/rsc/driver_add24.png"/>
+		<MenuSeparator attr="separatormanagersolicitudes" />
+		<MenuItem attr="managerTasks" icon="com/opentach/client/rsc/remote_control24.png"/>
+		<MenuSeparator attr="separatorlabor" />
+		<MenuItem attr="managerlaborrecord" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			
+	</Menu>
+	<Menu attr="INFORMES">
+		<Menu attr="CONDUCTOR" icon="com/opentach/client/rsc/dude424.png">			
+			<MenuItem attr="managerinformeactivcond" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerinformeactivcondmacron" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerinformeactivcondmensual" icon="com/opentach/client/rsc/document_pulse24.png"/>	
+			<MenuItem attr="managerinformeusosvehcond" icon="com/opentach/client/rsc/truck_blue24.png"/>
+			<MenuItem attr="managerinformeinfraccond" icon="com/opentach/client/rsc/warning24_dude_inform.png"/>
+			<MenuItem attr="managerkmrecorridosconductor" icon="com/opentach/client/rsc/condodo24.png"/>		
+			<MenuItem attr="managerkmrecorridosconductorusos" icon="com/opentach/client/rsc/cardodo24.png"/>
+			<MenuItem attr="managermincondnocturnidad" text="managermincondnocturnidad.short"  tip="managermincondnocturnidad" icon="com/opentach/client/rsc/informe24.png" />		
+			<MenuSeparator />
+			<MenuItem attr="managerinformelaboralcond" icon="com/opentach/client/rsc/document_attachment24.png"/>
+			<MenuItem attr="managerinformeTiemposCondDesc" icon="com/opentach/client/rsc/timedriverest24.png"/>
+			<MenuItem attr="managerinformetiemposdistancia" icon="com/opentach/client/rsc/timedistance24.png"/>
+			<MenuSeparator />
+			<MenuItem attr="managerinformechecktrucker" icon="com/opentach/client/rsc/chartpie24.png" />
+		</Menu>
+		
+		<Menu attr="VEHICULO" icon="com/opentach/client/rsc/truck_blue24.png">
+			<MenuItem attr="managerinformeusovehiculo" icon="com/opentach/client/rsc/dude424.png"/>
+			<MenuItem attr="managerinformeincidentes" icon="com/opentach/client/rsc/truck_red24.png"/>
+			<MenuItem attr="managerinformefallos" icon="com/opentach/client/rsc/document_error24.png"/>
+			<MenuItem attr="managerkmrecorridos" icon="com/opentach/client/rsc/vehiodo24.png"/>		
+			<MenuItem attr="managervelcontinua" icon="com/opentach/client/rsc/speedcont24.png"/>	
+			<!--<MenuItem attr="managerdatostecnicos" icon="com/opentach/client/rsc/truck_red24.png"/>-->			
+			<MenuItem attr="managerdatostecnicosadvanced" icon="com/opentach/client/rsc/techdata24.png"/>			
+		</Menu>
+		
+		<Menu attr="AGENTES" icon="com/opentach/client/rsc/informe24.png">
+			<MenuItem attr="managerstats" icon="com/opentach/client/rsc/informe24.png" />
+			<MenuItem attr="managerinformeresumentiposinfracciones"  text="managerinformeresumentiposinfracciones.short" tip="managerinformeresumentiposinfracciones" icon="com/opentach/client/rsc/informe24.png" />
+			<MenuItem attr="managerreportcap" icon="com/opentach/client/rsc/contract24.png"/>
+			<MenuItem attr="managerinformevehiclesnotdownloadingagents" icon="com/opentach/client/rsc/informe24.png"/>
+			<MenuItem attr="managerinformedriversnotdownloadingagents" icon="com/opentach/client/rsc/informe24.png" />
+		 	<MenuItem attr="managerinformeusovehsintarjeta" icon="com/opentach/client/rsc/informe24.png"/>
+			<MenuItem attr="managerinformependdescargaagente" icon="com/opentach/client/rsc/informe24.png" />
+			<MenuItem attr="managerinformenumempresavehactivos" icon="com/opentach/client/rsc/informe24.png"/>
+			<MenuItem attr="managerinformevehdescargaremota" icon="com/opentach/client/rsc/informe24.png"/>
+			<MenuItem attr="managerinformeinfracagente" icon="com/opentach/client/rsc/warning24_dude_inform.png"/>
+			<MenuItem attr="managerMailOutbox" icon="images-mailmanager/mail_view.png"/>
+		</Menu>
+		<Menu attr="laborreports">
+			<MenuItem attr="managerlaborrecordwarehouse" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerdriverjournalrecord" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerdriverstatustimerecord" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerinformependdescarga" icon="com/opentach/client/rsc/document_pulse24.png"/>
+			<MenuItem attr="managerinformeagreements" icon="com/opentach/client/rsc/document_pulse24.png"/>
+		</Menu>
+		<MenuItem attr="managerinformeficherostgd" icon="com/opentach/client/rsc/documents24.png" />		
+		<MenuItem attr="managerinformedescargas" icon="com/opentach/client/rsc/download24.png" />		
+		<MenuItem attr="managerinformekms" icon="com/opentach/client/rsc/companyodo24.png" />		
+		<MenuItem attr="managerinformeficherostamano" icon="com/opentach/client/rsc/companyodo24.png" />	
+		<Menu attr="EXPRESS" icon="com/opentach/client/rsc/informeexpress.png">
+		<MenuItem attr="express_cond" icon="com/opentach/client/rsc/informeexpresscond.png"/>
+		<MenuItem attr="express_veh"  icon="com/opentach/client/rsc/informeexpressveh.png"/>
+		<!-- <MenuItem attr="macroinf_gestor"  icon="com/opentach/client/rsc/informeexpressveh.png"/> -->
+		
+		</Menu>
+		<Menu attr="RESUMEN" icon="com/opentach/client/rsc/document_time24.png">
+<!-- 			<MenuItem attr="macroinf_activ" icon="com/opentach/client/rsc/document_pulse24.png"/> -->
+		<MenuItem attr="macroinf_incidencias" icon="com/opentach/client/rsc/truck_red24.png"/>
+		</Menu>		
+		<MenuItem attr="macroinf_selec" 		 icon="com/opentach/client/rsc/selection_view.png"/>
+		
+		<MenuItem attr="macroinf_gestor" icon="com/opentach/client/rsc/gear_connection24.png"/> 
+		<MenuItem attr="managerviewinformegestor" icon="com/opentach/client/rsc/document_time24.png"/>	
+	</Menu>
+	<Menu attr="CERT">
+		
+	<!--  	<Menu attr="CERTIFICADO_ACTIVIDADES" 			icon="com/opentach/client/rsc/contract24.png">-->
+			<MenuItem attr="managercertifactiv"	 	 	icon="com/opentach/client/rsc/contract24.png"/>
+			<MenuItem attr="managergraficaactivcertifactiv28" icon="com/opentach/client/rsc/contract24_auto.png" />
+			<MenuItem attr="managerconsultacertifactiv"	icon="com/opentach/client/rsc/contract24_query.png"/>
+			<MenuItem attr="managercartasporte"	 	 	icon="com/opentach/client/rsc/contract24.png"/>
+			<MenuItem attr="managerADR"	 	 	icon="com/opentach/client/rsc/contract24.png"/>
+			<MenuItem attr="managerADRConsulta"	 	 	icon="com/opentach/client/rsc/contract24.png"/>
+			<MenuItem attr="managercartaadvcominfracciones"	 	 	icon="com/opentach/client/rsc/contract24.png"/>
+			
+		<!-- </Menu>-->
+	</Menu>
+	
+	
+	<Menu attr="titulo1">
+		<MenuItem attr="managercfgservicios" icon="com/opentach/client/rsc/gears24.png" />
+		<MenuItem attr="managerWatchFolder"/>
+		<MenuItem attr="managercargaficheros" icon="com/opentach/client/rsc/server_from_client24.png" />
+		<MenuItem attr="managerdescargaficheros" icon="com/opentach/client/rsc/server_to_client24.png" />
+		<MenuItem attr="managerdownloadficheros" icon="com/opentach/client/rsc/server_to_client24_query.png" />
+		<MenuItem attr="managerdescargaUSBKey" icon="com/opentach/client/rsc/key2_24.png" />
+		<MenuItem attr="remotedownloadcfg" icon="com/opentach/client/rsc/remote_control24.png" listener="com.opentach.client.remotevehicle.comp.action.RemoteVehicleOpenPubliManagerListener" manager="managerremotedownloadcfg" publirsc="com/opentach/client/rsc/publi_remote.png"/>
+		<MenuItem attr="managervertgd" icon="com/opentach/client/rsc/document_view.png" />				
+		<MenuItem attr="manageralmacenficheros" icon="com/opentach/client/rsc/box24.png" />		
+		
+	</Menu>	
+	<Menu attr="ALERTAS">
+		<MenuItem attr="managerinformependdescarga" icon="com/opentach/client/rsc/warning24_files.png"/>
+		<MenuItem attr="managerinformeeventostaco" icon="com/opentach/client/rsc/informeEvents24.png"/>
+		<MenuItem attr="managerinformeexpireddatetarj" icon="com/opentach/client/rsc/informeExpired24.png"/>
+		<MenuItem attr="managerinformeproxcalibrado" icon="com/opentach/client/rsc/informeNext24.png"/>
+		<MenuItem attr="manageravisosfull" icon="com/opentach/client/rsc/mail_view.png"/>
+		<MenuSeparator/>
+		<MenuItem attr="btn_news" icon="com/opentach/client/rsc/newspaper24.png" listener="com.opentach.client.modules.news.NewsMenuListener"/>
+<!-- 		<MenuItem attr="managerinformealertas" icon="com/opentach/client/rsc/informe24.png"/> -->
+<!-- 		<MenuItem attr="managerinformealertas" icon="com/opentach/client/rsc/informealertas24.png"/> -->
+	
+	</Menu>
+
+	<Menu attr="PREFERENCIAS">
+<!-- 		<Menu attr="MOSTRAR/OCULTAR"> -->
+<!-- 			<CheckMenuItem attr="ShowHideStatusBar" /> -->
+<!-- 			<CheckMenuItem attr="ShowHideToolbar" /> -->
+<!-- 			<CheckMenuItem attr="ShowHideTableRowNumber" /> -->
+<!-- 		</Menu> -->
+<!-- 		<MenuItem attr="ChangeTableFieldLook" />  -->
+<!-- 		<Menu attr="fuente"> -->
+<!-- 				<RadioItemGroup > -->
+<!-- 					<RadioMenuItem attr="SmallFont" /> -->
+<!-- 					<RadioMenuItem attr="RegularFont" /> -->
+<!-- 					<RadioMenuItem attr="LargeFont" /> -->
+<!-- 				</RadioItemGroup > -->
+<!-- 		</Menu> -->
+		<!-- APPMODE: See this places when changes here:  JMenuAppMode / ListenerMenu-->
+		<Menu attr="AppMode" icon="com/opentach/client/rsc/window_star24.png">
+			<CheckMenuItem attr="AppMode.LaunchPad" icon="com/opentach/client/rsc/window_launchpad24.png" />
+			<CheckMenuItem attr="AppMode.Navigator" icon="com/opentach/client/rsc/window_navigator24.png" />
+			<CheckMenuItem attr="AppMode.NavLaunchpad" icon="com/opentach/client/rsc/window_navLaunchpad24.png" />
+		</Menu>
+		<MenuItem attr="chooserlaf" icon="com/opentach/client/rsc/window_colors.png" listener="com.opentach.client.modules.admin.IMLafChooserMenuListener"/>
+		<Menu attr="chooserbackground" icon="com/opentach/client/rsc/photo_landscape24.png">
+			<MenuItem attr="defaultchooserbackground" icon="com/opentach/client/rsc/window_star24.png" action="default" listener="com.opentach.client.modules.admin.IMBackgroundImageMenuListener"/>
+			<MenuItem attr="selectchooserbackground" icon="com/opentach/client/rsc/back24.png" action="select" listener="com.opentach.client.modules.admin.IMBackgroundImageMenuListener"/>
+			<MenuItem attr="restorechooserbackground" icon="com/opentach/client/rsc/arrow_u_turn24.png" action="restore" listener="com.opentach.client.modules.admin.IMBackgroundImageMenuListener"/>
+		</Menu>
+		<MenuSeparator />
+		<MenuLocale attr="SeleccionIdioma" resourceBundle="com.opentach.client.i18n.bundle">
+			<LocaleMenuItem attr="espanhol"  locale="es_ES" icon="com/opentach/client/rsc/flag_spain24.png"/>		
+			<LocaleMenuItem attr="portugues" locale="pt_PT" icon="com/opentach/client/rsc/flag_portugal24.png"/>
+			<LocaleMenuItem attr="ingles" 	 locale="en_GB" icon="com/opentach/client/rsc/flag_great_britain24.png"/>
+			<LocaleMenuItem attr="frances" 	 locale="fr_FR" icon="com/opentach/client/rsc/flag_france24.png"/>
+			<LocaleMenuItem attr="aleman" 	 locale="de_DE" icon="com/opentach/client/rsc/flag_germany24.png"/>
+			<LocaleMenuItem attr="italiano"  locale="it_IT" icon="com/opentach/client/rsc/flag_itaty24.png"/>
+			<LocaleMenuItem attr="catalan"  locale="ca_ES" icon="com/opentach/client/rsc/catalunya24.png"/>
+			
+			<!-- <ItemMenuLocale attr="galego" 	locale="es_GL" />  -->
+		</MenuLocale>
+		<!--<MenuSeparator />
+		<MenuItem attr="ArrangeMenuGroups" />
+		<MenuItem attr="ChangeTableFieldLook" />
+		 <Menu attr="Fuente">
+			<RadioItemGroup >
+				<RadioMenuItem attr="SmallFont" />
+				<RadioMenuItem attr="RegularFont" />
+				<RadioMenuItem attr="LargeFont" />
+			</RadioItemGroup >
+			<MenuSeparator />
+			<MenuItem attr="FontSetup" />
+		</Menu>-->		
+		<MenuSeparator />
+		<MenuItem attr="managerpassword" icon="com/opentach/client/rsc/password24.png" />
+		<MenuItem attr="SendToTray" icon="com/opentach/client/rsc/minimize24.png" />
+		<MenuSeparator />
+		<CheckMenuItem attr="RememberPassword" />
+		<CheckMenuItem attr="ArrancarMinimizado" />
+		
+	</Menu>	
+	
+	<Menu attr="Ayuda">
+		<MenuItem attr="ayuda" listener="com.opentach.client.comp.action.OpenManagerMenuActionListener" manager="managerextraresourcesviewer" text="TemasDeAyuda" icon="dms-images/document_attachment24.png" />	
+		<MenuSeparator/>
+		<MenuItem attr="managerTachoCodes" icon="com/opentach/client/rsc/information24.png" />
+		<MenuSeparator/>
+	    <MenuItem attr="manageracercade" icon="com/opentach/client/rsc/home_inicio24.png"/>	
+		<MenuSeparator/>
+		<MenuItem attr="btn_info_version" icon="com/opentach/client/rsc/news24.png" listener="com.opentach.client.modules.version.VersionMenuListener"/>
+<!-- 		<MenuItem attr="menudemovideo" icon="com/opentach/client/rsc/mobilephone124.png" />		 -->
+		
+	    <!--<com.utilmize.tools.uieditor.MenuItemUIEditor attr="uieditor" />				
+	--></Menu>
+	<Menu attr="Opentach Online">
+		<MenuItem attr="managerLexEduca" icon="com/opentach/client/rsc/lexeduca24.png" />
+		<MenuItem attr="managerCAP" icon="com/opentach/client/rsc/truck224.png" />
+		<MenuSeparator/>
+		<MenuItem attr="managerCDOViewer" icon="com/opentach/client/rsc/downloadcenter24.png" />
+		<MenuSeparator/>
+		<MenuItem attr="managerSoporte" icon="com/opentach/client/rsc/environment24.png" />
+		<MenuSeparator/>
+		<MenuItem attr="btn_social" icon="com/opentach/client/rsc/socialnetwork24.png" listener="com.opentach.client.modules.social.SocialMenuListener"/>
+		<!-- <MenuSeparator/>
+		<MenuItem attr="managerextraresourcesviewer" icon="dms-images/document_attachment24.png" />
+		<MenuSeparator/>
+		<MenuItem attr="managerqueryrestricciones" icon="com/opentach/client/rsc/timedriverest24.png" />
+		<MenuSeparator/>
+		<MenuItem attr="btn_links" icon="com/opentach/client/rsc/link24.png" listener="com.opentach.client.modules.links.LinksMenuListener"/> -->
+	</Menu>
+	<Menu attr="Jaltest - ODF">
+		<MenuItem attr="jaltest_odf" text="Jaltest - ODF" icon="com/opentach/client/rsc/jaltest24.png" listener="com.opentach.client.comp.action.OpenLinkListener" link="https://optimaldrivingfleet.jaltest.com/Presentacion/Index.aspx"/>
+	</Menu>
+</ApplicationMenuBar>

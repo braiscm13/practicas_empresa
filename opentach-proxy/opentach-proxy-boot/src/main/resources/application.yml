@@ -1,0 +1,96 @@
+app:
+  redirections: 
+    filseService: http://localhost:8080/openservices/public/rest/fileService/uploadFile
+    checkTruckerService: http://localhost:8080/openservices/services/
+  backup-location: "file:/d:/recursos_proyectos/opentach/proxy_repository"
+server:
+  port: 8081
+#  ssl:
+#    key-store: classpath:keystore.jks
+#    key-store-password: G5cp,fYC9gje
+#    key-password: G5cp,fYC9gje
+#  http:
+#    port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json, application/xml    
+ontimize:
+  corsfilter:
+    enabled: true
+  globalcors:
+    corsConfigurations:
+      '[/**]':
+        allowedOrigins: "*"
+        allowedHeaders: "*"
+        exposedHeaders: ["X-Auth-Token","Content-disposition","X-Requested-With"]
+        allowedMethods: 
+          - GET
+          - POST
+          - PUT
+          - OPTIONS
+          - DELETE
+#  jdbc:
+#    nameConvention: lower
+#    sqlhandler: postgres
+#    sqlConditionProcessor:
+#      upperString: true
+#      upperLike: false
+  security:
+#    servicePath: "/private/**"
+    mode: none    
+#    userInformationService:
+#      userRepository: OCLoginProfilesDao
+#      queryId: login
+#      userLoginColumn: usr_login
+#      userPasswordColumn: usr_password
+#      otherData:
+#      - usr_surname
+#      - usr_email
+#      - usr_id
+#    userRoleInformationService:
+#      userRoleRepository: OCLoginProfilesDao
+#      queryId: userRoles
+#      roleLoginColumn: usr_login
+#      roleNameColumn: rol_name
+#    roleInformationService:
+#      roleRepository: OCLoginProfilesDao
+#      roleNameColumn: rol_name
+#      serverPermissionQueryId: serverPermissions
+#      serverPermissionNameColumn: srp_name
+#      clientPermissionQueryId: clientPermissions
+#      clientPermissionColumn: rol_xml_client_permission
+#    jwt:
+#        expirationTime: 600000
+#        refreshToken: true
+#  mail:
+#    engine: default
+#    encodingKey: MAIL_ENCODING
+#    hostKey: MAIL_HOST
+#    portKey: MAIL_PORT
+#    protocolKey: MAIL_PROTOCOL
+#    userKey: MAIL_USER
+#    passwordKey: MAIL_PASSWORD
+#    propertiesKey: MAIL_PROPERTIES
+#endpoints:
+#  api:
+#    enabled: true
+logging:
+  level:
+    root: info
+    org.springframework.jdbc.core: debug
+    org.springframework.boot.autoconfigure: trace
+spring:
+  boot:
+    enableautoconfiguration: true
+  devtools:
+    livereload:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      file-size-threshold: 10MB
+  main:
+    banner-mode: 'off'
+  session:
+    store-type: none    

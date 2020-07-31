@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt 
+	keys="USUARIO" entity="EUsuariosCDO" columns="USUARIO" title="USUARIO" setvalueorder="USUARIO;EUsuDfEmpUsuarios" status="no" buttons="no"
+	focusorder="USUARIO;PASSWORD;NIVEL_CD;DMAXLOGIN;PRIVATE;TELEFONO;NAME;CONTACT;CG_NACI;CG_PROV;POSTAL_CODE;POBL;UBIC;LATITUDE;LONGITUDE;DSCR;PRINTCONFIG;MONIT;SENDMAIL;USBPOSITION;EXPRESSREPORT;OP_GAS;OP_STORE;OP_CASH;OP_BED;OP_MEAL;OP_24H"
+	>
+<!-- 	<FormHeader standardbuttons="yes" /> -->
+	<Column margin="5;5;5;5" expand="yes" expandlast="no">
+		<Row expand="no">
+			<Column expandlast="yes">
+				<Row >
+					<Column expand="yes">
+						<Row margin="0;0;0;44">
+							<TextDataField attr="USUARIO" align="left" dim="text" labelsize="17" size="15" required="yes" maxlength="15" />
+							<PasswordDataField attr="PASSWORD" dim="text" maxlength="15"  required="yes" align="left" size="15"/>
+						</Row>
+						<ReferenceExtDataField entity="EPerfil" attr="NIVEL_CD" text="PERFIL" dim="text" cod="NIVEL_CD" cols="NIVEL_CD;DSCR"
+							labelsize="17" descriptioncols="DSCR" required="yes" csize="5" size="20" align="left" />
+						<Row margin="0;0;0;44">
+							<DateDataField attr="DMAXLOGIN" text="DMAXLOGIN" align="left" labelsize="17" required="no" visible="yes" size="15" />
+							<CheckDataField align="left" attr="PRIVATE" returnstring="yes" />
+							<Row/>
+						</Row>
+						<MaskDataField mask="000000000000000" attr="TELEFONO" dim="no" maxlength="15" align="left" labelsize="17" required="no" size="15" />
+						
+						<TextDataField align="left" attr="NAME" text="cdo.NAME" labelsize="17" dim="text" maxlength="255" />
+						<TextDataField align="left" attr="CONTACT" labelsize="17" dim="text" maxlength="255" />
+					</Column>
+					<Column expand="yes" margin="0;20;0;0">
+						<ReferenceComboDataField align="left" attr="CG_NACI" labelsize="11" cod="CG_NACI" cols="DSCR" dim="no" entity="EPaises" size="25" />
+						<ReferenceComboDataField align="left" attr="CG_PROV" cod="CG_PROV" cols="NOMB" entity="EProvincias" parentkey="CG_NACI" size="25" labelsize="11"/>
+						<TextDataField align="left" attr="POSTAL_CODE" labelsize="11" maxlength="255" size="15"/>
+						<TextDataField align="left" attr="POBL" labelsize="11" dim="text" maxlength="255" />
+						<TextDataField align="left" attr="UBIC" labelsize="11" dim="text" maxlength="255" />
+						
+						<Row>
+							<RealDataField attr="LATITUDE" align="left"  size="15" labelsize="11"/>
+							<Row/>
+							<RealDataField attr="LONGITUDE" align="left"  size="15" />
+							<Row/>
+						</Row>
+					</Column>
+				</Row>
+				
+				<Row expand="yes">
+					<MemoDataField attr="DSCR" uppercase="no" expand="yes" dim="text" maxlength="255" labelvisible="yes" labelposition="top" rows="4" />
+				</Row>
+			</Column>
+			<Column expand="no" expandlast="no">
+				<TextComboDataField attr="PRINTCONFIG" translate="yes" values="0;1;2;3" equivalences="forms-desktop/admin/printconfig.properties"	align="left" labelsize="20" dim="no" size="25" />
+				<CheckDataField attr="MONIT" returnstring="yes" align="left" labelsize="20" />
+				<CheckDataField attr="SENDMAIL" returnstring="yes" align="left" labelsize="20" />
+				<CheckDataField attr="USBPOSITION" returnstring="yes" align="left" labelsize="20" />
+				<TextComboDataField attr="EXPRESSREPORT" translate="yes" values="VU;TC;AMBOS" align="left" labelsize="20" dim="no" size="25" />
+				<Row expand="yes"/>
+				<Row title="OPTIONS">
+					<Column expand="no">
+						<CheckDataField align="left" attr="OP_GAS" labelsize="10" size="15" returnstring="yes" />
+						<CheckDataField align="left" attr="OP_STORE" labelsize="10" size="15" returnstring="yes" />
+						<CheckDataField align="left" attr="OP_CASH" labelsize="10" size="15" returnstring="yes" />
+					</Column>
+					<Row/>
+					<Column expand="no">
+						<CheckDataField align="left" attr="OP_BED" labelsize="8" size="15" returnstring="yes" />
+						<CheckDataField align="left" attr="OP_MEAL" labelsize="8" size="15" returnstring="yes" />
+						<CheckDataField align="left" attr="OP_24H" labelsize="8" size="15" returnstring="yes" />
+					</Column>
+					<Column/>
+				</Row>
+			</Column>
+		</Row>
+		<Row attr="EMPRESAS" expand="yes" title="EMPRESAS">
+			<InsertTable entity="EUsuDfEmpUsuarios" key="USUARIO" keys="CIF" parentkey="USUARIO" cols="CIF;USUARIO;CDELEG;CDELEGASIG" visiblecols="CIF;CDELEG;CDELEGASIG"
+				editablecolumns="CIF" updateentityeditablecolumns="CIF" refreshbutton="yes" deletebutton="yes" form="formUsuDel.xml" requiredcols="CIF"
+				disableinsert="yes">
+				<ComboCellRenderer column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+				<ComboCellEditor column="CIF" entity="EDfEmp" align="left" cod="CIF" cols="CIF;NOMB" visiblecols="NOMB" />
+			</InsertTable>
+		</Row>
+		<Row expand="no">
+			<NavigationToolbar />
+			<Row />
+			<CancelButton />
+			<SaveButton />
+		</Row>
+	</Column>
+</FormExt>

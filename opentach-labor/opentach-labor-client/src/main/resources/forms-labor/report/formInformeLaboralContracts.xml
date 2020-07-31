@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<FormExt
+	entity="a"
+	keys="a"
+	title="EDriverContracts"
+	buttons="no"
+	preferredsizetodialog="800;600">
+	<ObjectDataField
+		attr="IDCONDUCTOR"
+		required="yes"
+		visible="no" />
+	<ObjectDataField
+		attr="CIF"
+		required="yes"
+		visible="no" />
+	<Row
+		expand="yes"
+		margin="5;5;5;5">
+		<Table
+			entity="EDriverContracts"
+			keys="DRC_ID"
+			parentkeys="IDCONDUCTOR;CIF"
+			refreshbutton="yes"
+			cols="DRC_ID;IDCONDUCTOR;CIF;DRC_TYPE;AGR_ID;DRC_IRREGULAR_JOURNAL;DRC_DATE_FROM;DRC_DATE_TO;AGR_NAME;NOMBRE;APELLIDOS;DNI"
+			visiblecols="NOMBRE;APELLIDOS;DNI;DRC_TYPE;AGR_NAME;DRC_DATE_FROM;DRC_DATE_TO">
+			<BundleCellRenderer column="DRC_TYPE" />
+		</Table>
+	</Row>
+</FormExt>
