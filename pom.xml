@@ -73,7 +73,7 @@
 		<ncalendar.version>0.23</ncalendar.version>
 		<ontimize.version>5.11.2-SNAPSHOT</ontimize.version>
 		<permissioncomponents.version>3.0.7</permissioncomponents.version>
-		<apache-poi.version>3.9</apache-poi.version>
+		<apache-poi.version>5.2.1</apache-poi.version>
 		<utilmize.version>3.0.11-SNAPSHOT</utilmize.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
