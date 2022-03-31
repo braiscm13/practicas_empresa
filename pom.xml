@@ -105,7 +105,7 @@
 		<spring-boot-starter-web.version>2.1.2.RELEASE</spring-boot-starter-web.version>
 		<spring-cloud-starter-eureka.version>2.1.0.RELEASE</spring-cloud-starter-eureka.version>
 		<spring-cloud-starter-zuul.version>2.1.0.RELEASE</spring-cloud-starter-zuul.version>
-		<spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+		<spring-boot.version>2.5.12</spring-boot.version>
 		<spring-data.version>2.1.5.RELEASE</spring-data.version>
 		<spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
 
